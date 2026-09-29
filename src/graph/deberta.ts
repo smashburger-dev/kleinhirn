@@ -21,6 +21,14 @@ export interface EncoderSpec {
   layerNormEps: number;
 }
 
+export type ProfileGranularity = 'pass' | 'dispatch';
+
+export interface DispatchTimestamps {
+  querySet: GPUQuerySet;
+  resolve: GPUBuffer;
+  staging: GPUBuffer;
+}
+
 export interface RunInput {
   embeddings: Float32Array<ArrayBuffer> | Uint16Array<ArrayBuffer>;
   mask: Float32Array<ArrayBuffer>;        // L
@@ -273,6 +281,72 @@ export class EncoderPlan {
     this.bgMaskL = mk(this.pipeMaskL)([this.raw, this.packedBuf, this.logitsBuf]);
   }
 
+  // Per-layer dispatch list [pipeline, bind-group index, dx, dy, name]; the
+  // names label the dispatch-granularity GPU profile.
+  private layerSeq(rows: number): [GPUComputePipeline, number, number, number, string][] {
+    const H16 = Math.ceil(this.spec.hiddenSize / 16);
+    const R16 = Math.ceil(rows / 16);
+    const I16 = Math.ceil(this.spec.intermediateSize / 16);
+    return [
+      [this.pipeMmQkv, 0, Math.ceil(3 * this.spec.hiddenSize / 16), R16, 'qkv'],
+      [this.pipeAttn, 1, this.spec.heads, rows, 'attn'],
+      [this.pipeMmAttn, 2, H16, R16, 'attnOut'],
+      [this.pipeLn[2], 3, rows, 1, 'lnA'],
+      [this.pipeMmFfn1, 4, I16, R16, 'ffn1'],
+      [this.pipeMmFfn2, 5, H16, R16, 'ffn2'],
+      [this.pipeLn[2], 6, rows, 1, 'lnF'],
+    ];
+  }
+
+  private headSteps(): [GPUComputePipeline, GPUBindGroup, number, number, string][] {
+    const K16 = Math.ceil(this.markers * this.batch / 16);
+    return [
+      [this.pipeGather, this.bgGather, 1, 1, 'gather'],
+      [this.pipeMmFc1, this.bgFc1, Math.ceil(this.headHidden / 16), K16, 'fc1'],
+      [this.pipeMmFc2, this.bgFc2, 1, K16, 'fc2'],
+      [this.pipeMaskL, this.bgMaskL, 1, 1, 'maskl'],
+    ];
+  }
+
+  // Same dispatches, pipelines, bind groups and order as the normal pass, but
+  // every dispatch in its own compute pass with begin/end timestamps.
+  private encodeDispatchProfile(
+    seqLen: number, ts: DispatchTimestamps,
+  ): { commands: GPUCommandBuffer; names: string[] } {
+    const enc = this.device.createCommandEncoder();
+    const names: string[] = [];
+    const step = (
+      pipe: GPUComputePipeline, bg: GPUBindGroup, dx: number, dy: number, name: string,
+    ): void => {
+      const i = names.length;
+      names.push(name);
+      const pass = enc.beginComputePass({ timestampWrites: {
+        querySet: ts.querySet,
+        beginningOfPassWriteIndex: i * 2,
+        endOfPassWriteIndex: i * 2 + 1,
+      } });
+      pass.setPipeline(pipe);
+      pass.setBindGroup(0, bg);
+      pass.dispatchWorkgroups(dx, dy);
+      pass.end();
+    };
+    step(this.pipeLn[1], this.bgEmb, seqLen, 1, 'embed');
+    const seq = this.layerSeq(seqLen);
+    for (let l = 0; l < this.spec.layers; l += 1) {
+      for (const [pipe, bgi, dx, dy, op] of seq) {
+        step(pipe, this.layerBgs[l][bgi], dx, dy, `L${l}.${op}`);
+      }
+    }
+    for (const [pipe, bg, dx, dy, op] of this.headSteps()) {
+      step(pipe, bg, dx, dy, `head.${op}`);
+    }
+    enc.copyBufferToBuffer(
+      this.logitsBuf, 0, this.staging, 0, this.markers * this.batch * 4);
+    enc.resolveQuerySet(ts.querySet, 0, names.length * 2, ts.resolve, 0);
+    enc.copyBufferToBuffer(ts.resolve, 0, ts.staging, 0, names.length * 16);
+    return { commands: enc.finish(), names };
+  }
+
   // Encode the full pass into one command buffer. Rows at index >= seqLen are
   // masked everywhere downstream, so row-dispatch dimensions use seqLen
   // (capture keeps the full bucket for the parity tooling). capture: also copy
@@ -300,18 +374,7 @@ export class EncoderPlan {
     };
     const rows = capture ? this.length : seqLen;
     const capOff = (this.length * this.spec.hiddenSize * 4);
-    const H16 = Math.ceil(this.spec.hiddenSize / 16);
-    const R16 = Math.ceil(rows / 16);
-    const I16 = Math.ceil(this.spec.intermediateSize / 16);
-    const seq: [GPUComputePipeline, number, number, number][] = [
-      [this.pipeMmQkv, 0, Math.ceil(3 * this.spec.hiddenSize / 16), R16],
-      [this.pipeAttn, 1, this.spec.heads, rows],
-      [this.pipeMmAttn, 2, H16, R16],
-      [this.pipeLn[2], 3, rows, 1],
-      [this.pipeMmFfn1, 4, I16, R16],
-      [this.pipeMmFfn2, 5, H16, R16],
-      [this.pipeLn[2], 6, rows, 1],
-    ];
+    const seq = this.layerSeq(rows);
     // Non-capture forward: one compute pass for the whole graph. Dispatches
     // inside a pass are still program-ordered, so the seven pass boundaries
     // between embedding, layers and head are pure overhead. Capture and
@@ -331,19 +394,11 @@ export class EncoderPlan {
           pass.dispatchWorkgroups(dx, dy);
         }
       }
-      pass.setPipeline(this.pipeGather);
-      pass.setBindGroup(0, this.bgGather);
-      pass.dispatchWorkgroups(1);
-      pass.setPipeline(this.pipeMmFc1);
-      pass.setBindGroup(0, this.bgFc1);
-      pass.dispatchWorkgroups(
-        Math.ceil(this.headHidden / 16), Math.ceil(this.markers * this.batch / 16));
-      pass.setPipeline(this.pipeMmFc2);
-      pass.setBindGroup(0, this.bgFc2);
-      pass.dispatchWorkgroups(1, Math.ceil(this.markers * this.batch / 16));
-      pass.setPipeline(this.pipeMaskL);
-      pass.setBindGroup(0, this.bgMaskL);
-      pass.dispatchWorkgroups(1);
+      for (const [pipe, bg, dx, dy] of this.headSteps()) {
+        pass.setPipeline(pipe);
+        pass.setBindGroup(0, bg);
+        pass.dispatchWorkgroups(dx, dy);
+      }
       pass.end();
       enc.copyBufferToBuffer(
         this.logitsBuf, 0, this.staging, 0, this.markers * this.batch * 4);
@@ -385,19 +440,11 @@ export class EncoderPlan {
     }
 
     const p3 = beginPass();
-    p3.setPipeline(this.pipeGather);
-    p3.setBindGroup(0, this.bgGather);
-    p3.dispatchWorkgroups(1);
-    p3.setPipeline(this.pipeMmFc1);
-    p3.setBindGroup(0, this.bgFc1);
-    p3.dispatchWorkgroups(
-      Math.ceil(this.headHidden / 16), Math.ceil(this.markers * this.batch / 16));
-    p3.setPipeline(this.pipeMmFc2);
-    p3.setBindGroup(0, this.bgFc2);
-    p3.dispatchWorkgroups(1, Math.ceil(this.markers * this.batch / 16));
-    p3.setPipeline(this.pipeMaskL);
-    p3.setBindGroup(0, this.bgMaskL);
-    p3.dispatchWorkgroups(1);
+    for (const [pipe, bg, dx, dy] of this.headSteps()) {
+      p3.setPipeline(pipe);
+      p3.setBindGroup(0, bg);
+      p3.dispatchWorkgroups(dx, dy);
+    }
     p3.end();
     enc.copyBufferToBuffer(
       this.logitsBuf, 0, this.staging, 0, this.markers * this.batch * 4);
@@ -413,39 +460,68 @@ export class EncoderPlan {
     this.device.queue.submit([this.encode(capture, skip, seqLen)]);
   }
 
-  // GPU timestamp profiling (K5): one timed forward, per-pass milliseconds
-  // keyed 'embed' | 'layer0..N-1' | 'head'. Null when the device lacks the
-  // 'timestamp-query' feature; the caller then uses CPU-side timing.
-  async kernelTimesMs(input: RunInput): Promise<Record<string, number> | null> {
+  // GPU timestamp profiling (K5): one timed forward. 'pass' (default) keys
+  // 'embed' | 'layer0..N-1' | 'head' on the full bucket; 'dispatch' times each
+  // dispatch at the item's real seqLen, keys 'embed' | 'L<l>.<op>' |
+  // 'head.<op>', and also returns the logits of that forward. Null when the
+  // device lacks 'timestamp-query'; the caller then uses CPU-side timing.
+  async kernelTimesMs(
+    input: RunInput, granularity: ProfileGranularity = 'pass', seqLen = this.length,
+  ): Promise<Record<string, number> | null> {
+    const r = await this.profileForward(input, granularity, seqLen);
+    return r && r.times;
+  }
+
+  async profileForward(
+    input: RunInput, granularity: ProfileGranularity = 'pass', seqLen = this.length,
+  ): Promise<{ times: Record<string, number>; logits: Float32Array } | null> {
     if (!this.device.features.has('timestamp-query')) return null;
-    const passCount = this.spec.layers + 2;
-    const bytes = passCount * 16;
-    const ts = {
-      querySet: this.device.createQuerySet({
-        type: 'timestamp', count: passCount * 2 }),
+    const dispatchCount = 1 + this.spec.layers * 7 + 4;
+    const passCount = granularity === 'dispatch' ? dispatchCount : this.spec.layers + 2;
+    const ts = this.timestampResources(passCount);
+    this.upload(input);
+    let names: string[];
+    if (granularity === 'dispatch') {
+      const enc = this.encodeDispatchProfile(seqLen, ts);
+      names = enc.names;
+      this.device.queue.submit([enc.commands]);
+    } else {
+      names = [
+        'embed',
+        ...Array.from({ length: this.spec.layers }, (_, l) => `layer${l}`),
+        'head',
+      ];
+      this.device.queue.submit([this.encode(false, undefined, this.length, ts)]);
+    }
+    await ts.staging.mapAsync(GPUMapMode.READ);
+    const ns = new BigUint64Array(ts.staging.getMappedRange().slice(0));
+    ts.staging.unmap();
+    const times: Record<string, number> = {};
+    for (let i = 0; i < passCount; i += 1) {
+      times[names[i]] = Number(ns[i * 2 + 1] - ns[i * 2]) / 1e6;
+    }
+    return { times, logits: await this.readLogits() };
+  }
+
+  private tsResources?: DispatchTimestamps & { count: number };
+
+  private timestampResources(count: number): DispatchTimestamps {
+    if (this.tsResources && this.tsResources.count === count) return this.tsResources;
+    if (this.tsResources) {
+      this.tsResources.querySet.destroy();
+      this.tsResources.resolve.destroy();
+      this.tsResources.staging.destroy();
+    }
+    const bytes = count * 16;
+    this.tsResources = {
+      count,
+      querySet: this.device.createQuerySet({ type: 'timestamp', count: count * 2 }),
       resolve: this.device.createBuffer({
         size: bytes, usage: GPUBufferUsage.QUERY_RESOLVE | GPUBufferUsage.COPY_SRC }),
       staging: this.device.createBuffer({
         size: bytes, usage: GPUBufferUsage.MAP_READ | GPUBufferUsage.COPY_DST }),
     };
-    this.upload(input);
-    this.device.queue.submit([this.encode(false, undefined, this.length, ts)]);
-    await ts.staging.mapAsync(GPUMapMode.READ);
-    const ns = new BigUint64Array(ts.staging.getMappedRange().slice(0));
-    ts.staging.unmap();
-    const names = [
-      'embed',
-      ...Array.from({ length: this.spec.layers }, (_, l) => `layer${l}`),
-      'head',
-    ];
-    const out: Record<string, number> = {};
-    for (let i = 0; i < passCount; i += 1) {
-      out[names[i]] = Number(ns[i * 2 + 1] - ns[i * 2]) / 1e6;
-    }
-    ts.querySet.destroy();
-    ts.resolve.destroy();
-    ts.staging.destroy();
-    return out;
+    return this.tsResources;
   }
 
   upload(input: RunInput): void {

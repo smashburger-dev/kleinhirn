@@ -1,0 +1,96 @@
+{
+ "date": "2026-09-29",
+ "run_id": "kh-batch-parity-small-upstream-f16-1790675698582",
+ "engine": "kleinhirn",
+ "model": "small-upstream",
+ "precision": "f16",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvg": "5.66 4.57 4.89",
+ "stage": "done",
+ "info": {
+  "precision": "f16",
+  "buildId": "mumhl24e",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "buckets": [
+   128,
+   512
+  ],
+  "gpuBytes": 60592844,
+  "downloadBytes": 159686872,
+  "tokenizerBytes": 8341713,
+  "weightBytes": 151345159,
+  "loadTiming": {
+   "fetchMs": 316.2000000476837,
+   "bodyMs": 428.1999999284744,
+   "sha256Ms": 90.90000009536743,
+   "uploadMs": 22.699999928474426,
+   "embedJoinMs": 12.100000023841858,
+   "manifestMs": 4,
+   "tokenizerMs": 142.89999997615814,
+   "planMs": 5.5
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "sizes": {
+  "B4": {
+   "batches": 16,
+   "rows": 64,
+   "vsSingle": {
+    "n": 64,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0,
+    "meanAbsLogitDiff": 0,
+    "maxAbsProbDiff": 0,
+    "disagreements": []
+   },
+   "vsGolden": {
+    "n": 64,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0.021021127700805664,
+    "meanAbsLogitDiff": 0.0025131283968221397,
+    "maxAbsProbDiff": 0.0039145959389421114,
+    "disagreements": []
+   }
+  }
+ },
+ "mixed": {
+  "B4": {
+   "batches": 4,
+   "rows": 16,
+   "vsSingle": {
+    "n": 16,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0,
+    "meanAbsLogitDiff": 0,
+    "maxAbsProbDiff": 0,
+    "disagreements": []
+   },
+   "vsGolden": {
+    "n": 16,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0.00838381052017212,
+    "meanAbsLogitDiff": 0.0021896321326494218,
+    "maxAbsProbDiff": 0.0030608456317077204,
+    "disagreements": []
+   }
+  }
+ },
+ "gates": {
+  "B4-argmax": true,
+  "B4-golden": true,
+  "mixed-B4-argmax": true,
+  "mixed-B4-golden": true
+ }
+}

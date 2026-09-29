@@ -10,6 +10,7 @@
 import { Kleinhirn, loadEngine } from '../dist/kleinhirn.js';
 import type { SchemaInput } from '../src/tokenizer/schema.ts';
 import { compareLogits, summarizeLatency } from './metrics.ts';
+import { bitIdentical, buildDispatchProfile, type DispatchProfile, type DispatchRow } from './profile-agg.ts';
 
 const K_MAX = 16;
 
@@ -44,6 +45,7 @@ interface KhResult {
   modelOnly?: unknown;
   parity?: unknown;
   profile?: Record<string, number> | null;
+  dispatchProfile?: DispatchProfile | null;
   n?: number;
   error?: string;
   done?: boolean;
@@ -179,6 +181,40 @@ async function main(): Promise<void> {
           p[k] = summarizeLatency(vs).medianMs;
         }
         result.profile = p;
+      }
+    }
+    // K27 step 0: ?profile=dispatch times every dispatch in its own compute
+    // pass at the item's real seqLen (20 warmup profiles, then the first 200
+    // items), next to the normal-path wall time of the same items and a
+    // bit-identity check of the profiled logits against the normal path.
+    if (params.get('profile') === 'dispatch' && backend !== 'wasm') {
+      result.stage = 'profile-dispatch';
+      const warm = 20;
+      const count = Math.min(200, items.length);
+      const opts = { granularity: 'dispatch' as const };
+      for (const item of items.slice(0, warm)) {
+        await kh.profileDetailed(toInput(item), opts);
+      }
+      const rows: DispatchRow[] = [];
+      const wall: number[] = [];
+      const paritySample = { items: 0, bitIdentical: 0 };
+      for (let i = 0; i < count; i += 1) {
+        const input = toInput(items[i]);
+        const prof = await kh.profileDetailed(input, opts);
+        if (prof === null) { result.dispatchProfile = null; break; }
+        rows.push({ seqLen: items[i].seq_len, times: prof.times });
+        const t0 = performance.now();
+        const res = await kh.runPrepared(input);
+        Float32Array.from(res.probabilities.slice(0, nLabels));
+        wall.push(performance.now() - t0);
+        if (i < warm) {
+          paritySample.items += 1;
+          if (bitIdentical(prof.logits, res.logits)) paritySample.bitIdentical += 1;
+        }
+        if (i % 50 === 0) result.stage = `profile-dispatch ${i}/${count}`;
+      }
+      if (result.dispatchProfile === undefined) {
+        result.dispatchProfile = buildDispatchProfile(rows, wall, warm, paritySample);
       }
     }
     result.stage = 'done';

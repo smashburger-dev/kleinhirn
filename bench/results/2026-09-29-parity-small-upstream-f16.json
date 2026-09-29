@@ -1,0 +1,74 @@
+{
+ "date": "2026-09-29",
+ "run_id": "kh-parity-small-upstream-f16-minimum-1790675677402",
+ "engine": "kleinhirn",
+ "model": "small-upstream",
+ "precision": "f16",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvg": "3.35 4.11 4.74",
+ "stage": "done",
+ "backend": "webgpu",
+ "info": {
+  "precision": "f16",
+  "buildId": "mumhl24e",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "buckets": [
+   128,
+   256
+  ],
+  "gpuBytes": 57249484,
+  "downloadBytes": 159686872,
+  "tokenizerBytes": 8341713,
+  "weightBytes": 151345159,
+  "loadTiming": {
+   "fetchMs": 319,
+   "bodyMs": 433.60000002384186,
+   "sha256Ms": 88,
+   "uploadMs": 23,
+   "embedJoinMs": 12.100000023841858,
+   "manifestMs": 3.399999976158142,
+   "tokenizerMs": 145,
+   "planMs": 3.200000047683716
+  },
+  "loadMs": 508.5
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "corpus": {
+  "n": 968,
+  "argmaxAgreement": 0.9989669421487604,
+  "maxAbsLogitDiff": 0.021021127700805664,
+  "meanAbsLogitDiff": 0.002451575229575565,
+  "maxAbsProbDiff": 0.004190899084261679,
+  "disagreements": [
+   907
+  ]
+ },
+ "twoTasks": {
+  "n": 40,
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.009181022644042969,
+  "meanAbsLogitDiff": 0.0019290299513019047,
+  "maxAbsProbDiff": 0.0028901039540591977,
+  "disagreements": []
+ },
+ "gates": {
+  "corpusArgmax": true,
+  "corpusProbs": true,
+  "twoTaskArgmax": true,
+  "twoTaskProbs": true,
+  "longArgmax": true,
+  "longProbs": true
+ }
+}

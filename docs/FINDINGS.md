@@ -139,11 +139,20 @@ measurable, not silent). `bench/results/trim-eval.json`.
 `npm run build` (Vite library mode) produces `dist/kleinhirn.js` plus
 `dist/assets/wasm-worker-*.js` (with the embedded `deberta.wasm`):
 
-| File | Raw | gzip |
+| File | Raw | gzip -9 |
 |---|---|---|
-| kleinhirn.js | 83,251 B | 19,890 B |
+| kleinhirn.js | 86,956 B | 20,948 B |
 | wasm-worker.js incl. .wasm | 35,771 B | 10,000 B |
-| total | 119,022 B | 29,890 B |
+| total | 122,727 B | 30,948 B |
+
+`kleinhirn.js` embeds a build id (`Date.now()` in base 36), so its gzip
+size can differ by a byte between builds.
+
+The per-dispatch profiling mode (section 12) accounts for 3,705 B raw
+and 1,058 B gzip -9 of `kleinhirn.js` (before it: 83,251 and 19,890 B).
+onnxruntime-web 1.29.0 loads three runtime files on its WebGPU path
+(`ort.webgpu.bundle.min.mjs`, `ort-wasm-simd-threaded.asyncify.mjs` and
+`.wasm`): 25,917,382 B raw, 6,338,621 B gzip -9.
 
 ## 8. Latency and memory (official run)
 
@@ -489,3 +498,53 @@ rebuilt around fixed buckets.
 - Graph capture: the earlier assumption that the 10 CPU nodes block
   it was wrong; two Memcpy nodes did, and capture runs after the
   rewrite (above). Not tested for Julia.
+
+## 12. Where the GPU time goes (per-dispatch profile)
+
+Question: which kernel costs the time, and is it spent on the GPU or on
+dispatch and CPU work?
+
+`bench/run-profile.mjs <model> <precision>` runs the profiling mode
+`profile(input, { granularity: 'dispatch' })`: every dispatch gets its
+own compute pass with timestamps, with the same pipelines, bind groups,
+dispatch sizes and order as the normal path, at the item's real
+sequence length. 20 warm-up profiles, then 200 items (small-upstream:
+the first 200 L128 goldens, sequence length 29 to 120, median 50.5;
+julia-1: the 100 parity requests twice, 22 to 258, median 65.5). Per op
+the median over items of the sum over all layers; wall time from the
+normal path on the same page. Commit 9f67fd8, Chromium 151.0.7922.34,
+start load 3.42 to 3.95. The profiled forward's logits are
+bit-identical to the normal path for 20 of 20 items. Files
+`bench/results/k27-profile-{small-upstream,julia-1}-{f16,f32}.json`.
+
+Without a flag Chromium quantizes timestamps to a 65.5 µs grid (17 to 43
+distinct values per run), so the profiles run with
+`--enable-webgpu-developer-features`: 3,280 to 8,774 distinct values,
+smallest step about 3.5 µs.
+
+| Profile | GPU sum per forward, median ms | Wall time ms | Encoder matmuls | Encoder attention | Head | Other ops |
+|---|---|---|---|---|---|---|
+| small-upstream f16 | 6.79 | 7.2 | 65 % | 30 % | 1.5 % | 4 % |
+| small-upstream f32 | 7.16 | 7.5 | 65 % | 29 % | 1.7 % | 4 % |
+| julia-1 f16 | 19.93 | 21.25 | 59 % | 26 % | 8 % | 7 % |
+| julia-1 f32 | 22.29 | 24.35 | 58 % | 25 % | 8 % | 9 % |
+
+Shares of the sum of the per-op medians. Encoder matmuls: qkv, attnOut
+and the two FFN projections; head: the GLiNER head, or Julia's two head
+layers plus scorer; other ops: embedding, LayerNorm, RoPE, add, GeGLU.
+The FFN projections alone take 42 % (small f16) and 40 % (Julia f16).
+
+Findings:
+- The time is spent on the GPU: wall time minus GPU sum is 0.3 to 0.4 ms
+  for small-upstream and 1.3 to 2.1 ms for Julia, upload and readback
+  included. Graph capture of the kind ORT uses would gain kleinhirn
+  little.
+- The encoder matmuls take 58 to 65 % of GPU time, and all of them run
+  through one kernel (`src/kernels/matmul.wgsl`). A kernel search starts
+  there; attention (25 to 30 %) comes next.
+- Julia's attention grows with length: the p95 of its attention sum is
+  20.3 ms (f16) against a median of 5.0 ms.
+- After the profiling refactor the normal path still matches the
+  PyTorch goldens to the third digit, for small-upstream and julia-1 in
+  f32 and f16, plus batch B4 in f16
+  (`bench/results/2026-09-29-parity-*.json`).

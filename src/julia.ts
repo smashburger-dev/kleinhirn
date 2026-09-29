@@ -12,6 +12,7 @@ import {
   prepareDecision, type JuliaInput, type JuliaRequest,
 } from './tokenizer/julia-input.ts';
 import { JuliaPlan, type JuliaSpec } from './graph/julia.ts';
+import type { ProfileGranularity } from './graph/deberta.ts';
 import type { LoadOptions } from './index.ts';
 import {
   LruCache, MAX_BATCH, batchStride, dedupMerge, juliaMergeKey,
@@ -432,14 +433,24 @@ export class JuliaEngine {
     return Math.max(...this.plans.keys());
   }
 
-  async profile(input: JuliaPreparedInput): Promise<Record<string, number> | null> {
+  async profile(
+    input: JuliaPreparedInput, options: { granularity?: ProfileGranularity } = {},
+  ): Promise<Record<string, number> | null> {
+    const r = await this.profileDetailed(input, options);
+    return r && r.times;
+  }
+
+  // Same as profile() plus the logits of the profiled forward.
+  async profileDetailed(
+    input: JuliaPreparedInput, options: { granularity?: ProfileGranularity } = {},
+  ): Promise<{ times: Record<string, number>; logits: Float32Array } | null> {
     const plan = this.pickBucket(input.seqLen);
-    return this.enqueue(() => plan.kernelTimesMs({
+    return this.enqueue(() => plan.profileForward({
       embeddings: this.embeddingRows(input, plan),
       mask: this.maskOf(input, plan.length),
       packedMarkers: this.packedMarkers(input),
       qtype: input.qtype,
-    }));
+    }, options.granularity ?? 'pass', input.seqLen));
   }
 
   info(): Record<string, unknown> {

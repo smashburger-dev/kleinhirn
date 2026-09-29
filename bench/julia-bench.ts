@@ -6,6 +6,7 @@
 
 import { JuliaEngine } from '../src/julia.ts';
 import type { JuliaRequest } from '../src/tokenizer/julia-input.ts';
+import { bitIdentical, buildDispatchProfile, type DispatchRow } from './profile-agg.ts';
 
 interface Case {
   request: JuliaRequest;
@@ -92,6 +93,47 @@ async function main(): Promise<void> {
       matching_predictions: matches,
       max_abs_logit_error_vs_pytorch: maxError,
     };
+    // K27 step 0: ?profile=dispatch times every dispatch in its own compute
+    // pass (20 warmup profiles, then the 100 parity requests twice) next to
+    // the normal-path wall time of the same requests and a bit-identity check
+    // of the profiled logits against the normal path.
+    if (params.get('profile') === 'dispatch') {
+      out.stage = 'profile-dispatch';
+      const maxBucket = Math.max(...buckets);
+      const prepared = cases.map((c) => {
+        const p = kh.prepare(c.request, maxBucket, 256);
+        return { inputIds: p.inputIds, markers: p.markers, qtype: p.qtype, seqLen: p.seqLen };
+      });
+      const opts = { granularity: 'dispatch' as const };
+      const warm = 20;
+      for (const input of prepared.slice(0, warm)) {
+        await kh.profileDetailed(input, opts);
+      }
+      const rows: DispatchRow[] = [];
+      const wall: number[] = [];
+      const paritySample = { items: 0, bitIdentical: 0 };
+      let n = 0;
+      let missing = false;
+      for (let rep = 0; rep < 2 && !missing; rep += 1) {
+        for (const input of prepared) {
+          const prof = await kh.profileDetailed(input, opts);
+          if (prof === null) { missing = true; break; }
+          rows.push({ seqLen: input.seqLen, times: prof.times });
+          const t0 = performance.now();
+          const res = await kh.runPrepared(input);
+          res.probabilities[0];
+          wall.push(performance.now() - t0);
+          if (n < warm) {
+            paritySample.items += 1;
+            if (bitIdentical(prof.logits, res.logits)) paritySample.bitIdentical += 1;
+          }
+          n += 1;
+          if (n % 50 === 0) out.stage = `profile-dispatch ${n}/200`;
+        }
+      }
+      out.dispatchProfile = missing
+        ? null : buildDispatchProfile(rows, wall, warm, paritySample);
+    }
     out.stage = 'done';
     out.done = true;
     kh.dispose();

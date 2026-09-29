@@ -6,7 +6,7 @@ import { getDevice, type KhDevice } from './device.ts';
 import { fetchManifest, loadWeights, type LoadedWeights } from './weights.ts';
 import { HfTokenizer } from './tokenizer/tokenizer.ts';
 import { BucketOverflowError, prepareTasks, type SchemaInput } from './tokenizer/schema.ts';
-import { EncoderPlan, type EncoderSpec } from './graph/deberta.ts';
+import { EncoderPlan, type EncoderSpec, type ProfileGranularity } from './graph/deberta.ts';
 import { JuliaEngine } from './julia.ts';
 import { WasmClient } from './wasm-client.ts';
 import {
@@ -540,17 +540,30 @@ export class Kleinhirn {
     return Math.max(...lens);
   }
 
-  // K5 GPU timestamp profiling: one timed forward on the seqLen bucket,
-  // per-pass milliseconds or null when 'timestamp-query' is unavailable.
-  async profile(input: SchemaInput): Promise<Record<string, number> | null> {
+  // K5 GPU timestamp profiling: one timed forward. granularity 'pass'
+  // (default): per-pass milliseconds on the seqLen bucket. 'dispatch': every
+  // dispatch in its own timed pass at the item's real seqLen (K27). Null
+  // when 'timestamp-query' is unavailable.
+  async profile(
+    input: SchemaInput, options: { granularity?: ProfileGranularity } = {},
+  ): Promise<Record<string, number> | null> {
+    const r = await this.profileDetailed(input, options);
+    return r && r.times;
+  }
+
+  // Same as profile() plus the logits of the profiled forward (parity check
+  // of the dispatch path against the normal one).
+  async profileDetailed(
+    input: SchemaInput, options: { granularity?: ProfileGranularity } = {},
+  ): Promise<{ times: Record<string, number>; logits: Float32Array } | null> {
     const nMarkers = input.markerMask.reduce(
       (n, v) => n + (v > 0.5 ? 1 : 0), 0);
     const plan = this.pickBucket(input.seqLen, nMarkers);
-    return this.enqueue(() => plan.kernelTimesMs({
+    return this.enqueue(() => plan.profileForward({
       embeddings: this.embeddingRows(input, plan),
       mask: this.maskOf(input, plan.length),
       packedMarkers: this.packedMarkers(input, plan.markers),
-    }));
+    }, options.granularity ?? 'pass', input.seqLen));
   }
 
   info(): Record<string, unknown> {

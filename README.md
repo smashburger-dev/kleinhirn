@@ -1,24 +1,124 @@
 # kleinhirn
 
-kleinhirn is a browser-side inference engine for small encoder
-classifiers. It ships its own WGSL kernels, so there is no ONNX Runtime
-and no Transformers.js dependency at runtime. The same graph also exists
-as a hand-written WASM-SIMD module for browsers without WebGPU.
+Text classification in the browser, on the GPU, with no server.
 
-## At a glance
+A text classifier answers questions like "which misconception does this
+answer show?" or "which of these five options fits?". Usually the model
+runs on a server, and every text travels there first. kleinhirn runs the
+model in the user's browser instead. The text stays on the device, there
+is no inference server to pay for, and it works offline once the model
+is cached.
 
-- The engine bundle is 29.9 KB gzip, including the WASM fallback worker
-  (`npm run build`, table below).
-- All supported models reach 100 % argmax agreement with their PyTorch
-  fp32 reference in f32 and at least 99.9 % in f16, measured on a
-  1,000-text corpus under WebGPU minimum limits (`bench/run-parity.mjs`,
-  table below).
-- The fallback chain (WebGPU f16, WebGPU f32, WASM-SIMD) runs inside the
-  WebGPU minimum device limits, the limits every WebGPU device must
-  support, including mobile GPUs; tests on physical mobile devices are
-  still pending.
+Browsers let web pages use the graphics chip through WebGPU. kleinhirn
+ships its own GPU programs (WGSL kernels) for two model families:
+GLiNER2.5, a zero-shot classifier that takes any set of labels, and
+Julia 1, a decision model that picks one of up to 20 options. Browsers
+without WebGPU fall back to a hand-written WASM-SIMD module on the CPU.
 
-Supported model families:
+The usual tool for running such models in a browser is ONNX Runtime Web
+(ORT) from Microsoft. ORT runs almost any model. kleinhirn runs a few and
+is built around them.
+
+## What is measured
+
+- **Same answers as the original.** In full precision (f32) kleinhirn
+  makes the same decision as the PyTorch reference in 100 % of cases, in
+  half precision (f16) in at least 99.9 %, on a 1,000-text corpus.
+- **Faster than ORT at its best.** 1.9x in f16 and 2.2x in f32 on
+  WebGPU, 2.6x on the WASM path (GLiNER2.5-small, 128-token inputs,
+  M1 Pro, Chromium). "At its best" means ORT got every advantage we
+  could find: Microsoft's own graph optimizer, a two-node rewrite so
+  that ORT's graph capture can run, and graph capture itself. Together
+  they shrank our lead in f16 from about 2.7x to 1.9x, and the smaller
+  numbers are the ones we publish.
+- **Less memory.** 45 to 59 % of ORT's peak memory, depending on the
+  path (850 vs 1,442 MiB in f16).
+- **Small.** The engine is 31 KB gzip including the WASM fallback. ORT's
+  WebGPU runtime files are 6.3 MB gzip (25.9 MB raw). The model weights
+  come on top in both cases.
+- **Not faster everywhere.** On Julia 1 in f16, ORT with the optimizer's
+  fp16 graph is faster than kleinhirn (21.5 vs 24.1 ms per decision).
+  kleinhirn stays closer to the reference there (max logit error 0.091
+  vs 1.02) and uses less memory (1,001 vs 1,599 MiB).
+- **Reproducible.** Every number comes from a script in this repo under
+  a fixed protocol: interleaved runs, a quiet machine, the median of
+  three repetitions. Details under "How we measure" and in
+  `docs/FINDINGS.md`.
+
+## Who it is for
+
+Anyone who wants text classification inside a web app without sending
+the text to a server:
+
+- Learning platforms that give feedback on student answers on the
+  device. The first user is argmin, a German learning platform that
+  classifies misconceptions in learner answers.
+- Local-first and offline apps: notes, mail or task tools that tag, sort
+  or route text where it was written.
+- Browser extensions that classify the current page or the text being
+  typed, with no backend.
+- Support forms that suggest the right category or queue while the user
+  types.
+- Moderation by your own rules: zero-shot labels checked in the browser
+  before anything is posted.
+- Agents and interfaces that need a fast local choice among fixed
+  options, which is what Julia 1 is trained for: which tool, which
+  step, which intent.
+
+What it is not: kleinhirn does not generate text, and of GLiNER2.5 it
+implements the classification head only, not entity extraction. It has
+been measured in Chromium on an M1 Pro and on an NVIDIA L4; Safari,
+Firefox and phones are still untested. The f16 GLiNER2.5-small download
+is 152 MB, which is heavy for mobile.
+
+## For the technically curious
+
+Why it is faster:
+
+- DeBERTa's disentangled attention (content-to-position and
+  position-to-content terms over relative position buckets) runs as one
+  fused kernel. ORT's transformer optimizer has no pattern for it: after
+  optimization the graph still has 0 Attention nodes, and the relative
+  terms stay as separate GatherElements and Softmax nodes.
+- Each sequence bucket gets a fixed plan built at load time: pipelines,
+  buffers and bind groups exist before the first call. A call uploads
+  the inputs, encodes one command buffer and reads back one logit per
+  label. Rows are dispatched only up to the real sequence length.
+- Conversion fuses Q, K and V into one matmul and precomputes the
+  relative position projections; GELU runs inside the matmul. In f16
+  mode weights and activations are stored as f16, and every kernel
+  accumulates in f32.
+- The engine requests exactly the WebGPU minimum device limits (256
+  invocations per workgroup, 16 KiB workgroup memory, 128 MiB per
+  storage binding), and every kernel fits inside them. A desktop GPU
+  cannot quietly use more than a phone GPU guarantees.
+- A per-dispatch GPU timestamp profile shows where the time goes. For
+  small-upstream f16 at L128 the GPU is busy for 6.8 of the 7.2 ms wall
+  time per call in the profiling run; the encoder matmuls take 65 % of
+  that GPU time, attention 30 %. Graph capture would gain kleinhirn
+  little, faster matmul kernels would (`docs/FINDINGS.md`, section 12).
+
+How the ORT side is set up: the plain ONNX export goes through
+`onnxruntime.transformers.optimizer` (BERT path, the only one that
+applies to either model). For WebGPU, `convert/capture_surgery.py` then
+replaces a Squeeze/Unsqueeze pair in the attention-mask chain with one
+Reshape. Without that rewrite ORT refuses graph capture, because the
+mask chain forces copies between CPU and GPU; with it every node runs
+on WebGPU and capture cuts ORT's time by 15 to 16 %. ORT also gets its
+cheapest timing boundary: inputs in persistent GPU buffers, one readback
+per call.
+
+## What is next
+
+- An automatic kernel search for the matmuls that picks the variant
+  with the best worst case across the devices we can measure, not the
+  fastest one on a single machine.
+- First measurements on a phone, starting with an iPhone.
+- Early exit: stop after fewer layers when the decision is already
+  clear.
+- Smaller downloads through vocabulary compression.
+
+## Supported models
 
 - GLiNER2.5 classification models (DeBERTa-v2/v3 encoders):
   `small-upstream` (fastino/gliner2.5-small-v1), `base-upstream`
@@ -33,16 +133,20 @@ Supported model families:
 The engine bundle (`npm run build`) is `dist/kleinhirn.js` plus the
 WASM worker with the embedded `.wasm` module:
 
-| File | Raw | gzip |
+| File | Raw | gzip -9 |
 |---|---|---|
-| kleinhirn.js | 83,251 B | 19,890 B |
+| kleinhirn.js | 86,956 B | 20,948 B |
 | wasm-worker.js incl. deberta.wasm | 35,771 B | 10,000 B |
-| total | 119,022 B | 29,890 B |
+| total | 122,727 B | 30,948 B |
 
-For comparison, the pinned onnxruntime-web 1.29.0 package carries
-between 14.0 MB and 27.8 MB of WASM runtime files
-(`node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded*.wasm`, after
-`npm ci`). The model weights are a separate download in both cases.
+`kleinhirn.js` embeds a build id (`Date.now()` in base 36), so its gzip
+size can differ by a byte between builds.
+
+For comparison, onnxruntime-web 1.29.0 loads three runtime files on its
+WebGPU path (`ort.webgpu.bundle.min.mjs`,
+`ort-wasm-simd-threaded.asyncify.mjs` and `.wasm`): 25,917,382 B raw,
+6,338,621 B gzip -9. The model weights are a separate download in both
+cases.
 
 ## Runtime path
 

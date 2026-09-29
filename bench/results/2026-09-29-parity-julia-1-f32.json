@@ -1,0 +1,169 @@
+{
+ "date": "2026-09-29",
+ "run_id": "kh-parity-julia-1-f32-minimum-1790675686576",
+ "engine": "kleinhirn",
+ "model": "julia-1",
+ "precision": "f32",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvg": "3.88 4.21 4.77",
+ "stage": "done",
+ "info": {
+  "precision": "f32",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "buckets": [
+   512,
+   1024
+  ],
+  "gpuBytes": 229781472,
+  "downloadBytes": 611556447,
+  "tokenizerBytes": 34363188,
+  "weightBytes": 577193259,
+  "loadTiming": {
+   "fetchMs": 1053.6000000238419,
+   "bodyMs": 4695.100000143051,
+   "sha256Ms": 385.39999997615814,
+   "uploadMs": 105.79999995231628,
+   "embedJoinMs": 140.30000007152557,
+   "manifestMs": 3.399999976158142,
+   "tokenizerMs": 686.4000000953674,
+   "planMs": 21
+  },
+  "loadMs": 2011.2999999523163
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "logits": {
+  "n": 100,
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.0001004934310913086,
+  "meanAbsLogitDiff": 0.00001095930821503754,
+  "maxAbsProbDiff": 0.00003542740185302762,
+  "disagreements": []
+ },
+ "layers": {
+  "n": 8,
+  "pass": 8,
+  "cases": [
+   {
+    "case": 0,
+    "seq_len": 258,
+    "specMax": 0.06762716650905531,
+    "bandMax": 0.03823933214795261,
+    "vsRef32Max": 0.0369873046875,
+    "preJumpMax": 0.000029245693861312816,
+    "relMax": 0.000024798245393466325,
+    "ratio": 1.7685237348653897,
+    "outliers": 6072,
+    "elements": 2674944,
+    "pass": true
+   },
+   {
+    "case": 1,
+    "seq_len": 251,
+    "specMax": 0.054503225776336706,
+    "bandMax": 0.059500479194305456,
+    "vsRef32Max": 0.03759765625,
+    "preJumpMax": 0.000027356645112774913,
+    "relMax": 0.000014195328563296316,
+    "ratio": 0.9160132240002696,
+    "outliers": 14311,
+    "elements": 2602368,
+    "pass": true
+   },
+   {
+    "case": 2,
+    "seq_len": 242,
+    "specMax": 0.015423141045630473,
+    "bandMax": 0.013565247159021965,
+    "vsRef32Max": 0.015625,
+    "preJumpMax": 0.000023892982365936177,
+    "relMax": 0.0000037222896476524074,
+    "ratio": 1.1369598257096893,
+    "outliers": 1296,
+    "elements": 2509056,
+    "pass": true
+   },
+   {
+    "case": 3,
+    "seq_len": 231,
+    "specMax": 0.022471495232593952,
+    "bandMax": 0.013255186638843952,
+    "vsRef32Max": 0.02503204345703125,
+    "preJumpMax": 0.000022672135733259324,
+    "relMax": 0.000006447277312210046,
+    "ratio": 1.6952982892554578,
+    "outliers": 3002,
+    "elements": 2395008,
+    "pass": true
+   },
+   {
+    "case": 4,
+    "seq_len": 228,
+    "specMax": 0.00947264141177584,
+    "bandMax": 0.019468036865191607,
+    "vsRef32Max": 0.01629638671875,
+    "preJumpMax": 0.00002336307306727292,
+    "relMax": 0.0000033759197251332603,
+    "ratio": 0.4865740432571658,
+    "outliers": 1134,
+    "elements": 2363904,
+    "pass": true
+   },
+   {
+    "case": 5,
+    "seq_len": 224,
+    "specMax": 0.02901148292301059,
+    "bandMax": 0.05452757948796716,
+    "vsRef32Max": 0.0596923828125,
+    "preJumpMax": 0.000021166818498841167,
+    "relMax": 0.000009909244952029488,
+    "ratio": 0.5320515452077362,
+    "outliers": 4006,
+    "elements": 2322432,
+    "pass": true
+   },
+   {
+    "case": 6,
+    "seq_len": 218,
+    "specMax": 0.03904144527598419,
+    "bandMax": 0.018394184317457984,
+    "vsRef32Max": 0.04705810546875,
+    "preJumpMax": 0.00002551937960326711,
+    "relMax": 0.000013336694094746775,
+    "ratio": 2.12248853236345,
+    "outliers": 3164,
+    "elements": 2260224,
+    "pass": true
+   },
+   {
+    "case": 7,
+    "seq_len": 212,
+    "specMax": 0.018802896141380643,
+    "bandMax": 0.020023421486030202,
+    "vsRef32Max": 0.038818359375,
+    "preJumpMax": 0.000028839539784719648,
+    "relMax": 0.0000056358384576131955,
+    "ratio": 0.9390451154663509,
+    "outliers": 4889,
+    "elements": 2198016,
+    "pass": true
+   }
+  ]
+ },
+ "gates": {
+  "argmax": true,
+  "logits": true,
+  "layerConditioning": true
+ }
+}
