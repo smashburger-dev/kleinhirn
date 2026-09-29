@@ -1,0 +1,60 @@
+{
+ "date": "2026-09-28",
+ "maxLoad": 4,
+ "reps": 3,
+ "tag": null,
+ "pairs": [
+  "k20 ort-small-f16-webgpu vs ort-small-f16-webgpu-opt"
+ ],
+ "runs": [
+  {
+   "name": "ort-small-f16-webgpu",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20-official-redo-ort-small-f16-webgpu-r1.json"
+  },
+  {
+   "name": "ort-small-f16-webgpu-opt",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20-official-redo-ort-small-f16-webgpu-opt-r1.json"
+  },
+  {
+   "name": "ort-small-f16-webgpu",
+   "rep": 2,
+   "official": true,
+   "file": "bench/results/k20-official-redo-ort-small-f16-webgpu-r2.json"
+  },
+  {
+   "name": "ort-small-f16-webgpu-opt",
+   "rep": 2,
+   "official": true,
+   "file": "bench/results/k20-official-redo-ort-small-f16-webgpu-opt-r2.json"
+  },
+  {
+   "name": "ort-small-f16-webgpu",
+   "rep": 3,
+   "official": true,
+   "file": "bench/results/k20-official-redo-ort-small-f16-webgpu-r3.json"
+  },
+  {
+   "name": "ort-small-f16-webgpu-opt",
+   "rep": 3,
+   "official": true,
+   "file": "bench/results/k20-official-redo-ort-small-f16-webgpu-opt-r3.json"
+  }
+ ],
+ "aggregates": [
+  {
+   "name": "ort-small-f16-webgpu",
+   "official": true,
+   "medianMs": 17.400000035762787
+  },
+  {
+   "name": "ort-small-f16-webgpu-opt",
+   "official": true,
+   "medianMs": 14.200000017881393
+  }
+ ],
+ "aborted": false
+}

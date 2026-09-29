@@ -1,0 +1,45 @@
+{
+ "round": 1,
+ "precisions": {
+  "f32": {
+   "replaced_nodes": [
+    "/encoder/encoder/Squeeze",
+    "/encoder/encoder/Unsqueeze_2"
+   ],
+   "added_nodes": [
+    "/gc/mask_col"
+   ],
+   "nodes_before": 568,
+   "nodes_after": 567,
+   "bytes_before": 320908094,
+   "bytes_after": 320907971,
+   "parity_cpu": {
+    "n": 968,
+    "max_abs_logit_diff": 2.4318695068359375e-05,
+    "argmax_agreement": 1.0
+   },
+   "census_after": 567,
+   "file": "models/small-upstream/onnx/model_f32_opt_gc.onnx"
+  },
+  "f16": {
+   "replaced_nodes": [
+    "/encoder/encoder/Squeeze",
+    "/encoder/encoder/Unsqueeze_2"
+   ],
+   "added_nodes": [
+    "/gc/mask_col"
+   ],
+   "nodes_before": 571,
+   "nodes_after": 570,
+   "bytes_before": 170014313,
+   "bytes_after": 170014190,
+   "parity_cpu": {
+    "n": 968,
+    "max_abs_logit_diff": 0.06574714183807373,
+    "argmax_agreement": 0.9979338842975206
+   },
+   "census_after": 570,
+   "file": "models/small-upstream/onnx/model_f16_opt_gc.onnx"
+  }
+ }
+}

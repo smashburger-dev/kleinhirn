@@ -1,0 +1,88 @@
+{
+ "date": "2026-09-29",
+ "run_id": "k20gc-official-ort-small-f32-webgpu-opt-r1-1790671412602",
+ "official": false,
+ "provisionalReason": "1-min load 6.71630859375 above 4 at run start",
+ "engine": "ort-web",
+ "model": "small-upstream",
+ "precision": "f32",
+ "bucket": null,
+ "backend": "webgpu",
+ "ep": "webgpu",
+ "batchSize": null,
+ "graph": "opt",
+ "capture": false,
+ "browser": "chromium-151.0.7922.34",
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "loadAvgStart": 6.71630859375,
+ "loadAvgEnd": 7.2509765625,
+ "loadMaxObserved": 7.2509765625,
+ "baselineMb": 0,
+ "peakMemMb": null,
+ "page": {
+  "stage": "done",
+  "model": "small-upstream",
+  "precision": "f32",
+  "ep": "webgpu",
+  "graph": "opt",
+  "capture": false,
+  "adapterInfo": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "onnxBytes": 320908094,
+  "loadMs": 1155.3999999761581,
+  "downloadBytes": 347742272,
+  "warmupMs": [
+   188.40000009536743,
+   20.899999976158142,
+   21.699999928474426,
+   20.5
+  ],
+  "latency": {
+   "n": 968,
+   "medianMs": 18.300000071525574,
+   "p95Ms": 19,
+   "minMs": 17.100000023841858,
+   "maxMs": 45.200000047683716,
+   "meanMs": 18.434814049438998
+  },
+  "parity": {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.00002300739288330078,
+   "meanAbsLogitDiff": 0.000002482126867167713,
+   "maxAbsProbDiff": 0.000006835146539208026,
+   "disagreements": []
+  },
+  "n": 968,
+  "done": true
+ },
+ "pair": "k20gc ort-small-f32-webgpu-opt vs ort-small-f32-webgpu-optgc-capture",
+ "repetition": 1,
+ "latency": {
+  "medianMs": 18.300000071525574,
+  "p95Ms": 19,
+  "loadMs": 1155.3999999761581
+ },
+ "parity": {
+  "n": 968,
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.00002300739288330078,
+  "meanAbsLogitDiff": 0.000002482126867167713,
+  "maxAbsProbDiff": 0.000006835146539208026,
+  "disagreements": []
+ },
+ "downloadBytes": 347742272,
+ "onnxBytes": 320908094,
+ "runtimeBytes": 26834178,
+ "n": 968,
+ "file": "bench/results/k20gc-official-ort-small-f32-webgpu-opt-r1.json"
+}

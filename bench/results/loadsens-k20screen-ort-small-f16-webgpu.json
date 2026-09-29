@@ -1,0 +1,83 @@
+{
+ "run_id": "loadsens-k20screen-ort-small-f16-webgpu",
+ "engine": "ort-web",
+ "model": "small-upstream",
+ "precision": "f16",
+ "bucket": null,
+ "ep": "webgpu",
+ "batchSize": null,
+ "graph": null,
+ "backend": "webgpu",
+ "official": true,
+ "repetitions": 1,
+ "medianMs": 19,
+ "rangeMs": [
+  19,
+  19
+ ],
+ "p95Ms": 19.80000001192093,
+ "downloadBytes": 170888854,
+ "onnxBytes": 144066929,
+ "runtimeBytes": 26821925,
+ "gpuBytes": null,
+ "peakMemMb": 0,
+ "parity": [
+  {
+   "n": 968,
+   "argmaxAgreement": 0.9979338842975206,
+   "maxAbsLogitDiff": 0.15284466743469238,
+   "meanAbsLogitDiff": 0.01657590677977101,
+   "maxAbsProbDiff": 0.053159200709676724,
+   "disagreements": [
+    696,
+    907
+   ]
+  }
+ ],
+ "loadAvg": [
+  [
+   3.908203125,
+   4.31689453125
+  ]
+ ],
+ "repFiles": [
+  "bench/results/loadsens-k20screen-ort-small-f16-webgpu-r1.json"
+ ],
+ "page": {
+  "stage": "done",
+  "model": "small-upstream",
+  "precision": "f16",
+  "ep": "webgpu",
+  "graph": "std",
+  "adapterInfo": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "onnxBytes": 144066929,
+  "loadMs": 1084.1000000238419,
+  "downloadBytes": 170888854,
+  "latency": {
+   "n": 968,
+   "medianMs": 19,
+   "p95Ms": 19.80000001192093,
+   "minMs": 18.100000023841858,
+   "maxMs": 58.80000001192093,
+   "meanMs": 19.1803719010358
+  },
+  "parity": {
+   "n": 968,
+   "argmaxAgreement": 0.9979338842975206,
+   "maxAbsLogitDiff": 0.15284466743469238,
+   "meanAbsLogitDiff": 0.01657590677977101,
+   "maxAbsProbDiff": 0.053159200709676724,
+   "disagreements": [
+    696,
+    907
+   ]
+  },
+  "n": 968,
+  "done": true
+ }
+}

@@ -1,0 +1,142 @@
+{
+ "date": "2026-09-27",
+ "run_id": "kh-batch-parity-julia-1-f32-1790533599534",
+ "engine": "kleinhirn",
+ "model": "julia-1",
+ "precision": "f32",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvg": "{ 4.11 5.40 6.92 }",
+ "stage": "done",
+ "info": {
+  "precision": "f32",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "buckets": [
+   512,
+   1024
+  ],
+  "gpuBytes": 293482464,
+  "downloadBytes": 611556447,
+  "tokenizerBytes": 34363188,
+  "weightBytes": 577193259,
+  "loadTiming": {
+   "fetchMs": 1730.9000000357628,
+   "bodyMs": 8263.899999976158,
+   "sha256Ms": 489.60000002384186,
+   "uploadMs": 237.89999997615814,
+   "embedJoinMs": 132.5,
+   "manifestMs": 4.800000011920929,
+   "tokenizerMs": 733.4000000357628,
+   "planMs": 22.299999952316284
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "sizes": {
+  "B1": {
+   "batches": 64,
+   "rows": 64,
+   "vsSingle": {
+    "n": 64,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0,
+    "meanAbsLogitDiff": 0,
+    "maxAbsProbDiff": 0,
+    "disagreements": []
+   },
+   "vsGolden": {
+    "n": 64,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0.0001004934310913086,
+    "meanAbsLogitDiff": 0.000010859504066131732,
+    "maxAbsProbDiff": 0.00003542740185302762,
+    "disagreements": []
+   }
+  },
+  "B4": {
+   "batches": 16,
+   "rows": 64,
+   "vsSingle": {
+    "n": 64,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0,
+    "meanAbsLogitDiff": 0,
+    "maxAbsProbDiff": 0,
+    "disagreements": []
+   },
+   "vsGolden": {
+    "n": 64,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0.0001004934310913086,
+    "meanAbsLogitDiff": 0.000010859504066131732,
+    "maxAbsProbDiff": 0.00003542740185302762,
+    "disagreements": []
+   }
+  },
+  "B8": {
+   "batches": 8,
+   "rows": 64,
+   "vsSingle": {
+    "n": 64,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0,
+    "meanAbsLogitDiff": 0,
+    "maxAbsProbDiff": 0,
+    "disagreements": []
+   },
+   "vsGolden": {
+    "n": 64,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0.0001004934310913086,
+    "meanAbsLogitDiff": 0.000010859504066131732,
+    "maxAbsProbDiff": 0.00003542740185302762,
+    "disagreements": []
+   }
+  },
+  "B16": {
+   "batches": 4,
+   "rows": 64,
+   "vsSingle": {
+    "n": 64,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0,
+    "meanAbsLogitDiff": 0,
+    "maxAbsProbDiff": 0,
+    "disagreements": []
+   },
+   "vsGolden": {
+    "n": 64,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0.0001004934310913086,
+    "meanAbsLogitDiff": 0.000010859504066131732,
+    "maxAbsProbDiff": 0.00003542740185302762,
+    "disagreements": []
+   }
+  }
+ },
+ "mixed": {},
+ "gates": {
+  "B1-logits": true,
+  "B1-argmax": true,
+  "B1-golden": true,
+  "B4-logits": true,
+  "B4-argmax": true,
+  "B4-golden": true,
+  "B8-logits": true,
+  "B8-argmax": true,
+  "B8-golden": true,
+  "B16-logits": true,
+  "B16-argmax": true,
+  "B16-golden": true
+ }
+}

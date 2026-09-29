@@ -1,0 +1,90 @@
+{
+ "date": "2026-09-28",
+ "run_id": "k20-official-ort-small-f16-webgpu-opt-r4-1790635020079",
+ "official": true,
+ "provisionalReason": null,
+ "engine": "ort-web",
+ "model": "small-upstream",
+ "precision": "f16",
+ "bucket": null,
+ "backend": "webgpu",
+ "ep": "webgpu",
+ "batchSize": null,
+ "graph": "opt",
+ "browser": "chromium-151.0.7922.34",
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "loadAvgStart": 3.5244140625,
+ "loadAvgEnd": 3.27197265625,
+ "loadMaxObserved": 3.5244140625,
+ "baselineMb": 0,
+ "peakMemMb": null,
+ "page": {
+  "stage": "done",
+  "model": "small-upstream",
+  "precision": "f16",
+  "ep": "webgpu",
+  "graph": "opt",
+  "adapterInfo": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "onnxBytes": 170014313,
+  "loadMs": 536.1999999880791,
+  "downloadBytes": 196836238,
+  "latency": {
+   "n": 968,
+   "medianMs": 14.5,
+   "p95Ms": 15.5,
+   "minMs": 13.800000011920929,
+   "maxMs": 44.39999997615814,
+   "meanMs": 14.837603305797439
+  },
+  "parity": {
+   "n": 968,
+   "argmaxAgreement": 0.9958677685950413,
+   "maxAbsLogitDiff": 0.1449974775314331,
+   "meanAbsLogitDiff": 0.0159985040737824,
+   "maxAbsProbDiff": 0.03462342141626884,
+   "disagreements": [
+    135,
+    327,
+    696,
+    907
+   ]
+  },
+  "n": 968,
+  "done": true
+ },
+ "pair": "k20 ort-small-f16-webgpu vs ort-small-f16-webgpu-opt",
+ "repetition": 1,
+ "latency": {
+  "medianMs": 14.5,
+  "p95Ms": 15.5,
+  "loadMs": 536.1999999880791
+ },
+ "parity": {
+  "n": 968,
+  "argmaxAgreement": 0.9958677685950413,
+  "maxAbsLogitDiff": 0.1449974775314331,
+  "meanAbsLogitDiff": 0.0159985040737824,
+  "maxAbsProbDiff": 0.03462342141626884,
+  "disagreements": [
+   135,
+   327,
+   696,
+   907
+  ]
+ },
+ "downloadBytes": 196836238,
+ "onnxBytes": 170014313,
+ "runtimeBytes": 26821925,
+ "n": 968,
+ "file": "bench/results/k20-official-ort-small-f16-webgpu-opt-r4.json"
+}

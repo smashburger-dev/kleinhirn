@@ -1,0 +1,96 @@
+{
+ "date": "2026-09-27",
+ "run_id": "kh-parity-multi-upstream-f32-minimum-1790507084131",
+ "engine": "kleinhirn",
+ "model": "multi-upstream",
+ "precision": "f32",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvg": "{ 27.95 17.29 17.09 }",
+ "stage": "done",
+ "backend": "webgpu",
+ "info": {
+  "precision": "f32",
+  "buildId": "mujph1zn",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "buckets": [
+   128,
+   256
+  ],
+  "gpuBytes": 416751884,
+  "downloadBytes": 1168678430,
+  "tokenizerBytes": 16035853,
+  "weightBytes": 1152642577,
+  "loadTiming": {
+   "fetchMs": 4828.800000011921,
+   "bodyMs": 23536,
+   "sha256Ms": 1778.4999998807907,
+   "uploadMs": 890.6000000238419,
+   "embedJoinMs": 571.0999999642372,
+   "manifestMs": 5.199999988079071,
+   "tokenizerMs": 831.6000000238419,
+   "planMs": 104.09999996423721
+  },
+  "loadMs": 7300.699999988079
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "layers": {
+  "n": 14,
+  "maxTensorDiff": 0.00013208389282226562,
+  "maxLogitDiff": 0.0000476837158203125,
+  "argmaxAgreement": 1,
+  "perTensor": {
+   "embedding_ln": 4.76837158203125e-7,
+   "embedding_masked": 4.76837158203125e-7,
+   "layer_0": 0.00000476837158203125,
+   "layer_1": 0.000003337860107421875,
+   "layer_2": 0.000008821487426757812,
+   "layer_3": 0.0000050067901611328125,
+   "layer_4": 0.0000050067901611328125,
+   "layer_5": 0.000027894973754882812,
+   "layer_6": 0.00006127357482910156,
+   "layer_7": 0.00013208389282226562,
+   "layer_8": 0.00012493133544921875,
+   "layer_9": 0.00008082389831542969,
+   "layer_10": 0.00003147125244140625,
+   "layer_11": 0.000058241188526153564
+  }
+ },
+ "corpus": {
+  "n": 953,
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.0001316070556640625,
+  "meanAbsLogitDiff": 0.000011872264565382024,
+  "maxAbsProbDiff": 0.000011567431753789492,
+  "disagreements": []
+ },
+ "twoTasks": {
+  "n": 40,
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.00017499923706054688,
+  "meanAbsLogitDiff": 0.0000112115190579341,
+  "maxAbsProbDiff": 0.000006820983542321635,
+  "disagreements": []
+ },
+ "gates": {
+  "layerTensors": true,
+  "longLayerTensors": true,
+  "corpusArgmax": true,
+  "corpusLogits": true,
+  "twoTaskArgmax": true,
+  "twoTaskLogits": true,
+  "longArgmax": true,
+  "longLogits": true
+ }
+}

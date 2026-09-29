@@ -1,0 +1,125 @@
+{
+ "run_id": "official-kh-julia-batch-f16-B8",
+ "engine": "kleinhirn-julia-batch",
+ "model": "julia-1",
+ "precision": "f16",
+ "bucket": null,
+ "ep": null,
+ "batchSize": 8,
+ "backend": "webgpu",
+ "official": true,
+ "repetitions": 3,
+ "medianMs": 47.01249999925494,
+ "rangeMs": [
+  46.693750001490116,
+  47.28125
+ ],
+ "p95Ms": 61.29999999701977,
+ "downloadBytes": 322970260,
+ "onnxBytes": null,
+ "runtimeBytes": null,
+ "gpuBytes": 115287432,
+ "peakMemMb": 0,
+ "parity": [
+  {
+   "argmaxAgreement": 1,
+   "n": 96
+  },
+  {
+   "argmaxAgreement": 1,
+   "n": 96
+  },
+  {
+   "argmaxAgreement": 1,
+   "n": 96
+  }
+ ],
+ "loadAvg": [
+  [
+   3.9365234375,
+   4.6279296875
+  ],
+  [
+   4.97802734375,
+   8.3505859375
+  ],
+  [
+   5.4453125,
+   5.2490234375
+  ]
+ ],
+ "repFiles": [
+  "bench/results/official-kh-julia-batch-f16-B8-r1.json",
+  "bench/results/official-kh-julia-batch-f16-B8-r2.json",
+  "bench/results/official-kh-julia-batch-f16-B8-r3.json"
+ ],
+ "page": {
+  "stage": "done",
+  "model": "julia-1",
+  "precision": "f16",
+  "batch": 8,
+  "loadMs": 1045.3999999761581,
+  "info": {
+   "precision": "f16",
+   "adapter": {
+    "vendor": "apple",
+    "architecture": "metal-3",
+    "device": "",
+    "description": ""
+   },
+   "limitsMode": "minimum",
+   "timestamps": true,
+   "buckets": [
+    512,
+    1024
+   ],
+   "gpuBytes": 115287432,
+   "downloadBytes": 322970260,
+   "tokenizerBytes": 34363188,
+   "weightBytes": 288607072,
+   "loadTiming": {
+    "fetchMs": 446.2999999523163,
+    "bodyMs": 1068.0999999642372,
+    "sha256Ms": 167.0999999642372,
+    "uploadMs": 35.40000003576279,
+    "embedJoinMs": 25.19999998807907,
+    "manifestMs": 3.300000011920929,
+    "tokenizerMs": 530.1999999880791,
+    "planMs": 4.399999976158142
+   }
+  },
+  "adapterInfo": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "result": {
+   "batch_size": 8,
+   "n_batches": 12,
+   "n_requests": 12,
+   "batch_ms": {
+    "n": 12,
+    "medianMs": 373.55000001192093,
+    "p95Ms": 762.8000000119209,
+    "minMs": 185.20000004768372,
+    "maxMs": 762.8000000119209,
+    "meanMs": 348.37500000496703
+   },
+   "ms_per_decision": 46.693750001490116,
+   "per_decision": {
+    "n": 12,
+    "medianMs": 46.693750001490116,
+    "p95Ms": 95.35000000149012,
+    "minMs": 23.150000005960464,
+    "maxMs": 95.35000000149012,
+    "meanMs": 43.54687500062088
+   },
+   "parity": {
+    "argmaxAgreement": 1,
+    "n": 96
+   }
+  },
+  "done": true
+ }
+}

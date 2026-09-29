@@ -1,0 +1,76 @@
+{
+ "date": "2026-09-27",
+ "run_id": "official-ort-small-f16-wasm-r2-1790544052564",
+ "official": true,
+ "provisionalReason": null,
+ "engine": "ort-web",
+ "model": "small-upstream",
+ "precision": "f16",
+ "bucket": null,
+ "backend": "webgpu",
+ "ep": "wasm",
+ "batchSize": null,
+ "browser": "chromium-151.0.7922.34",
+ "adapterInfo": null,
+ "loadAvgStart": 5.7,
+ "loadAvgEnd": 8.97,
+ "loadMaxObserved": 8.97,
+ "baselineMb": 1163,
+ "peakMemMb": 261,
+ "page": {
+  "stage": "done",
+  "model": "small-upstream",
+  "precision": "f16",
+  "ep": "wasm",
+  "onnxBytes": 144066929,
+  "loadMs": 1015.5,
+  "downloadBytes": 170893919,
+  "latency": {
+   "n": 968,
+   "medianMs": 8444.199999988079,
+   "p95Ms": 8638.600000023842,
+   "minMs": 8363.600000023842,
+   "maxMs": 8866.100000023842,
+   "meanMs": 8475.793904958986
+  },
+  "parity": {
+   "n": 968,
+   "argmaxAgreement": 0.9958677685950413,
+   "maxAbsLogitDiff": 0.10693669319152832,
+   "meanAbsLogitDiff": 0.009643466860702462,
+   "maxAbsProbDiff": 0.016697463474353635,
+   "disagreements": [
+    104,
+    342,
+    696,
+    907
+   ]
+  },
+  "n": 968,
+  "done": true
+ },
+ "pair": "ort-wasm small f16 (no kleinhirn counterpart)",
+ "repetition": 2,
+ "latency": {
+  "medianMs": 8444.199999988079,
+  "p95Ms": 8638.600000023842,
+  "loadMs": 1015.5
+ },
+ "parity": {
+  "n": 968,
+  "argmaxAgreement": 0.9958677685950413,
+  "maxAbsLogitDiff": 0.10693669319152832,
+  "meanAbsLogitDiff": 0.009643466860702462,
+  "maxAbsProbDiff": 0.016697463474353635,
+  "disagreements": [
+   104,
+   342,
+   696,
+   907
+  ]
+ },
+ "downloadBytes": 170893919,
+ "onnxBytes": 144066929,
+ "runtimeBytes": 26826990,
+ "n": 968
+}

@@ -1,0 +1,14 @@
+# Julia-1 environment: the upstream Julia-1 package needs transformers 5.x
+# (tokenizer_config declares tokenizer_class "TokenizersBackend"), which
+# conflicts with the converter env's transformers 4.57.6 pin. Keep the two
+# environments separate.
+# Install: uv venv .venv-julia && uv pip install --python .venv-julia/bin/python -r convert/requirements-julia.txt
+torch==2.14.0
+transformers==5.0.0
+tokenizers==0.22.2
+huggingface_hub==1.33.0
+safetensors==0.8.0
+numpy==2.5.3
+scipy==1.18.1
+datasets==5.0.1     # tools/fetch_datasets.py
+pyarrow==25.0.1

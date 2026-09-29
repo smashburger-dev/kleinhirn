@@ -1,0 +1,143 @@
+{
+ "run_id": "k20gc-screen-ort-small-f16-webgpu-opt",
+ "engine": "ort-web",
+ "model": "small-upstream",
+ "precision": "f16",
+ "bucket": null,
+ "ep": "webgpu",
+ "batchSize": null,
+ "graph": "opt",
+ "capture": false,
+ "backend": "webgpu",
+ "official": true,
+ "repetitions": 4,
+ "medianMs": 15.350000023841858,
+ "rangeMs": [
+  14.800000071525574,
+  16.40000009536743
+ ],
+ "p95Ms": 16.399999976158142,
+ "downloadBytes": 196848587,
+ "onnxBytes": 170014313,
+ "runtimeBytes": 26834274,
+ "gpuBytes": null,
+ "peakMemMb": 0,
+ "parity": [
+  {
+   "n": 968,
+   "argmaxAgreement": 0.9958677685950413,
+   "maxAbsLogitDiff": 0.1449974775314331,
+   "meanAbsLogitDiff": 0.0159985040737824,
+   "maxAbsProbDiff": 0.03462342141626884,
+   "disagreements": [
+    135,
+    327,
+    696,
+    907
+   ]
+  },
+  {
+   "n": 968,
+   "argmaxAgreement": 0.9958677685950413,
+   "maxAbsLogitDiff": 0.1449974775314331,
+   "meanAbsLogitDiff": 0.0159985040737824,
+   "maxAbsProbDiff": 0.03462342141626884,
+   "disagreements": [
+    135,
+    327,
+    696,
+    907
+   ]
+  },
+  {
+   "n": 968,
+   "argmaxAgreement": 0.9958677685950413,
+   "maxAbsLogitDiff": 0.1449974775314331,
+   "meanAbsLogitDiff": 0.0159985040737824,
+   "maxAbsProbDiff": 0.03462342141626884,
+   "disagreements": [
+    135,
+    327,
+    696,
+    907
+   ]
+  },
+  {
+   "n": 968,
+   "argmaxAgreement": 0.9958677685950413,
+   "maxAbsLogitDiff": 0.1449974775314331,
+   "meanAbsLogitDiff": 0.0159985040737824,
+   "maxAbsProbDiff": 0.03462342141626884,
+   "disagreements": [
+    135,
+    327,
+    696,
+    907
+   ]
+  }
+ ],
+ "loadAvg": [
+  [
+   5.33349609375,
+   5.2138671875
+  ],
+  [
+   5.2138671875,
+   4.71435546875
+  ],
+  [
+   5.63720703125,
+   4.92333984375
+  ],
+  [
+   5.7666015625,
+   5.7353515625
+  ]
+ ],
+ "repFiles": [
+  "bench/results/k20gc-screen-ort-small-f16-webgpu-opt-r1.json",
+  "bench/results/k20gc-screen-ort-small-f16-webgpu-opt-r2.json",
+  "bench/results/k20gc-screen-ort-small-f16-webgpu-opt-r3.json",
+  "bench/results/k20gc-screen-ort-small-f16-webgpu-opt-r4.json"
+ ],
+ "page": {
+  "stage": "done",
+  "model": "small-upstream",
+  "precision": "f16",
+  "ep": "webgpu",
+  "graph": "opt",
+  "capture": false,
+  "adapterInfo": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "onnxBytes": 170014313,
+  "loadMs": 607,
+  "downloadBytes": 196848587,
+  "latency": {
+   "n": 968,
+   "medianMs": 16.40000009536743,
+   "p95Ms": 17.100000023841858,
+   "minMs": 14.899999976158142,
+   "maxMs": 47.10000002384186,
+   "meanMs": 16.529338842827425
+  },
+  "parity": {
+   "n": 968,
+   "argmaxAgreement": 0.9958677685950413,
+   "maxAbsLogitDiff": 0.1449974775314331,
+   "meanAbsLogitDiff": 0.0159985040737824,
+   "maxAbsProbDiff": 0.03462342141626884,
+   "disagreements": [
+    135,
+    327,
+    696,
+    907
+   ]
+  },
+  "n": 968,
+  "done": true
+ }
+}

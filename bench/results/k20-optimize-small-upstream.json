@@ -1,0 +1,138 @@
+{
+ "model": "small-upstream",
+ "onnxruntime": "1.29.0",
+ "optimizer": {
+  "model_type": "bert",
+  "opt_level": "default (1)",
+  "num_heads": 6,
+  "hidden_size": 384
+ },
+ "census": {
+  "source": {
+   "nodes": 1571,
+   "ops": {
+    "Constant": 506,
+    "Add": 170,
+    "Reshape": 168,
+    "MatMul": 146,
+    "Transpose": 120,
+    "Mul": 51,
+    "Div": 49,
+    "ConstantOfShape": 49,
+    "Expand": 49,
+    "Where": 38,
+    "LayerNormalization": 26,
+    "Equal": 25,
+    "GatherElements": 25,
+    "Identity": 24,
+    "Tile": 24,
+    "Cast": 17,
+    "Unsqueeze": 17,
+    "Squeeze": 14,
+    "Softmax": 13,
+    "Slice": 12,
+    "Clip": 12,
+    "Erf": 12,
+    "Gather": 1,
+    "Not": 1,
+    "Relu": 1,
+    "Greater": 1
+   }
+  },
+  "fused_f32": {
+   "nodes": 568,
+   "ops": {
+    "Reshape": 176,
+    "MatMul": 92,
+    "Transpose": 72,
+    "Add": 57,
+    "Div": 36,
+    "Gemm": 30,
+    "GatherElements": 25,
+    "com.microsoft:SkipLayerNormalization": 24,
+    "Where": 13,
+    "Softmax": 13,
+    "com.microsoft:Gelu": 12,
+    "Cast": 5,
+    "Unsqueeze": 5,
+    "Mul": 2,
+    "Expand": 1,
+    "Squeeze": 1,
+    "Gather": 1,
+    "LayerNormalization": 1,
+    "Greater": 1,
+    "Relu": 1
+   }
+  },
+  "fused_f16": {
+   "nodes": 571,
+   "ops": {
+    "Reshape": 176,
+    "MatMul": 92,
+    "Transpose": 72,
+    "Add": 57,
+    "Div": 36,
+    "Gemm": 30,
+    "GatherElements": 25,
+    "com.microsoft:SkipLayerNormalization": 24,
+    "Where": 13,
+    "Softmax": 13,
+    "com.microsoft:Gelu": 12,
+    "Cast": 8,
+    "Unsqueeze": 5,
+    "Mul": 2,
+    "Expand": 1,
+    "Squeeze": 1,
+    "Gather": 1,
+    "LayerNormalization": 1,
+    "Relu": 1,
+    "Greater": 1
+   }
+  }
+ },
+ "fused_operator_statistics": {
+  "EmbedLayerNormalization": 0,
+  "Attention": 0,
+  "MultiHeadAttention": 0,
+  "Gelu": 12,
+  "FastGelu": 0,
+  "BiasGelu": 0,
+  "GemmFastGelu": 0,
+  "LayerNormalization": 1,
+  "SimplifiedLayerNormalization": 0,
+  "SkipLayerNormalization": 24,
+  "SkipSimplifiedLayerNormalization": 0,
+  "RotaryEmbedding": 0,
+  "QOrderedAttention": 0,
+  "QOrderedGelu": 0,
+  "QOrderedLayerNormalization": 0,
+  "QOrderedMatMul": 0
+ },
+ "attention_fused": false,
+ "bytes": {
+  "source": 285828729,
+  "fused_f32": 320908094,
+  "fused_f16": 170014313
+ },
+ "parity_cpu": {
+  "source": {
+   "n": 968,
+   "max_abs_logit_diff": 2.6416033506393433e-05,
+   "argmax_agreement": 1.0
+  },
+  "fused_f32": {
+   "n": 968,
+   "max_abs_logit_diff": 2.4318695068359375e-05,
+   "argmax_agreement": 1.0
+  },
+  "fused_f16": {
+   "n": 968,
+   "max_abs_logit_diff": 0.06574714183807373,
+   "argmax_agreement": 0.9979338842975206
+  }
+ },
+ "files": {
+  "fused_f32": "models/small-upstream/onnx/model_f32_opt.onnx",
+  "fused_f16": "models/small-upstream/onnx/model_f16_opt.onnx"
+ }
+}

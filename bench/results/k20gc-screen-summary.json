@@ -1,0 +1,163 @@
+{
+ "date": "2026-09-29",
+ "maxLoad": 99,
+ "reps": 1,
+ "tag": null,
+ "pairs": [
+  "kh-vs-ort-webgpu small f16 L128",
+  "kh-vs-ort-webgpu small f32 L128",
+  "k20 kh-small-f16-L128 vs ort-small-f16-webgpu-opt",
+  "k20 ort-small-f16-webgpu vs ort-small-f16-webgpu-opt",
+  "k20 kh-small-f32-L128 vs ort-small-f32-webgpu-opt",
+  "k20 ort-small-f32-webgpu vs ort-small-f32-webgpu-opt",
+  "k20gc kh-small-f16-L128 vs ort-small-f16-webgpu-opt-capture",
+  "k20gc ort-small-f16-webgpu-opt vs ort-small-f16-webgpu-opt-capture",
+  "k20gc kh-small-f32-L128 vs ort-small-f32-webgpu-opt-capture",
+  "k20gc ort-small-f32-webgpu-opt vs ort-small-f32-webgpu-opt-capture",
+  "k20gc kh-small-f16-L128 vs ort-small-f16-webgpu-optgc-capture",
+  "k20gc ort-small-f16-webgpu-opt vs ort-small-f16-webgpu-optgc-capture",
+  "k20gc kh-small-f32-L128 vs ort-small-f32-webgpu-optgc-capture",
+  "k20gc ort-small-f32-webgpu-opt vs ort-small-f32-webgpu-optgc-capture"
+ ],
+ "runs": [
+  {
+   "name": "kh-small-f16-L128",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20gc-screen-kh-small-f16-L128-r1.json"
+  },
+  {
+   "name": "kh-small-f32-L128",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20gc-screen-kh-small-f32-L128-r1.json"
+  },
+  {
+   "name": "kh-small-f16-L128",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20gc-screen-kh-small-f16-L128-r2.json"
+  },
+  {
+   "name": "ort-small-f16-webgpu-opt",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20gc-screen-ort-small-f16-webgpu-opt-r1.json"
+  },
+  {
+   "name": "ort-small-f16-webgpu-opt",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20gc-screen-ort-small-f16-webgpu-opt-r2.json"
+  },
+  {
+   "name": "kh-small-f32-L128",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20gc-screen-kh-small-f32-L128-r2.json"
+  },
+  {
+   "name": "ort-small-f32-webgpu-opt",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20gc-screen-ort-small-f32-webgpu-opt-r1.json"
+  },
+  {
+   "name": "ort-small-f32-webgpu-opt",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20gc-screen-ort-small-f32-webgpu-opt-r2.json"
+  },
+  {
+   "name": "kh-small-f16-L128",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20gc-screen-kh-small-f16-L128-r3.json"
+  },
+  {
+   "name": "ort-small-f16-webgpu-opt",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20gc-screen-ort-small-f16-webgpu-opt-r3.json"
+  },
+  {
+   "name": "kh-small-f32-L128",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20gc-screen-kh-small-f32-L128-r3.json"
+  },
+  {
+   "name": "ort-small-f32-webgpu-opt",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20gc-screen-ort-small-f32-webgpu-opt-r3.json"
+  },
+  {
+   "name": "kh-small-f16-L128",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20gc-screen-kh-small-f16-L128-r4.json"
+  },
+  {
+   "name": "ort-small-f16-webgpu-optgc-capture",
+   "rep": 1,
+   "error": "Error: page: TypeError: Cannot set properties of undefined (setting 'Symbol(gpuBufferMetadata)')"
+  },
+  {
+   "name": "ort-small-f16-webgpu-opt",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20gc-screen-ort-small-f16-webgpu-opt-r4.json"
+  },
+  {
+   "name": "ort-small-f16-webgpu-optgc-capture",
+   "rep": 1,
+   "error": "Error: page: TypeError: Cannot set properties of undefined (setting 'Symbol(gpuBufferMetadata)')"
+  },
+  {
+   "name": "kh-small-f32-L128",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20gc-screen-kh-small-f32-L128-r4.json"
+  },
+  {
+   "name": "ort-small-f32-webgpu-optgc-capture",
+   "rep": 1,
+   "error": "Error: page: TypeError: Cannot set properties of undefined (setting 'Symbol(gpuBufferMetadata)')"
+  },
+  {
+   "name": "ort-small-f32-webgpu-opt",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20gc-screen-ort-small-f32-webgpu-opt-r4.json"
+  },
+  {
+   "name": "ort-small-f32-webgpu-optgc-capture",
+   "rep": 1,
+   "error": "Error: page: TypeError: Cannot set properties of undefined (setting 'Symbol(gpuBufferMetadata)')"
+  }
+ ],
+ "aggregates": [
+  {
+   "name": "kh-small-f16-L128",
+   "official": true,
+   "medianMs": 6.75
+  },
+  {
+   "name": "kh-small-f32-L128",
+   "official": true,
+   "medianMs": 7.199999988079071
+  },
+  {
+   "name": "ort-small-f16-webgpu-opt",
+   "official": true,
+   "medianMs": 15.350000023841858
+  },
+  {
+   "name": "ort-small-f32-webgpu-opt",
+   "official": true,
+   "medianMs": 17.69999998807907
+  }
+ ],
+ "aborted": false
+}

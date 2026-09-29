@@ -1,0 +1,162 @@
+{
+ "model": "julia-1",
+ "onnxruntime": "1.29.0",
+ "optimizer": {
+  "model_type": "bert",
+  "opt_level": "default (1)",
+  "num_heads": 6,
+  "hidden_size": 384
+ },
+ "census": {
+  "source": {
+   "nodes": 1353,
+   "ops": {
+    "Slice": 226,
+    "Mul": 205,
+    "Add": 148,
+    "MatMul": 145,
+    "Reshape": 114,
+    "Concat": 102,
+    "Transpose": 84,
+    "Squeeze": 71,
+    "LayerNormalization": 50,
+    "Neg": 44,
+    "Shape": 27,
+    "Softmax": 24,
+    "Div": 23,
+    "Erf": 23,
+    "Split": 22,
+    "Unsqueeze": 10,
+    "Gather": 8,
+    "Expand": 4,
+    "Cast": 4,
+    "Where": 4,
+    "Not": 3,
+    "Sub": 2,
+    "Gemm": 2,
+    "Relu": 2,
+    "Range": 1,
+    "Abs": 1,
+    "LessOrEqual": 1,
+    "Cos": 1,
+    "Sin": 1,
+    "GatherElements": 1
+   }
+  },
+  "fused_f32": {
+   "nodes": 1302,
+   "ops": {
+    "Slice": 226,
+    "Mul": 159,
+    "MatMul": 145,
+    "Transpose": 128,
+    "Add": 124,
+    "Reshape": 114,
+    "Concat": 102,
+    "Squeeze": 71,
+    "LayerNormalization": 50,
+    "Neg": 44,
+    "Shape": 27,
+    "Softmax": 24,
+    "Split": 22,
+    "com.microsoft:Gelu": 22,
+    "Unsqueeze": 10,
+    "Gather": 8,
+    "Expand": 4,
+    "Cast": 4,
+    "Where": 4,
+    "Sub": 2,
+    "Gemm": 2,
+    "Relu": 2,
+    "Range": 1,
+    "Sin": 1,
+    "Cos": 1,
+    "Abs": 1,
+    "LessOrEqual": 1,
+    "Not": 1,
+    "GatherElements": 1,
+    "com.microsoft:BiasGelu": 1
+   }
+  },
+  "fused_f16": {
+   "nodes": 1303,
+   "ops": {
+    "Slice": 226,
+    "Mul": 159,
+    "MatMul": 145,
+    "Transpose": 128,
+    "Add": 124,
+    "Reshape": 114,
+    "Concat": 102,
+    "Squeeze": 71,
+    "LayerNormalization": 50,
+    "Neg": 44,
+    "Shape": 27,
+    "Softmax": 24,
+    "Split": 22,
+    "com.microsoft:Gelu": 22,
+    "Unsqueeze": 10,
+    "Gather": 8,
+    "Cast": 5,
+    "Expand": 4,
+    "Where": 4,
+    "Sub": 2,
+    "Gemm": 2,
+    "Relu": 2,
+    "Range": 1,
+    "Sin": 1,
+    "Cos": 1,
+    "Abs": 1,
+    "LessOrEqual": 1,
+    "Not": 1,
+    "GatherElements": 1,
+    "com.microsoft:BiasGelu": 1
+   }
+  }
+ },
+ "fused_operator_statistics": {
+  "EmbedLayerNormalization": 0,
+  "Attention": 0,
+  "MultiHeadAttention": 0,
+  "Gelu": 22,
+  "FastGelu": 0,
+  "BiasGelu": 1,
+  "GemmFastGelu": 0,
+  "LayerNormalization": 50,
+  "SimplifiedLayerNormalization": 0,
+  "SkipLayerNormalization": 0,
+  "SkipSimplifiedLayerNormalization": 0,
+  "RotaryEmbedding": 0,
+  "QOrderedAttention": 0,
+  "QOrderedGelu": 0,
+  "QOrderedLayerNormalization": 0,
+  "QOrderedMatMul": 0
+ },
+ "attention_fused": false,
+ "bytes": {
+  "source": 579771259,
+  "fused_f32": 576958727,
+  "fused_f16": 288569583
+ },
+ "parity_cpu": {
+  "source": {
+   "n": 100,
+   "max_abs_logit_diff": 0.00011658668518066406,
+   "argmax_agreement": 1.0
+  },
+  "fused_f32": {
+   "n": 100,
+   "max_abs_logit_diff": 0.00012153387069702148,
+   "argmax_agreement": 1.0
+  },
+  "fused_f16": {
+   "n": 100,
+   "max_abs_logit_diff": 0.7339117527008057,
+   "argmax_agreement": 1.0
+  }
+ },
+ "files": {
+  "fused_f32": "models/julia-1/onnx/model_opt.onnx",
+  "fused_f16": "models/julia-1/onnx/model_opt_f16.onnx"
+ }
+}

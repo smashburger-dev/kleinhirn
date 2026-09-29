@@ -1,0 +1,46 @@
+{
+ "task": "massive",
+ "route": "julia-pytorch-cpu",
+ "model": "Julia-1",
+ "weights_sha256": "df853bf7fe424420011f3d0c47a05d7341aa9eefa7fb9f203ea4aada4ad95b72",
+ "engine": {
+  "device": "cpu",
+  "transformer_backend": "torch",
+  "strict_encoding": true,
+  "max_length": 1024,
+  "head_length": 512,
+  "batch_size": 16,
+  "marker_only_head": false,
+  "threads": 4,
+  "router": null
+ },
+ "total": 5948,
+ "correct": 3003,
+ "accuracy": 0.5048755884330868,
+ "abstained": 0,
+ "gate": {
+  "published": 0.7149979307847499,
+  "published_counts": {
+   "correct": 110573,
+   "total": 154648,
+   "accuracy": 0.7149979307847499
+  },
+  "tolerance_pp": 1.0,
+  "deviation_pp": null
+ },
+ "elapsed_seconds": 181.4,
+ "load_average": "s: 9.63 13.16 13.31",
+ "per_locale": {
+  "en-US": {
+   "count": 2974,
+   "correct": 1538,
+   "accuracy": 0.5171486213853396
+  },
+  "pt-PT": {
+   "count": 2974,
+   "correct": 1465,
+   "accuracy": 0.49260255548083387
+  }
+ },
+ "macro_accuracy": 0.5048755884330867
+}

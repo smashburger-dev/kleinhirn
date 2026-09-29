@@ -1,0 +1,18 @@
+{
+ "inCorpus": {
+  "n": 300,
+  "skipped": 43,
+  "identicalTokenization": 1.0,
+  "changedTokenization": 0.0,
+  "argmaxAgreement": 1.0
+ },
+ "outOfCorpus": {
+  "n": 300,
+  "skipped": 81,
+  "identicalTokenization": 0.29333333333333333,
+  "changedTokenization": 0.7066666666666667,
+  "argmaxAgreement": 0.8904109589041096
+ },
+ "orig": "models/multi-upstream/checkpoint",
+ "trimmed": "models/multi-trimmed/checkpoint"
+}

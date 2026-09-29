@@ -1,0 +1,45 @@
+{
+ "date": "2026-09-29",
+ "commit": "538e77a",
+ "precision": "f32",
+ "ep": "webgpu",
+ "graph": "optgc",
+ "capture": true,
+ "browser": "chromium-151.0.7922.34",
+ "stage": "done",
+ "error": null,
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "placements": {
+  "WebGpuExecutionProvider": 589
+ },
+ "cpuNodes": [],
+ "captureLines": [
+  "2026-09-29 10:06:34.121799 [V:onnxruntime:Default, webgpu_provider_factory.cc:145 ParseEpConfig] WebGPU EP graph capture enable: 1",
+  "2026-09-29 10:06:34.122000 [V:onnxruntime:Default, webgpu_provider_factory.cc:147 ParseEpConfig] WebGPU EP pix capture enable: 0",
+  "2026-09-29 10:06:34.133099 [I:onnxruntime:, inference_session.cc:755 TraceSessionOptions] Session Options {  execution_mode:0 execution_order:DEFAULT enable_profiling:0 optimized_model_filepath:\"\" enable_mem_pattern:0 enable_mem_reuse:1 enable_cpu_mem_arena:0 profile_file_prefix: session_logid: session_log_severity_level:0 session_log_verbosity_level:0 max_num_graph_transformation_steps:10 graph_optimization_level:4 intra_op_param:OrtThreadPoolParams { thread_pool_size: 0 auto_set_affinity: 0 allow_spinning: 1 spin_duration_us: -1 spin_backoff_max: 1 dynamic_block_base_: 0 stack_size: 0 affinity_str:  set_denormal_as_zero: 0 } inter_op_param:OrtThreadPoolParams { thread_pool_size: 0 auto_set_affinity: 0 allow_spinning: 1 spin_duration_us: -1 spin_backoff_max: 1 dynamic_block_base_: 0 stack_size: 0 affinity_str:  set_denormal_as_zero: 0 } use_per_session_threads:0 thread_pool_allow_spinning:1 use_deterministic_compute:0 ep_selection_policy:0 config_options: {   ep.webgpuexecutionprovider.enableGraphCapture: 1  enableGraphCapture: true  session.use_ort_model_bytes_directly: 1 } }",
+  "2026-09-29 10:06:34.517099 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer MemcpyTransformer modified: 0 with status: OK",
+  "2026-09-29 10:06:34.517400 [I:onnxruntime:, inference_session.cc:2721 Initialize] This session will use the graph capture feature as requested by the user with WebGpuExecutionProvider.",
+  "2026-09-29 10:06:34.763600 [V:onnxruntime:Default, webgpu_context.cc:1065 CaptureBegin] CaptureBegin with external storage",
+  "2026-09-29 10:06:35.120999 [V:onnxruntime:Default, webgpu_context.cc:1111 CaptureEnd] CaptureEnd",
+  "2026-09-29 10:06:35.121499 [V:onnxruntime:Default, webgpu_context.cc:1080 Replay] Replay with external storage"
+ ],
+ "consoleLines": 2890,
+ "relevant": [
+  "2026-09-29 10:06:34.121799 [V:onnxruntime:Default, webgpu_provider_factory.cc:145 ParseEpConfig] WebGPU EP graph capture enable: 1",
+  "2026-09-29 10:06:34.122000 [V:onnxruntime:Default, webgpu_provider_factory.cc:147 ParseEpConfig] WebGPU EP pix capture enable: 0",
+  "2026-09-29 10:06:34.133099 [I:onnxruntime:, inference_session.cc:755 TraceSessionOptions] Session Options {  execution_mode:0 execution_order:DEFAULT enable_profiling:0 optimized_model_filepath:\"\" enable_mem_pattern:0 enable_mem_reuse:1 enable_cpu_mem_arena:0 profile_file_prefix: session_logid: session_log_severity_level:0 session_log_verbosity_level:0 max_num_graph_transformation_steps:10 graph_optimization_level:4 intra_op_param:OrtThreadPoolParams { thread_pool_size: 0 auto_set_affinity: 0 allow_spinning: 1 spin_duration_us: -1 spin_backoff_max: 1 dynamic_block_base_: 0 stack_size: 0 affinity_str:  set_denormal_as_zero: 0 } inter_op_param:OrtThreadPoolParams { thread_pool_size: 0 auto_set_affinity: 0 allow_spinning: 1 spin_duration_us: -1 spin_backoff_max: 1 dynamic_block_base_: 0 stack_size: 0 affinity_str:  set_denormal_as_zero: 0 } use_per_session_threads:0 thread_pool_allow_spinning:1 use_deterministic_compute:0 ep_selection_policy:0 config_options: {   ep.webgpuexecutionprovider.enableGraphCapture: 1  enableGraphCapture: true  session.use_ort_model_bytes_directly: 1 } }",
+  "2026-09-29 10:06:34.466000 [V:onnxruntime:, graph_transformer_mgr.cc:55 ApplyTransformers] Applying graph transformer TransposeOptimizer_CPUExecutionProvider on step 1.",
+  "2026-09-29 10:06:34.466600 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer TransposeOptimizer_CPUExecutionProvider modified: 0 with status: OK",
+  "2026-09-29 10:06:34.517099 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer MemcpyTransformer modified: 0 with status: OK",
+  "2026-09-29 10:06:34.517400 [I:onnxruntime:, inference_session.cc:2721 Initialize] This session will use the graph capture feature as requested by the user with WebGpuExecutionProvider.",
+  "2026-09-29 10:06:34.518900 [V:onnxruntime:, session_state.cc:1381 VerifyEachNodeIsAssignedToAnEp]  All nodes placed on [WebGpuExecutionProvider]. Number of nodes: 589",
+  "2026-09-29 10:06:34.763600 [V:onnxruntime:Default, webgpu_context.cc:1065 CaptureBegin] CaptureBegin with external storage",
+  "2026-09-29 10:06:35.120999 [V:onnxruntime:Default, webgpu_context.cc:1111 CaptureEnd] CaptureEnd",
+  "2026-09-29 10:06:35.121499 [V:onnxruntime:Default, webgpu_context.cc:1080 Replay] Replay with external storage"
+ ]
+}

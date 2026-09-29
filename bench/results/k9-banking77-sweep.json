@@ -1,0 +1,140 @@
+{
+ "task": "banking77",
+ "route": "julia-pytorch-cpu",
+ "published": 0.64,
+ "note": "top-16 shortlist mechanisms; literal top-16 variants span 57-69",
+ "runs": [
+  {
+   "mech": {
+    "shortlist": "router",
+    "width": 9,
+    "survivors": 2
+   },
+   "correct": 69,
+   "total": 100,
+   "accuracy": 0.69,
+   "file": "bench/results/sweep/b77-r9s2.json"
+  },
+  {
+   "mech": {
+    "shortlist": "router",
+    "width": 12,
+    "survivors": 4
+   },
+   "correct": 68,
+   "total": 100,
+   "accuracy": 0.68,
+   "file": "bench/results/sweep/b77-r12s4.json"
+  },
+  {
+   "mech": {
+    "shortlist": "router",
+    "width": 13,
+    "survivors": 4
+   },
+   "correct": 68,
+   "total": 100,
+   "accuracy": 0.68,
+   "file": "bench/results/sweep/b77-r13s4.json"
+  },
+  {
+   "mech": {
+    "shortlist": "router",
+    "width": 12,
+    "survivors": 3
+   },
+   "correct": 67,
+   "total": 100,
+   "accuracy": 0.67,
+   "file": "bench/results/sweep/b77-r12s3.json"
+  },
+  {
+   "mech": {
+    "shortlist": "router",
+    "width": 14,
+    "survivors": 3
+   },
+   "correct": 67,
+   "total": 100,
+   "accuracy": 0.67,
+   "file": "bench/results/sweep/b77-r14s3.json"
+  },
+  {
+   "mech": {
+    "shortlist": "router",
+    "width": 14,
+    "survivors": 4
+   },
+   "correct": 64,
+   "total": 100,
+   "accuracy": 0.64,
+   "adopted": true,
+   "file": "bench/results/k9-banking77-julia-pytorch.json"
+  },
+  {
+   "mech": {
+    "shortlist": "router",
+    "width": 15,
+    "survivors": 3
+   },
+   "correct": 62,
+   "total": 100,
+   "accuracy": 0.62,
+   "file": "bench/results/sweep/b77-r15s3.json"
+  },
+  {
+   "mech": {
+    "shortlist": "router",
+    "width": 18,
+    "survivors": 4
+   },
+   "correct": 62,
+   "total": 100,
+   "accuracy": 0.62,
+   "file": "bench/results/sweep/b77-r18s4.json"
+  },
+  {
+   "mech": {
+    "shortlist": "router",
+    "width": 19,
+    "survivors": 4
+   },
+   "correct": 61,
+   "total": 100,
+   "accuracy": 0.61,
+   "file": "bench/results/sweep/b77-r19s4.json"
+  },
+  {
+   "mech": {
+    "shortlist": "router",
+    "width": 16,
+    "survivors": 4
+   },
+   "correct": 59,
+   "total": 100,
+   "accuracy": 0.59,
+   "file": "bench/results/sweep/b77-r16s4.json"
+  },
+  {
+   "mech": {
+    "shortlist": "router",
+    "width": 20,
+    "survivors": 4
+   },
+   "correct": 57,
+   "total": 100,
+   "accuracy": 0.57,
+   "file": "bench/results/sweep/b77-r20s4.json"
+  },
+  {
+   "mech": {
+    "shortlist": "noul-rank",
+    "top_k": 16
+   },
+   "correct": 31,
+   "total": 100,
+   "accuracy": 0.31,
+   "file": "bench/results/sweep/b77-noul16.json"
+  }
+ ]
+}

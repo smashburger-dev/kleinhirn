@@ -1,0 +1,97 @@
+{
+ "run_id": "k20-official-ort-small-f32-wasm-opt",
+ "engine": "ort-web",
+ "model": "small-upstream",
+ "precision": "f32",
+ "bucket": null,
+ "ep": "wasm",
+ "batchSize": null,
+ "graph": "opt",
+ "backend": "webgpu",
+ "official": true,
+ "repetitions": 3,
+ "medianMs": 180,
+ "rangeMs": [
+  179.9000000357628,
+  180.40000000596046
+ ],
+ "p95Ms": 180.80000001192093,
+ "downloadBytes": 347730019,
+ "onnxBytes": 320908094,
+ "runtimeBytes": 26821925,
+ "gpuBytes": null,
+ "peakMemMb": 0,
+ "parity": [
+  {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.000028420239686965942,
+   "meanAbsLogitDiff": 0.000003127223419502747,
+   "maxAbsProbDiff": 0.000009720315978123395,
+   "disagreements": []
+  },
+  {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.000028420239686965942,
+   "meanAbsLogitDiff": 0.000003127223419502747,
+   "maxAbsProbDiff": 0.000009720315978123395,
+   "disagreements": []
+  },
+  {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.000028420239686965942,
+   "meanAbsLogitDiff": 0.000003127223419502747,
+   "maxAbsProbDiff": 0.000009720315978123395,
+   "disagreements": []
+  }
+ ],
+ "loadAvg": [
+  [
+   3.3095703125,
+   3.9794921875
+  ],
+  [
+   3.03955078125,
+   2.453125
+  ],
+  [
+   3.60791015625,
+   3.65966796875
+  ]
+ ],
+ "repFiles": [
+  "bench/results/k20-official-ort-small-f32-wasm-opt-r1.json",
+  "bench/results/k20-official-ort-small-f32-wasm-opt-r2.json",
+  "bench/results/k20-official-ort-small-f32-wasm-opt-r3.json"
+ ],
+ "page": {
+  "stage": "done",
+  "model": "small-upstream",
+  "precision": "f32",
+  "ep": "wasm",
+  "graph": "opt",
+  "onnxBytes": 320908094,
+  "loadMs": 595.5,
+  "downloadBytes": 347730019,
+  "latency": {
+   "n": 968,
+   "medianMs": 180.40000000596046,
+   "p95Ms": 182.60000002384186,
+   "minMs": 178.5,
+   "maxMs": 186.80000001192093,
+   "meanMs": 180.63006198344644
+  },
+  "parity": {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.000028420239686965942,
+   "meanAbsLogitDiff": 0.000003127223419502747,
+   "maxAbsProbDiff": 0.000009720315978123395,
+   "disagreements": []
+  },
+  "n": 968,
+  "done": true
+ }
+}

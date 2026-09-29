@@ -1,0 +1,228 @@
+{
+ "date": "2026-09-27",
+ "run_id": "kh-batch-parity-small-upstream-f16-1790533577193",
+ "engine": "kleinhirn",
+ "model": "small-upstream",
+ "precision": "f16",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvg": "{ 3.26 5.37 6.97 }",
+ "stage": "done",
+ "info": {
+  "precision": "f16",
+  "buildId": "muk5fg35",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "buckets": [
+   128,
+   512
+  ],
+  "gpuBytes": 74355404,
+  "downloadBytes": 159686872,
+  "tokenizerBytes": 8341713,
+  "weightBytes": 151345159,
+  "loadTiming": {
+   "fetchMs": 320,
+   "bodyMs": 435.7000000476837,
+   "sha256Ms": 88.90000003576279,
+   "uploadMs": 25.399999976158142,
+   "embedJoinMs": 28.899999976158142,
+   "manifestMs": 4.099999964237213,
+   "tokenizerMs": 164.5,
+   "planMs": 5.899999976158142
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "sizes": {
+  "B1": {
+   "batches": 64,
+   "rows": 64,
+   "vsSingle": {
+    "n": 64,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0,
+    "meanAbsLogitDiff": 0,
+    "maxAbsProbDiff": 0,
+    "disagreements": []
+   },
+   "vsGolden": {
+    "n": 64,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0.021021127700805664,
+    "meanAbsLogitDiff": 0.0025131283968221397,
+    "maxAbsProbDiff": 0.0039145959389421114,
+    "disagreements": []
+   }
+  },
+  "B4": {
+   "batches": 16,
+   "rows": 64,
+   "vsSingle": {
+    "n": 64,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0,
+    "meanAbsLogitDiff": 0,
+    "maxAbsProbDiff": 0,
+    "disagreements": []
+   },
+   "vsGolden": {
+    "n": 64,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0.021021127700805664,
+    "meanAbsLogitDiff": 0.0025131283968221397,
+    "maxAbsProbDiff": 0.0039145959389421114,
+    "disagreements": []
+   }
+  },
+  "B8": {
+   "batches": 8,
+   "rows": 64,
+   "vsSingle": {
+    "n": 64,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0,
+    "meanAbsLogitDiff": 0,
+    "maxAbsProbDiff": 0,
+    "disagreements": []
+   },
+   "vsGolden": {
+    "n": 64,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0.021021127700805664,
+    "meanAbsLogitDiff": 0.0025131283968221397,
+    "maxAbsProbDiff": 0.0039145959389421114,
+    "disagreements": []
+   }
+  },
+  "B16": {
+   "batches": 4,
+   "rows": 64,
+   "vsSingle": {
+    "n": 64,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0,
+    "meanAbsLogitDiff": 0,
+    "maxAbsProbDiff": 0,
+    "disagreements": []
+   },
+   "vsGolden": {
+    "n": 64,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0.021021127700805664,
+    "meanAbsLogitDiff": 0.0025131283968221397,
+    "maxAbsProbDiff": 0.0039145959389421114,
+    "disagreements": []
+   }
+  }
+ },
+ "mixed": {
+  "B1": {
+   "batches": 4,
+   "rows": 4,
+   "vsSingle": {
+    "n": 4,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0,
+    "meanAbsLogitDiff": 0,
+    "maxAbsProbDiff": 0,
+    "disagreements": []
+   },
+   "vsGolden": {
+    "n": 4,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0.006734132766723633,
+    "meanAbsLogitDiff": 0.0021941937506198884,
+    "maxAbsProbDiff": 0.0008202253380856228,
+    "disagreements": []
+   }
+  },
+  "B4": {
+   "batches": 4,
+   "rows": 16,
+   "vsSingle": {
+    "n": 16,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0,
+    "meanAbsLogitDiff": 0,
+    "maxAbsProbDiff": 0,
+    "disagreements": []
+   },
+   "vsGolden": {
+    "n": 16,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0.00838381052017212,
+    "meanAbsLogitDiff": 0.0021896321326494218,
+    "maxAbsProbDiff": 0.0030608456317077204,
+    "disagreements": []
+   }
+  },
+  "B8": {
+   "batches": 4,
+   "rows": 32,
+   "vsSingle": {
+    "n": 32,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0,
+    "meanAbsLogitDiff": 0,
+    "maxAbsProbDiff": 0,
+    "disagreements": []
+   },
+   "vsGolden": {
+    "n": 32,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0.021021127700805664,
+    "meanAbsLogitDiff": 0.0021666408865712583,
+    "maxAbsProbDiff": 0.0039145959389421114,
+    "disagreements": []
+   }
+  },
+  "B16": {
+   "batches": 4,
+   "rows": 64,
+   "vsSingle": {
+    "n": 64,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0,
+    "meanAbsLogitDiff": 0,
+    "maxAbsProbDiff": 0,
+    "disagreements": []
+   },
+   "vsGolden": {
+    "n": 64,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0.021021127700805664,
+    "meanAbsLogitDiff": 0.0022170475393068047,
+    "maxAbsProbDiff": 0.0039145959389421114,
+    "disagreements": []
+   }
+  }
+ },
+ "gates": {
+  "B1-argmax": true,
+  "B1-golden": true,
+  "B4-argmax": true,
+  "B4-golden": true,
+  "B8-argmax": true,
+  "B8-golden": true,
+  "B16-argmax": true,
+  "B16-golden": true,
+  "mixed-B1-argmax": true,
+  "mixed-B1-golden": true,
+  "mixed-B4-argmax": true,
+  "mixed-B4-golden": true,
+  "mixed-B8-argmax": true,
+  "mixed-B8-golden": true,
+  "mixed-B16-argmax": true,
+  "mixed-B16-golden": true
+ }
+}

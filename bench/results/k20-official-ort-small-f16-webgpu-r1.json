@@ -1,0 +1,86 @@
+{
+ "date": "2026-09-28",
+ "run_id": "k20-official-ort-small-f16-webgpu-r1-1790634938793",
+ "official": false,
+ "provisionalReason": "1-min load 4.6171875 above 4 at run start",
+ "engine": "ort-web",
+ "model": "small-upstream",
+ "precision": "f16",
+ "bucket": null,
+ "backend": "webgpu",
+ "ep": "webgpu",
+ "batchSize": null,
+ "graph": null,
+ "browser": "chromium-151.0.7922.34",
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "loadAvgStart": 4.6171875,
+ "loadAvgEnd": 4.1044921875,
+ "loadMaxObserved": 4.6171875,
+ "baselineMb": 0,
+ "peakMemMb": null,
+ "page": {
+  "stage": "done",
+  "model": "small-upstream",
+  "precision": "f16",
+  "ep": "webgpu",
+  "graph": "std",
+  "adapterInfo": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "onnxBytes": 144066929,
+  "loadMs": 836.3000000119209,
+  "downloadBytes": 170888854,
+  "latency": {
+   "n": 968,
+   "medianMs": 18.100000023841858,
+   "p95Ms": 18.69999998807907,
+   "minMs": 17,
+   "maxMs": 45,
+   "meanMs": 18.121900826507854
+  },
+  "parity": {
+   "n": 968,
+   "argmaxAgreement": 0.9979338842975206,
+   "maxAbsLogitDiff": 0.15284466743469238,
+   "meanAbsLogitDiff": 0.01657590677977101,
+   "maxAbsProbDiff": 0.053159200709676724,
+   "disagreements": [
+    696,
+    907
+   ]
+  },
+  "n": 968,
+  "done": true
+ },
+ "pair": "k20 ort-small-f16-webgpu vs ort-small-f16-webgpu-opt",
+ "repetition": 1,
+ "latency": {
+  "medianMs": 18.100000023841858,
+  "p95Ms": 18.69999998807907,
+  "loadMs": 836.3000000119209
+ },
+ "parity": {
+  "n": 968,
+  "argmaxAgreement": 0.9979338842975206,
+  "maxAbsLogitDiff": 0.15284466743469238,
+  "meanAbsLogitDiff": 0.01657590677977101,
+  "maxAbsProbDiff": 0.053159200709676724,
+  "disagreements": [
+   696,
+   907
+  ]
+ },
+ "downloadBytes": 170888854,
+ "onnxBytes": 144066929,
+ "runtimeBytes": 26821925,
+ "n": 968,
+ "file": "bench/results/k20-official-ort-small-f16-webgpu-r1.json"
+}

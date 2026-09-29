@@ -1,0 +1,20 @@
+{
+ "task": "agnews",
+ "route": "gliner-pytorch-cpu",
+ "model": "fastino/gliner2.5-multi-v1",
+ "revision": "235cf92d6d4318da9bfca0d08975c8fa7250d13b",
+ "zero_shot": true,
+ "total": 100,
+ "correct": 67,
+ "accuracy": 0.67,
+ "failed": 0,
+ "by_type": {
+  "choice": {
+   "count": 100,
+   "correct": 67,
+   "accuracy": 0.67
+  }
+ },
+ "elapsed_seconds": 9.0,
+ "load_average": "s: 8.90 12.48 12.66"
+}

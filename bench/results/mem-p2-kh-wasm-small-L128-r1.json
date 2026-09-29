@@ -1,0 +1,98 @@
+{
+ "date": "2026-09-28",
+ "run_id": "mem-kh-wasm-small-L128-r1-1790581827163",
+ "official": true,
+ "provisionalReason": null,
+ "engine": "kleinhirn-wasm",
+ "model": "small-upstream",
+ "precision": "f32",
+ "bucket": 128,
+ "backend": "wasm",
+ "ep": null,
+ "batchSize": null,
+ "browser": "chromium-151.0.7922.34",
+ "adapterInfo": null,
+ "loadAvgStart": 3.853515625,
+ "loadAvgEnd": 5.14697265625,
+ "loadMaxObserved": 5.14697265625,
+ "baselineMb": 318,
+ "peakMemMb": 437,
+ "page": {
+  "stage": "done",
+  "model": "small-upstream",
+  "precision": "f32",
+  "backend": "wasm",
+  "loadMs": 795,
+  "info": {
+   "backend": "wasm-simd",
+   "precision": "f32",
+   "limitsMode": "minimum",
+   "buckets": [
+    128,
+    256,
+    512,
+    1024
+   ],
+   "downloadBytes": 311029292,
+   "weightBytes": 311029292,
+   "loadTiming": {
+    "loadMs": 779.1000000238419,
+    "fetchMs": 484.7000000476837,
+    "bodyMs": 1037.8999999761581,
+    "sha256Ms": 236.70000004768372,
+    "uploadMs": 133.60000002384186,
+    "embedJoinMs": 24.19999998807907,
+    "tokenizerMs": 129.39999997615814,
+    "planMs": 0
+   },
+   "worker": true
+  },
+  "loadMsWarm": 650.1999999880791,
+  "endToEnd": {
+   "n": 968,
+   "medianMs": 70.09999999403954,
+   "p95Ms": 121.60000002384186,
+   "minMs": 47.10000002384186,
+   "maxMs": 193.0999999642372,
+   "meanMs": 77.45971074386323
+  },
+  "modelOnly": {
+   "n": 968,
+   "medianMs": 70,
+   "p95Ms": 123.10000002384186,
+   "minMs": 47,
+   "maxMs": 198,
+   "meanMs": 77.6275826443818
+  },
+  "parity": {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.000022530555725097656,
+   "meanAbsLogitDiff": 0.0000027299029050271743,
+   "maxAbsProbDiff": 0.000005952994005686829,
+   "disagreements": []
+  },
+  "n": 968,
+  "done": true
+ },
+ "pair": "kh-wasm-small-L128",
+ "repetition": 1,
+ "latency": {
+  "medianMs": 70.09999999403954,
+  "p95Ms": 121.60000002384186,
+  "modelOnlyMedianMs": 70,
+  "loadMs": 795,
+  "loadMsWarm": 650.1999999880791
+ },
+ "parity": {
+  "n": 968,
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.000022530555725097656,
+  "meanAbsLogitDiff": 0.0000027299029050271743,
+  "maxAbsProbDiff": 0.000005952994005686829,
+  "disagreements": []
+ },
+ "downloadBytes": 311029292,
+ "gpuBytes": null,
+ "n": 968
+}

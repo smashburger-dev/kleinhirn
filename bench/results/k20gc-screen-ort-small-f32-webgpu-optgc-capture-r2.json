@@ -1,0 +1,8 @@
+{
+ "run_id": "k20gc-screen-ort-small-f32-webgpu-optgc-capture-r2",
+ "engine": "ort-web",
+ "pair": "k20gc ort-small-f32-webgpu-opt vs ort-small-f32-webgpu-optgc-capture",
+ "repetition": 1,
+ "official": false,
+ "error": "Error: page: TypeError: Cannot set properties of undefined (setting 'Symbol(gpuBufferMetadata)')"
+}

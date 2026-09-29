@@ -1,0 +1,100 @@
+{
+ "date": "2026-09-28",
+ "run_id": "k20-mem-p1-kh-wasm-small-L128-r1-1790637652916",
+ "official": true,
+ "provisionalReason": null,
+ "engine": "kleinhirn-wasm",
+ "model": "small-upstream",
+ "precision": "f32",
+ "bucket": 128,
+ "backend": "wasm",
+ "ep": null,
+ "batchSize": null,
+ "graph": null,
+ "browser": "chromium-151.0.7922.34",
+ "adapterInfo": null,
+ "loadAvgStart": 3.46923828125,
+ "loadAvgEnd": 3.28759765625,
+ "loadMaxObserved": 3.46923828125,
+ "baselineMb": 307,
+ "peakMemMb": 545,
+ "page": {
+  "stage": "done",
+  "model": "small-upstream",
+  "precision": "f32",
+  "backend": "wasm",
+  "loadMs": 638.1999999880791,
+  "info": {
+   "backend": "wasm-simd",
+   "precision": "f32",
+   "limitsMode": "minimum",
+   "buckets": [
+    128,
+    256,
+    512,
+    1024
+   ],
+   "downloadBytes": 311029292,
+   "weightBytes": 311029292,
+   "loadTiming": {
+    "loadMs": 623.6000000238419,
+    "fetchMs": 367.60000002384186,
+    "bodyMs": 848.4999999403954,
+    "sha256Ms": 169.80000007152557,
+    "uploadMs": 110.5,
+    "embedJoinMs": 18,
+    "tokenizerMs": 124.5,
+    "planMs": 0
+   },
+   "worker": true
+  },
+  "loadMsWarm": 619.1999999880791,
+  "endToEnd": {
+   "n": 968,
+   "medianMs": 69.19999998807907,
+   "p95Ms": 120.30000001192093,
+   "minMs": 46.89999997615814,
+   "maxMs": 187.80000001192093,
+   "meanMs": 76.80237603310711
+  },
+  "modelOnly": {
+   "n": 968,
+   "medianMs": 69.39999997615814,
+   "p95Ms": 120.69999998807907,
+   "minMs": 46.69999998807907,
+   "maxMs": 187.5,
+   "meanMs": 76.6734504129522
+  },
+  "parity": {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.000022530555725097656,
+   "meanAbsLogitDiff": 0.0000027299029050271743,
+   "maxAbsProbDiff": 0.000005952994005686829,
+   "disagreements": []
+  },
+  "n": 968,
+  "done": true
+ },
+ "pair": "kh-wasm-small-L128",
+ "repetition": 1,
+ "latency": {
+  "medianMs": 69.19999998807907,
+  "p95Ms": 120.30000001192093,
+  "modelOnlyMedianMs": 69.39999997615814,
+  "loadMs": 638.1999999880791,
+  "loadMsWarm": 619.1999999880791
+ },
+ "parity": {
+  "n": 968,
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.000022530555725097656,
+  "meanAbsLogitDiff": 0.0000027299029050271743,
+  "maxAbsProbDiff": 0.000005952994005686829,
+  "disagreements": []
+ },
+ "downloadBytes": 311029292,
+ "gpuBytes": null,
+ "n": 968,
+ "file": "bench/results/k20-mem-p1-kh-wasm-small-L128-r1.json"
+}

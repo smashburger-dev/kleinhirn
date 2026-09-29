@@ -1,0 +1,127 @@
+{
+ "run_id": "k20-official-kh-wasm-small-L128",
+ "engine": "kleinhirn-wasm",
+ "model": "small-upstream",
+ "precision": "f32",
+ "bucket": 128,
+ "ep": null,
+ "batchSize": null,
+ "graph": null,
+ "backend": "wasm",
+ "official": true,
+ "repetitions": 3,
+ "medianMs": 69.19999998807907,
+ "rangeMs": [
+  69.19999998807907,
+  69.75000002980232
+ ],
+ "p95Ms": 120.60000002384186,
+ "downloadBytes": 311029292,
+ "onnxBytes": null,
+ "runtimeBytes": null,
+ "gpuBytes": null,
+ "peakMemMb": 0,
+ "parity": [
+  {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.000022530555725097656,
+   "meanAbsLogitDiff": 0.0000027299029050271743,
+   "maxAbsProbDiff": 0.000005952994005686829,
+   "disagreements": []
+  },
+  {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.000022530555725097656,
+   "meanAbsLogitDiff": 0.0000027299029050271743,
+   "maxAbsProbDiff": 0.000005952994005686829,
+   "disagreements": []
+  },
+  {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.000022530555725097656,
+   "meanAbsLogitDiff": 0.0000027299029050271743,
+   "maxAbsProbDiff": 0.000005952994005686829,
+   "disagreements": []
+  }
+ ],
+ "loadAvg": [
+  [
+   3.53173828125,
+   3.3095703125
+  ],
+  [
+   3.9794921875,
+   3.03955078125
+  ],
+  [
+   2.453125,
+   4.0654296875
+  ]
+ ],
+ "repFiles": [
+  "bench/results/k20-official-kh-wasm-small-L128-r1.json",
+  "bench/results/k20-official-kh-wasm-small-L128-r2.json",
+  "bench/results/k20-official-kh-wasm-small-L128-r3.json"
+ ],
+ "page": {
+  "stage": "done",
+  "model": "small-upstream",
+  "precision": "f32",
+  "backend": "wasm",
+  "loadMs": 631.6000000238419,
+  "info": {
+   "backend": "wasm-simd",
+   "precision": "f32",
+   "limitsMode": "minimum",
+   "buckets": [
+    128,
+    256,
+    512,
+    1024
+   ],
+   "downloadBytes": 311029292,
+   "weightBytes": 311029292,
+   "loadTiming": {
+    "loadMs": 610.8999999761581,
+    "fetchMs": 372.30000001192093,
+    "bodyMs": 859.5,
+    "sha256Ms": 168.9000000357628,
+    "uploadMs": 103.30000001192093,
+    "embedJoinMs": 15,
+    "tokenizerMs": 115.89999997615814,
+    "planMs": 0
+   },
+   "worker": true
+  },
+  "loadMsWarm": 595.6000000238419,
+  "endToEnd": {
+   "n": 968,
+   "medianMs": 69.19999998807907,
+   "p95Ms": 118.19999998807907,
+   "minMs": 46.59999996423721,
+   "maxMs": 188.30000001192093,
+   "meanMs": 76.28409090890618
+  },
+  "modelOnly": {
+   "n": 968,
+   "medianMs": 69.09999999403954,
+   "p95Ms": 118.79999995231628,
+   "minMs": 46.30000001192093,
+   "maxMs": 188.60000002384186,
+   "meanMs": 76.39803719003338
+  },
+  "parity": {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.000022530555725097656,
+   "meanAbsLogitDiff": 0.0000027299029050271743,
+   "maxAbsProbDiff": 0.000005952994005686829,
+   "disagreements": []
+  },
+  "n": 968,
+  "done": true
+ }
+}

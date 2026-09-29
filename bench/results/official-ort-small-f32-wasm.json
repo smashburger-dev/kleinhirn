@@ -1,0 +1,134 @@
+{
+ "run_id": "official-ort-small-f32-wasm",
+ "engine": "ort-web",
+ "model": "small-upstream",
+ "precision": "f32",
+ "bucket": null,
+ "ep": "wasm",
+ "batchSize": null,
+ "backend": "webgpu",
+ "official": true,
+ "repetitions": 6,
+ "medianMs": 184.25,
+ "rangeMs": [
+  183.79999995231628,
+  184.60000002384186
+ ],
+ "p95Ms": 186.65000000596046,
+ "downloadBytes": 312655719,
+ "onnxBytes": 285828729,
+ "runtimeBytes": 26826990,
+ "gpuBytes": null,
+ "peakMemMb": 282,
+ "parity": [
+  {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.000028014183044433594,
+   "meanAbsLogitDiff": 0.000003161766635608082,
+   "maxAbsProbDiff": 0.000009510426342396183,
+   "disagreements": []
+  },
+  {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.000028014183044433594,
+   "meanAbsLogitDiff": 0.000003161766635608082,
+   "maxAbsProbDiff": 0.000009510426342396183,
+   "disagreements": []
+  },
+  {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.000028014183044433594,
+   "meanAbsLogitDiff": 0.000003161766635608082,
+   "maxAbsProbDiff": 0.000009510426342396183,
+   "disagreements": []
+  },
+  {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.000028014183044433594,
+   "meanAbsLogitDiff": 0.000003161766635608082,
+   "maxAbsProbDiff": 0.000009510426342396183,
+   "disagreements": []
+  },
+  {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.000028014183044433594,
+   "meanAbsLogitDiff": 0.000003161766635608082,
+   "maxAbsProbDiff": 0.000009510426342396183,
+   "disagreements": []
+  },
+  {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.000028014183044433594,
+   "meanAbsLogitDiff": 0.000003161766635608082,
+   "maxAbsProbDiff": 0.000009510426342396183,
+   "disagreements": []
+  }
+ ],
+ "loadAvg": [
+  [
+   4.35,
+   4.92
+  ],
+  [
+   4.92,
+   4.94
+  ],
+  [
+   4.94,
+   4.21
+  ],
+  [
+   4.21,
+   4.01
+  ],
+  [
+   4.01,
+   4.9
+  ],
+  [
+   4.9,
+   4.72
+  ]
+ ],
+ "repFiles": [
+  "bench/results/official-ort-small-f32-wasm-r1.json",
+  "bench/results/official-ort-small-f32-wasm-r2.json",
+  "bench/results/official-ort-small-f32-wasm-r3.json",
+  "bench/results/official-ort-small-f32-wasm-r4.json",
+  "bench/results/official-ort-small-f32-wasm-r5.json",
+  "bench/results/official-ort-small-f32-wasm-r6.json"
+ ],
+ "page": {
+  "stage": "done",
+  "model": "small-upstream",
+  "precision": "f32",
+  "ep": "wasm",
+  "onnxBytes": 285828729,
+  "loadMs": 736.6000000238419,
+  "downloadBytes": 312655719,
+  "latency": {
+   "n": 968,
+   "medianMs": 184.60000002384186,
+   "p95Ms": 186.80000001192093,
+   "minMs": 182.30000001192093,
+   "maxMs": 190.30000001192093,
+   "meanMs": 184.73719008266926
+  },
+  "parity": {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.000028014183044433594,
+   "meanAbsLogitDiff": 0.000003161766635608082,
+   "maxAbsProbDiff": 0.000009510426342396183,
+   "disagreements": []
+  },
+  "n": 968,
+  "done": true
+ }
+}

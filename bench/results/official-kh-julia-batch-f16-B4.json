@@ -1,0 +1,152 @@
+{
+ "run_id": "official-kh-julia-batch-f16-B4",
+ "engine": "kleinhirn-julia-batch",
+ "model": "julia-1",
+ "precision": "f16",
+ "bucket": null,
+ "ep": null,
+ "batchSize": 4,
+ "backend": "webgpu",
+ "official": true,
+ "repetitions": 6,
+ "medianMs": 35.75,
+ "rangeMs": [
+  35.32499998807907,
+  36.150000005960464
+ ],
+ "p95Ms": 52.06249999254942,
+ "downloadBytes": 322970260,
+ "onnxBytes": null,
+ "runtimeBytes": null,
+ "gpuBytes": 115287432,
+ "peakMemMb": 0,
+ "parity": [
+  {
+   "argmaxAgreement": 1,
+   "n": 100
+  },
+  {
+   "argmaxAgreement": 1,
+   "n": 100
+  },
+  {
+   "argmaxAgreement": 1,
+   "n": 100
+  },
+  {
+   "argmaxAgreement": 1,
+   "n": 100
+  },
+  {
+   "argmaxAgreement": 1,
+   "n": 100
+  },
+  {
+   "argmaxAgreement": 1,
+   "n": 100
+  }
+ ],
+ "loadAvg": [
+  [
+   4.36474609375,
+   4.15478515625
+  ],
+  [
+   3.98193359375,
+   3.98291015625
+  ],
+  [
+   3.8310546875,
+   3.84423828125
+  ],
+  [
+   5.73583984375,
+   6.365234375
+  ],
+  [
+   5.26611328125,
+   5.625
+  ],
+  [
+   5.42822265625,
+   5.71728515625
+  ]
+ ],
+ "repFiles": [
+  "bench/results/official-kh-julia-batch-f16-B4-r1.json",
+  "bench/results/official-kh-julia-batch-f16-B4-r2.json",
+  "bench/results/official-kh-julia-batch-f16-B4-r3.json",
+  "bench/results/official-kh-julia-batch-f16-B4-r4.json",
+  "bench/results/official-kh-julia-batch-f16-B4-r5.json",
+  "bench/results/official-kh-julia-batch-f16-B4-r6.json"
+ ],
+ "page": {
+  "stage": "done",
+  "model": "julia-1",
+  "precision": "f16",
+  "batch": 4,
+  "loadMs": 1345.5999999642372,
+  "info": {
+   "precision": "f16",
+   "adapter": {
+    "vendor": "apple",
+    "architecture": "metal-3",
+    "device": "",
+    "description": ""
+   },
+   "limitsMode": "minimum",
+   "timestamps": true,
+   "buckets": [
+    512,
+    1024
+   ],
+   "gpuBytes": 115287432,
+   "downloadBytes": 322970260,
+   "tokenizerBytes": 34363188,
+   "weightBytes": 288607072,
+   "loadTiming": {
+    "fetchMs": 599.6999999880791,
+    "bodyMs": 1445.199999988079,
+    "sha256Ms": 205.69999998807907,
+    "uploadMs": 47.10000002384186,
+    "embedJoinMs": 46,
+    "manifestMs": 3.900000035762787,
+    "tokenizerMs": 643.1999999880791,
+    "planMs": 4.900000035762787
+   }
+  },
+  "adapterInfo": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "result": {
+   "batch_size": 4,
+   "n_batches": 25,
+   "n_requests": 25,
+   "batch_ms": {
+    "n": 25,
+    "medianMs": 141.29999995231628,
+    "p95Ms": 209.30000001192093,
+    "minMs": 93.90000003576279,
+    "maxMs": 703.5,
+    "meanMs": 164.90799999952316
+   },
+   "ms_per_decision": 35.32499998807907,
+   "per_decision": {
+    "n": 25,
+    "medianMs": 35.32499998807907,
+    "p95Ms": 52.32500000298023,
+    "minMs": 23.475000008940697,
+    "maxMs": 175.875,
+    "meanMs": 41.22699999988079
+   },
+   "parity": {
+    "argmaxAgreement": 1,
+    "n": 100
+   }
+  },
+  "done": true
+ }
+}

@@ -1,0 +1,52 @@
+{
+ "run_id": "loadsens-k20screen-upstream-julia-batch1-graph-opt",
+ "engine": "julia-upstream",
+ "model": "julia-1",
+ "precision": "f32",
+ "bucket": null,
+ "ep": null,
+ "batchSize": 1,
+ "graph": "opt",
+ "backend": "webgpu",
+ "official": true,
+ "repetitions": 1,
+ "medianMs": 28.391000000238417,
+ "rangeMs": [
+  28.391000000238417,
+  28.391000000238417
+ ],
+ "p95Ms": null,
+ "downloadBytes": null,
+ "onnxBytes": null,
+ "runtimeBytes": null,
+ "gpuBytes": null,
+ "peakMemMb": 0,
+ "parity": [
+  {
+   "matchingPredictions": 100,
+   "maxAbsLogitError": 0.0001571178436279297
+  }
+ ],
+ "loadAvg": [
+  [
+   3.9345703125,
+   5.59814453125
+  ]
+ ],
+ "repFiles": [
+  "bench/results/loadsens-k20screen-upstream-julia-batch1-graph-opt-r1.json"
+ ],
+ "page": {
+  "model": "model_opt.onnx",
+  "requests": 100,
+  "batch_size": 1,
+  "iterations": 5,
+  "load_and_warm_ms": 3199.399999976158,
+  "median_ms": 2839.100000023842,
+  "min_ms": 2805.400000035763,
+  "max_ms": 2888.199999988079,
+  "ms_per_request": 28.391000000238417,
+  "matching_predictions": 100,
+  "max_abs_logit_error_vs_pytorch": 0.0001571178436279297
+ }
+}

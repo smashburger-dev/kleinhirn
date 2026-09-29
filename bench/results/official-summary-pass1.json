@@ -1,0 +1,15 @@
+{
+ "date": "2026-09-27",
+ "maxLoad": 6,
+ "reps": 3,
+ "tag": null,
+ "pairs": [
+  "kh-julia f16 vs upstream-julia-batch4",
+  "kh-julia f16 vs upstream-julia-batch1",
+  "kh-julia f32 vs upstream-julia-batch4",
+  "kh-julia f32 vs upstream-julia-batch1"
+ ],
+ "runs": [],
+ "aggregates": [],
+ "aborted": false
+}

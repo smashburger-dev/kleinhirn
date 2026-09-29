@@ -1,0 +1,114 @@
+{
+ "date": "2026-09-27",
+ "run_id": "official-kh-small-f32-L512-r3-1790522537795",
+ "official": true,
+ "provisionalReason": null,
+ "engine": "kleinhirn",
+ "model": "small-upstream",
+ "precision": "f32",
+ "bucket": 512,
+ "backend": "webgpu",
+ "ep": null,
+ "batchSize": null,
+ "browser": "chromium-151.0.7922.34",
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "loadAvgStart": 5.27,
+ "loadAvgEnd": 4.87,
+ "loadMaxObserved": 5.27,
+ "baselineMb": 1340.5,
+ "peakMemMb": 47.5,
+ "page": {
+  "stage": "done",
+  "model": "small-upstream",
+  "precision": "f32",
+  "backend": "webgpu",
+  "loadMs": 670.8999999761581,
+  "info": {
+   "precision": "f32",
+   "buildId": "mujta1t2",
+   "adapter": {
+    "vendor": "apple",
+    "architecture": "metal-3",
+    "device": "",
+    "description": ""
+   },
+   "limitsMode": "minimum",
+   "timestamps": true,
+   "buckets": [
+    512
+   ],
+   "gpuBytes": 128382344,
+   "downloadBytes": 311011598,
+   "tokenizerBytes": 8341713,
+   "weightBytes": 302669885,
+   "loadTiming": {
+    "fetchMs": 431.39999997615814,
+    "bodyMs": 1010.7000000476837,
+    "sha256Ms": 172.3999999165535,
+    "uploadMs": 38.60000002384186,
+    "embedJoinMs": 25.100000023841858,
+    "manifestMs": 3,
+    "tokenizerMs": 132.30000001192093,
+    "planMs": 39.89999997615814
+   }
+  },
+  "adapterInfo": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "loadMsWarm": 657,
+  "endToEnd": {
+   "n": 200,
+   "medianMs": 97.4500000178814,
+   "p95Ms": 135.69999998807907,
+   "minMs": 53.80000001192093,
+   "maxMs": 144,
+   "meanMs": 98.20949999958276
+  },
+  "modelOnly": {
+   "n": 200,
+   "medianMs": 96.89999997615814,
+   "p95Ms": 134.30000001192093,
+   "minMs": 51.60000002384186,
+   "maxMs": 141.19999998807907,
+   "meanMs": 97.56499999850989
+  },
+  "parity": {
+   "n": 200,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.000011086463928222656,
+   "meanAbsLogitDiff": 0.0000018238360062241554,
+   "maxAbsProbDiff": 0.0000028723428127097606,
+   "disagreements": []
+  },
+  "n": 200,
+  "done": true
+ },
+ "pair": "kh-vs-ort-webgpu small f32 L512",
+ "repetition": 3,
+ "latency": {
+  "medianMs": 97.4500000178814,
+  "p95Ms": 135.69999998807907,
+  "modelOnlyMedianMs": 96.89999997615814,
+  "loadMs": 670.8999999761581,
+  "loadMsWarm": 657
+ },
+ "parity": {
+  "n": 200,
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.000011086463928222656,
+  "meanAbsLogitDiff": 0.0000018238360062241554,
+  "maxAbsProbDiff": 0.0000028723428127097606,
+  "disagreements": []
+ },
+ "downloadBytes": 311011598,
+ "gpuBytes": 128382344,
+ "n": 200
+}

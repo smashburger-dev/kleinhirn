@@ -1,0 +1,60 @@
+{
+ "date": "2026-09-29",
+ "maxLoad": 4,
+ "reps": 3,
+ "tag": null,
+ "pairs": [
+  "k20gc ort-small-f32-webgpu-opt vs ort-small-f32-webgpu-optgc-capture"
+ ],
+ "runs": [
+  {
+   "name": "ort-small-f32-webgpu-opt",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20gc-official-redo2-ort-small-f32-webgpu-opt-r1.json"
+  },
+  {
+   "name": "ort-small-f32-webgpu-optgc-capture",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20gc-official-redo2-ort-small-f32-webgpu-optgc-capture-r1.json"
+  },
+  {
+   "name": "ort-small-f32-webgpu-opt",
+   "rep": 2,
+   "official": true,
+   "file": "bench/results/k20gc-official-redo2-ort-small-f32-webgpu-opt-r2.json"
+  },
+  {
+   "name": "ort-small-f32-webgpu-optgc-capture",
+   "rep": 2,
+   "official": true,
+   "file": "bench/results/k20gc-official-redo2-ort-small-f32-webgpu-optgc-capture-r2.json"
+  },
+  {
+   "name": "ort-small-f32-webgpu-opt",
+   "rep": 3,
+   "official": true,
+   "file": "bench/results/k20gc-official-redo2-ort-small-f32-webgpu-opt-r3.json"
+  },
+  {
+   "name": "ort-small-f32-webgpu-optgc-capture",
+   "rep": 3,
+   "official": true,
+   "file": "bench/results/k20gc-official-redo2-ort-small-f32-webgpu-optgc-capture-r3.json"
+  }
+ ],
+ "aggregates": [
+  {
+   "name": "ort-small-f32-webgpu-opt",
+   "official": true,
+   "medianMs": 18.399999976158142
+  },
+  {
+   "name": "ort-small-f32-webgpu-optgc-capture",
+   "official": true,
+   "medianMs": 15.700000047683716
+  }
+ ],
+ "aborted": false
+}

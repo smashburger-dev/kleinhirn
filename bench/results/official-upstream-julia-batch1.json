@@ -1,0 +1,123 @@
+{
+ "run_id": "official-upstream-julia-batch1",
+ "engine": "julia-upstream",
+ "model": "julia-1",
+ "precision": null,
+ "bucket": null,
+ "ep": null,
+ "batchSize": 1,
+ "backend": "webgpu",
+ "official": true,
+ "repetitions": 6,
+ "medianMs": 3019.2500000298023,
+ "rangeMs": [
+  3004.2000000476837,
+  7324.300000011921
+ ],
+ "p95Ms": null,
+ "downloadBytes": null,
+ "onnxBytes": null,
+ "runtimeBytes": null,
+ "gpuBytes": null,
+ "peakMemMb": 2710.5,
+ "parity": [
+  {
+   "matchingPredictions": 100,
+   "maxAbsLogitError": 0.00012063980102539062
+  },
+  {
+   "matchingPredictions": 100,
+   "maxAbsLogitError": 0.00012063980102539062
+  },
+  {
+   "matchingPredictions": 100,
+   "maxAbsLogitError": 0.00012063980102539062
+  },
+  {
+   "matchingPredictions": 100,
+   "maxAbsLogitError": 0.00012063980102539062
+  },
+  {
+   "matchingPredictions": 100,
+   "maxAbsLogitError": 0.00012063980102539062
+  },
+  {
+   "matchingPredictions": 100,
+   "maxAbsLogitError": 0.00012063980102539062
+  }
+ ],
+ "loadAvg": [
+  [
+   4.9,
+   7.16
+  ],
+  [
+   5.87,
+   6.99
+  ],
+  [
+   5.38,
+   5.16
+  ],
+  [
+   5.16,
+   5.45
+  ],
+  [
+   5.45,
+   5.06
+  ],
+  [
+   5.06,
+   4.81
+  ]
+ ],
+ "repFiles": [
+  "bench/results/official-upstream-julia-batch1-r1.json",
+  "bench/results/official-upstream-julia-batch1-r2.json",
+  "bench/results/official-upstream-julia-batch1-r3.json",
+  "bench/results/official-upstream-julia-batch1-r4.json",
+  "bench/results/official-upstream-julia-batch1-r5.json",
+  "bench/results/official-upstream-julia-batch1-r6.json"
+ ],
+ "page": {
+  "requests": 100,
+  "batch_size": 1,
+  "iterations": 5,
+  "load_and_warm_ms": 3895.2000000476837,
+  "median_ms": 3004.2000000476837,
+  "min_ms": 2984,
+  "max_ms": 3017.800000011921,
+  "ms_per_request": 30.042000000476836,
+  "per_request_median_ms": 27.600000023841858,
+  "per_request_p95_ms": 47,
+  "matching_predictions": 100,
+  "max_abs_logit_error_vs_pytorch": 0.00012063980102539062,
+  "resources": [
+   {
+    "name": "julia_webgpu_encode_bg.wasm",
+    "bytes": 2839990
+   },
+   {
+    "name": "tokenizer.json",
+    "bytes": 34363488
+   },
+   {
+    "name": "ort-wasm-simd-threaded.asyncify.wasm",
+    "bytes": 26782214
+   },
+   {
+    "name": "model.onnx",
+    "bytes": 2989223
+   },
+   {
+    "name": "model.onnx.data",
+    "bytes": 576782636
+   },
+   {
+    "name": "parity-cases.json",
+    "bytes": 53578
+   }
+  ]
+ }
+}

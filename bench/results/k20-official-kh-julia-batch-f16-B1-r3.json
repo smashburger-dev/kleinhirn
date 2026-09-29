@@ -1,0 +1,113 @@
+{
+ "date": "2026-09-28",
+ "run_id": "k20-official-kh-julia-batch-f16-B1-r3-1790636721479",
+ "official": true,
+ "provisionalReason": null,
+ "engine": "kleinhirn-julia-batch",
+ "model": "julia-1",
+ "precision": "f16",
+ "bucket": null,
+ "backend": "webgpu",
+ "ep": null,
+ "batchSize": 1,
+ "graph": null,
+ "browser": "chromium-151.0.7922.34",
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "loadAvgStart": 3.15771484375,
+ "loadAvgEnd": 2.90478515625,
+ "loadMaxObserved": 3.15771484375,
+ "baselineMb": 0,
+ "peakMemMb": null,
+ "page": {
+  "stage": "done",
+  "model": "julia-1",
+  "precision": "f16",
+  "batch": 1,
+  "loadMs": 922.9000000357628,
+  "info": {
+   "precision": "f16",
+   "adapter": {
+    "vendor": "apple",
+    "architecture": "metal-3",
+    "device": "",
+    "description": ""
+   },
+   "limitsMode": "minimum",
+   "timestamps": true,
+   "buckets": [
+    512,
+    1024
+   ],
+   "gpuBytes": 115287432,
+   "downloadBytes": 322970260,
+   "tokenizerBytes": 34363188,
+   "weightBytes": 288607072,
+   "loadTiming": {
+    "fetchMs": 396.89999997615814,
+    "bodyMs": 923.6999999880791,
+    "sha256Ms": 161.30000001192093,
+    "uploadMs": 31.899999976158142,
+    "embedJoinMs": 21.600000023841858,
+    "manifestMs": 2.5,
+    "tokenizerMs": 465.2999999523163,
+    "planMs": 4.100000023841858
+   }
+  },
+  "adapterInfo": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "result": {
+   "batch_size": 1,
+   "n_batches": 100,
+   "n_requests": 100,
+   "batch_ms": {
+    "n": 100,
+    "medianMs": 21.249999970197678,
+    "p95Ms": 59.59999996423721,
+    "minMs": 9.299999952316284,
+    "maxMs": 69.80000001192093,
+    "meanMs": 23.742999999523164
+   },
+   "ms_per_decision": 21.249999970197678,
+   "per_decision": {
+    "n": 100,
+    "medianMs": 21.249999970197678,
+    "p95Ms": 59.59999996423721,
+    "minMs": 9.299999952316284,
+    "maxMs": 69.80000001192093,
+    "meanMs": 23.742999999523164
+   },
+   "parity": {
+    "argmaxAgreement": 1,
+    "n": 100
+   }
+  },
+  "done": true
+ },
+ "pair": "k20 kh-julia-batch-f16-B1 vs upstream-julia-batch4-graph-opt",
+ "repetition": 3,
+ "latency": {
+  "msPerDecision": 21.249999970197678,
+  "batchMedianMs": 21.249999970197678,
+  "batchP95Ms": 59.59999996423721,
+  "perDecisionMedianMs": 21.249999970197678,
+  "perDecisionP95Ms": 59.59999996423721,
+  "loadMs": 922.9000000357628
+ },
+ "parity": {
+  "argmaxAgreement": 1,
+  "n": 100
+ },
+ "downloadBytes": 322970260,
+ "gpuBytes": 115287432,
+ "n": 100,
+ "file": "bench/results/k20-official-kh-julia-batch-f16-B1-r3.json"
+}

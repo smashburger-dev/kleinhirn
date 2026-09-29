@@ -1,0 +1,152 @@
+{
+ "run_id": "k20gc-screen-kh-small-f32-L128",
+ "engine": "kleinhirn",
+ "model": "small-upstream",
+ "precision": "f32",
+ "bucket": 128,
+ "ep": null,
+ "batchSize": null,
+ "graph": null,
+ "capture": false,
+ "backend": "webgpu",
+ "official": true,
+ "repetitions": 4,
+ "medianMs": 7.199999988079071,
+ "rangeMs": [
+  6.799999952316284,
+  7.5
+ ],
+ "p95Ms": 12.25,
+ "downloadBytes": 311011598,
+ "onnxBytes": null,
+ "runtimeBytes": null,
+ "gpuBytes": 108720008,
+ "peakMemMb": 0,
+ "parity": [
+  {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.00002103671431541443,
+   "meanAbsLogitDiff": 0.0000024597845540558998,
+   "maxAbsProbDiff": 0.000006400925464888907,
+   "disagreements": []
+  },
+  {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.00002103671431541443,
+   "meanAbsLogitDiff": 0.0000024597845540558998,
+   "maxAbsProbDiff": 0.000006400925464888907,
+   "disagreements": []
+  },
+  {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.00002103671431541443,
+   "meanAbsLogitDiff": 0.0000024597845540558998,
+   "maxAbsProbDiff": 0.000006400925464888907,
+   "disagreements": []
+  },
+  {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.00002103671431541443,
+   "meanAbsLogitDiff": 0.0000024597845540558998,
+   "maxAbsProbDiff": 0.000006400925464888907,
+   "disagreements": []
+  }
+ ],
+ "loadAvg": [
+  [
+   6.14208984375,
+   6.41748046875
+  ],
+  [
+   4.71435546875,
+   6.0830078125
+  ],
+  [
+   4.92333984375,
+   4.404296875
+  ],
+  [
+   5.91650390625,
+   6.0830078125
+  ]
+ ],
+ "repFiles": [
+  "bench/results/k20gc-screen-kh-small-f32-L128-r1.json",
+  "bench/results/k20gc-screen-kh-small-f32-L128-r2.json",
+  "bench/results/k20gc-screen-kh-small-f32-L128-r3.json",
+  "bench/results/k20gc-screen-kh-small-f32-L128-r4.json"
+ ],
+ "page": {
+  "stage": "done",
+  "model": "small-upstream",
+  "precision": "f32",
+  "backend": "webgpu",
+  "loadMs": 764.1999999284744,
+  "info": {
+   "precision": "f32",
+   "buildId": "multoxvd",
+   "adapter": {
+    "vendor": "apple",
+    "architecture": "metal-3",
+    "device": "",
+    "description": ""
+   },
+   "limitsMode": "minimum",
+   "timestamps": true,
+   "buckets": [
+    128
+   ],
+   "gpuBytes": 108720008,
+   "downloadBytes": 311011598,
+   "tokenizerBytes": 8341713,
+   "weightBytes": 302669885,
+   "loadTiming": {
+    "fetchMs": 505.89999997615814,
+    "bodyMs": 1259.4000000953674,
+    "sha256Ms": 187.79999995231628,
+    "uploadMs": 41.10000002384186,
+    "embedJoinMs": 62.5,
+    "manifestMs": 3,
+    "tokenizerMs": 148.60000002384186,
+    "planMs": 2.299999952316284
+   }
+  },
+  "adapterInfo": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "loadMsWarm": 802,
+  "endToEnd": {
+   "n": 968,
+   "medianMs": 7.5,
+   "p95Ms": 13.699999928474426,
+   "minMs": 5.299999952316284,
+   "maxMs": 22.799999952316284,
+   "meanMs": 8.52314049571999
+  },
+  "modelOnly": {
+   "n": 968,
+   "medianMs": 7.299999952316284,
+   "p95Ms": 13.100000023841858,
+   "minMs": 5.100000023841858,
+   "maxMs": 23.09999990463257,
+   "meanMs": 8.27789256247607
+  },
+  "parity": {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.00002103671431541443,
+   "meanAbsLogitDiff": 0.0000024597845540558998,
+   "maxAbsProbDiff": 0.000006400925464888907,
+   "disagreements": []
+  },
+  "n": 968,
+  "done": true
+ }
+}

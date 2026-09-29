@@ -1,0 +1,81 @@
+{
+ "date": "2026-09-28",
+ "run_id": "kh-small-upstream-f32-L128-1790568689801",
+ "engine": "kleinhirn",
+ "model": "small-upstream",
+ "precision": "f32",
+ "bucket": "L128K16",
+ "backend": "webgpu",
+ "browser": "chromium-151.0.7922.34",
+ "flags": [],
+ "loadAvg": "0.00 0.00 0.00",
+ "adapterInfo": {
+  "vendor": "nvidia",
+  "architecture": "lovelace",
+  "device": "",
+  "description": ""
+ },
+ "memMetric": "footprint",
+ "baselineMb": 0,
+ "peakMemMb": 0,
+ "loadMs": 2064.0999999999985,
+ "loadMsWarm": 2090,
+ "info": {
+  "precision": "f32",
+  "buildId": "mukqc4i7",
+  "adapter": {
+   "vendor": "nvidia",
+   "architecture": "lovelace",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "buckets": [
+   128
+  ],
+  "gpuBytes": 108720008,
+  "downloadBytes": 311011598,
+  "tokenizerBytes": 8341713,
+  "weightBytes": 302669885,
+  "loadTiming": {
+   "fetchMs": 1302.199999999997,
+   "bodyMs": 4447.0999999999985,
+   "sha256Ms": 237.5,
+   "uploadMs": 198,
+   "embedJoinMs": 35.099999999998545,
+   "manifestMs": 175.59999999999854,
+   "tokenizerMs": 347.09999999999854,
+   "planMs": 4.30000000000291
+  }
+ },
+ "bundleBytes": 83251,
+ "bundleGzipBytes": 20084,
+ "endToEnd": {
+  "n": 968,
+  "medianMs": 4.5,
+  "p95Ms": 6.600000000005821,
+  "minMs": 3.599999999998545,
+  "maxMs": 46.5,
+  "meanMs": 5.075413223140504
+ },
+ "modelOnly": {
+  "n": 968,
+  "medianMs": 4.400000000001455,
+  "p95Ms": 6.5,
+  "minMs": 3.1999999999970896,
+  "maxMs": 131.09999999999854,
+  "meanMs": 5.168801652892563
+ },
+ "parity": {
+  "n": 968,
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.000023467466235160828,
+  "meanAbsLogitDiff": 0.0000024939306111128863,
+  "maxAbsProbDiff": 0.000007322979172996735,
+  "disagreements": []
+ },
+ "n": 968,
+ "sampleCount": 148,
+ "sampleIntervalMs": 101
+}

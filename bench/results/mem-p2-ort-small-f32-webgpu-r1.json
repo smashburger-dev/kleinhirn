@@ -1,0 +1,77 @@
+{
+ "date": "2026-09-28",
+ "run_id": "mem-ort-small-f32-webgpu-r1-1790582006718",
+ "official": true,
+ "provisionalReason": null,
+ "engine": "ort-web",
+ "model": "small-upstream",
+ "precision": "f32",
+ "bucket": null,
+ "backend": "webgpu",
+ "ep": "webgpu",
+ "batchSize": null,
+ "browser": "chromium-151.0.7922.34",
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "loadAvgStart": 4.91064453125,
+ "loadAvgEnd": 5.181640625,
+ "loadMaxObserved": 5.181640625,
+ "baselineMb": 321,
+ "peakMemMb": 2156,
+ "page": {
+  "stage": "done",
+  "model": "small-upstream",
+  "precision": "f32",
+  "ep": "webgpu",
+  "adapterInfo": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "onnxBytes": 285828729,
+  "loadMs": 1047,
+  "downloadBytes": 312655719,
+  "latency": {
+   "n": 968,
+   "medianMs": 18.19999998807907,
+   "p95Ms": 18.900000035762787,
+   "minMs": 17.099999964237213,
+   "maxMs": 46.80000001192093,
+   "meanMs": 18.20599173551256
+  },
+  "parity": {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.000022055581212043762,
+   "meanAbsLogitDiff": 0.0000024767594473544233,
+   "maxAbsProbDiff": 0.000006748487062779862,
+   "disagreements": []
+  },
+  "n": 968,
+  "done": true
+ },
+ "pair": "ort-small-f32-webgpu",
+ "repetition": 1,
+ "latency": {
+  "medianMs": 18.19999998807907,
+  "p95Ms": 18.900000035762787,
+  "loadMs": 1047
+ },
+ "parity": {
+  "n": 968,
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.000022055581212043762,
+  "meanAbsLogitDiff": 0.0000024767594473544233,
+  "maxAbsProbDiff": 0.000006748487062779862,
+  "disagreements": []
+ },
+ "downloadBytes": 312655719,
+ "onnxBytes": 285828729,
+ "runtimeBytes": 26826990,
+ "n": 968
+}

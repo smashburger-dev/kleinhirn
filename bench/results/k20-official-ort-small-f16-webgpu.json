@@ -1,0 +1,115 @@
+{
+ "run_id": "k20-official-ort-small-f16-webgpu",
+ "engine": "ort-web",
+ "model": "small-upstream",
+ "precision": "f16",
+ "bucket": null,
+ "ep": "webgpu",
+ "batchSize": null,
+ "graph": null,
+ "backend": "webgpu",
+ "official": false,
+ "repetitions": 3,
+ "medianMs": 18.100000023841858,
+ "rangeMs": [
+  18.100000023841858,
+  18.100000023841858
+ ],
+ "p95Ms": 18.600000023841858,
+ "downloadBytes": 170888854,
+ "onnxBytes": 144066929,
+ "runtimeBytes": 26821925,
+ "gpuBytes": null,
+ "peakMemMb": 0,
+ "parity": [
+  {
+   "n": 968,
+   "argmaxAgreement": 0.9979338842975206,
+   "maxAbsLogitDiff": 0.15284466743469238,
+   "meanAbsLogitDiff": 0.01657590677977101,
+   "maxAbsProbDiff": 0.053159200709676724,
+   "disagreements": [
+    696,
+    907
+   ]
+  },
+  {
+   "n": 968,
+   "argmaxAgreement": 0.9979338842975206,
+   "maxAbsLogitDiff": 0.15284466743469238,
+   "meanAbsLogitDiff": 0.01657590677977101,
+   "maxAbsProbDiff": 0.053159200709676724,
+   "disagreements": [
+    696,
+    907
+   ]
+  },
+  {
+   "n": 968,
+   "argmaxAgreement": 0.9979338842975206,
+   "maxAbsLogitDiff": 0.15284466743469238,
+   "meanAbsLogitDiff": 0.01657590677977101,
+   "maxAbsProbDiff": 0.053159200709676724,
+   "disagreements": [
+    696,
+    907
+   ]
+  }
+ ],
+ "loadAvg": [
+  [
+   4.6171875,
+   4.1044921875
+  ],
+  [
+   3.27197265625,
+   3.29736328125
+  ],
+  [
+   3.39697265625,
+   3.25390625
+  ]
+ ],
+ "repFiles": [
+  "bench/results/k20-official-ort-small-f16-webgpu-r1.json",
+  "bench/results/k20-official-ort-small-f16-webgpu-r2.json",
+  "bench/results/k20-official-ort-small-f16-webgpu-r3.json"
+ ],
+ "page": {
+  "stage": "done",
+  "model": "small-upstream",
+  "precision": "f16",
+  "ep": "webgpu",
+  "graph": "std",
+  "adapterInfo": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "onnxBytes": 144066929,
+  "loadMs": 836.3000000119209,
+  "downloadBytes": 170888854,
+  "latency": {
+   "n": 968,
+   "medianMs": 18.100000023841858,
+   "p95Ms": 18.69999998807907,
+   "minMs": 17,
+   "maxMs": 45,
+   "meanMs": 18.121900826507854
+  },
+  "parity": {
+   "n": 968,
+   "argmaxAgreement": 0.9979338842975206,
+   "maxAbsLogitDiff": 0.15284466743469238,
+   "meanAbsLogitDiff": 0.01657590677977101,
+   "maxAbsProbDiff": 0.053159200709676724,
+   "disagreements": [
+    696,
+    907
+   ]
+  },
+  "n": 968,
+  "done": true
+ }
+}

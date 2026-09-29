@@ -1,0 +1,95 @@
+{
+ "date": "2026-09-28",
+ "run_id": "k20-official-kh-julia-f16-r2-1790637216825",
+ "official": true,
+ "provisionalReason": null,
+ "engine": "kleinhirn-julia",
+ "model": "julia-1",
+ "precision": "f16",
+ "bucket": null,
+ "backend": "webgpu",
+ "ep": null,
+ "batchSize": null,
+ "graph": null,
+ "browser": "chromium-151.0.7922.34",
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "loadAvgStart": 3.568359375,
+ "loadAvgEnd": 3.755859375,
+ "loadMaxObserved": 3.755859375,
+ "baselineMb": 0,
+ "peakMemMb": null,
+ "page": {
+  "stage": "done",
+  "precision": "f16",
+  "info": {
+   "precision": "f16",
+   "adapter": {
+    "vendor": "apple",
+    "architecture": "metal-3",
+    "device": "",
+    "description": ""
+   },
+   "limitsMode": "minimum",
+   "timestamps": true,
+   "buckets": [
+    512,
+    1024
+   ],
+   "gpuBytes": 115287432,
+   "downloadBytes": 322970260,
+   "tokenizerBytes": 34363188,
+   "weightBytes": 288607072,
+   "loadTiming": {
+    "fetchMs": 391.5999999642372,
+    "bodyMs": 907.5999999642372,
+    "sha256Ms": 157.00000005960464,
+    "uploadMs": 31.69999998807907,
+    "embedJoinMs": 22,
+    "manifestMs": 3.5,
+    "tokenizerMs": 471.69999998807907,
+    "planMs": 4.099999964237213
+   },
+   "loadMs": 925.2999999523163
+  },
+  "loadMsWarm": 3364.7999999523163,
+  "result": {
+   "requests": 100,
+   "batch_size": 1,
+   "iterations": 5,
+   "load_ms": 925.2999999523163,
+   "load_and_warm_ms": 3364.7999999523163,
+   "median_ms": 2411.199999988079,
+   "min_ms": 2340.300000011921,
+   "max_ms": 2418,
+   "ms_per_request": 24.11199999988079,
+   "per_request_median_ms": 20.899999976158142,
+   "per_request_p95_ms": 58.89999997615814,
+   "matching_predictions": 100,
+   "max_abs_logit_error_vs_pytorch": 0.09082722663879395
+  },
+  "done": true
+ },
+ "pair": "k20 kh-julia-f16 vs upstream-julia-batch1-graph-opt-f16",
+ "repetition": 2,
+ "latency": {
+  "medianMs": 2411.199999988079,
+  "msPerRequest": 24.11199999988079,
+  "perRequestMedianMs": 20.899999976158142,
+  "perRequestP95Ms": 58.89999997615814,
+  "loadMs": 925.2999999523163,
+  "loadAndWarmMs": 3364.7999999523163
+ },
+ "parity": {
+  "matchingPredictions": 100,
+  "maxAbsLogitError": 0.09082722663879395
+ },
+ "downloadBytes": 322970260,
+ "gpuBytes": 115287432,
+ "n": 100,
+ "file": "bench/results/k20-official-kh-julia-f16-r2.json"
+}

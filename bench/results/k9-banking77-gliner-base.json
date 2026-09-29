@@ -1,0 +1,20 @@
+{
+ "task": "banking77",
+ "route": "gliner-pytorch-cpu",
+ "model": "fastino/gliner2.5-base-v1",
+ "revision": "b0c10b23313ec3ff028821dff298dd743e010706",
+ "zero_shot": true,
+ "total": 100,
+ "correct": 73,
+ "accuracy": 0.73,
+ "failed": 0,
+ "by_type": {
+  "choice": {
+   "count": 100,
+   "correct": 73,
+   "accuracy": 0.73
+  }
+ },
+ "elapsed_seconds": 68.7,
+ "load_average": "s: 20.19 16.79 13.23"
+}

@@ -1,0 +1,20 @@
+{
+ "task": "emotiondair",
+ "route": "gliner-pytorch-cpu",
+ "model": "fastino/gliner2.5-multi-v1",
+ "revision": "235cf92d6d4318da9bfca0d08975c8fa7250d13b",
+ "zero_shot": true,
+ "total": 100,
+ "correct": 36,
+ "accuracy": 0.36,
+ "failed": 0,
+ "by_type": {
+  "choice": {
+   "count": 100,
+   "correct": 36,
+   "accuracy": 0.36
+  }
+ },
+ "elapsed_seconds": 8.3,
+ "load_average": "s: 9.70 12.42 12.63"
+}

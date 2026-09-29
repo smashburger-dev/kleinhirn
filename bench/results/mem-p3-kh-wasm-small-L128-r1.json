@@ -1,0 +1,98 @@
+{
+ "date": "2026-09-28",
+ "run_id": "mem-kh-wasm-small-L128-r1-1790582853697",
+ "official": true,
+ "provisionalReason": null,
+ "engine": "kleinhirn-wasm",
+ "model": "small-upstream",
+ "precision": "f32",
+ "bucket": 128,
+ "backend": "wasm",
+ "ep": null,
+ "batchSize": null,
+ "browser": "chromium-151.0.7922.34",
+ "adapterInfo": null,
+ "loadAvgStart": 2.443359375,
+ "loadAvgEnd": 4.583984375,
+ "loadMaxObserved": 4.583984375,
+ "baselineMb": 319,
+ "peakMemMb": 730,
+ "page": {
+  "stage": "done",
+  "model": "small-upstream",
+  "precision": "f32",
+  "backend": "wasm",
+  "loadMs": 634.2000000476837,
+  "info": {
+   "backend": "wasm-simd",
+   "precision": "f32",
+   "limitsMode": "minimum",
+   "buckets": [
+    128,
+    256,
+    512,
+    1024
+   ],
+   "downloadBytes": 311029292,
+   "weightBytes": 311029292,
+   "loadTiming": {
+    "loadMs": 618.6999999880791,
+    "fetchMs": 363.7000000476837,
+    "bodyMs": 843.9000000357628,
+    "sha256Ms": 166.30000007152557,
+    "uploadMs": 112,
+    "embedJoinMs": 19.899999976158142,
+    "tokenizerMs": 115.80000001192093,
+    "planMs": 0
+   },
+   "worker": true
+  },
+  "loadMsWarm": 617.6999999880791,
+  "endToEnd": {
+   "n": 968,
+   "medianMs": 69.80000001192093,
+   "p95Ms": 119.5,
+   "minMs": 46.80000001192093,
+   "maxMs": 188.19999998807907,
+   "meanMs": 77.04607438043622
+  },
+  "modelOnly": {
+   "n": 968,
+   "medianMs": 69.60000002384186,
+   "p95Ms": 121.69999998807907,
+   "minMs": 46.59999996423721,
+   "maxMs": 194.4000000357628,
+   "meanMs": 76.89421487593454
+  },
+  "parity": {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.000022530555725097656,
+   "meanAbsLogitDiff": 0.0000027299029050271743,
+   "maxAbsProbDiff": 0.000005952994005686829,
+   "disagreements": []
+  },
+  "n": 968,
+  "done": true
+ },
+ "pair": "kh-wasm-small-L128",
+ "repetition": 1,
+ "latency": {
+  "medianMs": 69.80000001192093,
+  "p95Ms": 119.5,
+  "modelOnlyMedianMs": 69.60000002384186,
+  "loadMs": 634.2000000476837,
+  "loadMsWarm": 617.6999999880791
+ },
+ "parity": {
+  "n": 968,
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.000022530555725097656,
+  "meanAbsLogitDiff": 0.0000027299029050271743,
+  "maxAbsProbDiff": 0.000005952994005686829,
+  "disagreements": []
+ },
+ "downloadBytes": 311029292,
+ "gpuBytes": null,
+ "n": 968
+}

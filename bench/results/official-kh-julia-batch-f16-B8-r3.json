@@ -1,0 +1,111 @@
+{
+ "date": "2026-09-28",
+ "run_id": "official-kh-julia-batch-f16-B8-r3-1790579220940",
+ "official": true,
+ "provisionalReason": null,
+ "engine": "kleinhirn-julia-batch",
+ "model": "julia-1",
+ "precision": "f16",
+ "bucket": null,
+ "backend": "webgpu",
+ "ep": null,
+ "batchSize": 8,
+ "browser": "chromium-151.0.7922.34",
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "loadAvgStart": 5.4453125,
+ "loadAvgEnd": 5.2490234375,
+ "loadMaxObserved": 5.4453125,
+ "baselineMb": 0,
+ "peakMemMb": null,
+ "page": {
+  "stage": "done",
+  "model": "julia-1",
+  "precision": "f16",
+  "batch": 8,
+  "loadMs": 1544.5,
+  "info": {
+   "precision": "f16",
+   "adapter": {
+    "vendor": "apple",
+    "architecture": "metal-3",
+    "device": "",
+    "description": ""
+   },
+   "limitsMode": "minimum",
+   "timestamps": true,
+   "buckets": [
+    512,
+    1024
+   ],
+   "gpuBytes": 115287432,
+   "downloadBytes": 322970260,
+   "tokenizerBytes": 34363188,
+   "weightBytes": 288607072,
+   "loadTiming": {
+    "fetchMs": 654,
+    "bodyMs": 1620.199999988079,
+    "sha256Ms": 209.49999994039536,
+    "uploadMs": 69.69999998807907,
+    "embedJoinMs": 68.39999997615814,
+    "manifestMs": 15.800000011920929,
+    "tokenizerMs": 724.8999999761581,
+    "planMs": 8.099999964237213
+   }
+  },
+  "adapterInfo": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "result": {
+   "batch_size": 8,
+   "n_batches": 12,
+   "n_requests": 12,
+   "batch_ms": {
+    "n": 12,
+    "medianMs": 376.09999999403954,
+    "p95Ms": 480.4000000357628,
+    "minMs": 181.89999997615814,
+    "maxMs": 480.4000000357628,
+    "meanMs": 322.7500000099341
+   },
+   "ms_per_decision": 47.01249999925494,
+   "per_decision": {
+    "n": 12,
+    "medianMs": 47.01249999925494,
+    "p95Ms": 60.05000000447035,
+    "minMs": 22.737499997019768,
+    "maxMs": 60.05000000447035,
+    "meanMs": 40.343750001241766
+   },
+   "parity": {
+    "argmaxAgreement": 1,
+    "n": 96
+   }
+  },
+  "done": true
+ },
+ "pair": "kh-julia-batch-f16 B8 vs B1",
+ "repetition": 3,
+ "latency": {
+  "msPerDecision": 47.01249999925494,
+  "batchMedianMs": 376.09999999403954,
+  "batchP95Ms": 480.4000000357628,
+  "perDecisionMedianMs": 47.01249999925494,
+  "perDecisionP95Ms": 60.05000000447035,
+  "loadMs": 1544.5
+ },
+ "parity": {
+  "argmaxAgreement": 1,
+  "n": 96
+ },
+ "downloadBytes": 322970260,
+ "gpuBytes": 115287432,
+ "n": 12
+}

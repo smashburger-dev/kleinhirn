@@ -1,0 +1,101 @@
+{
+ "run_id": "k20-mem-p3-kh-wasm-small-L128",
+ "engine": "kleinhirn-wasm",
+ "model": "small-upstream",
+ "precision": "f32",
+ "bucket": 128,
+ "ep": null,
+ "batchSize": null,
+ "graph": null,
+ "backend": "wasm",
+ "official": true,
+ "repetitions": 1,
+ "medianMs": 69.10000002384186,
+ "rangeMs": [
+  69.10000002384186,
+  69.10000002384186
+ ],
+ "p95Ms": 120,
+ "downloadBytes": 311029292,
+ "onnxBytes": null,
+ "runtimeBytes": null,
+ "gpuBytes": null,
+ "peakMemMb": 572,
+ "parity": [
+  {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.000022530555725097656,
+   "meanAbsLogitDiff": 0.0000027299029050271743,
+   "maxAbsProbDiff": 0.000005952994005686829,
+   "disagreements": []
+  }
+ ],
+ "loadAvg": [
+  [
+   3.42041015625,
+   4.54296875
+  ]
+ ],
+ "repFiles": [
+  "bench/results/k20-mem-p3-kh-wasm-small-L128-r1.json"
+ ],
+ "page": {
+  "stage": "done",
+  "model": "small-upstream",
+  "precision": "f32",
+  "backend": "wasm",
+  "loadMs": 625.7999999523163,
+  "info": {
+   "backend": "wasm-simd",
+   "precision": "f32",
+   "limitsMode": "minimum",
+   "buckets": [
+    128,
+    256,
+    512,
+    1024
+   ],
+   "downloadBytes": 311029292,
+   "weightBytes": 311029292,
+   "loadTiming": {
+    "loadMs": 617.1999999284744,
+    "fetchMs": 371,
+    "bodyMs": 875.7999999523163,
+    "sha256Ms": 168.4999998807907,
+    "uploadMs": 108,
+    "embedJoinMs": 17.09999990463257,
+    "tokenizerMs": 118.70000004768372,
+    "planMs": 0
+   },
+   "worker": true
+  },
+  "loadMsWarm": 599.1999999284744,
+  "endToEnd": {
+   "n": 968,
+   "medianMs": 69.10000002384186,
+   "p95Ms": 120,
+   "minMs": 46.5,
+   "maxMs": 187.80000007152557,
+   "meanMs": 76.67128099156312
+  },
+  "modelOnly": {
+   "n": 968,
+   "medianMs": 69,
+   "p95Ms": 119,
+   "minMs": 46.39999997615814,
+   "maxMs": 191.60000002384186,
+   "meanMs": 76.31487603337804
+  },
+  "parity": {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.000022530555725097656,
+   "meanAbsLogitDiff": 0.0000027299029050271743,
+   "maxAbsProbDiff": 0.000005952994005686829,
+   "disagreements": []
+  },
+  "n": 968,
+  "done": true
+ }
+}

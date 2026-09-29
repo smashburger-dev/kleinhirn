@@ -1,0 +1,138 @@
+{
+ "date": "2026-09-28",
+ "run_id": "kh-batch-parity-julia-1-f16-1790577901776",
+ "engine": "kleinhirn",
+ "model": "julia-1",
+ "precision": "f16",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvg": "7.18 6.09 4.46",
+ "stage": "done",
+ "info": {
+  "precision": "f16",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "buckets": [
+   512,
+   1024
+  ],
+  "gpuBytes": 115287432,
+  "downloadBytes": 322970260,
+  "tokenizerBytes": 34363188,
+  "weightBytes": 288607072,
+  "loadTiming": {
+   "fetchMs": 710.8000000119209,
+   "bodyMs": 1776,
+   "sha256Ms": 209.60000002384186,
+   "uploadMs": 62.69999998807907,
+   "embedJoinMs": 49.30000001192093,
+   "manifestMs": 6.899999976158142,
+   "tokenizerMs": 743.6000000238419,
+   "planMs": 5.100000023841858
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "sizes": {
+  "B1": {
+   "batches": 64,
+   "rows": 64,
+   "vsSingle": {
+    "n": 64,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0,
+    "meanAbsLogitDiff": 0,
+    "maxAbsProbDiff": 0,
+    "disagreements": []
+   },
+   "vsGolden": {
+    "n": 64,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0.09082722663879395,
+    "meanAbsLogitDiff": 0.012296875855988926,
+    "maxAbsProbDiff": 0.02373430778975727,
+    "disagreements": []
+   }
+  },
+  "B4": {
+   "batches": 16,
+   "rows": 64,
+   "vsSingle": {
+    "n": 64,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0,
+    "meanAbsLogitDiff": 0,
+    "maxAbsProbDiff": 0,
+    "disagreements": []
+   },
+   "vsGolden": {
+    "n": 64,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0.09082722663879395,
+    "meanAbsLogitDiff": 0.012296875855988926,
+    "maxAbsProbDiff": 0.02373430778975727,
+    "disagreements": []
+   }
+  },
+  "B8": {
+   "batches": 8,
+   "rows": 64,
+   "vsSingle": {
+    "n": 64,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0,
+    "meanAbsLogitDiff": 0,
+    "maxAbsProbDiff": 0,
+    "disagreements": []
+   },
+   "vsGolden": {
+    "n": 64,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0.09082722663879395,
+    "meanAbsLogitDiff": 0.012296875855988926,
+    "maxAbsProbDiff": 0.02373430778975727,
+    "disagreements": []
+   }
+  },
+  "B16": {
+   "batches": 4,
+   "rows": 64,
+   "vsSingle": {
+    "n": 64,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0,
+    "meanAbsLogitDiff": 0,
+    "maxAbsProbDiff": 0,
+    "disagreements": []
+   },
+   "vsGolden": {
+    "n": 64,
+    "argmaxAgreement": 1,
+    "maxAbsLogitDiff": 0.09082722663879395,
+    "meanAbsLogitDiff": 0.012296875855988926,
+    "maxAbsProbDiff": 0.02373430778975727,
+    "disagreements": []
+   }
+  }
+ },
+ "mixed": {},
+ "gates": {
+  "B1-argmax": true,
+  "B1-golden": true,
+  "B4-argmax": true,
+  "B4-golden": true,
+  "B8-argmax": true,
+  "B8-golden": true,
+  "B16-argmax": true,
+  "B16-golden": true
+ }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "kleinhirn",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build:wasm": "asc src/wasm/deberta.ts -o src/wasm/deberta.wasm -O --enable simd --runtime stub",
+    "build": "npm run build:wasm && vite build",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.62.1",
+    "@webgpu/types": "0.1.66",
+    "assemblyscript": "0.28.20",
+    "onnxruntime-web": "1.29.0",
+    "typescript": "5.9.3",
+    "vite": "8.2.2"
+  }
+}

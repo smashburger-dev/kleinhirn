@@ -1,0 +1,107 @@
+{
+ "date": "2026-09-28",
+ "maxLoad": 4,
+ "reps": 1,
+ "tag": "k20screen",
+ "pairs": [
+  "k20 kh-julia-batch-f16-B1 vs upstream-julia-batch4-graph-opt",
+  "k20 kh-julia-batch-f16-B1 vs upstream-julia-batch4-graph-opt-f16",
+  "k20 upstream-julia-batch4 vs graph-std (page control)",
+  "k20 kh-julia-batch-f16-B1 vs upstream-julia-batch1-graph-opt",
+  "k20 kh-julia-batch-f16-B1 vs upstream-julia-batch1-graph-opt-f16",
+  "k20 upstream-julia-batch1 vs graph-std (page control)"
+ ],
+ "runs": [
+  {
+   "name": "upstream-julia-batch4-graph-opt",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/loadsens-k20screen-upstream-julia-batch4-graph-opt-r1.json"
+  },
+  {
+   "name": "upstream-julia-batch4-graph-opt-f16",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/loadsens-k20screen-upstream-julia-batch4-graph-opt-f16-r1.json"
+  },
+  {
+   "name": "upstream-julia-batch4",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/loadsens-k20screen-upstream-julia-batch4-r1.json"
+  },
+  {
+   "name": "upstream-julia-batch4-graph-std",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/loadsens-k20screen-upstream-julia-batch4-graph-std-r1.json"
+  },
+  {
+   "name": "upstream-julia-batch1-graph-opt",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/loadsens-k20screen-upstream-julia-batch1-graph-opt-r1.json"
+  },
+  {
+   "name": "upstream-julia-batch1-graph-opt-f16",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/loadsens-k20screen-upstream-julia-batch1-graph-opt-f16-r1.json"
+  },
+  {
+   "name": "upstream-julia-batch1",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/loadsens-k20screen-upstream-julia-batch1-r1.json"
+  },
+  {
+   "name": "upstream-julia-batch1-graph-std",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/loadsens-k20screen-upstream-julia-batch1-graph-std-r1.json"
+  }
+ ],
+ "aggregates": [
+  {
+   "name": "upstream-julia-batch4-graph-opt",
+   "official": true,
+   "medianMs": 23.402999999523164
+  },
+  {
+   "name": "upstream-julia-batch4-graph-opt-f16",
+   "official": true,
+   "medianMs": 16.60199999988079
+  },
+  {
+   "name": "upstream-julia-batch4",
+   "official": true,
+   "medianMs": 24.16
+  },
+  {
+   "name": "upstream-julia-batch4-graph-std",
+   "official": true,
+   "medianMs": 24.148999999761582
+  },
+  {
+   "name": "upstream-julia-batch1-graph-opt",
+   "official": true,
+   "medianMs": 28.391000000238417
+  },
+  {
+   "name": "upstream-julia-batch1-graph-opt-f16",
+   "official": true,
+   "medianMs": 23.406999999880792
+  },
+  {
+   "name": "upstream-julia-batch1",
+   "official": true,
+   "medianMs": 28.96300000011921
+  },
+  {
+   "name": "upstream-julia-batch1-graph-std",
+   "official": true,
+   "medianMs": 29.02699999988079
+  }
+ ],
+ "aborted": false
+}

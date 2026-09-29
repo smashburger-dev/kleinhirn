@@ -1,0 +1,90 @@
+{
+ "date": "2026-09-28",
+ "run_id": "k20-official-redo-ort-small-f16-webgpu-opt-r1-1790637498742",
+ "official": true,
+ "provisionalReason": null,
+ "engine": "ort-web",
+ "model": "small-upstream",
+ "precision": "f16",
+ "bucket": null,
+ "backend": "webgpu",
+ "ep": "webgpu",
+ "batchSize": null,
+ "graph": "opt",
+ "browser": "chromium-151.0.7922.34",
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "loadAvgStart": 3.02294921875,
+ "loadAvgEnd": 3.83642578125,
+ "loadMaxObserved": 3.83642578125,
+ "baselineMb": 0,
+ "peakMemMb": null,
+ "page": {
+  "stage": "done",
+  "model": "small-upstream",
+  "precision": "f16",
+  "ep": "webgpu",
+  "graph": "opt",
+  "adapterInfo": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "onnxBytes": 170014313,
+  "loadMs": 602.8000000119209,
+  "downloadBytes": 196836238,
+  "latency": {
+   "n": 968,
+   "medianMs": 14.200000017881393,
+   "p95Ms": 14.5,
+   "minMs": 13.800000011920929,
+   "maxMs": 52.299999952316284,
+   "meanMs": 14.323243801566688
+  },
+  "parity": {
+   "n": 968,
+   "argmaxAgreement": 0.9958677685950413,
+   "maxAbsLogitDiff": 0.1449974775314331,
+   "meanAbsLogitDiff": 0.0159985040737824,
+   "maxAbsProbDiff": 0.03462342141626884,
+   "disagreements": [
+    135,
+    327,
+    696,
+    907
+   ]
+  },
+  "n": 968,
+  "done": true
+ },
+ "pair": "k20 ort-small-f16-webgpu vs ort-small-f16-webgpu-opt",
+ "repetition": 1,
+ "latency": {
+  "medianMs": 14.200000017881393,
+  "p95Ms": 14.5,
+  "loadMs": 602.8000000119209
+ },
+ "parity": {
+  "n": 968,
+  "argmaxAgreement": 0.9958677685950413,
+  "maxAbsLogitDiff": 0.1449974775314331,
+  "meanAbsLogitDiff": 0.0159985040737824,
+  "maxAbsProbDiff": 0.03462342141626884,
+  "disagreements": [
+   135,
+   327,
+   696,
+   907
+  ]
+ },
+ "downloadBytes": 196836238,
+ "onnxBytes": 170014313,
+ "runtimeBytes": 26821925,
+ "n": 968,
+ "file": "bench/results/k20-official-redo-ort-small-f16-webgpu-opt-r1.json"
+}

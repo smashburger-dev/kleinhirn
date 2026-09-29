@@ -1,0 +1,96 @@
+{
+ "date": "2026-09-28",
+ "run_id": "kh-parity-small-upstream-f32-minimum-1790568656841",
+ "engine": "kleinhirn",
+ "model": "small-upstream",
+ "precision": "f32",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvg": "0.00 0.00 0.00",
+ "stage": "done",
+ "backend": "webgpu",
+ "info": {
+  "precision": "f32",
+  "buildId": "mukqcgm4",
+  "adapter": {
+   "vendor": "nvidia",
+   "architecture": "lovelace",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "buckets": [
+   128,
+   256
+  ],
+  "gpuBytes": 114169100,
+  "downloadBytes": 311011598,
+  "tokenizerBytes": 8341713,
+  "weightBytes": 302669885,
+  "loadTiming": {
+   "fetchMs": 2360.0999999999985,
+   "bodyMs": 4973.300000000003,
+   "sha256Ms": 235.5999999999949,
+   "uploadMs": 189.70000000000073,
+   "embedJoinMs": 38,
+   "manifestMs": 236.10000000000218,
+   "tokenizerMs": 370,
+   "planMs": 9.200000000000728
+  },
+  "loadMs": 3210.100000000002
+ },
+ "adapterInfo": {
+  "vendor": "nvidia",
+  "architecture": "lovelace",
+  "device": "",
+  "description": ""
+ },
+ "layers": {
+  "n": 14,
+  "maxTensorDiff": 0.00001049041748046875,
+  "maxLogitDiff": 0.00000858306884765625,
+  "argmaxAgreement": 1,
+  "perTensor": {
+   "embedding_ln": 4.76837158203125e-7,
+   "embedding_masked": 4.76837158203125e-7,
+   "layer_0": 0.0000025033950805664062,
+   "layer_1": 0.000002562999725341797,
+   "layer_2": 0.0000026226043701171875,
+   "layer_3": 0.0000040531158447265625,
+   "layer_4": 0.0000040531158447265625,
+   "layer_5": 0.0000034570693969726562,
+   "layer_6": 0.000004291534423828125,
+   "layer_7": 0.000004649162292480469,
+   "layer_8": 0.000004470348358154297,
+   "layer_9": 0.000004634261131286621,
+   "layer_10": 0.000005841255187988281,
+   "layer_11": 0.00001049041748046875
+  }
+ },
+ "corpus": {
+  "n": 968,
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.000023467466235160828,
+  "meanAbsLogitDiff": 0.0000024939306111128863,
+  "maxAbsProbDiff": 0.000007322979172996735,
+  "disagreements": []
+ },
+ "twoTasks": {
+  "n": 40,
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.000014360994100570679,
+  "meanAbsLogitDiff": 0.000002191616938664363,
+  "maxAbsProbDiff": 0.000004400798615411539,
+  "disagreements": []
+ },
+ "gates": {
+  "layerTensors": true,
+  "longLayerTensors": true,
+  "corpusArgmax": true,
+  "corpusLogits": true,
+  "twoTaskArgmax": true,
+  "twoTaskLogits": true,
+  "longArgmax": true,
+  "longLogits": true
+ }
+}

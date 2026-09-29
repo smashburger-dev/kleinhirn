@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.venv/
+.venv-*/
+__pycache__/
+models/
+test-results/
+playwright-report/
+.DS_Store
+*.onnx
+*.safetensors
+*.bin
+src/wasm/deberta.wasm

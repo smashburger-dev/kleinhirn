@@ -1,0 +1,102 @@
+{
+ "date": "2026-09-29",
+ "maxLoad": 4,
+ "reps": 3,
+ "tag": null,
+ "pairs": [
+  "k20gc kh-small-f32-L128 vs ort-small-f32-webgpu-optgc-capture",
+  "k20gc ort-small-f32-webgpu-opt vs ort-small-f32-webgpu-optgc-capture"
+ ],
+ "runs": [
+  {
+   "name": "kh-small-f32-L128",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20gc-official-redo-kh-small-f32-L128-r1.json"
+  },
+  {
+   "name": "ort-small-f32-webgpu-optgc-capture",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20gc-official-redo-ort-small-f32-webgpu-optgc-capture-r1.json"
+  },
+  {
+   "name": "kh-small-f32-L128",
+   "rep": 2,
+   "official": true,
+   "file": "bench/results/k20gc-official-redo-kh-small-f32-L128-r2.json"
+  },
+  {
+   "name": "ort-small-f32-webgpu-optgc-capture",
+   "rep": 2,
+   "official": true,
+   "file": "bench/results/k20gc-official-redo-ort-small-f32-webgpu-optgc-capture-r2.json"
+  },
+  {
+   "name": "kh-small-f32-L128",
+   "rep": 3,
+   "official": true,
+   "file": "bench/results/k20gc-official-redo-kh-small-f32-L128-r3.json"
+  },
+  {
+   "name": "ort-small-f32-webgpu-optgc-capture",
+   "rep": 3,
+   "official": true,
+   "file": "bench/results/k20gc-official-redo-ort-small-f32-webgpu-optgc-capture-r3.json"
+  },
+  {
+   "name": "ort-small-f32-webgpu-opt",
+   "rep": 1,
+   "official": false,
+   "file": "bench/results/k20gc-official-redo-ort-small-f32-webgpu-opt-r1.json"
+  },
+  {
+   "name": "ort-small-f32-webgpu-optgc-capture",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20gc-official-redo-ort-small-f32-webgpu-optgc-capture-r4.json"
+  },
+  {
+   "name": "ort-small-f32-webgpu-opt",
+   "rep": 2,
+   "official": true,
+   "file": "bench/results/k20gc-official-redo-ort-small-f32-webgpu-opt-r2.json"
+  },
+  {
+   "name": "ort-small-f32-webgpu-optgc-capture",
+   "rep": 2,
+   "official": true,
+   "file": "bench/results/k20gc-official-redo-ort-small-f32-webgpu-optgc-capture-r5.json"
+  },
+  {
+   "name": "ort-small-f32-webgpu-opt",
+   "rep": 3,
+   "official": false,
+   "file": "bench/results/k20gc-official-redo-ort-small-f32-webgpu-opt-r3.json"
+  },
+  {
+   "name": "ort-small-f32-webgpu-optgc-capture",
+   "rep": 3,
+   "official": true,
+   "file": "bench/results/k20gc-official-redo-ort-small-f32-webgpu-optgc-capture-r6.json"
+  }
+ ],
+ "aggregates": [
+  {
+   "name": "kh-small-f32-L128",
+   "official": true,
+   "medianMs": 7.400000095367432
+  },
+  {
+   "name": "ort-small-f32-webgpu-optgc-capture",
+   "official": true,
+   "medianMs": 15.850000023841858
+  },
+  {
+   "name": "ort-small-f32-webgpu-opt",
+   "official": false,
+   "medianMs": 18.600000023841858
+  }
+ ],
+ "aborted": false
+}

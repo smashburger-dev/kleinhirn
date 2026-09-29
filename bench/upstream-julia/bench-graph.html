@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Julia 1 WebGPU benchmark (graph variant)</title>
+<style>body{font:16px system-ui;max-width:760px;margin:3rem auto;padding:1rem}pre{white-space:pre-wrap}</style>
+<h1>Julia 1 WebGPU benchmark, graph variant</h1>
+<p>K20: the upstream benchmark-webgpu.html loop, verbatim, with two query
+parameters: <code>model</code> (graph file next to this page:
+model.onnx, model_opt.onnx or model_opt_f16.onnx from
+convert/optimize_onnx.py) and <code>batch</code> (4, the upstream page,
+or 1). Copied into the upstream vite root by bench/run-official.mjs.</p>
+<button id="run">Run benchmark</button>
+<pre id="status">Ready</pre>
+<script type="module">
+const status = document.querySelector('#status');
+const params = new URLSearchParams(location.search);
+const model = params.get('model') ?? 'model.onnx';
+const batch = Number(params.get('batch') ?? 4);
+document.querySelector('#run').onclick = async () => {
+  try {
+    if (!['model.onnx', 'model_opt.onnx', 'model_opt_f16.onnx'].includes(model)) throw new Error(`unknown model ${model}`);
+    if (batch !== 1 && batch !== 4) throw new Error(`unsupported batch ${batch}`);
+    status.textContent = 'Loading model and warming WebGPU…';
+    const { JuliaWebGPU } = await import('./index.js');
+    const start = performance.now();
+    const engine = await JuliaWebGPU.load(undefined, { modelUrl: new URL(model, location.href).href });
+    const loadMs = performance.now() - start;
+    const cases = await fetch('./parity-cases.json').then(r => r.json());
+    const chunks = [];
+    for (let i=0;i<cases.length;i+=batch) chunks.push(cases.slice(i,i+batch));
+    const run = async compare => {
+      let matches = 0, maxError = 0;
+      for (const chunk of chunks) {
+        const logits = await engine.logits(chunk.map(item=>item.request));
+        if (compare) logits.forEach((values,i) => {
+          const expected = chunk[i].pytorch_logits;
+          if (values.indexOf(Math.max(...values)) === expected.indexOf(Math.max(...expected))) matches++;
+          values.forEach((value,j)=>{maxError=Math.max(maxError,Math.abs(value-expected[j]));});
+        });
+      }
+      return {matches,maxError};
+    };
+    status.textContent = 'Running parity and timing…';
+    const parity = await run(true);
+    const samples = [];
+    for (let i=0;i<5;i++) {
+      const t=performance.now();
+      await run(false);
+      samples.push(performance.now()-t);
+    }
+    const ordered=[...samples].sort((a,b)=>a-b);
+    status.textContent=JSON.stringify({model,requests:cases.length,batch_size:batch,iterations:5,
+      load_and_warm_ms:loadMs,median_ms:ordered[2],min_ms:ordered[0],max_ms:ordered.at(-1),
+      ms_per_request:ordered[2]/cases.length,matching_predictions:parity.matches,
+      max_abs_logit_error_vs_pytorch:parity.maxError},null,2);
+  } catch(error) { status.textContent=`${error.stack ?? error}`; }
+};
+</script>
+</html>

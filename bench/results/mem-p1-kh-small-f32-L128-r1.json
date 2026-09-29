@@ -1,0 +1,114 @@
+{
+ "date": "2026-09-28",
+ "run_id": "mem-kh-small-f32-L128-r1-1790580321637",
+ "official": true,
+ "provisionalReason": null,
+ "engine": "kleinhirn",
+ "model": "small-upstream",
+ "precision": "f32",
+ "bucket": 128,
+ "backend": "webgpu",
+ "ep": null,
+ "batchSize": null,
+ "browser": "chromium-151.0.7922.34",
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "loadAvgStart": 2.08251953125,
+ "loadAvgEnd": 2.06298828125,
+ "loadMaxObserved": 2.08251953125,
+ "baselineMb": 319,
+ "peakMemMb": 1118,
+ "page": {
+  "stage": "done",
+  "model": "small-upstream",
+  "precision": "f32",
+  "backend": "webgpu",
+  "loadMs": 849.5999999642372,
+  "info": {
+   "precision": "f32",
+   "buildId": "mukvqa01",
+   "adapter": {
+    "vendor": "apple",
+    "architecture": "metal-3",
+    "device": "",
+    "description": ""
+   },
+   "limitsMode": "minimum",
+   "timestamps": true,
+   "buckets": [
+    128
+   ],
+   "gpuBytes": 108720008,
+   "downloadBytes": 311011598,
+   "tokenizerBytes": 8341713,
+   "weightBytes": 302669885,
+   "loadTiming": {
+    "fetchMs": 583.6999999880791,
+    "bodyMs": 1398.1000000238419,
+    "sha256Ms": 217.19999992847443,
+    "uploadMs": 67.5,
+    "embedJoinMs": 59.80000001192093,
+    "manifestMs": 3.300000011920929,
+    "tokenizerMs": 133,
+    "planMs": 1.5999999642372131
+   }
+  },
+  "adapterInfo": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "loadMsWarm": 748.6999999880791,
+  "endToEnd": {
+   "n": 968,
+   "medianMs": 6.8499999940395355,
+   "p95Ms": 12.300000011920929,
+   "minMs": 4.700000047683716,
+   "maxMs": 19.80000001192093,
+   "meanMs": 7.734607437979584
+  },
+  "modelOnly": {
+   "n": 968,
+   "medianMs": 6.600000023841858,
+   "p95Ms": 12,
+   "minMs": 4.600000023841858,
+   "maxMs": 18.200000047683716,
+   "meanMs": 7.542561983520335
+  },
+  "parity": {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.00002103671431541443,
+   "meanAbsLogitDiff": 0.0000024597845540558998,
+   "maxAbsProbDiff": 0.000006400925464888907,
+   "disagreements": []
+  },
+  "n": 968,
+  "done": true
+ },
+ "pair": "kh-small-f32-L128",
+ "repetition": 1,
+ "latency": {
+  "medianMs": 6.8499999940395355,
+  "p95Ms": 12.300000011920929,
+  "modelOnlyMedianMs": 6.600000023841858,
+  "loadMs": 849.5999999642372,
+  "loadMsWarm": 748.6999999880791
+ },
+ "parity": {
+  "n": 968,
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.00002103671431541443,
+  "meanAbsLogitDiff": 0.0000024597845540558998,
+  "maxAbsProbDiff": 0.000006400925464888907,
+  "disagreements": []
+ },
+ "downloadBytes": 311011598,
+ "gpuBytes": 108720008,
+ "n": 968
+}

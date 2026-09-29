@@ -1,0 +1,88 @@
+{
+ "date": "2026-09-29",
+ "run_id": "k20gc-official-redo2-ort-small-f32-webgpu-opt-r3-1790672843410",
+ "official": true,
+ "provisionalReason": null,
+ "engine": "ort-web",
+ "model": "small-upstream",
+ "precision": "f32",
+ "bucket": null,
+ "backend": "webgpu",
+ "ep": "webgpu",
+ "batchSize": null,
+ "graph": "opt",
+ "capture": false,
+ "browser": "chromium-151.0.7922.34",
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "loadAvgStart": 3.208984375,
+ "loadAvgEnd": 3.88037109375,
+ "loadMaxObserved": 3.88037109375,
+ "baselineMb": 0,
+ "peakMemMb": null,
+ "page": {
+  "stage": "done",
+  "model": "small-upstream",
+  "precision": "f32",
+  "ep": "webgpu",
+  "graph": "opt",
+  "capture": false,
+  "adapterInfo": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "onnxBytes": 320908094,
+  "loadMs": 709.4000000953674,
+  "downloadBytes": 347742272,
+  "warmupMs": [
+   344.2999999523163,
+   27.100000023841858,
+   21.399999976158142,
+   21.299999952316284
+  ],
+  "latency": {
+   "n": 968,
+   "medianMs": 18.399999976158142,
+   "p95Ms": 19.199999928474426,
+   "minMs": 17,
+   "maxMs": 47.90000009536743,
+   "meanMs": 18.461880165437037
+  },
+  "parity": {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.00002300739288330078,
+   "meanAbsLogitDiff": 0.000002482126867167713,
+   "maxAbsProbDiff": 0.000006835146539208026,
+   "disagreements": []
+  },
+  "n": 968,
+  "done": true
+ },
+ "pair": "k20gc ort-small-f32-webgpu-opt vs ort-small-f32-webgpu-optgc-capture",
+ "repetition": 3,
+ "latency": {
+  "medianMs": 18.399999976158142,
+  "p95Ms": 19.199999928474426,
+  "loadMs": 709.4000000953674
+ },
+ "parity": {
+  "n": 968,
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.00002300739288330078,
+  "meanAbsLogitDiff": 0.000002482126867167713,
+  "maxAbsProbDiff": 0.000006835146539208026,
+  "disagreements": []
+ },
+ "downloadBytes": 347742272,
+ "onnxBytes": 320908094,
+ "runtimeBytes": 26834178,
+ "n": 968,
+ "file": "bench/results/k20gc-official-redo2-ort-small-f32-webgpu-opt-r3.json"
+}

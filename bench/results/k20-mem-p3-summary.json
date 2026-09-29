@@ -1,0 +1,133 @@
+{
+ "date": "2026-09-28",
+ "maxLoad": 4,
+ "reps": 1,
+ "tag": "mem",
+ "pairs": [
+  "kh-small-f16-L128",
+  "kh-small-f32-L128",
+  "kh-wasm-small-L128",
+  "ort-small-f16-webgpu-opt",
+  "ort-small-f32-webgpu-opt",
+  "ort-small-f32-wasm-opt",
+  "kh-julia-f16",
+  "upstream-julia-batch4-graph-opt",
+  "upstream-julia-batch4-graph-opt-f16",
+  "upstream-julia-batch1-graph-opt-f16"
+ ],
+ "runs": [
+  {
+   "name": "kh-small-f16-L128",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20-mem-p3-kh-small-f16-L128-r1.json"
+  },
+  {
+   "name": "kh-small-f32-L128",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20-mem-p3-kh-small-f32-L128-r1.json"
+  },
+  {
+   "name": "kh-wasm-small-L128",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20-mem-p3-kh-wasm-small-L128-r1.json"
+  },
+  {
+   "name": "ort-small-f16-webgpu-opt",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20-mem-p3-ort-small-f16-webgpu-opt-r1.json"
+  },
+  {
+   "name": "ort-small-f32-webgpu-opt",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20-mem-p3-ort-small-f32-webgpu-opt-r1.json"
+  },
+  {
+   "name": "ort-small-f32-wasm-opt",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20-mem-p3-ort-small-f32-wasm-opt-r1.json"
+  },
+  {
+   "name": "kh-julia-f16",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20-mem-p3-kh-julia-f16-r1.json"
+  },
+  {
+   "name": "upstream-julia-batch4-graph-opt",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20-mem-p3-upstream-julia-batch4-graph-opt-r1.json"
+  },
+  {
+   "name": "upstream-julia-batch4-graph-opt-f16",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20-mem-p3-upstream-julia-batch4-graph-opt-f16-r1.json"
+  },
+  {
+   "name": "upstream-julia-batch1-graph-opt-f16",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k20-mem-p3-upstream-julia-batch1-graph-opt-f16-r1.json"
+  }
+ ],
+ "aggregates": [
+  {
+   "name": "kh-small-f16-L128",
+   "official": true,
+   "medianMs": 6.100000023841858
+  },
+  {
+   "name": "kh-small-f32-L128",
+   "official": true,
+   "medianMs": 6.400000095367432
+  },
+  {
+   "name": "kh-wasm-small-L128",
+   "official": true,
+   "medianMs": 69.10000002384186
+  },
+  {
+   "name": "ort-small-f16-webgpu-opt",
+   "official": true,
+   "medianMs": 14.200000047683716
+  },
+  {
+   "name": "ort-small-f32-webgpu-opt",
+   "official": true,
+   "medianMs": 16.600000023841858
+  },
+  {
+   "name": "ort-small-f32-wasm-opt",
+   "official": true,
+   "medianMs": 180.5
+  },
+  {
+   "name": "kh-julia-f16",
+   "official": true,
+   "medianMs": 23.555
+  },
+  {
+   "name": "upstream-julia-batch4-graph-opt",
+   "official": true,
+   "medianMs": 19.851000000238418
+  },
+  {
+   "name": "upstream-julia-batch4-graph-opt-f16",
+   "official": true,
+   "medianMs": 15.146000000238418
+  },
+  {
+   "name": "upstream-julia-batch1-graph-opt-f16",
+   "official": true,
+   "medianMs": 21.582999999523164
+  }
+ ],
+ "aborted": false
+}

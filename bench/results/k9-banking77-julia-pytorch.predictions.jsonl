@@ -1,0 +1,100 @@
+{"id":"banking77:6","gold":"This customer example message is about a refund not showing up.","predicted":"This customer example message is about a refund not showing up."}
+{"id":"banking77:22","gold":"This customer example message is about a refund not showing up.","predicted":"This customer example message is about a refund not showing up."}
+{"id":"banking77:49","gold":"This banking customer example message is about activating a card.","predicted":"This banking customer example message is about activating a card."}
+{"id":"banking77:56","gold":"This banking customer example message is about activating a card.","predicted":"This banking customer example message is about activating a card."}
+{"id":"banking77:82","gold":"This banking customer example message is related to age limits.","predicted":"This banking customer example message is about activating a card."}
+{"id":"banking77:118","gold":"This banking customer example message is related to age limits.","predicted":"This banking customer example message is related to age limits."}
+{"id":"banking77:148","gold":"This banking customer example message is about apple pay or google pay","predicted":"This banking customer example message is about apple pay or google pay"}
+{"id":"banking77:158","gold":"This banking customer example message is about apple pay or google pay","predicted":"This banking customer example message is about top up issues or failures."}
+{"id":"banking77:164","gold":"This banking customer example message requests ATM support.","predicted":"This banking customer example message requests ATM support."}
+{"id":"banking77:191","gold":"This banking customer example message requests ATM support.","predicted":"This banking customer example message requests ATM support."}
+{"id":"banking77:233","gold":"This banking customer example message is about automatic top up.","predicted":"This banking customer example message is about automatic top up."}
+{"id":"banking77:234","gold":"This banking customer example message is about automatic top up.","predicted":"This banking customer example message is about automatic top up."}
+{"id":"banking77:262","gold":"This banking customer example message is about a balance not updated after a transfer.","predicted":"This banking customer example message is about a balance not updated after a transfer."}
+{"id":"banking77:268","gold":"This banking customer example message is about a balance not updated after a transfer.","predicted":"This banking customer example message is about a balance not updated after a transfer."}
+{"id":"banking77:291","gold":"This banking customer example message is about a balance not updated after a cheque or cash deposit.","predicted":"This banking customer example message is about a wrong amount of cash received."}
+{"id":"banking77:308","gold":"This banking customer example message is about a balance not updated after a cheque or cash deposit.","predicted":"This banking customer example message is about a balance not updated after a transfer."}
+{"id":"banking77:333","gold":"This banking customer example message is related to a beneficiary not being allowed or a failed transfer.","predicted":"This banking customer example message is related to a beneficiary not being allowed or a failed transfer."}
+{"id":"banking77:356","gold":"This banking customer example message is related to a beneficiary not being allowed or a failed transfer.","predicted":"This banking customer example message is related to a beneficiary not being allowed or a failed transfer."}
+{"id":"banking77:372","gold":"This banking customer example message is related to the cancellation of a transfer.","predicted":"This banking customer example message is related to the cancellation of a transfer."}
+{"id":"banking77:381","gold":"This banking customer example message is related to the cancellation of a transfer.","predicted":"This banking customer example message is related to a beneficiary not being allowed or a failed transfer."}
+{"id":"banking77:430","gold":"This banking customer example message is related to the expiration of a card.","predicted":"This banking customer example message is related to the expiration of a card."}
+{"id":"banking77:436","gold":"This banking customer example message is related to the expiration of a card.","predicted":"This banking customer example message is about an extra charge."}
+{"id":"banking77:469","gold":"This banking customer example message is related to the scope of acceptance of a card.","predicted":"This banking customer example message is about the arrival of a card."}
+{"id":"banking77:474","gold":"This banking customer example message is related to the scope of acceptance of a card.","predicted":"This banking customer example message is related to the scope of acceptance of a card."}
+{"id":"banking77:485","gold":"This banking customer example message is about the arrival of a card.","predicted":"This banking customer example message is about a transfer that has not arrived yet."}
+{"id":"banking77:500","gold":"This banking customer example message is about the arrival of a card.","predicted":"This banking customer example message is about the arrival of a card."}
+{"id":"banking77:533","gold":"This banking customer example message is about a card delivery estimate or timing.","predicted":"This banking customer example message is about the arrival of a card."}
+{"id":"banking77:555","gold":"This banking customer example message is about a card delivery estimate or timing.","predicted":"This banking customer example message is about a card delivery estimate or timing."}
+{"id":"banking77:613","gold":"This banking customer example message is about a card not working.","predicted":"This banking customer example message is about a card not working."}
+{"id":"banking77:637","gold":"This banking customer example message is about a card not working.","predicted":"This banking customer example message is about a card not working."}
+{"id":"banking77:653","gold":"This banking customer example message is about a card payment fee.","predicted":"This banking customer example message is about a card payment fee."}
+{"id":"banking77:656","gold":"This banking customer example message is about a card payment fee.","predicted":"This banking customer example message is about a card payment fee."}
+{"id":"banking77:702","gold":"This banking customer example message is about a payment the customer does not recognise.","predicted":"This banking customer example message is about a payment the customer does not recognise."}
+{"id":"banking77:705","gold":"This banking customer example message is about a payment the customer does not recognise.","predicted":"This banking customer example message is about a payment the customer does not recognise."}
+{"id":"banking77:727","gold":"This banking customer example message is about a wrong exchange rate.","predicted":"This banking customer example message is about a wrong exchange rate."}
+{"id":"banking77:746","gold":"This banking customer example message is about a wrong exchange rate.","predicted":"This banking customer example message is about a wrong exchange rate."}
+{"id":"banking77:767","gold":"This banking customer example message is about a card swallowed by a machine.","predicted":"This banking customer example message is about a card swallowed by a machine."}
+{"id":"banking77:787","gold":"This banking customer example message is about a card swallowed by a machine.","predicted":"This banking customer example message is about a wrong amount of cash received."}
+{"id":"banking77:803","gold":"This banking customer example message is about a cash withdrawal charge.","predicted":"This banking customer example message is about an extra charge."}
+{"id":"banking77:809","gold":"This banking customer example message is about a cash withdrawal charge.","predicted":"This banking customer example message is about a wrong exchange rate for a cash withdrawal."}
+{"id":"banking77:840","gold":"This banking customer example message is about an unrecognised cash withdrawal.","predicted":"This banking customer example message is about an unrecognised cash withdrawal."}
+{"id":"banking77:854","gold":"This banking customer example message is about an unrecognised cash withdrawal.","predicted":"This banking customer example message is about an unrecognised cash withdrawal."}
+{"id":"banking77:904","gold":"This banking customer example message is about changing a pin code.","predicted":"This banking customer example message is about changing a pin code."}
+{"id":"banking77:911","gold":"This banking customer example message is about changing a pin code.","predicted":"This banking customer example message is about a blocked pin."}
+{"id":"banking77:941","gold":"This banking customer example message is about a compromised card.","predicted":"This banking customer example message is about a card not working."}
+{"id":"banking77:943","gold":"This banking customer example message is about a compromised card.","predicted":"This banking customer example message is about a compromised card."}
+{"id":"banking77:968","gold":"This banking customer example message is about contactless not working","predicted":"This banking customer example message is about verification and top ups"}
+{"id":"banking77:998","gold":"This banking customer example message is about contactless not working","predicted":"This banking customer example message is about contactless not working"}
+{"id":"banking77:1005","gold":"This banking customer example message is about country-specific support.","predicted":"This banking customer example message is related to the scope of acceptance of a card."}
+{"id":"banking77:1012","gold":"This banking customer example message is about country-specific support.","predicted":"This banking customer example message is about country-specific support."}
+{"id":"banking77:1070","gold":"This banking customer example message is about a declined card payment.","predicted":"This banking customer example message is about a card not working."}
+{"id":"banking77:1075","gold":"This banking customer example message is about a declined card payment.","predicted":"This banking customer example message is about a pending card payment."}
+{"id":"banking77:1094","gold":"This banking customer example message is about a declined cash withdrawal.","predicted":"This banking customer example message is about a card not working."}
+{"id":"banking77:1104","gold":"This banking customer example message is about a declined cash withdrawal.","predicted":"This banking customer example message is about a declined cash withdrawal."}
+{"id":"banking77:1121","gold":"This banking customer example message is about a declined transfer.","predicted":"This banking customer example message is related to a beneficiary not being allowed or a failed transfer."}
+{"id":"banking77:1123","gold":"This banking customer example message is about a declined transfer.","predicted":"This banking customer example message is about a declined transfer."}
+{"id":"banking77:1192","gold":"This banking customer example message is about an unrecognised direct debit payment.","predicted":"This banking customer example message is about an unrecognised direct debit payment."}
+{"id":"banking77:1233","gold":"This banking customer example message is about the limits of disposable cards.","predicted":"This banking customer example message is about getting a disposable virtual card."}
+{"id":"banking77:1274","gold":"This banking customer example message is about editing personal details.","predicted":"This banking customer example message is about editing personal details."}
+{"id":"banking77:1307","gold":"This banking customer example message is about exchange rate charges.","predicted":"This banking customer example message is about an extra charge."}
+{"id":"banking77:1348","gold":"This banking customer example message is about exchange rates.","predicted":"This banking customer example message is about exchange rate charges."}
+{"id":"banking77:1418","gold":"This banking customer example message is about an extra charge.","predicted":"This banking customer example message is about exchange rate charges."}
+{"id":"banking77:1476","gold":"This banking customer example message is about a failed transfer.","predicted":"This customer example message is about a refund not showing up."}
+{"id":"banking77:1501","gold":"This banking customer example message is about fiat currency support","predicted":"This banking customer example message is about top up issues or failures."}
+{"id":"banking77:1549","gold":"This banking customer example message is about getting a disposable virtual card.","predicted":"This banking customer example message is about getting a disposable virtual card."}
+{"id":"banking77:1601","gold":"This banking customer example message is about getting a spare card.","predicted":"This banking customer example message is about getting a spare card."}
+{"id":"banking77:1666","gold":"This banking customer example message is about getting a virtual card.","predicted":"This banking customer example message is about getting a virtual card."}
+{"id":"banking77:1707","gold":"This banking customer example message is about a lost or stolen card.","predicted":"This banking customer example message is about a compromised card."}
+{"id":"banking77:1754","gold":"This banking customer example message is about a lost or stolen phone.","predicted":"This banking customer example message is about a lost or stolen phone."}
+{"id":"banking77:1792","gold":"This banking customer example message is about ordering a card.","predicted":"This banking customer example message is about ordering a card."}
+{"id":"banking77:1810","gold":"This banking customer example message is about a forgotten passcode.","predicted":"This banking customer example message is about a forgotten passcode."}
+{"id":"banking77:1861","gold":"This banking customer example message is about a pending card payment.","predicted":"This banking customer example message is about a pending card payment."}
+{"id":"banking77:1882","gold":"This banking customer example message is about a pending cash withdrawal.","predicted":"This banking customer example message is about a pending cash withdrawal."}
+{"id":"banking77:1957","gold":"This banking customer example message is about a pending top up.","predicted":"This banking customer example message is about a pending top up."}
+{"id":"banking77:1996","gold":"This banking customer example message is about a pending transfer.","predicted":"This banking customer example message is about a pending transfer."}
+{"id":"banking77:2021","gold":"This banking customer example message is about a blocked pin.","predicted":"This banking customer example message is about changing a pin code."}
+{"id":"banking77:2051","gold":"This banking customer example message is about receiving money.","predicted":"This banking customer example message is about receiving money."}
+{"id":"banking77:2113","gold":"This banking customer example message is about a refund request.","predicted":"This banking customer example message is about a pending top up."}
+{"id":"banking77:2145","gold":"This banking customer example message is about reverting a card payment.","predicted":"This banking customer example message is about reverting a card payment."}
+{"id":"banking77:2230","gold":"This banking customer example message is about terminating an account.","predicted":"This banking customer example message is about terminating an account."}
+{"id":"banking77:2298","gold":"This banking customer example message is about the charge for topping up by card.","predicted":"This banking customer example message is about the charge for topping up by card."}
+{"id":"banking77:2341","gold":"This banking customer example message is about topping up by cash or cheque.","predicted":"This banking customer example message is about topping up by cash or cheque."}
+{"id":"banking77:2382","gold":"This banking customer example message is about top up issues or failures.","predicted":"This banking customer example message is about top up issues or failures."}
+{"id":"banking77:2403","gold":"This banking customer example message is about top up limitations.","predicted":"This banking customer example message is about top up limitations."}
+{"id":"banking77:2451","gold":"This banking customer example message is about issues with topping up.","predicted":"This banking customer example message is about a wrong amount of cash received."}
+{"id":"banking77:2509","gold":"This banking customer example message is about topping up by card.","predicted":"This banking customer example message is about topping up by card."}
+{"id":"banking77:2545","gold":"This banking customer example message is about a transaction charged twice.","predicted":"This banking customer example message is about a transaction charged twice."}
+{"id":"banking77:2598","gold":"This banking customer example message is about an issue with a transfer fee charge.","predicted":"This banking customer example message is about an issue with a transfer fee charge."}
+{"id":"banking77:2616","gold":"This banking customer example message is about transfers into the customer's own account.","predicted":"This banking customer example message is about receiving money."}
+{"id":"banking77:2647","gold":"This banking customer example message is about a transfer that has not arrived yet.","predicted":"This banking customer example message is about a failed transfer."}
+{"id":"banking77:2689","gold":"This banking customer example message is about transfer timing.","predicted":"This banking customer example message is about transfer timing."}
+{"id":"banking77:2739","gold":"This banking customer example message is about an issue with identity verification.","predicted":"This banking customer example message is about identity verification."}
+{"id":"banking77:2761","gold":"This banking customer example message is about identity verification.","predicted":"This banking customer example message is about identity verification."}
+{"id":"banking77:2819","gold":"This banking customer example message is about the source of funds.","predicted":"This banking customer example message is about the source of funds."}
+{"id":"banking77:2845","gold":"This banking customer example message is about verification and top ups","predicted":"This banking customer example message is about verification and top ups"}
+{"id":"banking77:2915","gold":"This banking customer example message is about a virtual card not working","predicted":"This banking customer example message is about a virtual card not working"}
+{"id":"banking77:2955","gold":"This banking customer example message is about types of bank cards.","predicted":"This banking customer example message is related to the scope of acceptance of a card."}
+{"id":"banking77:2980","gold":"This banking customer example message questions why identity verification is necessary.","predicted":"This banking customer example message is about identity verification."}
+{"id":"banking77:3003","gold":"This banking customer example message is about a wrong amount of cash received.","predicted":"This banking customer example message is about a wrong amount of cash received."}
+{"id":"banking77:3077","gold":"This banking customer example message is about a wrong exchange rate for a cash withdrawal.","predicted":"This banking customer example message is about a wrong exchange rate."}

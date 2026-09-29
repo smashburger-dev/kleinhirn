@@ -1,0 +1,72 @@
+{
+ "date": "2026-09-28",
+ "run_id": "mem-upstream-julia-batch1-r1-1790582251738",
+ "official": true,
+ "provisionalReason": null,
+ "engine": "julia-upstream",
+ "model": "julia-1",
+ "precision": null,
+ "bucket": null,
+ "backend": "webgpu",
+ "ep": null,
+ "batchSize": 1,
+ "browser": "chromium-151.0.7922.34",
+ "adapterInfo": null,
+ "loadAvgStart": 3.9423828125,
+ "loadAvgEnd": 3.490234375,
+ "loadMaxObserved": 3.9423828125,
+ "baselineMb": 314,
+ "peakMemMb": 2706,
+ "page": {
+  "requests": 100,
+  "batch_size": 1,
+  "iterations": 5,
+  "load_and_warm_ms": 2872.900000035763,
+  "median_ms": 3029.699999988079,
+  "min_ms": 3018.399999976158,
+  "max_ms": 3031.100000023842,
+  "ms_per_request": 30.29699999988079,
+  "per_request_median_ms": 27.899999976158142,
+  "per_request_p95_ms": 47.5,
+  "matching_predictions": 100,
+  "max_abs_logit_error_vs_pytorch": 0.00012063980102539062,
+  "resources": [
+   {
+    "name": "julia_webgpu_encode_bg.wasm",
+    "bytes": 2839990
+   },
+   {
+    "name": "tokenizer.json",
+    "bytes": 34363488
+   },
+   {
+    "name": "ort-wasm-simd-threaded.asyncify.wasm",
+    "bytes": 26782214
+   },
+   {
+    "name": "model.onnx",
+    "bytes": 2989223
+   },
+   {
+    "name": "model.onnx.data",
+    "bytes": 576782636
+   },
+   {
+    "name": "parity-cases.json",
+    "bytes": 53578
+   }
+  ]
+ },
+ "pair": "upstream-julia-batch1",
+ "repetition": 1,
+ "latency": {
+  "medianMs": 3029.699999988079,
+  "msPerRequest": 30.29699999988079,
+  "loadAndWarmMs": 2872.900000035763
+ },
+ "parity": {
+  "matchingPredictions": 100,
+  "maxAbsLogitError": 0.00012063980102539062
+ },
+ "n": 100
+}

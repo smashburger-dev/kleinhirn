@@ -1,0 +1,41 @@
+{
+ "date": "2026-09-29",
+ "commit": "5ebae2a",
+ "precision": "f32",
+ "ep": "webgpu",
+ "graph": "std",
+ "capture": true,
+ "browser": "chromium-151.0.7922.34",
+ "stage": "error",
+ "error": "Error: Can't create a session. ERROR_CODE: 1, ERROR_MESSAGE: This session cannot use the graph capture feature as requested by the user  as all compute graph nodes have not been partitioned to the WebGpuExecutionProvider",
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "placements": {},
+ "cpuNodes": [],
+ "captureLines": [
+  "2026-09-29 10:01:24.418300 [V:onnxruntime:Default, webgpu_provider_factory.cc:145 ParseEpConfig] WebGPU EP graph capture enable: 1",
+  "2026-09-29 10:01:24.418499 [V:onnxruntime:Default, webgpu_provider_factory.cc:147 ParseEpConfig] WebGPU EP pix capture enable: 0",
+  "2026-09-29 10:01:24.429300 [I:onnxruntime:, inference_session.cc:755 TraceSessionOptions] Session Options {  execution_mode:0 execution_order:DEFAULT enable_profiling:0 optimized_model_filepath:\"\" enable_mem_pattern:0 enable_mem_reuse:1 enable_cpu_mem_arena:0 profile_file_prefix: session_logid: session_log_severity_level:0 session_log_verbosity_level:0 max_num_graph_transformation_steps:10 graph_optimization_level:4 intra_op_param:OrtThreadPoolParams { thread_pool_size: 0 auto_set_affinity: 0 allow_spinning: 1 spin_duration_us: -1 spin_backoff_max: 1 dynamic_block_base_: 0 stack_size: 0 affinity_str:  set_denormal_as_zero: 0 } inter_op_param:OrtThreadPoolParams { thread_pool_size: 0 auto_set_affinity: 0 allow_spinning: 1 spin_duration_us: -1 spin_backoff_max: 1 dynamic_block_base_: 0 stack_size: 0 affinity_str:  set_denormal_as_zero: 0 } use_per_session_threads:0 thread_pool_allow_spinning:1 use_deterministic_compute:0 ep_selection_policy:0 config_options: {   ep.webgpuexecutionprovider.enableGraphCapture: 1  enableGraphCapture: true  session.use_ort_model_bytes_directly: 1 } }",
+  "2026-09-29 10:01:24.947100 [I:onnxruntime:, transformer_memcpy.cc:393 AddCopyNode] Add MemcpyFromHost after /encoder/encoder/Squeeze_output_0 for WebGpuExecutionProvider",
+  "2026-09-29 10:01:24.947399 [I:onnxruntime:, transformer_memcpy.cc:393 AddCopyNode] Add MemcpyToHost before /encoder/encoder/Unsqueeze_1_output_0 for WebGpuExecutionProvider",
+  "2026-09-29 10:01:24.947899 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer MemcpyTransformer modified: 1 with status: OK",
+  "\u001b[1;31m2026-09-29 10:01:24.953300 [E:onnxruntime:, inference_session.cc:2687 Initialize] This session cannot use the graph capture feature as requested by the user  as all compute graph nodes have not been partitioned to the WebGpuExecutionProvider\u001b[m"
+ ],
+ "consoleLines": 566,
+ "relevant": [
+  "2026-09-29 10:01:24.418300 [V:onnxruntime:Default, webgpu_provider_factory.cc:145 ParseEpConfig] WebGPU EP graph capture enable: 1",
+  "2026-09-29 10:01:24.418499 [V:onnxruntime:Default, webgpu_provider_factory.cc:147 ParseEpConfig] WebGPU EP pix capture enable: 0",
+  "2026-09-29 10:01:24.429300 [I:onnxruntime:, inference_session.cc:755 TraceSessionOptions] Session Options {  execution_mode:0 execution_order:DEFAULT enable_profiling:0 optimized_model_filepath:\"\" enable_mem_pattern:0 enable_mem_reuse:1 enable_cpu_mem_arena:0 profile_file_prefix: session_logid: session_log_severity_level:0 session_log_verbosity_level:0 max_num_graph_transformation_steps:10 graph_optimization_level:4 intra_op_param:OrtThreadPoolParams { thread_pool_size: 0 auto_set_affinity: 0 allow_spinning: 1 spin_duration_us: -1 spin_backoff_max: 1 dynamic_block_base_: 0 stack_size: 0 affinity_str:  set_denormal_as_zero: 0 } inter_op_param:OrtThreadPoolParams { thread_pool_size: 0 auto_set_affinity: 0 allow_spinning: 1 spin_duration_us: -1 spin_backoff_max: 1 dynamic_block_base_: 0 stack_size: 0 affinity_str:  set_denormal_as_zero: 0 } use_per_session_threads:0 thread_pool_allow_spinning:1 use_deterministic_compute:0 ep_selection_policy:0 config_options: {   ep.webgpuexecutionprovider.enableGraphCapture: 1  enableGraphCapture: true  session.use_ort_model_bytes_directly: 1 } }",
+  "2026-09-29 10:01:24.870199 [V:onnxruntime:, graph_transformer_mgr.cc:55 ApplyTransformers] Applying graph transformer TransposeOptimizer_CPUExecutionProvider on step 1.",
+  "2026-09-29 10:01:24.870999 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer TransposeOptimizer_CPUExecutionProvider modified: 0 with status: OK",
+  "2026-09-29 10:01:24.912799 [V:onnxruntime:, graph_transformer_mgr.cc:49 ApplyTransformers] Skipping graph transformer TransposeOptimizer_CPUExecutionProvider on step 2 because it should only apply once.",
+  "2026-09-29 10:01:24.947100 [I:onnxruntime:, transformer_memcpy.cc:393 AddCopyNode] Add MemcpyFromHost after /encoder/encoder/Squeeze_output_0 for WebGpuExecutionProvider",
+  "2026-09-29 10:01:24.947399 [I:onnxruntime:, transformer_memcpy.cc:393 AddCopyNode] Add MemcpyToHost before /encoder/encoder/Unsqueeze_1_output_0 for WebGpuExecutionProvider",
+  "2026-09-29 10:01:24.947899 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer MemcpyTransformer modified: 1 with status: OK",
+  "\u001b[1;31m2026-09-29 10:01:24.953300 [E:onnxruntime:, inference_session.cc:2687 Initialize] This session cannot use the graph capture feature as requested by the user  as all compute graph nodes have not been partitioned to the WebGpuExecutionProvider\u001b[m"
+ ]
+}

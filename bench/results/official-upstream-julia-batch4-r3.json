@@ -1,0 +1,44 @@
+{
+ "date": "2026-09-28",
+ "run_id": "official-upstream-julia-batch4-r3-1790584697654",
+ "official": true,
+ "provisionalReason": null,
+ "engine": "julia-upstream",
+ "model": "julia-1",
+ "precision": null,
+ "bucket": null,
+ "backend": "webgpu",
+ "ep": null,
+ "batchSize": 4,
+ "browser": "chromium-151.0.7922.34",
+ "adapterInfo": null,
+ "loadAvgStart": 4.08984375,
+ "loadAvgEnd": 4.26806640625,
+ "loadMaxObserved": 4.26806640625,
+ "baselineMb": 0,
+ "peakMemMb": null,
+ "page": {
+  "requests": 100,
+  "batch_size": 4,
+  "iterations": 5,
+  "load_and_warm_ms": 2917.399999976158,
+  "median_ms": 2190.699999988079,
+  "min_ms": 2186.7000000476837,
+  "max_ms": 2210.099999964237,
+  "ms_per_request": 21.906999999880792,
+  "matching_predictions": 100,
+  "max_abs_logit_error_vs_pytorch": 0.00012063980102539062
+ },
+ "pair": "kh-julia-batch-f16-B1 vs upstream-julia-batch4",
+ "repetition": 3,
+ "latency": {
+  "medianMs": 2190.699999988079,
+  "msPerRequest": 21.906999999880792,
+  "loadAndWarmMs": 2917.399999976158
+ },
+ "parity": {
+  "matchingPredictions": 100,
+  "maxAbsLogitError": 0.00012063980102539062
+ },
+ "n": 100
+}

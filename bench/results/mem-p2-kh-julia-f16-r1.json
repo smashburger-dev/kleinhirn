@@ -1,0 +1,93 @@
+{
+ "date": "2026-09-28",
+ "run_id": "mem-kh-julia-f16-r1-1790582213800",
+ "official": true,
+ "provisionalReason": null,
+ "engine": "kleinhirn-julia",
+ "model": "julia-1",
+ "precision": "f16",
+ "bucket": null,
+ "backend": "webgpu",
+ "ep": null,
+ "batchSize": null,
+ "browser": "chromium-151.0.7922.34",
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "loadAvgStart": 4.083984375,
+ "loadAvgEnd": 3.5595703125,
+ "loadMaxObserved": 4.083984375,
+ "baselineMb": 311,
+ "peakMemMb": 990,
+ "page": {
+  "stage": "done",
+  "precision": "f16",
+  "info": {
+   "precision": "f16",
+   "adapter": {
+    "vendor": "apple",
+    "architecture": "metal-3",
+    "device": "",
+    "description": ""
+   },
+   "limitsMode": "minimum",
+   "timestamps": true,
+   "buckets": [
+    512,
+    1024
+   ],
+   "gpuBytes": 115287432,
+   "downloadBytes": 322970260,
+   "tokenizerBytes": 34363188,
+   "weightBytes": 288607072,
+   "loadTiming": {
+    "fetchMs": 434.60000002384186,
+    "bodyMs": 980.7999999523163,
+    "sha256Ms": 181.19999998807907,
+    "uploadMs": 47.39999997615814,
+    "embedJoinMs": 93.10000002384186,
+    "manifestMs": 2.800000011920929,
+    "tokenizerMs": 561.5999999642372,
+    "planMs": 5.800000011920929
+   },
+   "loadMs": 1145.800000011921
+  },
+  "loadMsWarm": 3627.600000023842,
+  "result": {
+   "requests": 100,
+   "batch_size": 1,
+   "iterations": 5,
+   "load_ms": 1145.800000011921,
+   "load_and_warm_ms": 3627.600000023842,
+   "median_ms": 2434.5,
+   "min_ms": 2426.899999976158,
+   "max_ms": 2439.899999976158,
+   "ms_per_request": 24.345,
+   "per_request_median_ms": 21.19999998807907,
+   "per_request_p95_ms": 61,
+   "matching_predictions": 100,
+   "max_abs_logit_error_vs_pytorch": 0.09082722663879395
+  },
+  "done": true
+ },
+ "pair": "kh-julia-f16",
+ "repetition": 1,
+ "latency": {
+  "medianMs": 2434.5,
+  "msPerRequest": 24.345,
+  "perRequestMedianMs": 21.19999998807907,
+  "perRequestP95Ms": 61,
+  "loadMs": 1145.800000011921,
+  "loadAndWarmMs": 3627.600000023842
+ },
+ "parity": {
+  "matchingPredictions": 100,
+  "maxAbsLogitError": 0.09082722663879395
+ },
+ "downloadBytes": 322970260,
+ "gpuBytes": 115287432,
+ "n": 100
+}

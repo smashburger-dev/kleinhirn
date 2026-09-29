@@ -1,0 +1,88 @@
+{
+ "date": "2026-09-29",
+ "run_id": "k20gc-screen2-ort-small-f32-webgpu-opt-r1-1790669792759",
+ "official": true,
+ "provisionalReason": null,
+ "engine": "ort-web",
+ "model": "small-upstream",
+ "precision": "f32",
+ "bucket": null,
+ "backend": "webgpu",
+ "ep": "webgpu",
+ "batchSize": null,
+ "graph": "opt",
+ "capture": false,
+ "browser": "chromium-151.0.7922.34",
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "loadAvgStart": 6.4931640625,
+ "loadAvgEnd": 5.64453125,
+ "loadMaxObserved": 6.4931640625,
+ "baselineMb": 0,
+ "peakMemMb": null,
+ "page": {
+  "stage": "done",
+  "model": "small-upstream",
+  "precision": "f32",
+  "ep": "webgpu",
+  "graph": "opt",
+  "capture": false,
+  "adapterInfo": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "onnxBytes": 320908094,
+  "loadMs": 741.1000000238419,
+  "downloadBytes": 347742272,
+  "warmupMs": [
+   313.39999997615814,
+   19.100000023841858,
+   19.5,
+   18.399999976158142
+  ],
+  "latency": {
+   "n": 968,
+   "medianMs": 17.600000023841858,
+   "p95Ms": 18.399999976158142,
+   "minMs": 16.5,
+   "maxMs": 41,
+   "meanMs": 17.683677686147455
+  },
+  "parity": {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.00002300739288330078,
+   "meanAbsLogitDiff": 0.000002482126867167713,
+   "maxAbsProbDiff": 0.000006835146539208026,
+   "disagreements": []
+  },
+  "n": 968,
+  "done": true
+ },
+ "pair": "k20 kh-small-f32-L128 vs ort-small-f32-webgpu-opt",
+ "repetition": 1,
+ "latency": {
+  "medianMs": 17.600000023841858,
+  "p95Ms": 18.399999976158142,
+  "loadMs": 741.1000000238419
+ },
+ "parity": {
+  "n": 968,
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.00002300739288330078,
+  "meanAbsLogitDiff": 0.000002482126867167713,
+  "maxAbsProbDiff": 0.000006835146539208026,
+  "disagreements": []
+ },
+ "downloadBytes": 347742272,
+ "onnxBytes": 320908094,
+ "runtimeBytes": 26834178,
+ "n": 968,
+ "file": "bench/results/k20gc-screen2-ort-small-f32-webgpu-opt-r1.json"
+}

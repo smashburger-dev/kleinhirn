@@ -1,0 +1,116 @@
+{
+ "date": "2026-09-28",
+ "run_id": "k20-mem-p1-kh-small-f32-L128-r1-1790637635049",
+ "official": true,
+ "provisionalReason": null,
+ "engine": "kleinhirn",
+ "model": "small-upstream",
+ "precision": "f32",
+ "bucket": 128,
+ "backend": "webgpu",
+ "ep": null,
+ "batchSize": null,
+ "graph": null,
+ "browser": "chromium-151.0.7922.34",
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "loadAvgStart": 3.5009765625,
+ "loadAvgEnd": 3.46923828125,
+ "loadMaxObserved": 3.5009765625,
+ "baselineMb": 322,
+ "peakMemMb": 1140,
+ "page": {
+  "stage": "done",
+  "model": "small-upstream",
+  "precision": "f32",
+  "backend": "webgpu",
+  "loadMs": 568.8999999761581,
+  "info": {
+   "precision": "f32",
+   "buildId": "multoxvd",
+   "adapter": {
+    "vendor": "apple",
+    "architecture": "metal-3",
+    "device": "",
+    "description": ""
+   },
+   "limitsMode": "minimum",
+   "timestamps": true,
+   "buckets": [
+    128
+   ],
+   "gpuBytes": 108720008,
+   "downloadBytes": 311011598,
+   "tokenizerBytes": 8341713,
+   "weightBytes": 302669885,
+   "loadTiming": {
+    "fetchMs": 368.10000002384186,
+    "bodyMs": 827.9999999403954,
+    "sha256Ms": 164.20000004768372,
+    "uploadMs": 40.30000001192093,
+    "embedJoinMs": 30.5,
+    "manifestMs": 3,
+    "tokenizerMs": 124.90000003576279,
+    "planMs": 1.399999976158142
+   }
+  },
+  "adapterInfo": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "loadMsWarm": 608,
+  "endToEnd": {
+   "n": 968,
+   "medianMs": 6.400000035762787,
+   "p95Ms": 11.800000011920929,
+   "minMs": 4.599999964237213,
+   "maxMs": 18.400000035762787,
+   "meanMs": 7.341632231454219
+  },
+  "modelOnly": {
+   "n": 968,
+   "medianMs": 6.300000011920929,
+   "p95Ms": 11.699999988079071,
+   "minMs": 4.399999976158142,
+   "maxMs": 30.69999998807907,
+   "meanMs": 7.235743801455852
+  },
+  "parity": {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.00002103671431541443,
+   "meanAbsLogitDiff": 0.0000024597845540558998,
+   "maxAbsProbDiff": 0.000006400925464888907,
+   "disagreements": []
+  },
+  "n": 968,
+  "done": true
+ },
+ "pair": "kh-small-f32-L128",
+ "repetition": 1,
+ "latency": {
+  "medianMs": 6.400000035762787,
+  "p95Ms": 11.800000011920929,
+  "modelOnlyMedianMs": 6.300000011920929,
+  "loadMs": 568.8999999761581,
+  "loadMsWarm": 608
+ },
+ "parity": {
+  "n": 968,
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.00002103671431541443,
+  "meanAbsLogitDiff": 0.0000024597845540558998,
+  "maxAbsProbDiff": 0.000006400925464888907,
+  "disagreements": []
+ },
+ "downloadBytes": 311011598,
+ "gpuBytes": 108720008,
+ "n": 968,
+ "file": "bench/results/k20-mem-p1-kh-small-f32-L128-r1.json"
+}

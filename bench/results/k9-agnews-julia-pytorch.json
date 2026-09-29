@@ -1,0 +1,35 @@
+{
+ "task": "agnews",
+ "route": "julia-pytorch-cpu",
+ "model": "Julia-1",
+ "weights_sha256": "df853bf7fe424420011f3d0c47a05d7341aa9eefa7fb9f203ea4aada4ad95b72",
+ "engine": {
+  "device": "cpu",
+  "transformer_backend": "torch",
+  "strict_encoding": true,
+  "max_length": 1024,
+  "head_length": 512,
+  "batch_size": 16,
+  "marker_only_head": false,
+  "threads": 4,
+  "router": null
+ },
+ "total": 100,
+ "correct": 94,
+ "accuracy": 0.94,
+ "abstained": 0,
+ "gate": {
+  "published": 0.94,
+  "published_counts": {
+   "correct": 94,
+   "total": 100,
+   "accuracy": 0.94
+  },
+  "tolerance_pp": 1.0,
+  "deviation_pp": 0.0
+ },
+ "elapsed_seconds": 4.4,
+ "load_average": "s: 8.58 9.26 9.94",
+ "seed": 20260917,
+ "dataset_revision": "fef2a2ac62b69c58670047dddf045c53d7c3cb5e"
+}

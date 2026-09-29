@@ -1,0 +1,38 @@
+{
+ "task": "banking77",
+ "route": "julia-pytorch-cpu",
+ "model": "Julia-1",
+ "weights_sha256": "df853bf7fe424420011f3d0c47a05d7341aa9eefa7fb9f203ea4aada4ad95b72",
+ "engine": {
+  "device": "cpu",
+  "transformer_backend": "torch",
+  "strict_encoding": true,
+  "max_length": 1024,
+  "head_length": 512,
+  "batch_size": 16,
+  "marker_only_head": false,
+  "threads": 4,
+  "router": {
+   "width": 14,
+   "survivors": 4
+  }
+ },
+ "total": 100,
+ "correct": 64,
+ "accuracy": 0.64,
+ "abstained": 0,
+ "gate": {
+  "published": 0.64,
+  "published_counts": {
+   "correct": 64,
+   "total": 100,
+   "accuracy": 0.64
+  },
+  "tolerance_pp": 1.0,
+  "deviation_pp": 0.0
+ },
+ "elapsed_seconds": 32.0,
+ "load_average": "s: 10.37 13.42 13.40",
+ "seed": 20260917,
+ "dataset_revision": "fef2a2ac62b69c58670047dddf045c53d7c3cb5e"
+}

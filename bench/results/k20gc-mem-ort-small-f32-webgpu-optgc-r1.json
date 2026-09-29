@@ -1,0 +1,88 @@
+{
+ "date": "2026-09-29",
+ "run_id": "k20gc-mem-ort-small-f32-webgpu-optgc-r1-1790670217454",
+ "official": true,
+ "provisionalReason": null,
+ "engine": "ort-web",
+ "model": "small-upstream",
+ "precision": "f32",
+ "bucket": null,
+ "backend": "webgpu",
+ "ep": "webgpu",
+ "batchSize": null,
+ "graph": "optgc",
+ "capture": false,
+ "browser": "chromium-151.0.7922.34",
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "loadAvgStart": 6.5625,
+ "loadAvgEnd": 5.85302734375,
+ "loadMaxObserved": 6.5625,
+ "baselineMb": 343,
+ "peakMemMb": 2254,
+ "page": {
+  "stage": "done",
+  "model": "small-upstream",
+  "precision": "f32",
+  "ep": "webgpu",
+  "graph": "optgc",
+  "capture": false,
+  "adapterInfo": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "onnxBytes": 320907971,
+  "loadMs": 699.7000000476837,
+  "downloadBytes": 347742149,
+  "warmupMs": [
+   176.80000007152557,
+   19.09999990463257,
+   18.90000009536743,
+   18.5
+  ],
+  "latency": {
+   "n": 968,
+   "medianMs": 17.700000047683716,
+   "p95Ms": 18.40000009536743,
+   "minMs": 16.5,
+   "maxMs": 40.5,
+   "meanMs": 17.756404958850098
+  },
+  "parity": {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.00002300739288330078,
+   "meanAbsLogitDiff": 0.000002482126867167713,
+   "maxAbsProbDiff": 0.000006835146539208026,
+   "disagreements": []
+  },
+  "n": 968,
+  "done": true
+ },
+ "pair": "ort-small-f32-webgpu-optgc",
+ "repetition": 1,
+ "latency": {
+  "medianMs": 17.700000047683716,
+  "p95Ms": 18.40000009536743,
+  "loadMs": 699.7000000476837
+ },
+ "parity": {
+  "n": 968,
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.00002300739288330078,
+  "meanAbsLogitDiff": 0.000002482126867167713,
+  "maxAbsProbDiff": 0.000006835146539208026,
+  "disagreements": []
+ },
+ "downloadBytes": 347742149,
+ "onnxBytes": 320907971,
+ "runtimeBytes": 26834178,
+ "n": 968,
+ "file": "bench/results/k20gc-mem-ort-small-f32-webgpu-optgc-r1.json"
+}

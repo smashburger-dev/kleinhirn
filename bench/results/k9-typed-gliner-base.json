@@ -1,0 +1,30 @@
+{
+ "task": "typed",
+ "route": "gliner-pytorch-cpu",
+ "model": "fastino/gliner2.5-base-v1",
+ "revision": "b0c10b23313ec3ff028821dff298dd743e010706",
+ "zero_shot": true,
+ "total": 2000,
+ "correct": 794,
+ "accuracy": 0.397,
+ "failed": 0,
+ "by_type": {
+  "choice": {
+   "count": 600,
+   "correct": 173,
+   "accuracy": 0.28833333333333333
+  },
+  "noul": {
+   "count": 600,
+   "correct": 372,
+   "accuracy": 0.62
+  },
+  "score": {
+   "count": 800,
+   "correct": 249,
+   "accuracy": 0.31125
+  }
+ },
+ "elapsed_seconds": 295.3,
+ "load_average": "s: 22.17 18.28 14.12"
+}

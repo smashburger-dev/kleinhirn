@@ -1,0 +1,60 @@
+{
+ "date": "2026-09-28",
+ "maxLoad": 6,
+ "reps": 3,
+ "tag": null,
+ "pairs": [
+  "kh-julia-batch-f16-B1 vs upstream-julia-batch4"
+ ],
+ "runs": [
+  {
+   "name": "kh-julia-batch-f16-B1",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/official-kh-julia-batch-f16-B1-r1.json"
+  },
+  {
+   "name": "upstream-julia-batch4",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/official-upstream-julia-batch4-r1.json"
+  },
+  {
+   "name": "kh-julia-batch-f16-B1",
+   "rep": 2,
+   "official": true,
+   "file": "bench/results/official-kh-julia-batch-f16-B1-r2.json"
+  },
+  {
+   "name": "upstream-julia-batch4",
+   "rep": 2,
+   "official": true,
+   "file": "bench/results/official-upstream-julia-batch4-r2.json"
+  },
+  {
+   "name": "kh-julia-batch-f16-B1",
+   "rep": 3,
+   "official": true,
+   "file": "bench/results/official-kh-julia-batch-f16-B1-r3.json"
+  },
+  {
+   "name": "upstream-julia-batch4",
+   "rep": 3,
+   "official": true,
+   "file": "bench/results/official-upstream-julia-batch4-r3.json"
+  }
+ ],
+ "aggregates": [
+  {
+   "name": "kh-julia-batch-f16-B1",
+   "official": true,
+   "medianMs": 20.349999994039536
+  },
+  {
+   "name": "upstream-julia-batch4",
+   "official": true,
+   "medianMs": 21.906999999880792
+  }
+ ],
+ "aborted": false
+}

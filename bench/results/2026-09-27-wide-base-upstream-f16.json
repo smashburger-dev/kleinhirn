@@ -1,0 +1,47 @@
+{
+ "date": "2026-09-27",
+ "run_id": "kh-wide-base-upstream-f16-1790507349649",
+ "engine": "kleinhirn",
+ "model": "base-upstream",
+ "precision": "f16",
+ "bucket": "L1280K80",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvg": "{ 12.44 16.21 17.03 }",
+ "stage": "done",
+ "info": {
+  "precision": "f16",
+  "buildId": "mujph1zn",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "buckets": [
+   1280
+  ],
+  "gpuBytes": 279676648,
+  "downloadBytes": 397126047,
+  "tokenizerBytes": 8341713,
+  "weightBytes": 388784334,
+  "loadTiming": {
+   "fetchMs": 1089.199999988079,
+   "bodyMs": 3932,
+   "sha256Ms": 284.3000000715256,
+   "uploadMs": 135.69999998807907,
+   "embedJoinMs": 116.20000004768372,
+   "manifestMs": 5.800000011920929,
+   "tokenizerMs": 226.60000002384186,
+   "planMs": 24.19999998807907
+  },
+  "loadMs": 1598.8999999761581
+ },
+ "n": 20,
+ "over": 0,
+ "argmaxAgreement": 1,
+ "maxAbsLogitDiff": 0.014674186706542969,
+ "maxAbsProbDiff": 0.001553350609286852,
+ "labelAgreement": 0.8
+}

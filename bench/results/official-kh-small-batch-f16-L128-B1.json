@@ -1,0 +1,179 @@
+{
+ "run_id": "official-kh-small-batch-f16-L128-B1",
+ "engine": "kleinhirn-batch",
+ "model": "small-upstream",
+ "precision": "f16",
+ "bucket": 128,
+ "ep": null,
+ "batchSize": 1,
+ "backend": "webgpu",
+ "official": true,
+ "repetitions": 9,
+ "medianMs": 6.800000011920929,
+ "rangeMs": [
+  6.600000023841858,
+  6.899999976158142
+ ],
+ "p95Ms": 12.100000023841858,
+ "downloadBytes": 159686872,
+ "onnxBytes": null,
+ "runtimeBytes": null,
+ "gpuBytes": 54393192,
+ "peakMemMb": 0,
+ "parity": [
+  {
+   "argmaxAgreement": 0.9989669421487604,
+   "n": 968
+  },
+  {
+   "argmaxAgreement": 0.9989669421487604,
+   "n": 968
+  },
+  {
+   "argmaxAgreement": 0.9989669421487604,
+   "n": 968
+  },
+  {
+   "argmaxAgreement": 0.9989669421487604,
+   "n": 968
+  },
+  {
+   "argmaxAgreement": 0.9989669421487604,
+   "n": 968
+  },
+  {
+   "argmaxAgreement": 0.9989669421487604,
+   "n": 968
+  },
+  {
+   "argmaxAgreement": 0.9989669421487604,
+   "n": 968
+  },
+  {
+   "argmaxAgreement": 0.9989669421487604,
+   "n": 968
+  },
+  {
+   "argmaxAgreement": 0.9989669421487604,
+   "n": 968
+  }
+ ],
+ "loadAvg": [
+  [
+   5.435546875,
+   5.0732421875
+  ],
+  [
+   5.90966796875,
+   5.60888671875
+  ],
+  [
+   5.84619140625,
+   5.783203125
+  ],
+  [
+   5.0615234375,
+   4.744140625
+  ],
+  [
+   4.248046875,
+   3.90185546875
+  ],
+  [
+   4.15673828125,
+   4.29248046875
+  ],
+  [
+   4.0615234375,
+   3.82421875
+  ],
+  [
+   3.99169921875,
+   3.7587890625
+  ],
+  [
+   4.81005859375,
+   4.36474609375
+  ]
+ ],
+ "repFiles": [
+  "bench/results/official-kh-small-batch-f16-L128-B1-r1.json",
+  "bench/results/official-kh-small-batch-f16-L128-B1-r2.json",
+  "bench/results/official-kh-small-batch-f16-L128-B1-r3.json",
+  "bench/results/official-kh-small-batch-f16-L128-B1-r4.json",
+  "bench/results/official-kh-small-batch-f16-L128-B1-r5.json",
+  "bench/results/official-kh-small-batch-f16-L128-B1-r6.json",
+  "bench/results/official-kh-small-batch-f16-L128-B1-r7.json",
+  "bench/results/official-kh-small-batch-f16-L128-B1-r8.json",
+  "bench/results/official-kh-small-batch-f16-L128-B1-r9.json"
+ ],
+ "page": {
+  "stage": "done",
+  "model": "small-upstream",
+  "precision": "f16",
+  "batch": 1,
+  "loadMs": 483.30000001192093,
+  "info": {
+   "precision": "f16",
+   "buildId": "mukvssdt",
+   "adapter": {
+    "vendor": "apple",
+    "architecture": "metal-3",
+    "device": "",
+    "description": ""
+   },
+   "limitsMode": "minimum",
+   "timestamps": true,
+   "buckets": [
+    128
+   ],
+   "gpuBytes": 54393192,
+   "downloadBytes": 159686872,
+   "tokenizerBytes": 8341713,
+   "weightBytes": 151345159,
+   "loadTiming": {
+    "fetchMs": 280.10000002384186,
+    "bodyMs": 368.30000001192093,
+    "sha256Ms": 86.59999996423721,
+    "uploadMs": 25.899999976158142,
+    "embedJoinMs": 13.600000023841858,
+    "manifestMs": 4,
+    "tokenizerMs": 157.5,
+    "planMs": 1.600000023841858
+   }
+  },
+  "adapterInfo": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "result": {
+   "batch_size": 1,
+   "n_batches": 968,
+   "n_requests": 968,
+   "batch_ms": {
+    "n": 968,
+    "medianMs": 6.800000011920929,
+    "p95Ms": 12.399999976158142,
+    "minMs": 4.600000023841858,
+    "maxMs": 29.099999964237213,
+    "meanMs": 7.767871900715611
+   },
+   "ms_per_decision": 6.800000011920929,
+   "per_decision": {
+    "n": 968,
+    "medianMs": 6.800000011920929,
+    "p95Ms": 12.399999976158142,
+    "minMs": 4.600000023841858,
+    "maxMs": 29.099999964237213,
+    "meanMs": 7.767871900715611
+   },
+   "parity": {
+    "argmaxAgreement": 0.9989669421487604,
+    "n": 968
+   }
+  },
+  "done": true
+ }
+}

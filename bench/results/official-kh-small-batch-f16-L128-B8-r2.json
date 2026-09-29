@@ -1,0 +1,111 @@
+{
+ "date": "2026-09-28",
+ "run_id": "official-kh-small-batch-f16-L128-B8-r2-1790578901531",
+ "official": true,
+ "provisionalReason": null,
+ "engine": "kleinhirn-batch",
+ "model": "small-upstream",
+ "precision": "f16",
+ "bucket": 128,
+ "backend": "webgpu",
+ "ep": null,
+ "batchSize": 8,
+ "browser": "chromium-151.0.7922.34",
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "loadAvgStart": 4.744140625,
+ "loadAvgEnd": 4.248046875,
+ "loadMaxObserved": 4.744140625,
+ "baselineMb": 0,
+ "peakMemMb": null,
+ "page": {
+  "stage": "done",
+  "model": "small-upstream",
+  "precision": "f16",
+  "batch": 8,
+  "loadMs": 449.80000001192093,
+  "info": {
+   "precision": "f16",
+   "buildId": "mukvssdt",
+   "adapter": {
+    "vendor": "apple",
+    "architecture": "metal-3",
+    "device": "",
+    "description": ""
+   },
+   "limitsMode": "minimum",
+   "timestamps": true,
+   "buckets": [
+    128
+   ],
+   "gpuBytes": 54393192,
+   "downloadBytes": 159686872,
+   "tokenizerBytes": 8341713,
+   "weightBytes": 151345159,
+   "loadTiming": {
+    "fetchMs": 255.5,
+    "bodyMs": 321.80000001192093,
+    "sha256Ms": 88,
+    "uploadMs": 24.69999998807907,
+    "embedJoinMs": 11.899999976158142,
+    "manifestMs": 3.100000023841858,
+    "tokenizerMs": 152.5,
+    "planMs": 1.399999976158142
+   }
+  },
+  "adapterInfo": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "result": {
+   "batch_size": 8,
+   "n_batches": 121,
+   "n_requests": 121,
+   "batch_ms": {
+    "n": 121,
+    "medianMs": 48.19999998807907,
+    "p95Ms": 97.90000003576279,
+    "minMs": 45,
+    "maxMs": 102.80000001192093,
+    "meanMs": 65.32396694106504
+   },
+   "ms_per_decision": 6.024999998509884,
+   "per_decision": {
+    "n": 121,
+    "medianMs": 6.024999998509884,
+    "p95Ms": 12.237500004470348,
+    "minMs": 5.625,
+    "maxMs": 12.850000001490116,
+    "meanMs": 8.16549586763313
+   },
+   "parity": {
+    "argmaxAgreement": 0.9989669421487604,
+    "n": 968
+   }
+  },
+  "done": true
+ },
+ "pair": "kh-small-batch-f16-L128 B8 vs B1",
+ "repetition": 2,
+ "latency": {
+  "msPerDecision": 6.024999998509884,
+  "batchMedianMs": 48.19999998807907,
+  "batchP95Ms": 97.90000003576279,
+  "perDecisionMedianMs": 6.024999998509884,
+  "perDecisionP95Ms": 12.237500004470348,
+  "loadMs": 449.80000001192093
+ },
+ "parity": {
+  "argmaxAgreement": 0.9989669421487604,
+  "n": 968
+ },
+ "downloadBytes": 159686872,
+ "gpuBytes": 54393192,
+ "n": 121
+}

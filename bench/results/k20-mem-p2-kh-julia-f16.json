@@ -1,0 +1,90 @@
+{
+ "run_id": "k20-mem-p2-kh-julia-f16",
+ "engine": "kleinhirn-julia",
+ "model": "julia-1",
+ "precision": "f16",
+ "bucket": null,
+ "ep": null,
+ "batchSize": null,
+ "graph": null,
+ "backend": "webgpu",
+ "official": true,
+ "repetitions": 1,
+ "medianMs": 23.500999999046325,
+ "rangeMs": [
+  23.500999999046325,
+  23.500999999046325
+ ],
+ "p95Ms": 58.799999952316284,
+ "downloadBytes": 322970260,
+ "onnxBytes": null,
+ "runtimeBytes": null,
+ "gpuBytes": 115287432,
+ "peakMemMb": 1002,
+ "parity": [
+  {
+   "matchingPredictions": 100,
+   "maxAbsLogitError": 0.09082722663879395
+  }
+ ],
+ "loadAvg": [
+  [
+   3.1943359375,
+   4.8095703125
+  ]
+ ],
+ "repFiles": [
+  "bench/results/k20-mem-p2-kh-julia-f16-r1.json"
+ ],
+ "page": {
+  "stage": "done",
+  "precision": "f16",
+  "info": {
+   "precision": "f16",
+   "adapter": {
+    "vendor": "apple",
+    "architecture": "metal-3",
+    "device": "",
+    "description": ""
+   },
+   "limitsMode": "minimum",
+   "timestamps": true,
+   "buckets": [
+    512,
+    1024
+   ],
+   "gpuBytes": 115287432,
+   "downloadBytes": 322970260,
+   "tokenizerBytes": 34363188,
+   "weightBytes": 288607072,
+   "loadTiming": {
+    "fetchMs": 395.1999999284744,
+    "bodyMs": 921.8000000715256,
+    "sha256Ms": 156.39999997615814,
+    "uploadMs": 32.5,
+    "embedJoinMs": 23.899999976158142,
+    "manifestMs": 4.100000023841858,
+    "tokenizerMs": 501.7999999523163,
+    "planMs": 4.100000023841858
+   },
+   "loadMs": 962.1000000238419
+  },
+  "loadMsWarm": 3346.3000000715256,
+  "result": {
+   "requests": 100,
+   "batch_size": 1,
+   "iterations": 5,
+   "load_ms": 962.1000000238419,
+   "load_and_warm_ms": 3346.3000000715256,
+   "median_ms": 2350.0999999046326,
+   "min_ms": 2344.1999999284744,
+   "max_ms": 2358.600000023842,
+   "ms_per_request": 23.500999999046325,
+   "per_request_median_ms": 20.799999952316284,
+   "per_request_p95_ms": 58.799999952316284,
+   "matching_predictions": 100,
+   "max_abs_logit_error_vs_pytorch": 0.09082722663879395
+  },
+  "done": true
+ }
+}

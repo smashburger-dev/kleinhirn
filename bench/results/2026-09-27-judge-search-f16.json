@@ -1,0 +1,211 @@
+{
+ "date": "2026-09-27",
+ "run_id": "kh-judge-search-f16-1790534515107",
+ "engine": "kleinhirn",
+ "model": "countdown-judge",
+ "mode": "search",
+ "precision": "f16",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvg": "{ 6.87 7.13 6.79 }",
+ "stage": "done",
+ "adapterInfo": null,
+ "tasks": {
+  "solved": 30,
+  "total": 30,
+  "msPerTask": {
+   "median": 8.799999952316284,
+   "min": 5.699999988079071,
+   "max": 36.19999998807907
+  },
+  "perTask": [
+   {
+    "target": 684,
+    "solved": true,
+    "cost": 71,
+    "ms": 36.19999998807907
+   },
+   {
+    "target": 260,
+    "solved": true,
+    "cost": 54,
+    "ms": 8.600000023841858
+   },
+   {
+    "target": 737,
+    "solved": true,
+    "cost": 120,
+    "ms": 15.399999976158142
+   },
+   {
+    "target": 270,
+    "solved": true,
+    "cost": 65,
+    "ms": 7.5
+   },
+   {
+    "target": 306,
+    "solved": true,
+    "cost": 67,
+    "ms": 13.699999988079071
+   },
+   {
+    "target": 692,
+    "solved": true,
+    "cost": 65,
+    "ms": 9.400000035762787
+   },
+   {
+    "target": 544,
+    "solved": true,
+    "cost": 71,
+    "ms": 9.199999988079071
+   },
+   {
+    "target": 880,
+    "solved": true,
+    "cost": 69,
+    "ms": 8.300000011920929
+   },
+   {
+    "target": 310,
+    "solved": true,
+    "cost": 60,
+    "ms": 8.199999988079071
+   },
+   {
+    "target": 612,
+    "solved": true,
+    "cost": 64,
+    "ms": 7.5
+   },
+   {
+    "target": 468,
+    "solved": true,
+    "cost": 187,
+    "ms": 28.80000001192093
+   },
+   {
+    "target": 210,
+    "solved": true,
+    "cost": 139,
+    "ms": 17.399999976158142
+   },
+   {
+    "target": 308,
+    "solved": true,
+    "cost": 64,
+    "ms": 7.5
+   },
+   {
+    "target": 200,
+    "solved": true,
+    "cost": 67,
+    "ms": 8.600000023841858
+   },
+   {
+    "target": 361,
+    "solved": true,
+    "cost": 70,
+    "ms": 8.799999952316284
+   },
+   {
+    "target": 426,
+    "solved": true,
+    "cost": 57,
+    "ms": 8.5
+   },
+   {
+    "target": 960,
+    "solved": true,
+    "cost": 44,
+    "ms": 6.600000023841858
+   },
+   {
+    "target": 277,
+    "solved": true,
+    "cost": 127,
+    "ms": 14.199999988079071
+   },
+   {
+    "target": 841,
+    "solved": true,
+    "cost": 64,
+    "ms": 6.600000023841858
+   },
+   {
+    "target": 265,
+    "solved": true,
+    "cost": 121,
+    "ms": 11.099999964237213
+   },
+   {
+    "target": 680,
+    "solved": true,
+    "cost": 139,
+    "ms": 14.600000023841858
+   },
+   {
+    "target": 768,
+    "solved": true,
+    "cost": 138,
+    "ms": 16.80000001192093
+   },
+   {
+    "target": 460,
+    "solved": true,
+    "cost": 49,
+    "ms": 6.800000011920929
+   },
+   {
+    "target": 127,
+    "solved": true,
+    "cost": 65,
+    "ms": 6.5
+   },
+   {
+    "target": 159,
+    "solved": true,
+    "cost": 68,
+    "ms": 9
+   },
+   {
+    "target": 786,
+    "solved": true,
+    "cost": 62,
+    "ms": 8.099999964237213
+   },
+   {
+    "target": 802,
+    "solved": true,
+    "cost": 47,
+    "ms": 5.699999988079071
+   },
+   {
+    "target": 390,
+    "solved": true,
+    "cost": 66,
+    "ms": 8.400000035762787
+   },
+   {
+    "target": 914,
+    "solved": true,
+    "cost": 69,
+    "ms": 9.399999976158142
+   },
+   {
+    "target": 900,
+    "solved": true,
+    "cost": 70,
+    "ms": 9.5
+   }
+  ]
+ },
+ "gates": {
+  "solved-30-30": true
+ },
+ "info": {
+  "gpuBytes": 582572,
+  "downloadBytes": 210589,
+  "precision": "f16"
+ }
+}

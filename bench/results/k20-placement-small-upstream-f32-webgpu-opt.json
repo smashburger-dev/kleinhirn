@@ -1,0 +1,99 @@
+{
+ "date": "2026-09-29",
+ "commit": "9bd4f65",
+ "precision": "f32",
+ "ep": "webgpu",
+ "graph": "opt",
+ "capture": false,
+ "browser": "chromium-151.0.7922.34",
+ "stage": "done",
+ "error": null,
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "placements": {
+  "CPUExecutionProvider": 10,
+  "WebGpuExecutionProvider": 585
+ },
+ "cpuNodes": [
+  {
+   "name": "/Unsqueeze",
+   "op": "Unsqueeze"
+  },
+  {
+   "name": "/Expand",
+   "op": "Expand"
+  },
+  {
+   "name": "/encoder/encoder/Unsqueeze",
+   "op": "Unsqueeze"
+  },
+  {
+   "name": "/encoder/encoder/Unsqueeze_1",
+   "op": "Unsqueeze"
+  },
+  {
+   "name": "/encoder/encoder/Squeeze",
+   "op": "Squeeze"
+  },
+  {
+   "name": "/encoder/encoder/Unsqueeze_2",
+   "op": "Unsqueeze"
+  },
+  {
+   "name": "/encoder/encoder/Mul",
+   "op": "Mul"
+  },
+  {
+   "name": "/encoder/encoder/layer.0/attention/self/Cast",
+   "op": "Cast"
+  },
+  {
+   "name": "/encoder/embeddings/Unsqueeze",
+   "op": "Unsqueeze"
+  },
+  {
+   "name": "/encoder/embeddings/Cast",
+   "op": "Cast"
+  }
+ ],
+ "captureLines": [
+  "2026-09-29 10:00:54.213999 [V:onnxruntime:Default, webgpu_provider_factory.cc:145 ParseEpConfig] WebGPU EP graph capture enable: 0",
+  "2026-09-29 10:00:54.214199 [V:onnxruntime:Default, webgpu_provider_factory.cc:147 ParseEpConfig] WebGPU EP pix capture enable: 0",
+  "2026-09-29 10:00:54.533699 [I:onnxruntime:, transformer_memcpy.cc:393 AddCopyNode] Add MemcpyFromHost after /Expand_output_0 for WebGpuExecutionProvider",
+  "2026-09-29 10:00:54.533899 [I:onnxruntime:, transformer_memcpy.cc:393 AddCopyNode] Add MemcpyFromHost after /encoder/embeddings/Cast_output_0 for WebGpuExecutionProvider",
+  "2026-09-29 10:00:54.534099 [I:onnxruntime:, transformer_memcpy.cc:393 AddCopyNode] Add MemcpyFromHost after /encoder/encoder/layer.0/attention/self/Cast_output_0 for WebGpuExecutionProvider",
+  "2026-09-29 10:00:54.534299 [I:onnxruntime:, transformer_memcpy.cc:393 AddCopyNode] Add MemcpyToHost before /Cast_1_output_0 for WebGpuExecutionProvider",
+  "2026-09-29 10:00:54.534299 [I:onnxruntime:, transformer_memcpy.cc:393 AddCopyNode] Add MemcpyToHost before /Cast_2_output_0 for WebGpuExecutionProvider",
+  "2026-09-29 10:00:54.534799 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer MemcpyTransformer modified: 1 with status: OK",
+  "2026-09-29 10:00:54.599999 [V:onnxruntime:, session_state.cc:1386 VerifyEachNodeIsAssignedToAnEp]   MemcpyFromHost (Memcpy)",
+  "2026-09-29 10:00:54.600098 [V:onnxruntime:, session_state.cc:1386 VerifyEachNodeIsAssignedToAnEp]   MemcpyFromHost (Memcpy_token_289)",
+  "2026-09-29 10:00:54.600199 [V:onnxruntime:, session_state.cc:1386 VerifyEachNodeIsAssignedToAnEp]   MemcpyFromHost (Memcpy_token_290)",
+  "2026-09-29 10:00:54.600199 [V:onnxruntime:, session_state.cc:1386 VerifyEachNodeIsAssignedToAnEp]   MemcpyToHost (Memcpy_token_291)",
+  "2026-09-29 10:00:54.600398 [V:onnxruntime:, session_state.cc:1386 VerifyEachNodeIsAssignedToAnEp]   MemcpyToHost (Memcpy_token_292)"
+ ],
+ "consoleLines": 3290,
+ "relevant": [
+  "2026-09-29 10:00:54.213999 [V:onnxruntime:Default, webgpu_provider_factory.cc:145 ParseEpConfig] WebGPU EP graph capture enable: 0",
+  "2026-09-29 10:00:54.214199 [V:onnxruntime:Default, webgpu_provider_factory.cc:147 ParseEpConfig] WebGPU EP pix capture enable: 0",
+  "2026-09-29 10:00:54.483699 [V:onnxruntime:, graph_transformer_mgr.cc:55 ApplyTransformers] Applying graph transformer TransposeOptimizer_CPUExecutionProvider on step 1.",
+  "2026-09-29 10:00:54.484299 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer TransposeOptimizer_CPUExecutionProvider modified: 0 with status: OK",
+  "2026-09-29 10:00:54.533699 [I:onnxruntime:, transformer_memcpy.cc:393 AddCopyNode] Add MemcpyFromHost after /Expand_output_0 for WebGpuExecutionProvider",
+  "2026-09-29 10:00:54.533899 [I:onnxruntime:, transformer_memcpy.cc:393 AddCopyNode] Add MemcpyFromHost after /encoder/embeddings/Cast_output_0 for WebGpuExecutionProvider",
+  "2026-09-29 10:00:54.534099 [I:onnxruntime:, transformer_memcpy.cc:393 AddCopyNode] Add MemcpyFromHost after /encoder/encoder/layer.0/attention/self/Cast_output_0 for WebGpuExecutionProvider",
+  "2026-09-29 10:00:54.534299 [I:onnxruntime:, transformer_memcpy.cc:393 AddCopyNode] Add MemcpyToHost before /Cast_1_output_0 for WebGpuExecutionProvider",
+  "2026-09-29 10:00:54.534299 [I:onnxruntime:, transformer_memcpy.cc:393 AddCopyNode] Add MemcpyToHost before /Cast_2_output_0 for WebGpuExecutionProvider",
+  "2026-09-29 10:00:54.534799 [I:onnxruntime:, graph_transformer.cc:15 Apply] GraphTransformer MemcpyTransformer modified: 1 with status: OK",
+  "2026-09-29 10:00:54.540398 [V:onnxruntime:, session_state.cc:1384 VerifyEachNodeIsAssignedToAnEp]  Node(s) placed on [CPUExecutionProvider]. Number of nodes: 10",
+  "2026-09-29 10:00:54.541499 [V:onnxruntime:, session_state.cc:1384 VerifyEachNodeIsAssignedToAnEp]  Node(s) placed on [WebGpuExecutionProvider]. Number of nodes: 585",
+  "2026-09-29 10:00:54.599999 [V:onnxruntime:, session_state.cc:1386 VerifyEachNodeIsAssignedToAnEp]   MemcpyFromHost (Memcpy)",
+  "2026-09-29 10:00:54.600098 [V:onnxruntime:, session_state.cc:1386 VerifyEachNodeIsAssignedToAnEp]   MemcpyFromHost (Memcpy_token_289)",
+  "2026-09-29 10:00:54.600199 [V:onnxruntime:, session_state.cc:1386 VerifyEachNodeIsAssignedToAnEp]   MemcpyFromHost (Memcpy_token_290)",
+  "2026-09-29 10:00:54.600199 [V:onnxruntime:, session_state.cc:1386 VerifyEachNodeIsAssignedToAnEp]   MemcpyToHost (Memcpy_token_291)",
+  "2026-09-29 10:00:54.600398 [V:onnxruntime:, session_state.cc:1386 VerifyEachNodeIsAssignedToAnEp]   MemcpyToHost (Memcpy_token_292)",
+  "\u001b[0;93m2026-09-29 10:00:54.600499 [W:onnxruntime:, session_state.cc:1398 VerifyEachNodeIsAssignedToAnEp] Some nodes were not assigned to the preferred execution providers which may or may not have an negative impact on performance. e.g. ORT explicitly assigns shape related ops to CPU to improve perf.\u001b[m"
+ ]
+}

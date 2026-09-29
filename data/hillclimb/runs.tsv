@@ -1,0 +1,1 @@
+date	run_id	change	commit	engine	model	bucket	precision	argmax_agreement	max_abs_logit_diff	max_abs_prob_diff	median_ms	p95_ms	model_only_median_ms	load_ms	download_mb	gpu_mb	peak_mem_mb	browser	adapter	kept	note

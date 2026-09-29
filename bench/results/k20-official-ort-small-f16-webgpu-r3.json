@@ -1,0 +1,86 @@
+{
+ "date": "2026-09-28",
+ "run_id": "k20-official-ort-small-f16-webgpu-r3-1790635077526",
+ "official": true,
+ "provisionalReason": null,
+ "engine": "ort-web",
+ "model": "small-upstream",
+ "precision": "f16",
+ "bucket": null,
+ "backend": "webgpu",
+ "ep": "webgpu",
+ "batchSize": null,
+ "graph": null,
+ "browser": "chromium-151.0.7922.34",
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "loadAvgStart": 3.39697265625,
+ "loadAvgEnd": 3.25390625,
+ "loadMaxObserved": 3.39697265625,
+ "baselineMb": 0,
+ "peakMemMb": null,
+ "page": {
+  "stage": "done",
+  "model": "small-upstream",
+  "precision": "f16",
+  "ep": "webgpu",
+  "graph": "std",
+  "adapterInfo": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "onnxBytes": 144066929,
+  "loadMs": 873.0999999642372,
+  "downloadBytes": 170888854,
+  "latency": {
+   "n": 968,
+   "medianMs": 18.100000023841858,
+   "p95Ms": 18.600000023841858,
+   "minMs": 16.899999976158142,
+   "maxMs": 45.5,
+   "meanMs": 18.069318181904386
+  },
+  "parity": {
+   "n": 968,
+   "argmaxAgreement": 0.9979338842975206,
+   "maxAbsLogitDiff": 0.15284466743469238,
+   "meanAbsLogitDiff": 0.01657590677977101,
+   "maxAbsProbDiff": 0.053159200709676724,
+   "disagreements": [
+    696,
+    907
+   ]
+  },
+  "n": 968,
+  "done": true
+ },
+ "pair": "k20 ort-small-f16-webgpu vs ort-small-f16-webgpu-opt",
+ "repetition": 3,
+ "latency": {
+  "medianMs": 18.100000023841858,
+  "p95Ms": 18.600000023841858,
+  "loadMs": 873.0999999642372
+ },
+ "parity": {
+  "n": 968,
+  "argmaxAgreement": 0.9979338842975206,
+  "maxAbsLogitDiff": 0.15284466743469238,
+  "meanAbsLogitDiff": 0.01657590677977101,
+  "maxAbsProbDiff": 0.053159200709676724,
+  "disagreements": [
+   696,
+   907
+  ]
+ },
+ "downloadBytes": 170888854,
+ "onnxBytes": 144066929,
+ "runtimeBytes": 26821925,
+ "n": 968,
+ "file": "bench/results/k20-official-ort-small-f16-webgpu-r3.json"
+}

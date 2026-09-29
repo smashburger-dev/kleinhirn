@@ -1,0 +1,66 @@
+{
+ "date": "2026-09-28",
+ "run_id": "official-ort-small-f32-wasm-r1-1790555308113",
+ "official": true,
+ "provisionalReason": null,
+ "engine": "ort-web",
+ "model": "small-upstream",
+ "precision": "f32",
+ "bucket": null,
+ "backend": "webgpu",
+ "ep": "wasm",
+ "batchSize": null,
+ "browser": "chromium-151.0.7922.34",
+ "adapterInfo": null,
+ "loadAvgStart": 4.21,
+ "loadAvgEnd": 4.01,
+ "loadMaxObserved": 4.21,
+ "baselineMb": 1494,
+ "peakMemMb": 275,
+ "page": {
+  "stage": "done",
+  "model": "small-upstream",
+  "precision": "f32",
+  "ep": "wasm",
+  "onnxBytes": 285828729,
+  "loadMs": 743.6999999880791,
+  "downloadBytes": 312655719,
+  "latency": {
+   "n": 968,
+   "medianMs": 184,
+   "p95Ms": 186.10000002384186,
+   "minMs": 181.9000000357628,
+   "maxMs": 190.39999997615814,
+   "meanMs": 184.11291322309123
+  },
+  "parity": {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.000028014183044433594,
+   "meanAbsLogitDiff": 0.000003161766635608082,
+   "maxAbsProbDiff": 0.000009510426342396183,
+   "disagreements": []
+  },
+  "n": 968,
+  "done": true
+ },
+ "pair": "kh-wasm-vs-ort-wasm small f32 L256",
+ "repetition": 1,
+ "latency": {
+  "medianMs": 184,
+  "p95Ms": 186.10000002384186,
+  "loadMs": 743.6999999880791
+ },
+ "parity": {
+  "n": 968,
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.000028014183044433594,
+  "meanAbsLogitDiff": 0.000003161766635608082,
+  "maxAbsProbDiff": 0.000009510426342396183,
+  "disagreements": []
+ },
+ "downloadBytes": 312655719,
+ "onnxBytes": 285828729,
+ "runtimeBytes": 26826990,
+ "n": 968
+}

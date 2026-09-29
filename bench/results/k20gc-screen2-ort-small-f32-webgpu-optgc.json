@@ -1,0 +1,85 @@
+{
+ "run_id": "k20gc-screen2-ort-small-f32-webgpu-optgc",
+ "engine": "ort-web",
+ "model": "small-upstream",
+ "precision": "f32",
+ "bucket": null,
+ "ep": "webgpu",
+ "batchSize": null,
+ "graph": "optgc",
+ "capture": false,
+ "backend": "webgpu",
+ "official": true,
+ "repetitions": 1,
+ "medianMs": 17.599999964237213,
+ "rangeMs": [
+  17.599999964237213,
+  17.599999964237213
+ ],
+ "p95Ms": 18.399999976158142,
+ "downloadBytes": 347742149,
+ "onnxBytes": 320907971,
+ "runtimeBytes": 26834178,
+ "gpuBytes": null,
+ "peakMemMb": 0,
+ "parity": [
+  {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.00002300739288330078,
+   "meanAbsLogitDiff": 0.000002482126867167713,
+   "maxAbsProbDiff": 0.000006835146539208026,
+   "disagreements": []
+  }
+ ],
+ "loadAvg": [
+  [
+   5.61669921875,
+   5.4111328125
+  ]
+ ],
+ "repFiles": [
+  "bench/results/k20gc-screen2-ort-small-f32-webgpu-optgc-r1.json"
+ ],
+ "page": {
+  "stage": "done",
+  "model": "small-upstream",
+  "precision": "f32",
+  "ep": "webgpu",
+  "graph": "optgc",
+  "capture": false,
+  "adapterInfo": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "onnxBytes": 320907971,
+  "loadMs": 711.1000000238419,
+  "downloadBytes": 347742149,
+  "warmupMs": [
+   176.39999997615814,
+   20,
+   19.399999976158142,
+   19.600000023841858
+  ],
+  "latency": {
+   "n": 968,
+   "medianMs": 17.599999964237213,
+   "p95Ms": 18.399999976158142,
+   "minMs": 16.5,
+   "maxMs": 43,
+   "meanMs": 17.657128099321334
+  },
+  "parity": {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.00002300739288330078,
+   "meanAbsLogitDiff": 0.000002482126867167713,
+   "maxAbsProbDiff": 0.000006835146539208026,
+   "disagreements": []
+  },
+  "n": 968,
+  "done": true
+ }
+}

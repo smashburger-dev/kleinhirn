@@ -1,0 +1,59 @@
+{
+ "date": "2026-09-27",
+ "run_id": "kh-parity-small-upstream-f32-minimum-1790507231512",
+ "engine": "kleinhirn",
+ "model": "small-upstream",
+ "precision": "f32",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvg": "{ 10.20 16.69 17.25 }",
+ "stage": "done",
+ "backend": "wasm",
+ "info": {
+  "backend": "wasm-simd",
+  "precision": "f32",
+  "limitsMode": "minimum",
+  "buckets": [
+   128,
+   256,
+   512,
+   1024
+  ],
+  "downloadBytes": 311029292,
+  "weightBytes": 311029292,
+  "loadTiming": {
+   "loadMs": 1609.800000011921,
+   "fetchMs": 1245.8999999761581,
+   "bodyMs": 3537.4000000953674,
+   "sha256Ms": 266.99999994039536,
+   "uploadMs": 111.59999996423721,
+   "embedJoinMs": 41.90000003576279,
+   "tokenizerMs": 195.30000001192093,
+   "planMs": 0
+  },
+  "loadMs": 1671.5
+ },
+ "corpus": {
+  "n": 968,
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.000022530555725097656,
+  "meanAbsLogitDiff": 0.0000027299029050271743,
+  "maxAbsProbDiff": 0.000005952994005686829,
+  "disagreements": []
+ },
+ "twoTasks": {
+  "n": 40,
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.000011194497346878052,
+  "meanAbsLogitDiff": 0.00000230460069500483,
+  "maxAbsProbDiff": 0.0000035316811159424866,
+  "disagreements": []
+ },
+ "gates": {
+  "corpusArgmax": true,
+  "corpusLogits": true,
+  "twoTaskArgmax": true,
+  "twoTaskLogits": true,
+  "longArgmax": true,
+  "longLogits": true
+ }
+}

@@ -1,0 +1,117 @@
+{
+ "date": "2026-09-29",
+ "run_id": "k20gc-official-kh-small-f32-L128-r3-1790670771631",
+ "official": true,
+ "provisionalReason": null,
+ "engine": "kleinhirn",
+ "model": "small-upstream",
+ "precision": "f32",
+ "bucket": 128,
+ "backend": "webgpu",
+ "ep": null,
+ "batchSize": null,
+ "graph": null,
+ "capture": false,
+ "browser": "chromium-151.0.7922.34",
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "loadAvgStart": 3.97998046875,
+ "loadAvgEnd": 5.169921875,
+ "loadMaxObserved": 5.169921875,
+ "baselineMb": 0,
+ "peakMemMb": null,
+ "page": {
+  "stage": "done",
+  "model": "small-upstream",
+  "precision": "f32",
+  "backend": "webgpu",
+  "loadMs": 577.5,
+  "info": {
+   "precision": "f32",
+   "buildId": "multoxvd",
+   "adapter": {
+    "vendor": "apple",
+    "architecture": "metal-3",
+    "device": "",
+    "description": ""
+   },
+   "limitsMode": "minimum",
+   "timestamps": true,
+   "buckets": [
+    128
+   ],
+   "gpuBytes": 108720008,
+   "downloadBytes": 311011598,
+   "tokenizerBytes": 8341713,
+   "weightBytes": 302669885,
+   "loadTiming": {
+    "fetchMs": 387.39999997615814,
+    "bodyMs": 890.6999999284744,
+    "sha256Ms": 169.30000007152557,
+    "uploadMs": 35.10000002384186,
+    "embedJoinMs": 23.5,
+    "manifestMs": 2.899999976158142,
+    "tokenizerMs": 126.29999995231628,
+    "planMs": 1.399999976158142
+   }
+  },
+  "adapterInfo": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "loadMsWarm": 563.6000000238419,
+  "endToEnd": {
+   "n": 968,
+   "medianMs": 6.800000071525574,
+   "p95Ms": 12,
+   "minMs": 4.699999928474426,
+   "maxMs": 18.90000009536743,
+   "meanMs": 7.610020661033874
+  },
+  "modelOnly": {
+   "n": 968,
+   "medianMs": 6.799999952316284,
+   "p95Ms": 12,
+   "minMs": 4.599999904632568,
+   "maxMs": 20.800000071525574,
+   "meanMs": 7.518078512642995
+  },
+  "parity": {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.00002103671431541443,
+   "meanAbsLogitDiff": 0.0000024597845540558998,
+   "maxAbsProbDiff": 0.000006400925464888907,
+   "disagreements": []
+  },
+  "n": 968,
+  "done": true
+ },
+ "pair": "k20gc kh-small-f32-L128 vs ort-small-f32-webgpu-optgc-capture",
+ "repetition": 3,
+ "latency": {
+  "medianMs": 6.800000071525574,
+  "p95Ms": 12,
+  "modelOnlyMedianMs": 6.799999952316284,
+  "loadMs": 577.5,
+  "loadMsWarm": 563.6000000238419
+ },
+ "parity": {
+  "n": 968,
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.00002103671431541443,
+  "meanAbsLogitDiff": 0.0000024597845540558998,
+  "maxAbsProbDiff": 0.000006400925464888907,
+  "disagreements": []
+ },
+ "downloadBytes": 311011598,
+ "gpuBytes": 108720008,
+ "n": 968,
+ "file": "bench/results/k20gc-official-kh-small-f32-L128-r3.json"
+}

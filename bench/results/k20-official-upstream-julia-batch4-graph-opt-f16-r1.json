@@ -1,0 +1,47 @@
+{
+ "date": "2026-09-28",
+ "run_id": "k20-official-upstream-julia-batch4-graph-opt-f16-r1-1790636856648",
+ "official": true,
+ "provisionalReason": null,
+ "engine": "julia-upstream",
+ "model": "julia-1",
+ "precision": "f16",
+ "bucket": null,
+ "backend": "webgpu",
+ "ep": null,
+ "batchSize": 4,
+ "graph": "opt-f16",
+ "browser": "chromium-151.0.7922.34",
+ "adapterInfo": null,
+ "loadAvgStart": 3.3984375,
+ "loadAvgEnd": 4.3935546875,
+ "loadMaxObserved": 4.3935546875,
+ "baselineMb": 0,
+ "peakMemMb": null,
+ "page": {
+  "model": "model_opt_f16.onnx",
+  "requests": 100,
+  "batch_size": 4,
+  "iterations": 5,
+  "load_and_warm_ms": 1964.800000011921,
+  "median_ms": 1573,
+  "min_ms": 1567.199999988079,
+  "max_ms": 1594.5,
+  "ms_per_request": 15.73,
+  "matching_predictions": 100,
+  "max_abs_logit_error_vs_pytorch": 1.019991159439087
+ },
+ "pair": "k20 kh-julia-batch-f16-B1 vs upstream-julia-batch4-graph-opt-f16",
+ "repetition": 1,
+ "latency": {
+  "medianMs": 1573,
+  "msPerRequest": 15.73,
+  "loadAndWarmMs": 1964.800000011921
+ },
+ "parity": {
+  "matchingPredictions": 100,
+  "maxAbsLogitError": 1.019991159439087
+ },
+ "n": 100,
+ "file": "bench/results/k20-official-upstream-julia-batch4-graph-opt-f16-r1.json"
+}

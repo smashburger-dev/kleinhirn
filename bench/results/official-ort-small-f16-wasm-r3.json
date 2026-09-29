@@ -1,0 +1,8 @@
+{
+ "run_id": "official-ort-small-f16-wasm-r3",
+ "engine": "ort-web",
+ "pair": "ort-wasm small f16 (no kleinhirn counterpart)",
+ "repetition": 3,
+ "official": false,
+ "error": "Error: page.evaluate: Target page, context or browser has been closed"
+}

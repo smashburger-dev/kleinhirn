@@ -1,0 +1,100 @@
+{"id":"agnews:9","gold":"This example news text is about business news","predicted":"This example news text is about business news","probabilities":[1,0,0,0]}
+{"id":"agnews:267","gold":"This example news text is about business news","predicted":"This example news text is about business news","probabilities":[1,0,0,0]}
+{"id":"agnews:292","gold":"This example news text is about business news","predicted":"This example news text is about business news","probabilities":[1,0,0,0]}
+{"id":"agnews:427","gold":"This example news text is about business news","predicted":"This example news text is about business news","probabilities":[0.9242102181158803,0.07578978188411968,0,0]}
+{"id":"agnews:437","gold":"This example news text is about business news","predicted":"This example news text is about science and technology","probabilities":[0.18795645957332116,0.5078250062632407,0,0.3042185341634382]}
+{"id":"agnews:484","gold":"This example news text is about business news","predicted":"This example news text is about business news","probabilities":[0.9414423524057951,0,0,0.05855764759420495]}
+{"id":"agnews:532","gold":"This example news text is about business news","predicted":"This example news text is about business news","probabilities":[0.9249886399505964,0.040093415066826975,0,0.03491794498257661]}
+{"id":"agnews:635","gold":"This example news text is about business news","predicted":"This example news text is about sports","probabilities":[0.08277724991654045,0.2750916583497695,0.6175107589926854,0.024620332741004704]}
+{"id":"agnews:672","gold":"This example news text is about business news","predicted":"This example news text is about business news","probabilities":[1,0,0,0]}
+{"id":"agnews:763","gold":"This example news text is about business news","predicted":"This example news text is about business news","probabilities":[1,0,0,0]}
+{"id":"agnews:985","gold":"This example news text is about business news","predicted":"This example news text is about business news","probabilities":[1,0,0,0]}
+{"id":"agnews:1065","gold":"This example news text is about business news","predicted":"This example news text is about business news","probabilities":[1,0,0,0]}
+{"id":"agnews:1114","gold":"This example news text is about business news","predicted":"This example news text is about business news","probabilities":[1,0,0,0]}
+{"id":"agnews:1127","gold":"This example news text is about business news","predicted":"This example news text is about business news","probabilities":[1,0,0,0]}
+{"id":"agnews:1138","gold":"This example news text is about business news","predicted":"This example news text is about business news","probabilities":[1,0,0,0]}
+{"id":"agnews:1262","gold":"This example news text is about business news","predicted":"This example news text is about business news","probabilities":[1,0,0,0]}
+{"id":"agnews:1330","gold":"This example news text is about business news","predicted":"This example news text is about business news","probabilities":[1,0,0,0]}
+{"id":"agnews:1341","gold":"This example news text is about business news","predicted":"This example news text is about business news","probabilities":[1,0,0,0]}
+{"id":"agnews:1542","gold":"This example news text is about business news","predicted":"This example news text is about business news","probabilities":[1,0,0,0]}
+{"id":"agnews:1551","gold":"This example news text is about business news","predicted":"This example news text is about business news","probabilities":[1,0,0,0]}
+{"id":"agnews:1658","gold":"This example news text is about business news","predicted":"This example news text is about science and technology","probabilities":[0.26593409137995083,0.7340659086200492,0,0]}
+{"id":"agnews:1743","gold":"This example news text is about business news","predicted":"This example news text is about business news","probabilities":[1,0,0,0]}
+{"id":"agnews:1780","gold":"This example news text is about business news","predicted":"This example news text is about business news","probabilities":[1,0,0,0]}
+{"id":"agnews:1781","gold":"This example news text is about business news","predicted":"This example news text is about business news","probabilities":[1,0,0,0]}
+{"id":"agnews:1814","gold":"This example news text is about business news","predicted":"This example news text is about business news","probabilities":[1,0,0,0]}
+{"id":"agnews:1959","gold":"This example news text is about science and technology","predicted":"This example news text is about science and technology","probabilities":[0.046742868353182844,0.4940068763391859,0,0.45925025530763125]}
+{"id":"agnews:1970","gold":"This example news text is about science and technology","predicted":"This example news text is about science and technology","probabilities":[0.09498402300896562,0.9050159769910344,0,0]}
+{"id":"agnews:1986","gold":"This example news text is about science and technology","predicted":"This example news text is about science and technology","probabilities":[0.06698034729289812,0.9330196527071019,0,0]}
+{"id":"agnews:2183","gold":"This example news text is about science and technology","predicted":"This example news text is about science and technology","probabilities":[0.22542061073766356,0.7745793892623364,0,0]}
+{"id":"agnews:2281","gold":"This example news text is about science and technology","predicted":"This example news text is about science and technology","probabilities":[0,1,0,0]}
+{"id":"agnews:2310","gold":"This example news text is about science and technology","predicted":"This example news text is about science and technology","probabilities":[0.3155281329526364,0.6844718670473636,0,0]}
+{"id":"agnews:2371","gold":"This example news text is about science and technology","predicted":"This example news text is about science and technology","probabilities":[0,1,0,0]}
+{"id":"agnews:2463","gold":"This example news text is about science and technology","predicted":"This example news text is about science and technology","probabilities":[0,1,0,0]}
+{"id":"agnews:2512","gold":"This example news text is about science and technology","predicted":"This example news text is about science and technology","probabilities":[0,1,0,0]}
+{"id":"agnews:2657","gold":"This example news text is about science and technology","predicted":"This example news text is about science and technology","probabilities":[0,1,0,0]}
+{"id":"agnews:2694","gold":"This example news text is about science and technology","predicted":"This example news text is about science and technology","probabilities":[0,1,0,0]}
+{"id":"agnews:2867","gold":"This example news text is about science and technology","predicted":"This example news text is about science and technology","probabilities":[0.12437441606856195,0.8756255839314381,0,0]}
+{"id":"agnews:2958","gold":"This example news text is about science and technology","predicted":"This example news text is about science and technology","probabilities":[0,1,0,0]}
+{"id":"agnews:3102","gold":"This example news text is about science and technology","predicted":"This example news text is about science and technology","probabilities":[0.09044725905237541,0.9095527409476246,0,0]}
+{"id":"agnews:3150","gold":"This example news text is about science and technology","predicted":"This example news text is about science and technology","probabilities":[0,0.9162097317118535,0,0.08379026828814651]}
+{"id":"agnews:3186","gold":"This example news text is about science and technology","predicted":"This example news text is about science and technology","probabilities":[0,1,0,0]}
+{"id":"agnews:3231","gold":"This example news text is about science and technology","predicted":"This example news text is about science and technology","probabilities":[0,1,0,0]}
+{"id":"agnews:3300","gold":"This example news text is about science and technology","predicted":"This example news text is about science and technology","probabilities":[0,1,0,0]}
+{"id":"agnews:3301","gold":"This example news text is about science and technology","predicted":"This example news text is about science and technology","probabilities":[0,1,0,0]}
+{"id":"agnews:3427","gold":"This example news text is about science and technology","predicted":"This example news text is about sports","probabilities":[0,0,1,0]}
+{"id":"agnews:3592","gold":"This example news text is about science and technology","predicted":"This example news text is about science and technology","probabilities":[0,1,0,0]}
+{"id":"agnews:3675","gold":"This example news text is about science and technology","predicted":"This example news text is about science and technology","probabilities":[0,1,0,0]}
+{"id":"agnews:3720","gold":"This example news text is about science and technology","predicted":"This example news text is about science and technology","probabilities":[0.2928105042424468,0.7071894957575532,0,0]}
+{"id":"agnews:3721","gold":"This example news text is about science and technology","predicted":"This example news text is about science and technology","probabilities":[0,1,0,0]}
+{"id":"agnews:3739","gold":"This example news text is about science and technology","predicted":"This example news text is about world news","probabilities":[0,0.2268030854398004,0,0.7731969145601996]}
+{"id":"agnews:4134","gold":"This example news text is about sports","predicted":"This example news text is about sports","probabilities":[0,0,1,0]}
+{"id":"agnews:4151","gold":"This example news text is about sports","predicted":"This example news text is about sports","probabilities":[0,0,1,0]}
+{"id":"agnews:4353","gold":"This example news text is about sports","predicted":"This example news text is about sports","probabilities":[0,0,1,0]}
+{"id":"agnews:4364","gold":"This example news text is about sports","predicted":"This example news text is about sports","probabilities":[0,0,1,0]}
+{"id":"agnews:4442","gold":"This example news text is about sports","predicted":"This example news text is about sports","probabilities":[0,0,1,0]}
+{"id":"agnews:4479","gold":"This example news text is about sports","predicted":"This example news text is about sports","probabilities":[0,0,1,0]}
+{"id":"agnews:4495","gold":"This example news text is about sports","predicted":"This example news text is about sports","probabilities":[0,0,1,0]}
+{"id":"agnews:4511","gold":"This example news text is about sports","predicted":"This example news text is about sports","probabilities":[0,0,1,0]}
+{"id":"agnews:4521","gold":"This example news text is about sports","predicted":"This example news text is about sports","probabilities":[0,0,1,0]}
+{"id":"agnews:4530","gold":"This example news text is about sports","predicted":"This example news text is about sports","probabilities":[0,0,1,0]}
+{"id":"agnews:4573","gold":"This example news text is about sports","predicted":"This example news text is about sports","probabilities":[0,0,1,0]}
+{"id":"agnews:4622","gold":"This example news text is about sports","predicted":"This example news text is about sports","probabilities":[0,0,1,0]}
+{"id":"agnews:4647","gold":"This example news text is about sports","predicted":"This example news text is about sports","probabilities":[0,0,1,0]}
+{"id":"agnews:4653","gold":"This example news text is about sports","predicted":"This example news text is about sports","probabilities":[0.06103748792794576,0,0.9389625120720543,0]}
+{"id":"agnews:4850","gold":"This example news text is about sports","predicted":"This example news text is about sports","probabilities":[0,0,1,0]}
+{"id":"agnews:4854","gold":"This example news text is about sports","predicted":"This example news text is about sports","probabilities":[0,0,1,0]}
+{"id":"agnews:4890","gold":"This example news text is about sports","predicted":"This example news text is about sports","probabilities":[0,0,1,0]}
+{"id":"agnews:4932","gold":"This example news text is about sports","predicted":"This example news text is about sports","probabilities":[0,0,1,0]}
+{"id":"agnews:4997","gold":"This example news text is about sports","predicted":"This example news text is about sports","probabilities":[0,0,1,0]}
+{"id":"agnews:5132","gold":"This example news text is about sports","predicted":"This example news text is about sports","probabilities":[0,0,1,0]}
+{"id":"agnews:5160","gold":"This example news text is about sports","predicted":"This example news text is about sports","probabilities":[0,0,1,0]}
+{"id":"agnews:5197","gold":"This example news text is about sports","predicted":"This example news text is about sports","probabilities":[0,0,1,0]}
+{"id":"agnews:5357","gold":"This example news text is about sports","predicted":"This example news text is about sports","probabilities":[0,0,1,0]}
+{"id":"agnews:5527","gold":"This example news text is about sports","predicted":"This example news text is about sports","probabilities":[0,0,1,0]}
+{"id":"agnews:5619","gold":"This example news text is about sports","predicted":"This example news text is about sports","probabilities":[0,0,1,0]}
+{"id":"agnews:5775","gold":"This example news text is about world news","predicted":"This example news text is about world news","probabilities":[0,0,0,1]}
+{"id":"agnews:5839","gold":"This example news text is about world news","predicted":"This example news text is about world news","probabilities":[0,0,0,1]}
+{"id":"agnews:5895","gold":"This example news text is about world news","predicted":"This example news text is about world news","probabilities":[0,0,0,1]}
+{"id":"agnews:5961","gold":"This example news text is about world news","predicted":"This example news text is about world news","probabilities":[0,0,0,1]}
+{"id":"agnews:6000","gold":"This example news text is about world news","predicted":"This example news text is about world news","probabilities":[0,0,0,1]}
+{"id":"agnews:6004","gold":"This example news text is about world news","predicted":"This example news text is about world news","probabilities":[0,0,0,1]}
+{"id":"agnews:6044","gold":"This example news text is about world news","predicted":"This example news text is about world news","probabilities":[0,0,0,1]}
+{"id":"agnews:6493","gold":"This example news text is about world news","predicted":"This example news text is about world news","probabilities":[0,0,0,1]}
+{"id":"agnews:6571","gold":"This example news text is about world news","predicted":"This example news text is about world news","probabilities":[0,0,0,1]}
+{"id":"agnews:6607","gold":"This example news text is about world news","predicted":"This example news text is about world news","probabilities":[0,0,0,1]}
+{"id":"agnews:6685","gold":"This example news text is about world news","predicted":"This example news text is about world news","probabilities":[0,0,0,1]}
+{"id":"agnews:6700","gold":"This example news text is about world news","predicted":"This example news text is about world news","probabilities":[0,0,0,1]}
+{"id":"agnews:6802","gold":"This example news text is about world news","predicted":"This example news text is about world news","probabilities":[0,0,0,1]}
+{"id":"agnews:6839","gold":"This example news text is about world news","predicted":"This example news text is about world news","probabilities":[0,0,0,1]}
+{"id":"agnews:6894","gold":"This example news text is about world news","predicted":"This example news text is about world news","probabilities":[0.05041149567541527,0,0.02322613714402345,0.9263623671805613]}
+{"id":"agnews:6904","gold":"This example news text is about world news","predicted":"This example news text is about world news","probabilities":[0,0,0,1]}
+{"id":"agnews:6936","gold":"This example news text is about world news","predicted":"This example news text is about world news","probabilities":[0,0,0,1]}
+{"id":"agnews:6954","gold":"This example news text is about world news","predicted":"This example news text is about science and technology","probabilities":[0.26433143491413136,0.4611696379871531,0,0.27449892709871554]}
+{"id":"agnews:6974","gold":"This example news text is about world news","predicted":"This example news text is about world news","probabilities":[0,0,0,1]}
+{"id":"agnews:7205","gold":"This example news text is about world news","predicted":"This example news text is about world news","probabilities":[0,0,0,1]}
+{"id":"agnews:7344","gold":"This example news text is about world news","predicted":"This example news text is about world news","probabilities":[0,0,0,1]}
+{"id":"agnews:7384","gold":"This example news text is about world news","predicted":"This example news text is about world news","probabilities":[0,0,0,1]}
+{"id":"agnews:7407","gold":"This example news text is about world news","predicted":"This example news text is about world news","probabilities":[0,0,0,1]}
+{"id":"agnews:7409","gold":"This example news text is about world news","predicted":"This example news text is about world news","probabilities":[0,0,0,1]}
+{"id":"agnews:7430","gold":"This example news text is about world news","predicted":"This example news text is about world news","probabilities":[0,0,0,1]}
