@@ -10,27 +10,27 @@ is no inference server to pay for, and it works offline once the model
 is cached.
 
 Browsers let web pages use the graphics chip through WebGPU. kleinhirn
-ships its own GPU programs (WGSL kernels) for two model families:
-GLiNER2.5, a zero-shot classifier that takes any set of labels, and
-Julia 1, a decision model that picks one of up to 20 options. Browsers
-without WebGPU fall back to a hand-written WASM-SIMD module on the CPU.
+ships its own GPU programs (WGSL kernels) for the models it runs. Today
+these are GLiNER2.5, a zero-shot classifier that takes any set of
+labels, and Julia 1, a decision model that picks one of up to 20
+options; more encoder models are on the roadmap. Browsers without
+WebGPU fall back to a hand-written WASM-SIMD module on the CPU.
 
 The usual tool for running such models in a browser is ONNX Runtime Web
-(ORT) from Microsoft. ORT runs almost any model. kleinhirn runs a few and
-is built around them.
+(ORT) from Microsoft. It is the baseline for every speed number below.
 
-## What is measured
+## Results
 
 - **Same answers as the original.** In full precision (f32) kleinhirn
   makes the same decision as the PyTorch reference in 100 % of cases, in
   half precision (f16) in at least 99.9 %, on a 1,000-text corpus.
 - **Faster than ORT at its best.** 1.9x in f16 and 2.2x in f32 on
   WebGPU, 2.6x on the WASM path (GLiNER2.5-small, 128-token inputs,
-  M1 Pro, Chromium). "At its best" means ORT got every advantage we
-  could find: Microsoft's own graph optimizer, a two-node rewrite so
-  that ORT's graph capture can run, and graph capture itself. Together
-  they shrank our lead in f16 from about 2.7x to 1.9x, and the smaller
-  numbers are the ones we publish.
+  M1 Pro, Chromium). ORT got every advantage we could find: Microsoft's
+  own graph optimizer, a two-node rewrite so that ORT's graph capture
+  can run, and graph capture itself. Together they shrank our lead in
+  f16 from about 2.7x to 1.9x, and the smaller numbers are the ones we
+  publish.
 - **Less memory.** 45 to 59 % of ORT's peak memory, depending on the
   path (850 vs 1,442 MiB in f16).
 - **Small.** The engine is 31 KB gzip including the WASM fallback. ORT's
@@ -45,10 +45,7 @@ is built around them.
   three repetitions. Details under "How we measure" and in
   `docs/FINDINGS.md`.
 
-## Who it is for
-
-Anyone who wants text classification inside a web app without sending
-the text to a server:
+## Use cases
 
 - Learning platforms that give feedback on student answers on the
   device. The first user is argmin, a German learning platform that
@@ -65,15 +62,15 @@ the text to a server:
   options, which is what Julia 1 is trained for: which tool, which
   step, which intent.
 
-What it is not: kleinhirn does not generate text, and of GLiNER2.5 it
-implements the classification head only, not entity extraction. It has
-been measured in Chromium on an M1 Pro and on an NVIDIA L4; Safari,
-Firefox and phones are still untested. The f16 GLiNER2.5-small download
-is 152 MB, which is heavy for mobile.
+## Status
 
-## For the technically curious
+- Models: GLiNER2.5 small, base and multi (classification) and Julia 1.
+  GLiNER2.5's entity extraction is not implemented yet.
+- Measured in Chromium on an M1 Pro and on an NVIDIA L4. Safari,
+  Firefox and phones are not measured yet.
+- The f16 GLiNER2.5-small download is 152 MB.
 
-Why it is faster:
+## Why it is faster
 
 - DeBERTa's disentangled attention (content-to-position and
   position-to-content terms over relative position buckets) runs as one
@@ -90,29 +87,29 @@ Why it is faster:
   accumulates in f32.
 - The engine requests exactly the WebGPU minimum device limits (256
   invocations per workgroup, 16 KiB workgroup memory, 128 MiB per
-  storage binding), and every kernel fits inside them. A desktop GPU
-  cannot quietly use more than a phone GPU guarantees.
+  storage binding), and every kernel fits inside them, so a desktop GPU
+  cannot use more than a phone GPU guarantees.
 - A per-dispatch GPU timestamp profile shows where the time goes. For
   small-upstream f16 at L128 the GPU is busy for 6.8 of the 7.2 ms wall
   time per call in the profiling run; the encoder matmuls take 65 % of
-  that GPU time, attention 30 %. Graph capture would gain kleinhirn
-  little, faster matmul kernels would (`docs/FINDINGS.md`, section 12).
+  that GPU time, attention 30 % (`docs/FINDINGS.md`, section 12).
 
-How the ORT side is set up: the plain ONNX export goes through
-`onnxruntime.transformers.optimizer` (BERT path, the only one that
-applies to either model). For WebGPU, `convert/capture_surgery.py` then
-replaces a Squeeze/Unsqueeze pair in the attention-mask chain with one
-Reshape. Without that rewrite ORT refuses graph capture, because the
-mask chain forces copies between CPU and GPU; with it every node runs
-on WebGPU and capture cuts ORT's time by 15 to 16 %. ORT also gets its
-cheapest timing boundary: inputs in persistent GPU buffers, one readback
-per call.
+## How ORT was set up
 
-## What is next
+The plain ONNX export goes through `onnxruntime.transformers.optimizer`
+(BERT path, the only one that applies to either model). For WebGPU,
+`convert/capture_surgery.py` then replaces a Squeeze/Unsqueeze pair in
+the attention-mask chain with one Reshape. Without that rewrite ORT
+refuses graph capture, because the mask chain forces copies between CPU
+and GPU; with it every node runs on WebGPU and capture cuts ORT's time
+by 15 to 16 %. ORT also gets its cheapest timing boundary: inputs in
+persistent GPU buffers, one readback per call.
 
+## Roadmap
+
+- More encoder models.
 - An automatic kernel search for the matmuls that picks the variant
-  with the best worst case across the devices we can measure, not the
-  fastest one on a single machine.
+  with the best worst case across the devices we can measure.
 - First measurements on a phone, starting with an iPhone.
 - Early exit: stop after fewer layers when the decision is already
   clear.
