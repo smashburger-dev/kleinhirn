@@ -1,0 +1,51 @@
+name: Device result
+description: Contribute a result from the kleinhirn device benchmark page
+title: "Device result: "
+labels: ["device-result"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for measuring kleinhirn on your device. Run the benchmark page, download the result file, and fill in this form.
+        Parity is checked again by script. Latency is what your device reported. Adapter info in the file can roughly identify your device, so read the file before you post it.
+  - type: input
+    id: device
+    attributes:
+      label: Device model
+      description: iOS does not reveal the model to the page, so name it here.
+      placeholder: iPhone 16 Pro, MacBook Pro M1 Pro 16 GB, Pixel 9
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version
+      placeholder: Safari 26.0, Chrome 151, Firefox 150
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: OS version
+      placeholder: iOS 26.0, macOS 27, Android 16, Windows 11
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Result JSON
+      description: Drag the downloaded kleinhirn-result-*.json file into this box. GitHub uploads it and inserts a link. If the file is too large for your plan, paste the JSON inside a code block instead.
+    validations:
+      required: true
+  - type: checkboxes
+    id: protocol
+    attributes:
+      label: Protocol
+      description: The measurement protocol asks for these. Tick what is true.
+      options:
+        - label: The device was plugged in.
+        - label: The screen stayed on and the page tab stayed in front.
+        - label: Low power mode was off.
+        - label: Other tabs and heavy apps were closed.
+        - label: I read the result file and I am fine with publishing it.
+          required: true

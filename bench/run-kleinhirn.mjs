@@ -3,6 +3,8 @@
 // memory sampled with the calibrated footprint metric. A pending runs.tsv
 // line is appended before the run and updated afterwards.
 // Usage: node bench/run-kleinhirn.mjs <model> <precision> [change]
+// KH_OUT_ROOT=<dir>: runs.tsv, calibration and result files live under <dir>
+// (official runs start from the official worktree and write into main).
 
 import { chromium } from '@playwright/test';
 import { execFileSync } from 'node:child_process';
@@ -11,11 +13,14 @@ import {
   appendFileSync, existsSync, mkdirSync, readFileSync, statSync, writeFileSync,
 } from 'node:fs';
 import { gzipSync } from 'node:zlib';
+import { resolve } from 'node:path';
 import { median, METRICS, ownTreePids } from './mem.mjs';
 
 const BASE = 'http://localhost:5199';
 const MB = 1024 * 1024;
-const RUNS = 'data/hillclimb/runs.tsv';
+const OUT = resolve(process.env.KH_OUT_ROOT ?? '.');
+const RUNS = resolve(OUT, 'data/hillclimb/runs.tsv');
+const RESULTS = resolve(OUT, 'bench/results');
 const BUNDLE = 'dist/kleinhirn.js';
 
 const model = process.argv[2] ?? 'small-upstream';
@@ -56,7 +61,7 @@ function finishRun(runId, fields) {
 }
 
 async function main() {
-  if (!existsSync('bench/results/calibration-latest.json')) {
+  if (!existsSync(resolve(RESULTS, 'calibration-latest.json'))) {
     throw new Error('missing calibration-latest.json; run bench/run-calibrate.mjs first');
   }
   if (!existsSync(BUNDLE)) {
@@ -76,13 +81,13 @@ async function main() {
       `dev server serves a stale bundle (served lacks buildId ${buildId});`
       + ' restart the vite dev server');
   }
-  const calibration = JSON.parse(readFileSync('bench/results/calibration-latest.json', 'utf8'));
+  const calibration = JSON.parse(readFileSync(resolve(RESULTS, 'calibration-latest.json'), 'utf8'));
   const metricFn = METRICS[calibration.chosen];
   const bundleRaw = statSync(BUNDLE).size;
   const bundleGzip = gzipSync(readFileSync(BUNDLE)).byteLength;
   const runId = `kh-${model}-${precision}${buckets ? `-L${buckets}` : ''}-${Date.now()}`;
   appendRun(runId);
-  mkdirSync('bench/results', { recursive: true });
+  mkdirSync(RESULTS, { recursive: true });
 
   const browser = await chromium.launch({ headless: false, args: [
     ...(calibration.flags ?? []),
@@ -154,7 +159,7 @@ async function main() {
       sampleIntervalMs: Number(median(
         samples.slice(1).map((s, i) => s.t - samples[i].t)).toFixed(0)),
     };
-    const file = `bench/results/${out.date}-${runId}.json`;
+    const file = `${RESULTS}/${out.date}-${runId}.json`;
     writeFileSync(file, JSON.stringify(out, null, 1));
     finishRun(runId, {
       argmax_agreement: out.parity.argmaxAgreement.toFixed(4),

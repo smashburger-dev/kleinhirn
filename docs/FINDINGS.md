@@ -548,3 +548,248 @@ Findings:
   PyTorch goldens to the third digit, for small-upstream and julia-1 in
   f32 and f16, plus batch B4 in f16
   (`bench/results/2026-09-29-parity-*.json`).
+
+## 13. Device matrix and the public measurement page (K5)
+
+Question: does kleinhirn run in every browser we have a device for,
+with the same results as the PyTorch reference, and where do the
+latency targets miss?
+
+Parity holds in all 15 stages that run. The p95 latency target for
+L256 (desktop WebGPU at most 20 ms, WASM on the M1 Pro at most 300 ms)
+is missed by every row and stage, Chromium f16 included at 46.7 ms.
+The download target of 80 MB is missed by f16 at 152.3 MiB. iPhone
+measurements are still open.
+
+Setup:
+- Page: `site/` (Vite, static), built with `npm run build:site`. It
+  loads the engine as the unchanged `kleinhirn.js` plus its WASM
+  worker, hashes both, and per stage (f16, f32, wasm) measures parity
+  and latency for L128 and L256. The result is one JSON file described
+  by `site/public/device-result.schema.json` (schema
+  `kleinhirn-device-result/1`, fields in `docs/device-results.md`).
+- Protocol: 20 warm-up items, then all 200 items per bucket, one call
+  at a time, result cache off, minimum limits. Goldens: 200 L128 cases
+  from `texts1000_l128k16.json` and 200 L256 cases from
+  `long200_l256k16.json`, small-upstream. Latency is reported model
+  only and end to end (tokenization to probabilities as a
+  `Float32Array`). The gates are judged on the end-to-end p95.
+- Runners: `bench/run-site.mjs` starts one browser per run (Playwright
+  for Chromium, Brave, WebKit and Firefox; Safari through
+  `open -a Safari`, the page reports back to `tools/serve_site.mjs`).
+  `bench/k5-orchestrate.mjs` runs six rows times three repetitions,
+  interleaved, and waits for the machine load. `bench/k5-matrix.mjs`
+  writes the summary (median over repetitions, range).
+  `tools/check_device_result.mjs` recomputes parity from the logits in
+  each file.
+- Official pass: commit 3bff7d6 (page build `mun1qfia`, engine build
+  `mun1qfar`), three repetitions with a fresh browser each, weights from
+  a local server (the same files as the Hugging Face revision
+  f664c7a5ad15c81f1258e72c8f90925b64711d1d, sha256 identical). Rule: the
+  1-minute load at the start of a run below 6. The runs started under
+  the stricter bound of 4 that applied before; the highest start load
+  was 3.97. Summary `bench/results/k5-matrix-official.json`, per-run
+  files `k5-official-<row>-<timestamp>-r<n>.result.json`.
+- Rows: Chromium 151.0.7922.34, Brave 154.0.8037.58, Playwright WebKit
+  26.5, Safari 27.0, Playwright Firefox 153.0, and Chromium 151 without
+  WebGPU. Two flag sets do not turn WebGPU off in Chromium 151:
+  `--disable-webgpu --disable-features=WebGPU` leaves `navigator.gpu`
+  in place, and with `--disable-blink-features=WebGPU`
+  `requestAdapter()` still returns an adapter. With
+  `--disable-gpu --disable-software-rasterizer` `requestAdapter()`
+  returns `null` and the page picks wasm.
+- The Safari repetitions ran with Safari in front, under `caffeinate`,
+  with a check for stalls. Safari was the frontmost app in all three.
+  Repetition 3 saw two front-app changes; its numbers sit inside the
+  range of repetitions 1 and 2.
+
+### Capabilities
+
+From `environment` in the result files (repetition 1 of each row). All
+stages ran with minimum limits.
+
+| Row | shader-f16 | subgroups | Float16Array | OPFS | Adapter info | Auto stage |
+|---|---|---|---|---|---|---|
+| Chromium 151 | yes | yes (32) | yes | yes | apple, metal-3 | f16 |
+| Brave 154 | yes | yes (32) | yes | yes | apple, metal-3 | f16 |
+| Playwright WebKit 26.5 | yes | yes (32) | yes | write error | apple (all four fields) | f16 |
+| Safari 27 | yes | no | yes | yes | apple (all four fields) | f16 |
+| Firefox 153 | yes | no | yes | yes | all fields empty | f16 |
+| Chromium 151 without WebGPU | | | yes | yes | `requestAdapter()` returns `null` | wasm |
+
+- Firefox does not list the `subgroups` feature although its adapter
+  info reports subgroup sizes 4 and 128. Safari reports neither (sizes
+  `null`).
+- Playwright WebKit: the OPFS write of the storage marker fails with
+  "The operation failed for an unknown transient reason (e.g. out of
+  memory)."; Cache Storage and localStorage work.
+- A ranged request with CORS to the Hugging Face revision
+  (`Range: bytes=0-1023`) returns 206 in all seven browser runs (the
+  provisional runs `k5-site-<browser>-*.result.json`; the official runs
+  read from the local server, where it is 206 as well).
+  `crossOriginIsolated` is false in every row, so the WASM path runs
+  on one thread. `wasmSimd` is true everywhere.
+- Download per stage: f16 159,686,872 B (152.3 MiB), f32 311,011,598 B
+  (296.6 MiB), wasm 311,029,292 B (296.6 MiB).
+
+### Matrix
+
+Median over three repetitions, ms per call, 200 items per bucket. L128
+and L256 as model-only median / p95, then the end-to-end p95 for L256
+with the range over repetitions, the gate, and the weight load time
+(median, ms). Parity passed in all repetitions.
+
+| Row | Stage | Parity | L128 median / p95 | L256 median / p95 | L256 E2E p95 (range) | L256 p95 gate | Load ms |
+|---|---|---|---|---|---|---|---|
+| Chromium 151 | f16 | yes | 7.3 / 11.7 | 35.4 / 46.5 | 46.7 (45.2-47.0) | 20 ms missed | 508 |
+| Chromium 151 | f32 | yes | 7.6 / 12.3 | 36.9 / 49.3 | 49.7 (48.2-50.5) | 20 ms missed | 662 |
+| Chromium 151 | wasm | yes | 77.9 / 126.2 | 362.3 / 453.7 | 453.3 (451.8-456.7) | 300 ms missed | 761 |
+| Brave 154 | f16 | yes | 7.4 / 12.3 | 34.6 / 46.5 | 46.9 (45.3-47.3) | 20 ms missed | 433 |
+| Brave 154 | f32 | yes | 7.7 / 12.3 | 36.5 / 49.4 | 49.9 (48.4-50.3) | 20 ms missed | 671 |
+| Brave 154 | wasm | yes | 78.7 / 126.6 | 361.5 / 451.2 | 453.2 (450.9-453.5) | 300 ms missed | 841 |
+| Playwright WebKit 26.5 | f16 | yes | 19.0 / 30.0 | 79.0 / 103.0 | 103.0 (103.0-105.0) | 20 ms missed | 410 |
+| Playwright WebKit 26.5 | f32 | yes | 19.0 / 30.0 | 80.0 / 104.0 | 105.0 (104.0-108.0) | 20 ms missed | 582 |
+| Playwright WebKit 26.5 | wasm | yes | 154.5 / 253.0 | 694.0 / 869.0 | 861.0 (860.0-873.0) | 300 ms missed | 708 |
+| Safari 27 | f16 | yes | 20.0 / 31.0 | 82.0 / 107.0 | 107.0 (107.0-109.0) | 20 ms missed | 440 |
+| Safari 27 | f32 | yes | 20.0 / 31.0 | 84.5 / 109.0 | 109.0 (108.0-111.0) | 20 ms missed | 674 |
+| Safari 27 | wasm | yes | 160.0 / 262.0 | 709.5 / 890.0 | 887.0 (883.0-898.0) | 300 ms missed | 756 |
+| Firefox 153 | f16 | yes | 109.0 / 111.0 | 110.0 / 215.0 | 215.0 (214.0-220.0) | 20 ms missed | 612 |
+| Firefox 153 | f32 | yes | 109.0 / 111.0 | 110.0 / 217.0 | 219.0 (218.0-219.0) | 20 ms missed | 852 |
+| Chromium 151 without WebGPU | wasm | yes | 78.3 / 126.0 | 364.3 / 455.5 | 455.6 (455.0-458.1) | 300 ms missed | 983 |
+
+Firefox wasm is missing: the full stage would take about 70 minutes and
+was not run (see diagnoses).
+
+Parity (minimum over all repetitions, 200 cases per bucket): argmax
+agreement is 100 % in every row. The largest f16 logit difference is
+2.10e-2 (Chromium, Brave) and 1.82e-2 (WebKit, Safari, Firefox); the
+largest f16 probability difference is 3.91e-3 to 4.06e-3 against the
+gate of 1e-2. f32 and wasm stay at 3.08e-5 (logit) or below.
+
+The auto stage is f16 in every row with WebGPU and wasm without.
+
+### Memory
+
+Peak above the baseline before loading, median (range) over three
+repetitions, MiB. The number is the growth of the whole browser process
+tree in the runner (the method per row is in `runMemoryMethod` of the
+summary): browser, download buffers and engine together. It is not the
+engine's own peak and not a value for a phone. The engine's GPU buffers
+are 57,249,484 B (54.6 MiB, f16) and 114,169,100 B (108.9 MiB, f32).
+
+| Row | Peak above baseline, MiB |
+|---|---|
+| Chromium 151 | 1,237 (1,068-1,330) |
+| Brave 154 | 1,035 (995-1,187) |
+| Playwright WebKit 26.5 | 1,218 (1,211-1,602) |
+| Safari 27 | 1,569 (1,447-1,688) |
+| Firefox 153 | 1,371 (1,323-1,374) |
+| Chromium 151 without WebGPU | 610 (505-620) |
+
+The method is coarse for WebKit and Safari: the WebKit processes are
+not in the runner's tree (WebKit), and Safari keeps its process pool
+between runs (Safari). The Safari row sums all WebContent and GPU
+processes on the machine.
+
+### Diagnoses
+
+Firefox readback (`bench/diag/readback.html`,
+`bench/results/k5-diag-readback-*.result.json`, 200 iterations after 10
+warm-up iterations). Variants: plain (write 4 B, copy, submit,
+`mapAsync`), done (as plain, with `onSubmittedWorkDone()` first),
+emptydone (empty submit and `onSubmittedWorkDone()`). Median / p95, ms:
+
+| Browser | plain | done | emptydone |
+|---|---|---|---|
+| Chromium 151 | 0.40 / 0.7 | 0.45 / 0.9 | 0.10 / 0.2 |
+| Firefox 153 | 104 / 106 | 208 / 210 | 104 / 106 |
+| Safari 27 | 0 / 1 | 0 / 1 | 0 / 1 |
+
+Safari reports whole milliseconds; its timer is coarser. In Firefox
+every asynchronous completion (`mapAsync` or `onSubmittedWorkDone`)
+costs about 104 ms, whatever the work. An engine call ends with one
+readback and therefore costs about 109 ms in f16 and f32, in L128 and
+L256 alike; the L256 p95 of 215 ms is two completions.
+
+Firefox wasm (`k5-diag-firefox-wasm-*.result.json`, 5 warm-up items,
+20 items per bucket, two runs, one with Firefox in front): uniformly
+slow with no outliers. L128 1,904.5 ms (range 951-2,677) and 1,897 ms,
+L256 7,857.5 ms (5,149-9,692) and 7,747 ms per item (model only,
+median). That projects to 70 and 72 minutes for the full stage.
+`crossOriginIsolated` is false, SIMD true, 10 cores. The cause is not
+investigated.
+
+Safari (`k5-diag-safari-*.result.json`, model only, ms). Rows: webdriver
+(driven by safaridriver, 100 items), local (`open -a Safari`, no
+WebDriver, 100 items), local-front (the runner brings Safari back to
+the front whenever another app is in front), local-noactivate (no
+bringing back), webdriver-locked (screen locked, 40 items),
+local-locked-caffeinate (locked under `caffeinate`, 40 items; the
+front-app log shows other apps in front part of the time).
+
+| Run | f16 L128 median / p95 | f16 L256 median / p95 | wasm L256 median / maximum |
+|---|---|---|---|
+| webdriver | 20 / 30 | 80 / 105 | 700.5 / 899 |
+| local | 20 / 31 | 81 / 105 | 3,185 / 1,282,780 |
+| local-front | 20 / 31 | 80 / 104 | 703.5 / 894 |
+| local-noactivate | 20 / 31 | 80 / 104 | 867 / 643,010 |
+| webdriver-locked | 55.5 / 280 | 148.5 / 292 | 10,537 / 12,909 |
+| local-locked-caffeinate | 67 / 2,680 | 98 / 184 | 734 / 1,444 |
+
+The slowdown does not come from WebDriver: the WebDriver run is clean,
+and the run without WebDriver and without a front guard stalls in wasm
+L256 for up to 21.4 minutes at a time (1,282,780 ms). Safari runs
+cleanly when its window is in front and the screen is unlocked. With a
+locked screen wasm L256 takes about 10 s at the median, and one f16
+item in local-locked-caffeinate took 186 s.
+
+### Control pair
+
+ABAB, Chromium, f16: the page (`stages=f16`, 200 items per bucket)
+against the engine runner (`bench/run-kleinhirn.mjs`, small-upstream
+f16, 968 goldens), three repetitions, start load 3.17 to 3.93. Files
+`k5-control-page-chromium-*.result.json` and
+`2026-09-29-kh-small-upstream-f16-*.json`.
+
+| Measuring path | Model-only median / p95 | End-to-end median / p95 |
+|---|---|---|
+| Page L128 | 7.2 / 11.5 | 7.4 / 11.8 |
+| Runner L128 | 6.1 / 11.4 | 6.3 / 11.6 |
+
+The page is 1.1 ms above the runner at the median and 0.1 to 0.2 ms at
+the p95. The item sets differ (200 against 968), so the gap cannot be
+put down to the page alone. The 6.5 ms of section 11 comes from a
+different pass of the same runner.
+
+### Findings
+
+- Parity holds on every stage that runs, on every desktop browser we
+  have. Latency misses the L256 target everywhere: Chromium f16 at 46.7
+  ms against 20 and WASM at 453.3 ms against 300. The desktop gap in
+  Chromium is more than a factor of two; the kernel search has to close
+  it. The dispatch profile of section 12 covers L128 only.
+- The 80 MB download target is missed by f16 at 152.3 MiB. Vocabulary
+  compression and int8 weights are the way down.
+- Safari 27 and Firefox 153 have no `subgroups`. The kernel rule of
+  minimum limits and no subgroups stays right; a subgroup variant would
+  be unavailable on two of five browsers. `shader-f16` is present in
+  every desktop browser.
+- Firefox pays about 104 ms per asynchronous completion. While a call
+  ends with one readback, its latency there is at least 109 ms. Keeping
+  the number of completions per call small matters more there than
+  kernel speed. Whether the batch API spreads the 104 ms over the batch
+  is not measured.
+- Safari needs its window in front and the screen unlocked. A page
+  cannot enforce that.
+- Playwright WebKit and Safari run at about 2.6 to 2.8 times the
+  Chromium time (L128 19 to 20 ms against 7.3 ms). The cause is not
+  investigated.
+- Without WebGPU (Chromium with `--disable-gpu`) the page picks wasm
+  and passes parity; the wasm latency matches Chromium with WebGPU
+  (L128 median 78.3 against 77.9 ms).
+
+### Open
+
+iPhone 16 Pro with iOS 27: whether `shader-f16` is available, the
+memory peak and when iOS ends the tab, the age of the storage marker on
+a second visit after days, and latency against the 60 ms phone target.

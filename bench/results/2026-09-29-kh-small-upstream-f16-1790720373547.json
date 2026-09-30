@@ -1,0 +1,83 @@
+{
+ "date": "2026-09-29",
+ "run_id": "kh-small-upstream-f16-1790720373547",
+ "engine": "kleinhirn",
+ "model": "small-upstream",
+ "precision": "f16",
+ "bucket": "L128K16",
+ "backend": "webgpu",
+ "browser": "chromium-151.0.7922.34",
+ "flags": [],
+ "loadAvg": "3.64 4.14 4.47",
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "memMetric": "footprint",
+ "baselineMb": 1082.5,
+ "peakMemMb": 54.5,
+ "loadMs": 394.2999999523163,
+ "loadMsWarm": 405.3000000715256,
+ "info": {
+  "precision": "f16",
+  "buildId": "mun1qfar",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "buckets": [
+   128
+  ],
+  "gpuBytes": 54393192,
+  "downloadBytes": 159686872,
+  "tokenizerBytes": 8341713,
+  "weightBytes": 151345159,
+  "loadTiming": {
+   "fetchMs": 235.20000004768372,
+   "bodyMs": 290.10000002384186,
+   "sha256Ms": 87.70000004768372,
+   "uploadMs": 19.899999976158142,
+   "embedJoinMs": 11.699999928474426,
+   "manifestMs": 2.8000000715255737,
+   "tokenizerMs": 122.5,
+   "planMs": 1.399999976158142
+  }
+ },
+ "bundleBytes": 86956,
+ "bundleGzipBytes": 21134,
+ "endToEnd": {
+  "n": 968,
+  "medianMs": 6.299999952316284,
+  "p95Ms": 11.600000023841858,
+  "minMs": 4.399999976158142,
+  "maxMs": 18,
+  "meanMs": 7.205268594967432
+ },
+ "modelOnly": {
+  "n": 968,
+  "medianMs": 6.100000023841858,
+  "p95Ms": 11.399999976158142,
+  "minMs": 4.399999976158142,
+  "maxMs": 20.100000023841858,
+  "meanMs": 7.056198347452258
+ },
+ "parity": {
+  "n": 968,
+  "argmaxAgreement": 0.9989669421487604,
+  "maxAbsLogitDiff": 0.021021127700805664,
+  "meanAbsLogitDiff": 0.002451575229575565,
+  "maxAbsProbDiff": 0.004190899084261679,
+  "disagreements": [
+   907
+  ]
+ },
+ "n": 968,
+ "sampleCount": 55,
+ "sampleIntervalMs": 293
+}

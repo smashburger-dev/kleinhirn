@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>kleinhirn device benchmark</title>
+<link rel="icon" href="data:,">
+  <script type="module" crossorigin src="./assets/index-QrD30UPW.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-ByaqKf_k.css">
+</head>
+<body data-state="idle">
+<main>
+  <h1>kleinhirn device benchmark</h1>
+  <p class="lead">Measure how kleinhirn runs on this device: same answers as the PyTorch reference, and how fast. The model is GLiNER2.5-small, the tests are 128-token and 256-token inputs. It takes a few minutes. <span id="lead-size">Downloads: f16 about 152 MB, f32 about 297 MB (shared with wasm), all stages about 449 MB.</span></p>
+
+  <section id="privacy" class="note">
+    <h2>Privacy</h2>
+    <p>Nothing is uploaded. The page talks to its own origin and to the weights host, nothing else. There are no scripts, fonts, analytics or cookies from third parties. The result file contains WebGPU adapter info and limits, which can roughly identify a device, so read it before you share it.</p>
+  </section>
+
+  <section id="protocol" class="note">
+    <h2>Before you start</h2>
+    <ul>
+      <li>Plug the device in.</li>
+      <li>Keep the screen on and this tab in front. Background tabs are throttled.</li>
+      <li>Turn low power mode off.</li>
+      <li>Close other tabs and heavy apps.</li>
+    </ul>
+  </section>
+
+  <section id="env">
+    <h2>This device</h2>
+    <p id="env-summary" class="muted">Collecting.</p>
+    <p id="storage-line" class="muted"></p>
+    <div class="fields">
+      <label>Device model <span class="req">required</span>
+        <input id="f-model" type="text" placeholder="e.g. iPhone 16 Pro, MacBook Pro M1 Pro, Pixel 9" autocomplete="off"></label>
+      <label>OS version <span class="muted">optional</span>
+        <input id="f-os" type="text" placeholder="e.g. iOS 26.0, macOS 27, Android 16" autocomplete="off"></label>
+    </div>
+    <fieldset>
+      <legend>Protocol</legend>
+      <label class="check"><input type="checkbox" id="p-plugged"> plugged in</label>
+      <label class="check"><input type="checkbox" id="p-screen"> screen on, tab in front</label>
+      <label class="check"><input type="checkbox" id="p-lowpower"> low power mode off</label>
+      <label class="check"><input type="checkbox" id="p-tabs"> other tabs closed</label>
+    </fieldset>
+  </section>
+
+  <section id="stages">
+    <h2>Stages</h2>
+    <p class="muted">Fallback chain, in order. The page first loads the engine the way an app would (auto) and reports which stage it picks, then measures each selected stage on its own.</p>
+    <div id="stage-list"></div>
+    <p id="auto-pick" class="muted"></p>
+  </section>
+
+  <section id="run">
+    <button id="start" type="button" disabled>Start measurement</button>
+    <p id="progress" role="status" aria-live="polite" class="muted"></p>
+  </section>
+
+  <section id="out" hidden>
+    <h2>Result</h2>
+    <div id="summary"></div>
+    <div class="buttons">
+      <button id="download" type="button">Download JSON</button>
+      <button id="copy" type="button" class="secondary">Copy JSON</button>
+    </div>
+    <p class="muted">To contribute, open a GitHub issue with the device-result form and drag the downloaded file into it. Parity is checked again by script. Latency is what your device reported.</p>
+    <details>
+      <summary>Full JSON</summary>
+      <pre id="json" tabindex="0"></pre>
+    </details>
+  </section>
+</main>
+</body>
+</html>

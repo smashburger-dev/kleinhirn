@@ -1,0 +1,986 @@
+{
+ "schema": "kleinhirn-device-result/1",
+ "createdAt": "2026-09-29T19:04:13.853Z",
+ "page": {
+  "url": "http://127.0.0.1:5201/index.html",
+  "buildId": "mumyqra3",
+  "engineCommit": "8035e73-dirty",
+  "engineBuildId": "mumyqr1z",
+  "bundleSha256": "dc7159d00168226c4c476c3980cbd567d3870e65c9fcd39c31f52c62dbc9ba77",
+  "workerSha256": "22c40545256975c7f795162cacbd6c6e31f3826960442eedb8956830c7893dba"
+ },
+ "weights": {
+  "base": "http://127.0.0.1:5201/models/small-upstream/",
+  "stages": {
+   "f16": {
+    "manifestSha256": "55ec9de9a8adf1b814d966b6402733b32ca3adfb2bd72bcbf52e2af8a567e632",
+    "shards": [
+     {
+      "file": "weights-0.bin",
+      "bytes": 92160000,
+      "sha256": "46ac9b4bf9643d1dbba27f7a98ac7faadd5ea60d9044b87be7c03aa32c227f16"
+     },
+     {
+      "file": "weights-1.bin",
+      "bytes": 59164418,
+      "sha256": "5b6d81079c7ca547851c9f58ad4cff7c74f072df402b196eed8d05ef5973e1a7"
+     }
+    ],
+    "tokenizerBytes": 8341713,
+    "error": null
+   },
+   "f32": {
+    "manifestSha256": "94bf16498ad58d2cab48f9a4d952a296e704f1568a610a06a9e45a263ca7c881",
+    "shards": [
+     {
+      "file": "weights-0.bin",
+      "bytes": 92160000,
+      "sha256": "96c788eb94f34347639a4cafea9fbd1780a9ba2848ef69feef1bcb26ffde47b2"
+     },
+     {
+      "file": "weights-1.bin",
+      "bytes": 92160000,
+      "sha256": "65a3cf781bc409f8c2a881911789dc02535a9298dc719f682285b770c34bc7d6"
+     },
+     {
+      "file": "weights-2.bin",
+      "bytes": 93499392,
+      "sha256": "aeda8509c05bdb89df356a09b88903cc3cbd9a61a6a00e78a039dd8e6b38eac8"
+     },
+     {
+      "file": "weights-3.bin",
+      "bytes": 24829444,
+      "sha256": "70fc5ed9f56c50911cf578e06eaf7a89abec64c5ca4e9627907c105d0c180698"
+     }
+    ],
+    "tokenizerBytes": 8341713,
+    "error": null
+   }
+  }
+ },
+ "goldens": {
+  "sha256": "a97f4d0cd3d9f4546ac6bd1e282ab9ffdc30c9ae9e6167cf1383800bcabd24fb",
+  "model": "small-upstream",
+  "buckets": [
+   "L128",
+   "L256"
+  ],
+  "sourceSha256": {
+   "texts1000_l128k16.json": "4234e34db61fff36b7d121f7614910ae07f78c6e95f577997953bd7e3bc5509c",
+   "long200_l256k16.json": "d3982b87b7afd1b8943eba4139f233fcc79beee4ee51693d61bc662b06c109f9"
+  }
+ },
+ "device": {
+  "model": "MacBook Pro M1 Pro 16 GB (runner)",
+  "os": "",
+  "protocol": {
+   "pluggedIn": false,
+   "screenOn": false,
+   "lowPowerModeOff": false,
+   "otherTabsClosed": false
+  }
+ },
+ "environment": {
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:153.0) Gecko/20100101 Firefox/153.0",
+  "userAgentData": null,
+  "hardwareConcurrency": 10,
+  "deviceMemory": null,
+  "maxTouchPoints": 0,
+  "isSecureContext": true,
+  "crossOriginIsolated": false,
+  "wasmSimd": true,
+  "workerHardwareConcurrency": 10,
+  "float16Array": "function",
+  "opfs": true,
+  "storagePersisted": false,
+  "storageQuotaBytes": 10737418240,
+  "webgpu": {
+   "present": true,
+   "adapter": {
+    "info": {
+     "vendor": "",
+     "architecture": "",
+     "device": "",
+     "description": "",
+     "subgroupMinSize": 4,
+     "subgroupMaxSize": 128,
+     "isFallbackAdapter": false
+    },
+    "features": [
+     "bgra8unorm-storage",
+     "core-features-and-limits",
+     "depth-clip-control",
+     "depth32float-stencil8",
+     "float32-filterable",
+     "indirect-first-instance",
+     "rg11b10ufloat-renderable",
+     "shader-f16",
+     "texture-compression-astc",
+     "texture-compression-astc-sliced-3d",
+     "texture-compression-bc",
+     "texture-compression-bc-sliced-3d",
+     "texture-compression-etc2",
+     "timestamp-query"
+    ],
+    "limits": {
+     "maxTextureDimension1D": 16384,
+     "maxTextureDimension2D": 16384,
+     "maxTextureDimension3D": 2048,
+     "maxTextureArrayLayers": 2048,
+     "maxBindGroups": 8,
+     "maxBindGroupsPlusVertexBuffers": 24,
+     "maxBindingsPerBindGroup": 4294967295,
+     "maxDynamicUniformBuffersPerPipelineLayout": 12,
+     "maxDynamicStorageBuffersPerPipelineLayout": 8,
+     "maxSampledTexturesPerShaderStage": 64,
+     "maxSamplersPerShaderStage": 16,
+     "maxStorageBuffersPerShaderStage": 8,
+     "maxStorageTexturesPerShaderStage": 32,
+     "maxUniformBuffersPerShaderStage": 12,
+     "maxUniformBufferBindingSize": 1073741824,
+     "maxStorageBufferBindingSize": 1073741824,
+     "minUniformBufferOffsetAlignment": 256,
+     "minStorageBufferOffsetAlignment": 32,
+     "maxVertexBuffers": 8,
+     "maxBufferSize": 1073741824,
+     "maxVertexAttributes": 31,
+     "maxVertexBufferArrayStride": 2048,
+     "maxInterStageShaderVariables": 31,
+     "maxColorAttachments": 8,
+     "maxColorAttachmentBytesPerSample": 64,
+     "maxComputeWorkgroupStorageSize": 32768,
+     "maxComputeInvocationsPerWorkgroup": 1024,
+     "maxComputeWorkgroupSizeX": 1024,
+     "maxComputeWorkgroupSizeY": 1024,
+     "maxComputeWorkgroupSizeZ": 1024,
+     "maxComputeWorkgroupsPerDimension": 65535,
+     "maxStorageBuffersInVertexStage": 8,
+     "maxStorageBuffersInFragmentStage": 8,
+     "maxStorageTexturesInVertexStage": 32,
+     "maxStorageTexturesInFragmentStage": 32
+    }
+   },
+   "error": null
+  },
+  "rangeProbe": {
+   "url": "http://127.0.0.1:5201/models/small-upstream/f32/weights-0.bin",
+   "status": 206,
+   "bytesReceived": 1024,
+   "contentRange": "bytes 0-1023/92160000",
+   "error": null
+  },
+  "storageMarker": {
+   "checkedAt": "2026-09-29T18:56:16.399Z",
+   "opfs": {
+    "present": false,
+    "firstSeen": null,
+    "lastSeen": null,
+    "visits": null,
+    "ageDays": null,
+    "readError": null,
+    "writeError": null
+   },
+   "cache": {
+    "present": false,
+    "firstSeen": null,
+    "lastSeen": null,
+    "visits": null,
+    "ageDays": null,
+    "readError": null,
+    "writeError": null
+   },
+   "localStorage": {
+    "present": false,
+    "firstSeen": null,
+    "lastSeen": null,
+    "visits": null,
+    "ageDays": null,
+    "readError": null,
+    "writeError": null
+   }
+  }
+ },
+ "autoStage": {
+  "picked": "f16",
+  "manifest": "http://127.0.0.1:5201/models/small-upstream/f16/manifest.json",
+  "error": null,
+  "reusedAsMeasured": false
+ },
+ "stages": [
+  {
+   "name": "wasm",
+   "ok": true,
+   "error": null,
+   "errorPhase": null,
+   "parityPass": true,
+   "gateRule": "exact",
+   "load": {
+    "wallMs": 1000,
+    "loadTiming": {
+     "loadMs": 980,
+     "fetchMs": 549,
+     "bodyMs": 1069,
+     "sha256Ms": 534,
+     "uploadMs": 91,
+     "embedJoinMs": 86,
+     "tokenizerMs": 244,
+     "planMs": 0
+    },
+    "backend": "wasm-simd",
+    "precision": "f32",
+    "hasF16": true,
+    "limitsMode": "minimum",
+    "gpuBytes": null,
+    "downloadBytes": 311029292,
+    "engineBuildId": null
+   },
+   "parity": {
+    "L128": {
+     "summary": {
+      "n": 20,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.00001106124877914283,
+      "meanAbsLogitDiff": 0.000003521512993319778,
+      "maxAbsProbDiff": 0.0000030095276104535884,
+      "disagreements": []
+     },
+     "pass": true,
+     "missing": 0,
+     "perCaseLogits": [
+      [
+       -1.09979,
+       -2.8611,
+       -0.183034,
+       -3.42239,
+       -0.642882,
+       -3.19543,
+       -2.92444,
+       -3.08767,
+       -2.40417,
+       -2.35465
+      ],
+      [
+       0.209813,
+       -4.19761,
+       -3.35981,
+       -0.539107,
+       -2.48971,
+       -3.8178,
+       -3.89944,
+       -4.07477,
+       -3.74005,
+       -1.63506
+      ],
+      [
+       2.48323,
+       -5.81443,
+       -5.59422,
+       -1.66883,
+       -3.31748,
+       -5.95773,
+       -1.08595,
+       -4.83131,
+       -3.90188,
+       -2.79526
+      ],
+      [
+       -0.78582,
+       -3.48619,
+       -2.65793,
+       -2.97057,
+       -2.23806,
+       -2.42004,
+       -2.17892,
+       -3.18128,
+       -2.48616,
+       -2.31472
+      ],
+      [
+       -1.28857,
+       -2.90995,
+       -2.48968,
+       -1.55056,
+       -0.409317,
+       -3.74565,
+       -2.89562,
+       -2.96993,
+       -3.51972,
+       -1.1786
+      ],
+      [
+       -0.877172,
+       -1.61309,
+       -3.11572,
+       -1.33563,
+       -1.77364,
+       -3.22963,
+       -1.51992,
+       -2.2768,
+       -2.49365,
+       -1.96348
+      ],
+      [
+       -0.576975,
+       -1.40408,
+       -2.27499,
+       -1.09261,
+       -1.21316,
+       -2.48078,
+       -1.89742,
+       -1.50389,
+       -1.59245,
+       -1.60283
+      ],
+      [
+       -0.832665,
+       -3.67642,
+       -3.01757,
+       -3.00721,
+       -2.59089,
+       -1.3605,
+       -2.51144,
+       0.399712,
+       -2.17487,
+       -2.62677
+      ],
+      [
+       -0.622446,
+       -3.9025,
+       0.106091,
+       -2.51496,
+       -2.64847,
+       -2.73602,
+       -2.69806,
+       -2.74327,
+       -3.06539,
+       -1.19346
+      ],
+      [
+       0.757364,
+       -5.05076,
+       -5.58145,
+       0.0270599,
+       -2.90563,
+       -5.46609,
+       -4.08029,
+       -4.48566,
+       -3.94637,
+       -2.54467
+      ],
+      [
+       -1.29053,
+       -5.3375,
+       -5.46788,
+       -4.29031,
+       -4.16014,
+       -6.15584,
+       -5.48075,
+       1.90954,
+       -5.36076,
+       -4.5243
+      ],
+      [
+       -0.282438,
+       -1.9291,
+       -3.20724,
+       -1.63851,
+       -0.8019,
+       -3.3876,
+       -1.16916,
+       -2.16549,
+       -2.44061,
+       -2.64282
+      ],
+      [
+       0.974146,
+       -2.38897,
+       -2.95002,
+       -0.22258,
+       -2.33781,
+       -2.84142,
+       -1.29148,
+       -2.90536,
+       -1.85446,
+       -1.2255
+      ],
+      [
+       0.200486,
+       -2.63082,
+       -2.39524,
+       -1.56476,
+       -1.21294,
+       -2.23519,
+       -2.2323,
+       -2.41903,
+       -2.62188,
+       -1.64165
+      ],
+      [
+       0.0435811,
+       -3.6065,
+       -2.27261,
+       -1.35009,
+       -1.37934,
+       -3.19394,
+       -2.35525,
+       -1.89537,
+       -2.75561,
+       -2.02878
+      ],
+      [
+       -0.232274,
+       -3.02493,
+       -1.88419,
+       -3.22514,
+       -1.42275,
+       -0.925083,
+       -1.75552,
+       -0.405038,
+       -2.20878,
+       -2.6606
+      ],
+      [
+       -2.6132,
+       3.90015,
+       -4.19539,
+       -5.24402,
+       -4.6235,
+       -1.26321,
+       -5.10005,
+       -5.46492,
+       -5.52063,
+       -4.9102
+      ],
+      [
+       -0.157125,
+       0.237621,
+       -1.85248,
+       -2.21022,
+       -2.61255,
+       -2.86407,
+       -1.33246,
+       -3.35213,
+       -2.08022,
+       -2.54898
+      ],
+      [
+       -0.659108,
+       -3.59808,
+       -3.72285,
+       -2.82715,
+       -2.41058,
+       -3.53171,
+       -1.44454,
+       -3.17083,
+       -1.46301,
+       -2.01118
+      ],
+      [
+       -1.31481,
+       -3.31668,
+       -1.37262,
+       -1.73739,
+       -1.21457,
+       0.0117857,
+       -2.86607,
+       -1.93498,
+       -2.51293,
+       -1.93577
+      ]
+     ]
+    },
+    "L256": {
+     "summary": {
+      "n": 20,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000009633407592968268,
+      "meanAbsLogitDiff": 0.0000029578669915205584,
+      "maxAbsProbDiff": 0.000002350282652274771,
+      "disagreements": []
+     },
+     "pass": true,
+     "missing": 0,
+     "perCaseLogits": [
+      [
+       -0.778545,
+       -1.15507,
+       -3.37267,
+       0.890895,
+       0.0174818,
+       -3.58684,
+       -2.77774,
+       -2.94563,
+       -1.91699,
+       -1.87404
+      ],
+      [
+       -0.945659,
+       -2.50698,
+       -2.67034,
+       1.1294,
+       -0.959165,
+       -1.30979,
+       -2.02188,
+       -1.89208,
+       -0.894556,
+       -1.87203
+      ],
+      [
+       -0.849827,
+       -2.21032,
+       -2.41769,
+       -0.0928311,
+       -1.45181,
+       -2.44473,
+       -0.682316,
+       -1.77317,
+       -2.08031,
+       -1.72903
+      ],
+      [
+       0.134659,
+       -2.2094,
+       -3.74051,
+       2.21231,
+       -3.22471,
+       -2.90783,
+       -3.66697,
+       -3.87713,
+       -0.518948,
+       -2.36279
+      ],
+      [
+       -0.738046,
+       -2.75893,
+       -3.16854,
+       -0.0975984,
+       -0.964183,
+       -3.58534,
+       -3.02113,
+       -2.77268,
+       -2.21584,
+       -1.89452
+      ],
+      [
+       -0.92034,
+       -0.955061,
+       -2.13724,
+       -0.953322,
+       -1.19352,
+       -1.75157,
+       -2.50404,
+       -2.16547,
+       -1.86753,
+       -1.76825
+      ],
+      [
+       -1.48861,
+       -2.1163,
+       -2.62388,
+       -1.71677,
+       1.35186,
+       -3.3886,
+       -2.5649,
+       -3.20871,
+       -2.389,
+       -2.17085
+      ],
+      [
+       -1.14266,
+       -1.54045,
+       -0.783328,
+       0.136671,
+       -2.62429,
+       -2.81105,
+       -0.303081,
+       -2.90649,
+       -2.26596,
+       -1.77911
+      ],
+      [
+       -0.20134,
+       -1.2756,
+       -3.54669,
+       0.167057,
+       -1.86152,
+       -3.65883,
+       -2.41782,
+       -2.76001,
+       -2.36275,
+       -1.78531
+      ],
+      [
+       0.0892444,
+       -1.88255,
+       -2.78912,
+       1.20791,
+       -2.25619,
+       -2.05907,
+       -1.99717,
+       -1.78488,
+       -1.91139,
+       -2.01692
+      ],
+      [
+       -1.58607,
+       -2.08787,
+       -2.6652,
+       -1.03788,
+       0.649588,
+       -2.54742,
+       -1.25572,
+       -1.48228,
+       -2.07059,
+       -1.63954
+      ],
+      [
+       0.36463,
+       -4.19766,
+       -4.69784,
+       2.24902,
+       -4.0145,
+       -5.21566,
+       -3.98475,
+       -4.88283,
+       -3.3318,
+       -2.69984
+      ],
+      [
+       -0.0342423,
+       -2.29242,
+       -2.6,
+       0.557177,
+       -1.59407,
+       -3.13408,
+       -2.57972,
+       -2.15811,
+       -2.87294,
+       -1.33481
+      ],
+      [
+       0.338949,
+       -1.2933,
+       -1.3266,
+       -0.69356,
+       -3.00345,
+       -3.08323,
+       -1.92347,
+       -2.68306,
+       -2.56055,
+       -1.67233
+      ],
+      [
+       -0.289768,
+       -2.11337,
+       -2.31441,
+       1.1861,
+       -2.53524,
+       -3.46035,
+       -3.41342,
+       -2.09402,
+       -3.54948,
+       -2.09628
+      ],
+      [
+       -2.05786,
+       -2.69286,
+       -3.87998,
+       0.704467,
+       1.35218,
+       -4.33328,
+       -3.39141,
+       -3.8307,
+       -2.84994,
+       -2.30474
+      ],
+      [
+       -0.829414,
+       -2.89146,
+       -3.30136,
+       1.92756,
+       -2.9023,
+       -3.47993,
+       -2.27761,
+       -2.40119,
+       -2.45074,
+       -2.12765
+      ],
+      [
+       -1.02727,
+       -1.24342,
+       -2.60804,
+       -1.97404,
+       -3.02948,
+       -0.413643,
+       -0.210061,
+       -2.05359,
+       0.429102,
+       -2.07768
+      ],
+      [
+       -0.802217,
+       -2.82735,
+       -2.88842,
+       0.923178,
+       -1.64837,
+       -3.14601,
+       -2.45802,
+       -3.11397,
+       -2.16315,
+       -1.29686
+      ],
+      [
+       -1.32723,
+       -2.7158,
+       -0.011512,
+       -0.940366,
+       -1.33597,
+       -2.17227,
+       -2.14931,
+       -2.22532,
+       -2.24023,
+       -1.35402
+      ]
+     ]
+    }
+   },
+   "latency": {
+    "L128": {
+     "e2e": {
+      "n": 20,
+      "medianMs": 1903.5,
+      "p95Ms": 2717,
+      "minMs": 947,
+      "maxMs": 2717,
+      "meanMs": 1846.35,
+      "skipped": 0
+     },
+     "modelOnly": {
+      "n": 20,
+      "medianMs": 1897,
+      "p95Ms": 2717,
+      "minMs": 935,
+      "maxMs": 2717,
+      "meanMs": 1842.5,
+      "skipped": 0
+     }
+    },
+    "L256": {
+     "e2e": {
+      "n": 20,
+      "medianMs": 7672,
+      "p95Ms": 9885,
+      "minMs": 5126,
+      "maxMs": 9885,
+      "meanMs": 7743.75,
+      "skipped": 0
+     },
+     "modelOnly": {
+      "n": 20,
+      "medianMs": 7747,
+      "p95Ms": 9504,
+      "minMs": 5063,
+      "maxMs": 9504,
+      "meanMs": 7705.85,
+      "skipped": 0
+     }
+    }
+   },
+   "trace": {
+    "L128": {
+     "e2eMs": [
+      1476,
+      2262,
+      1576,
+      947,
+      2061,
+      2233,
+      2344,
+      1345,
+      2636,
+      2385,
+      1129,
+      1777,
+      2717,
+      2063,
+      1526,
+      2030,
+      1256,
+      2351,
+      1067,
+      1746
+     ],
+     "e2eStartMs": [
+      0,
+      1476,
+      3739,
+      5315,
+      6262,
+      8323,
+      10557,
+      12901,
+      14246,
+      16882,
+      19267,
+      20396,
+      22173,
+      24890,
+      26954,
+      28480,
+      30510,
+      31766,
+      34117,
+      35185
+     ],
+     "modelOnlyMs": [
+      1459,
+      2277,
+      1541,
+      935,
+      2068,
+      2232,
+      2346,
+      1358,
+      2620,
+      2376,
+      1131,
+      1782,
+      2717,
+      2076,
+      1514,
+      2012,
+      1255,
+      2358,
+      1062,
+      1731
+     ],
+     "modelOnlyStartMs": [
+      0,
+      1459,
+      3736,
+      5277,
+      6213,
+      8282,
+      10515,
+      12861,
+      14219,
+      16839,
+      19215,
+      20346,
+      22128,
+      24845,
+      26921,
+      28436,
+      30449,
+      31704,
+      34063,
+      35125
+     ]
+    },
+    "L256": {
+     "e2eMs": [
+      8317,
+      8561,
+      5126,
+      9671,
+      6493,
+      8086,
+      6253,
+      9885,
+      7207,
+      8051,
+      6347,
+      7210,
+      7405,
+      7764,
+      8594,
+      6761,
+      7580,
+      8830,
+      9166,
+      7568
+     ],
+     "e2eStartMs": [
+      0,
+      8317,
+      16878,
+      22004,
+      31675,
+      38168,
+      46255,
+      52508,
+      62393,
+      69602,
+      77658,
+      84006,
+      91217,
+      98625,
+      106390,
+      114985,
+      121747,
+      129328,
+      138160,
+      147326
+     ],
+     "modelOnlyMs": [
+      8106,
+      8460,
+      5063,
+      9481,
+      6411,
+      8006,
+      6157,
+      9504,
+      7193,
+      7985,
+      6341,
+      7223,
+      7399,
+      7801,
+      8627,
+      6747,
+      7596,
+      8987,
+      9337,
+      7693
+     ],
+     "modelOnlyStartMs": [
+      0,
+      8108,
+      16569,
+      21632,
+      31114,
+      37526,
+      45536,
+      51695,
+      61200,
+      68394,
+      76380,
+      82722,
+      89951,
+      97350,
+      105153,
+      113782,
+      120530,
+      128126,
+      137113,
+      146451
+     ]
+    }
+   },
+   "memory": {
+    "gpuBytes": null,
+    "jsHeapMeasurable": false,
+    "jsHeapBaselineBytes": null,
+    "jsHeapPeakBytes": null,
+    "note": "Peak memory is not measurable in this browser (no performance.memory). iOS has no web API for peak memory."
+   }
+  }
+ ],
+ "protocol": {
+  "warmup": 5,
+  "limit": 20,
+  "trace": true,
+  "diagnostic": true
+ }
+}

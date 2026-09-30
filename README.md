@@ -66,9 +66,43 @@ The usual tool for running such models in a browser is ONNX Runtime Web
 
 - Models: GLiNER2.5 small, base and multi (classification) and Julia 1.
   GLiNER2.5's entity extraction is not implemented yet.
-- Measured in Chromium on an M1 Pro and on an NVIDIA L4. Safari,
-  Firefox and phones are not measured yet.
+- Measured on an M1 Pro in Chromium, Brave, Playwright WebKit, Safari
+  27, Playwright Firefox 153 and Chromium without WebGPU, and on an
+  NVIDIA L4. Parity with the PyTorch reference holds in every stage that
+  runs (device matrix: [FINDINGS section 13](docs/FINDINGS.md)).
+- The latency targets for the 256-token bucket (p95 of 20 ms on desktop
+  WebGPU, 300 ms for WASM) are missed in every row: 46.7 ms for f16 and
+  453 ms for WASM in Chromium, 107 ms for f16 in Safari, 215 ms in
+  Firefox, where every asynchronous GPU readback costs about 104 ms.
+- Phones are next: the first measurement will be an iPhone 16 Pro.
 - The f16 GLiNER2.5-small download is 152 MB.
+
+## Measure your device
+
+The repository holds a static page, `site/`, that runs the engine on the
+device that opens it. It loads the weights from Hugging Face, checks
+parity against the goldens, measures latency for two length buckets on
+every stage the device supports (f16, f32, WASM), and shows one JSON
+file you can download. Page address:
+https://smashburger-dev.github.io/kleinhirn/
+
+- Nothing is uploaded. The page requests only itself and the weights
+  from Hugging Face. The JSON stays on your device until you share it.
+- The file holds the user agent, core count, memory class, the WebGPU
+  adapter info, features and limits, and what you type into the device
+  field. Adapter info and features can roughly identify a device model.
+  Read the file before you share it.
+- The page keeps a small marker (first visit, last visit, visit count)
+  in browser storage to measure how long storage survives on the
+  device. The marker holds no other data.
+- To contribute, open an issue with the "Device result" form and attach
+  the file. A maintainer runs `tools/check_device_result.mjs`, which
+  recomputes parity from the logits in the file, and adds the result to
+  [`docs/COMMUNITY.md`](docs/COMMUNITY.md).
+- Community numbers are separate from the official matrix. Parity is
+  verified by script; latency is self-reported and unverified. One tab
+  on one device is one sample. The file format is in
+  [`docs/device-results.md`](docs/device-results.md).
 
 ## Why it is faster
 
@@ -448,6 +482,8 @@ convert/   checkpoint -> weight format, goldens, numpy reference forward
 bench/     measurement pages + Playwright runners + k9 suite + results
 tests/     Node tests, corpus, goldens (per model)
 tools/     corpus builder, pinned model/dataset downloaders
+site/      device measurement page (source)
+pages/     prebuilt page served by GitHub Pages, no weights
 docs/      ARCHITECTURE, RESEARCH, BENCHMARKS, FINDINGS
 models/    checkpoints and weights, never in git
 ```

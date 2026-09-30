@@ -1,0 +1,2146 @@
+{
+ "schema": "kleinhirn-k5-matrix-official/1",
+ "generatedBy": "bench/k5-matrix.mjs",
+ "generatedAt": "2026-09-29T23:08:45.723Z",
+ "commit": [
+  "3bff7d6"
+ ],
+ "protocol": "warm-up 20, all 200 items per bucket, 3 reps, fresh browser per rep, interleaved across rows (Safari reps ran after the other rows); weights=local (same files as HF revision f664c7a5ad15c81f1258e72c8f90925b64711d1d, sha256 identical)",
+ "loadRule": "start-load rule < 6 (Noa, 30.09.)",
+ "loadRuleNote": "The runs were started under the stricter limit of 4 that applied before Noa raised it to 6; maxStartLoad1min below shows the highest 1-minute load at any start.",
+ "maxStartLoad1min": 3.97,
+ "gates": {
+  "parity": "per stage as K3 (f32 and wasm exact, f16 >= 99.5 % argmax), all reps",
+  "l256P95Ms": {
+   "f16": 20,
+   "f32": 20,
+   "wasm": 300
+  },
+  "judgedOn": "median across reps of the end-to-end p95; model-only shown too"
+ },
+ "browserVersions": {
+  "chromium": "chromium-151.0.7922.34",
+  "brave": "brave-154.0.8037.58",
+  "webkit": "webkit-26.5",
+  "safari": "safari-27.0",
+  "firefox": "firefox-153.0",
+  "chromium-nogpu": "chromium-nogpu-151.0.7922.34"
+ },
+ "loadAtStart": {
+  "chromium": [
+   "3.72 5.77 6.58",
+   "3.91 4.74 5.28",
+   "3.00 4.57 4.98"
+  ],
+  "brave": [
+   "3.71 5.20 6.02",
+   "3.62 4.44 4.99",
+   "3.36 4.30 4.73"
+  ],
+  "webkit": [
+   "3.39 5.02 5.62",
+   "3.49 4.85 5.12",
+   "2.90 4.39 4.73"
+  ],
+  "safari": [
+   "3.08 6.69 7.43",
+   "3.97 7.00 7.61",
+   "3.56 5.48 6.84"
+  ],
+  "firefox": [
+   "3.78 4.73 5.89",
+   "3.28 4.48 5.04",
+   "2.72 4.45 4.71"
+  ],
+  "chromium-nogpu": [
+   "3.09 4.54 5.39",
+   "2.95 4.48 4.99",
+   "2.57 4.08 4.53"
+  ]
+ },
+ "loadWaitMinutesTotal": 99,
+ "rows": [
+  {
+   "row": "chromium",
+   "browser": "chromium-151.0.7922.34",
+   "reps": [
+    {
+     "rep": 1,
+     "file": "k5-official-chromium-20260929T190923-r1.json",
+     "loadAvgStart": "3.72 5.77 6.58",
+     "waitedMin": 0,
+     "provisional": false,
+     "dirtyTree": false,
+     "frontApps": [
+      "loginwindow"
+     ],
+     "frontChanges": 0,
+     "error": null,
+     "checkerErrors": [],
+     "safariMode": null,
+     "memoryPeakMinusBaselineMb": 1068
+    },
+    {
+     "rep": 2,
+     "file": "k5-official-chromium-20260929T210509-r2.json",
+     "loadAvgStart": "3.91 4.74 5.28",
+     "waitedMin": 0,
+     "provisional": false,
+     "dirtyTree": false,
+     "frontApps": [
+      "loginwindow"
+     ],
+     "frontChanges": 0,
+     "error": null,
+     "checkerErrors": [],
+     "safariMode": null,
+     "memoryPeakMinusBaselineMb": 1237
+    },
+    {
+     "rep": 3,
+     "file": "k5-official-chromium-20260929T214825-r3.json",
+     "loadAvgStart": "3.00 4.57 4.98",
+     "waitedMin": 0,
+     "provisional": false,
+     "dirtyTree": false,
+     "frontApps": [
+      "loginwindow"
+     ],
+     "frontChanges": 0,
+     "error": null,
+     "checkerErrors": [],
+     "safariMode": null,
+     "memoryPeakMinusBaselineMb": 1329.5
+    }
+   ],
+   "runMemoryPeakMinusBaselineMb": {
+    "median": 1237,
+    "min": 1068,
+    "max": 1329.5,
+    "n": 3
+   },
+   "runMemoryMethod": "footprint of the runner process tree, every 100 ms; peak minus median of the samples before page load",
+   "stages": {
+    "f16": {
+     "ran": true,
+     "repsOk": 3,
+     "repsTried": 3,
+     "parity": {
+      "passAllReps": true,
+      "minArgmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.02101862770080576,
+      "maxAbsProbDiff": 0.003914857897589219
+     },
+     "latency": {
+      "L128": {
+       "modelOnly": {
+        "median": {
+         "median": 7.300000011920929,
+         "min": 7.200000047683716,
+         "max": 7.300000011920929,
+         "n": 3
+        },
+        "p95": {
+         "median": 11.700000047683716,
+         "min": 11.600000023841858,
+         "max": 11.900000095367432,
+         "n": 3
+        }
+       },
+       "e2e": {
+        "median": {
+         "median": 7.599999964237213,
+         "min": 7.399999976158142,
+         "max": 7.600000023841858,
+         "n": 3
+        },
+        "p95": {
+         "median": 12.5,
+         "min": 11.800000071525574,
+         "max": 12.799999952316284,
+         "n": 3
+        }
+       }
+      },
+      "L256": {
+       "modelOnly": {
+        "median": {
+         "median": 35.44999998807907,
+         "min": 33.69999998807907,
+         "max": 36.60000002384186,
+         "n": 3
+        },
+        "p95": {
+         "median": 46.5,
+         "min": 44.800000071525574,
+         "max": 46.89999997615814,
+         "n": 3
+        }
+       },
+       "e2e": {
+        "median": {
+         "median": 35.250000059604645,
+         "min": 34.15000003576279,
+         "max": 35.60000002384186,
+         "n": 3
+        },
+        "p95": {
+         "median": 46.700000047683716,
+         "min": 45.200000047683716,
+         "max": 47,
+         "n": 3
+        }
+       }
+      }
+     },
+     "loadWallMs": {
+      "median": 508.3000000715256,
+      "min": 444.6999999284744,
+      "max": 532.6000000238419,
+      "n": 3
+     },
+     "gpuBytes": 57249484,
+     "jsHeapPeakMinusBaselineMb": {
+      "median": 8.30281925201416,
+      "min": 7.604561805725098,
+      "max": 79.95549011230469,
+      "n": 3
+     },
+     "gates": {
+      "parity": "pass",
+      "l256P95": {
+       "limitMs": 20,
+       "e2eMs": 46.700000047683716,
+       "modelOnlyMs": 46.5,
+       "e2e": "fail",
+       "modelOnly": "fail"
+      }
+     }
+    },
+    "f32": {
+     "ran": true,
+     "repsOk": 3,
+     "repsTried": 3,
+     "parity": {
+      "passAllReps": true,
+      "minArgmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000021034632921218543,
+      "maxAbsProbDiff": 0.000006229869409180022
+     },
+     "latency": {
+      "L128": {
+       "modelOnly": {
+        "median": {
+         "median": 7.600000023841858,
+         "min": 7.5,
+         "max": 7.75,
+         "n": 3
+        },
+        "p95": {
+         "median": 12.299999952316284,
+         "min": 12.199999928474426,
+         "max": 13,
+         "n": 3
+        }
+       },
+       "e2e": {
+        "median": {
+         "median": 7.799999952316284,
+         "min": 7.600000023841858,
+         "max": 7.799999952316284,
+         "n": 3
+        },
+        "p95": {
+         "median": 12.399999976158142,
+         "min": 12.299999952316284,
+         "max": 12.700000047683716,
+         "n": 3
+        }
+       }
+      },
+      "L256": {
+       "modelOnly": {
+        "median": {
+         "median": 36.94999998807907,
+         "min": 35.950000047683716,
+         "max": 37.549999952316284,
+         "n": 3
+        },
+        "p95": {
+         "median": 49.300000071525574,
+         "min": 47.89999997615814,
+         "max": 49.5,
+         "n": 3
+        }
+       },
+       "e2e": {
+        "median": {
+         "median": 37.65000003576279,
+         "min": 36.299999952316284,
+         "max": 38.05000001192093,
+         "n": 3
+        },
+        "p95": {
+         "median": 49.699999928474426,
+         "min": 48.199999928474426,
+         "max": 50.5,
+         "n": 3
+        }
+       }
+      }
+     },
+     "loadWallMs": {
+      "median": 662.2999999523163,
+      "min": 637.5,
+      "max": 695.2999999523163,
+      "n": 3
+     },
+     "gpuBytes": 114169100,
+     "jsHeapPeakMinusBaselineMb": {
+      "median": 686.1864013671875,
+      "min": 633.9107179641724,
+      "max": 686.209171295166,
+      "n": 3
+     },
+     "gates": {
+      "parity": "pass",
+      "l256P95": {
+       "limitMs": 20,
+       "e2eMs": 49.699999928474426,
+       "modelOnlyMs": 49.300000071525574,
+       "e2e": "fail",
+       "modelOnly": "fail"
+      }
+     }
+    },
+    "wasm": {
+     "ran": true,
+     "repsOk": 3,
+     "repsTried": 3,
+     "parity": {
+      "passAllReps": true,
+      "minArgmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.00001916549682601243,
+      "maxAbsProbDiff": 0.000006000731789468361
+     },
+     "latency": {
+      "L128": {
+       "modelOnly": {
+        "median": {
+         "median": 77.90000003576279,
+         "min": 77.79999995231628,
+         "max": 79,
+         "n": 3
+        },
+        "p95": {
+         "median": 126.19999992847443,
+         "min": 125.30000007152557,
+         "max": 127.5,
+         "n": 3
+        }
+       },
+       "e2e": {
+        "median": {
+         "median": 78.34999996423721,
+         "min": 78.14999997615814,
+         "max": 78.3500000834465,
+         "n": 3
+        },
+        "p95": {
+         "median": 125,
+         "min": 124.90000009536743,
+         "max": 126.10000002384186,
+         "n": 3
+        }
+       }
+      },
+      "L256": {
+       "modelOnly": {
+        "median": {
+         "median": 362.30000001192093,
+         "min": 362.19999998807907,
+         "max": 363.7999999523163,
+         "n": 3
+        },
+        "p95": {
+         "median": 453.6999999284744,
+         "min": 453.60000002384186,
+         "max": 454.5,
+         "n": 3
+        }
+       },
+       "e2e": {
+        "median": {
+         "median": 362.30000001192093,
+         "min": 361.89999997615814,
+         "max": 363.7999999523163,
+         "n": 3
+        },
+        "p95": {
+         "median": 453.2999999523163,
+         "min": 451.8000000715256,
+         "max": 456.6999999284744,
+         "n": 3
+        }
+       }
+      }
+     },
+     "loadWallMs": {
+      "median": 761,
+      "min": 749.1000000238419,
+      "max": 878.1999999284744,
+      "n": 3
+     },
+     "gpuBytes": null,
+     "jsHeapPeakMinusBaselineMb": {
+      "median": 0.12387943267822266,
+      "min": 0.11845111846923828,
+      "max": 0.12806415557861328,
+      "n": 3
+     },
+     "gates": {
+      "parity": "pass",
+      "l256P95": {
+       "limitMs": 300,
+       "e2eMs": 453.2999999523163,
+       "modelOnlyMs": 453.6999999284744,
+       "e2e": "fail",
+       "modelOnly": "fail"
+      }
+     }
+    }
+   },
+   "adapter": {
+    "vendor": "apple",
+    "architecture": "metal-3",
+    "device": "",
+    "description": "",
+    "subgroupMinSize": 32,
+    "subgroupMaxSize": 32,
+    "isFallbackAdapter": false
+   },
+   "environment": {
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    "hardwareConcurrency": 10,
+    "crossOriginIsolated": false,
+    "wasmSimd": true
+   }
+  },
+  {
+   "row": "brave",
+   "browser": "brave-154.0.8037.58",
+   "reps": [
+    {
+     "rep": 1,
+     "file": "k5-official-brave-20260929T191928-r1.json",
+     "loadAvgStart": "3.71 5.20 6.02",
+     "waitedMin": 0,
+     "provisional": false,
+     "dirtyTree": false,
+     "frontApps": [
+      "loginwindow"
+     ],
+     "frontChanges": 0,
+     "error": null,
+     "checkerErrors": [],
+     "safariMode": null,
+     "memoryPeakMinusBaselineMb": 1035
+    },
+    {
+     "rep": 2,
+     "file": "k5-official-brave-20260929T211015-r2.json",
+     "loadAvgStart": "3.62 4.44 4.99",
+     "waitedMin": 0,
+     "provisional": false,
+     "dirtyTree": false,
+     "frontApps": [
+      "loginwindow"
+     ],
+     "frontChanges": 0,
+     "error": null,
+     "checkerErrors": [],
+     "safariMode": null,
+     "memoryPeakMinusBaselineMb": 995
+    },
+    {
+     "rep": 3,
+     "file": "k5-official-brave-20260929T215328-r3.json",
+     "loadAvgStart": "3.36 4.30 4.73",
+     "waitedMin": 0,
+     "provisional": false,
+     "dirtyTree": false,
+     "frontApps": [
+      "loginwindow"
+     ],
+     "frontChanges": 0,
+     "error": null,
+     "checkerErrors": [],
+     "safariMode": null,
+     "memoryPeakMinusBaselineMb": 1186.5
+    }
+   ],
+   "runMemoryPeakMinusBaselineMb": {
+    "median": 1035,
+    "min": 995,
+    "max": 1186.5,
+    "n": 3
+   },
+   "runMemoryMethod": "footprint of the runner process tree, every 100 ms; peak minus median of the samples before page load",
+   "stages": {
+    "f16": {
+     "ran": true,
+     "repsOk": 3,
+     "repsTried": 3,
+     "parity": {
+      "passAllReps": true,
+      "minArgmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.02101862770080576,
+      "maxAbsProbDiff": 0.003914857897589219
+     },
+     "latency": {
+      "L128": {
+       "modelOnly": {
+        "median": {
+         "median": 7.399999976158142,
+         "min": 7.299999952316284,
+         "max": 7.399999976158142,
+         "n": 3
+        },
+        "p95": {
+         "median": 12.299999952316284,
+         "min": 11.599999904632568,
+         "max": 12.300000071525574,
+         "n": 3
+        }
+       },
+       "e2e": {
+        "median": {
+         "median": 7.5,
+         "min": 7.5,
+         "max": 7.600000023841858,
+         "n": 3
+        },
+        "p95": {
+         "median": 12.100000023841858,
+         "min": 11.899999976158142,
+         "max": 12.599999904632568,
+         "n": 3
+        }
+       }
+      },
+      "L256": {
+       "modelOnly": {
+        "median": {
+         "median": 34.55000001192093,
+         "min": 33.549999952316284,
+         "max": 35.05000001192093,
+         "n": 3
+        },
+        "p95": {
+         "median": 46.5,
+         "min": 44.800000071525574,
+         "max": 46.60000002384186,
+         "n": 3
+        }
+       },
+       "e2e": {
+        "median": {
+         "median": 35.09999996423721,
+         "min": 34.05000001192093,
+         "max": 35.55000001192093,
+         "n": 3
+        },
+        "p95": {
+         "median": 46.89999997615814,
+         "min": 45.300000071525574,
+         "max": 47.299999952316284,
+         "n": 3
+        }
+       }
+      }
+     },
+     "loadWallMs": {
+      "median": 432.60000002384186,
+      "min": 432.10000002384186,
+      "max": 488.1999999284744,
+      "n": 3
+     },
+     "gpuBytes": 57249484,
+     "jsHeapPeakMinusBaselineMb": {
+      "median": 8.005891799926758,
+      "min": 8.005754470825195,
+      "max": 8.155736923217773,
+      "n": 3
+     },
+     "gates": {
+      "parity": "pass",
+      "l256P95": {
+       "limitMs": 20,
+       "e2eMs": 46.89999997615814,
+       "modelOnlyMs": 46.5,
+       "e2e": "fail",
+       "modelOnly": "fail"
+      }
+     }
+    },
+    "f32": {
+     "ran": true,
+     "repsOk": 3,
+     "repsTried": 3,
+     "parity": {
+      "passAllReps": true,
+      "minArgmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000021034632921218543,
+      "maxAbsProbDiff": 0.000006229869409180022
+     },
+     "latency": {
+      "L128": {
+       "modelOnly": {
+        "median": {
+         "median": 7.700000047683716,
+         "min": 7.5,
+         "max": 7.799999952316284,
+         "n": 3
+        },
+        "p95": {
+         "median": 12.299999952316284,
+         "min": 12.100000023841858,
+         "max": 13,
+         "n": 3
+        }
+       },
+       "e2e": {
+        "median": {
+         "median": 7.800000071525574,
+         "min": 7.699999928474426,
+         "max": 7.899999976158142,
+         "n": 3
+        },
+        "p95": {
+         "median": 12.399999976158142,
+         "min": 12.299999952316284,
+         "max": 12.699999928474426,
+         "n": 3
+        }
+       }
+      },
+      "L256": {
+       "modelOnly": {
+        "median": {
+         "median": 36.5,
+         "min": 35.5,
+         "max": 37,
+         "n": 3
+        },
+        "p95": {
+         "median": 49.39999997615814,
+         "min": 47.700000047683716,
+         "max": 49.39999997615814,
+         "n": 3
+        }
+       },
+       "e2e": {
+        "median": {
+         "median": 36.999999940395355,
+         "min": 36,
+         "max": 37.5,
+         "n": 3
+        },
+        "p95": {
+         "median": 49.89999997615814,
+         "min": 48.39999997615814,
+         "max": 50.300000071525574,
+         "n": 3
+        }
+       }
+      }
+     },
+     "loadWallMs": {
+      "median": 671.3999999761581,
+      "min": 669.2000000476837,
+      "max": 731.1000000238419,
+      "n": 3
+     },
+     "gpuBytes": 114169100,
+     "jsHeapPeakMinusBaselineMb": {
+      "median": 685.3824844360352,
+      "min": 541.2745046615601,
+      "max": 685.5422134399414,
+      "n": 3
+     },
+     "gates": {
+      "parity": "pass",
+      "l256P95": {
+       "limitMs": 20,
+       "e2eMs": 49.89999997615814,
+       "modelOnlyMs": 49.39999997615814,
+       "e2e": "fail",
+       "modelOnly": "fail"
+      }
+     }
+    },
+    "wasm": {
+     "ran": true,
+     "repsOk": 3,
+     "repsTried": 3,
+     "parity": {
+      "passAllReps": true,
+      "minArgmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.00001916549682601243,
+      "maxAbsProbDiff": 0.000006000731789468361
+     },
+     "latency": {
+      "L128": {
+       "modelOnly": {
+        "median": {
+         "median": 78.69999992847443,
+         "min": 78.14999997615814,
+         "max": 79.35000002384186,
+         "n": 3
+        },
+        "p95": {
+         "median": 126.60000002384186,
+         "min": 126.39999997615814,
+         "max": 128.19999992847443,
+         "n": 3
+        }
+       },
+       "e2e": {
+        "median": {
+         "median": 78.5,
+         "min": 78,
+         "max": 79.59999996423721,
+         "n": 3
+        },
+        "p95": {
+         "median": 125.79999995231628,
+         "min": 125.70000004768372,
+         "max": 127.60000002384186,
+         "n": 3
+        }
+       }
+      },
+      "L256": {
+       "modelOnly": {
+        "median": {
+         "median": 361.4500000476837,
+         "min": 360.5,
+         "max": 363.69999998807907,
+         "n": 3
+        },
+        "p95": {
+         "median": 451.2000000476837,
+         "min": 449.7000000476837,
+         "max": 452.7000000476837,
+         "n": 3
+        }
+       },
+       "e2e": {
+        "median": {
+         "median": 363.19999998807907,
+         "min": 361.1500000357628,
+         "max": 364.2000000476837,
+         "n": 3
+        },
+        "p95": {
+         "median": 453.2000000476837,
+         "min": 450.89999997615814,
+         "max": 453.5,
+         "n": 3
+        }
+       }
+      }
+     },
+     "loadWallMs": {
+      "median": 840.8000000715256,
+      "min": 837.4000000953674,
+      "max": 1009.3999999761581,
+      "n": 3
+     },
+     "gpuBytes": null,
+     "jsHeapPeakMinusBaselineMb": {
+      "median": 0.8799219131469727,
+      "min": 0.8752565383911133,
+      "max": 0.8808679580688477,
+      "n": 3
+     },
+     "gates": {
+      "parity": "pass",
+      "l256P95": {
+       "limitMs": 300,
+       "e2eMs": 453.2000000476837,
+       "modelOnlyMs": 451.2000000476837,
+       "e2e": "fail",
+       "modelOnly": "fail"
+      }
+     }
+    }
+   },
+   "adapter": {
+    "vendor": "apple",
+    "architecture": "metal-3",
+    "device": "",
+    "description": "",
+    "subgroupMinSize": 32,
+    "subgroupMaxSize": 32,
+    "isFallbackAdapter": false
+   },
+   "environment": {
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+    "hardwareConcurrency": 7,
+    "crossOriginIsolated": false,
+    "wasmSimd": true
+   }
+  },
+  {
+   "row": "webkit",
+   "browser": "webkit-26.5",
+   "reps": [
+    {
+     "rep": 1,
+     "file": "k5-official-webkit-20260929T194536-r1.json",
+     "loadAvgStart": "3.39 5.02 5.62",
+     "waitedMin": 0,
+     "provisional": false,
+     "dirtyTree": false,
+     "frontApps": [
+      "loginwindow"
+     ],
+     "frontChanges": 0,
+     "error": null,
+     "checkerErrors": [],
+     "safariMode": null,
+     "memoryPeakMinusBaselineMb": 1211
+    },
+    {
+     "rep": 2,
+     "file": "k5-official-webkit-20260929T211821-r2.json",
+     "loadAvgStart": "3.49 4.85 5.12",
+     "waitedMin": 0,
+     "provisional": false,
+     "dirtyTree": false,
+     "frontApps": [
+      "loginwindow"
+     ],
+     "frontChanges": 0,
+     "error": null,
+     "checkerErrors": [],
+     "safariMode": null,
+     "memoryPeakMinusBaselineMb": 1602
+    },
+    {
+     "rep": 3,
+     "file": "k5-official-webkit-20260929T215832-r3.json",
+     "loadAvgStart": "2.90 4.39 4.73",
+     "waitedMin": 0,
+     "provisional": false,
+     "dirtyTree": false,
+     "frontApps": [
+      "loginwindow"
+     ],
+     "frontChanges": 0,
+     "error": null,
+     "checkerErrors": [],
+     "safariMode": null,
+     "memoryPeakMinusBaselineMb": 1218
+    }
+   ],
+   "runMemoryPeakMinusBaselineMb": {
+    "median": 1218,
+    "min": 1211,
+    "max": 1602,
+    "n": 3
+   },
+   "runMemoryMethod": "footprint of the runner process tree plus com.apple.WebKit.WebContent and com.apple.WebKit.GPU processes that appeared after the browser started, every 100 ms; peak minus median of the samples before page load (best effort, WebKit XPC processes are not in the runner tree)",
+   "stages": {
+    "f16": {
+     "ran": true,
+     "repsOk": 3,
+     "repsTried": 3,
+     "parity": {
+      "passAllReps": true,
+      "minArgmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.0181588224029543,
+      "maxAbsProbDiff": 0.00379682919830171
+     },
+     "latency": {
+      "L128": {
+       "modelOnly": {
+        "median": {
+         "median": 19,
+         "min": 19,
+         "max": 19,
+         "n": 3
+        },
+        "p95": {
+         "median": 30,
+         "min": 29,
+         "max": 30,
+         "n": 3
+        }
+       },
+       "e2e": {
+        "median": {
+         "median": 19,
+         "min": 19,
+         "max": 20,
+         "n": 3
+        },
+        "p95": {
+         "median": 30,
+         "min": 30,
+         "max": 31,
+         "n": 3
+        }
+       }
+      },
+      "L256": {
+       "modelOnly": {
+        "median": {
+         "median": 79,
+         "min": 79,
+         "max": 81,
+         "n": 3
+        },
+        "p95": {
+         "median": 103,
+         "min": 102,
+         "max": 105,
+         "n": 3
+        }
+       },
+       "e2e": {
+        "median": {
+         "median": 80,
+         "min": 79,
+         "max": 82,
+         "n": 3
+        },
+        "p95": {
+         "median": 103,
+         "min": 103,
+         "max": 105,
+         "n": 3
+        }
+       }
+      }
+     },
+     "loadWallMs": {
+      "median": 410,
+      "min": 360,
+      "max": 439,
+      "n": 3
+     },
+     "gpuBytes": 57249484,
+     "jsHeapPeakMinusBaselineMb": null,
+     "gates": {
+      "parity": "pass",
+      "l256P95": {
+       "limitMs": 20,
+       "e2eMs": 103,
+       "modelOnlyMs": 103,
+       "e2e": "fail",
+       "modelOnly": "fail"
+      }
+     }
+    },
+    "f32": {
+     "ran": true,
+     "repsOk": 3,
+     "repsTried": 3,
+     "parity": {
+      "passAllReps": true,
+      "minArgmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.00002563463292121898,
+      "maxAbsProbDiff": 0.00000913843997518704
+     },
+     "latency": {
+      "L128": {
+       "modelOnly": {
+        "median": {
+         "median": 19,
+         "min": 19,
+         "max": 20,
+         "n": 3
+        },
+        "p95": {
+         "median": 30,
+         "min": 30,
+         "max": 30,
+         "n": 3
+        }
+       },
+       "e2e": {
+        "median": {
+         "median": 19,
+         "min": 19,
+         "max": 20,
+         "n": 3
+        },
+        "p95": {
+         "median": 30,
+         "min": 30,
+         "max": 31,
+         "n": 3
+        }
+       }
+      },
+      "L256": {
+       "modelOnly": {
+        "median": {
+         "median": 80,
+         "min": 79,
+         "max": 82,
+         "n": 3
+        },
+        "p95": {
+         "median": 104,
+         "min": 104,
+         "max": 107,
+         "n": 3
+        }
+       },
+       "e2e": {
+        "median": {
+         "median": 80,
+         "min": 80,
+         "max": 82,
+         "n": 3
+        },
+        "p95": {
+         "median": 105,
+         "min": 104,
+         "max": 108,
+         "n": 3
+        }
+       }
+      }
+     },
+     "loadWallMs": {
+      "median": 582,
+      "min": 577,
+      "max": 628,
+      "n": 3
+     },
+     "gpuBytes": 114169100,
+     "jsHeapPeakMinusBaselineMb": null,
+     "gates": {
+      "parity": "pass",
+      "l256P95": {
+       "limitMs": 20,
+       "e2eMs": 105,
+       "modelOnlyMs": 104,
+       "e2e": "fail",
+       "modelOnly": "fail"
+      }
+     }
+    },
+    "wasm": {
+     "ran": true,
+     "repsOk": 3,
+     "repsTried": 3,
+     "parity": {
+      "passAllReps": true,
+      "minArgmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.00001916549682601243,
+      "maxAbsProbDiff": 0.000006000731789468361
+     },
+     "latency": {
+      "L128": {
+       "modelOnly": {
+        "median": {
+         "median": 154.5,
+         "min": 154,
+         "max": 155.5,
+         "n": 3
+        },
+        "p95": {
+         "median": 253,
+         "min": 253,
+         "max": 255,
+         "n": 3
+        }
+       },
+       "e2e": {
+        "median": {
+         "median": 155.5,
+         "min": 155,
+         "max": 156,
+         "n": 3
+        },
+        "p95": {
+         "median": 254,
+         "min": 252,
+         "max": 255,
+         "n": 3
+        }
+       }
+      },
+      "L256": {
+       "modelOnly": {
+        "median": {
+         "median": 694,
+         "min": 688,
+         "max": 712.5,
+         "n": 3
+        },
+        "p95": {
+         "median": 869,
+         "min": 862,
+         "max": 903,
+         "n": 3
+        }
+       },
+       "e2e": {
+        "median": {
+         "median": 688.5,
+         "min": 687.5,
+         "max": 697.5,
+         "n": 3
+        },
+        "p95": {
+         "median": 861,
+         "min": 860,
+         "max": 873,
+         "n": 3
+        }
+       }
+      }
+     },
+     "loadWallMs": {
+      "median": 708,
+      "min": 702,
+      "max": 781,
+      "n": 3
+     },
+     "gpuBytes": null,
+     "jsHeapPeakMinusBaselineMb": null,
+     "gates": {
+      "parity": "pass",
+      "l256P95": {
+       "limitMs": 300,
+       "e2eMs": 861,
+       "modelOnlyMs": 869,
+       "e2e": "fail",
+       "modelOnly": "fail"
+      }
+     }
+    }
+   },
+   "adapter": {
+    "vendor": "apple",
+    "architecture": "apple",
+    "device": "apple",
+    "description": "apple",
+    "subgroupMinSize": 32,
+    "subgroupMaxSize": 32,
+    "isFallbackAdapter": false
+   },
+   "environment": {
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5 Safari/605.1.15",
+    "hardwareConcurrency": 8,
+    "crossOriginIsolated": false,
+    "wasmSimd": true
+   }
+  },
+  {
+   "row": "safari",
+   "browser": "safari-27.0",
+   "reps": [
+    {
+     "rep": 1,
+     "file": "k5-official-safari-20260929T223521-r1.json",
+     "loadAvgStart": "3.08 6.69 7.43",
+     "waitedMin": 0,
+     "provisional": false,
+     "dirtyTree": false,
+     "frontApps": [
+      "Safari"
+     ],
+     "frontChanges": 0,
+     "error": null,
+     "checkerErrors": [],
+     "safariMode": "local (open -a Safari, report=local, no WebDriver)",
+     "memoryPeakMinusBaselineMb": 1688
+    },
+    {
+     "rep": 2,
+     "file": "k5-official-safari-20260929T224537-r2.json",
+     "loadAvgStart": "3.97 7.00 7.61",
+     "waitedMin": 0,
+     "provisional": false,
+     "dirtyTree": false,
+     "frontApps": [
+      "Safari"
+     ],
+     "frontChanges": 0,
+     "error": null,
+     "checkerErrors": [],
+     "safariMode": "local (open -a Safari, report=local, no WebDriver)",
+     "memoryPeakMinusBaselineMb": 1447
+    },
+    {
+     "rep": 3,
+     "file": "k5-official-safari-20260929T225942-r3.json",
+     "loadAvgStart": "3.56 5.48 6.84",
+     "waitedMin": 0,
+     "provisional": false,
+     "dirtyTree": false,
+     "frontApps": [
+      "Safari",
+      "Claude"
+     ],
+     "frontChanges": 2,
+     "error": null,
+     "checkerErrors": [],
+     "safariMode": "local (open -a Safari, report=local, no WebDriver)",
+     "memoryPeakMinusBaselineMb": 1569
+    }
+   ],
+   "runMemoryPeakMinusBaselineMb": {
+    "median": 1569,
+    "min": 1447,
+    "max": 1688,
+    "n": 3
+   },
+   "runMemoryMethod": "summed footprint of all com.apple.WebKit.WebContent and com.apple.WebKit.GPU processes on the machine, every 100 ms; peak minus median of the samples before page load (best effort: Safari keeps its process pool between sessions, so new processes cannot be told apart, and other WebKit apps add noise to baseline and peak)",
+   "stages": {
+    "f16": {
+     "ran": true,
+     "repsOk": 3,
+     "repsTried": 3,
+     "parity": {
+      "passAllReps": true,
+      "minArgmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.0181588224029543,
+      "maxAbsProbDiff": 0.00379682919830171
+     },
+     "latency": {
+      "L128": {
+       "modelOnly": {
+        "median": {
+         "median": 20,
+         "min": 20,
+         "max": 20.5,
+         "n": 3
+        },
+        "p95": {
+         "median": 31,
+         "min": 31,
+         "max": 32,
+         "n": 3
+        }
+       },
+       "e2e": {
+        "median": {
+         "median": 20,
+         "min": 20,
+         "max": 21,
+         "n": 3
+        },
+        "p95": {
+         "median": 32,
+         "min": 31,
+         "max": 32,
+         "n": 3
+        }
+       }
+      },
+      "L256": {
+       "modelOnly": {
+        "median": {
+         "median": 82,
+         "min": 82,
+         "max": 84,
+         "n": 3
+        },
+        "p95": {
+         "median": 107,
+         "min": 106,
+         "max": 109,
+         "n": 3
+        }
+       },
+       "e2e": {
+        "median": {
+         "median": 83,
+         "min": 82.5,
+         "max": 85,
+         "n": 3
+        },
+        "p95": {
+         "median": 107,
+         "min": 107,
+         "max": 109,
+         "n": 3
+        }
+       }
+      }
+     },
+     "loadWallMs": {
+      "median": 440,
+      "min": 386,
+      "max": 492,
+      "n": 3
+     },
+     "gpuBytes": 57249484,
+     "jsHeapPeakMinusBaselineMb": null,
+     "gates": {
+      "parity": "pass",
+      "l256P95": {
+       "limitMs": 20,
+       "e2eMs": 107,
+       "modelOnlyMs": 107,
+       "e2e": "fail",
+       "modelOnly": "fail"
+      }
+     }
+    },
+    "f32": {
+     "ran": true,
+     "repsOk": 3,
+     "repsTried": 3,
+     "parity": {
+      "passAllReps": true,
+      "minArgmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.00002563463292121898,
+      "maxAbsProbDiff": 0.00000913843997518704
+     },
+     "latency": {
+      "L128": {
+       "modelOnly": {
+        "median": {
+         "median": 20,
+         "min": 20,
+         "max": 21,
+         "n": 3
+        },
+        "p95": {
+         "median": 31,
+         "min": 30,
+         "max": 32,
+         "n": 3
+        }
+       },
+       "e2e": {
+        "median": {
+         "median": 20,
+         "min": 20,
+         "max": 21,
+         "n": 3
+        },
+        "p95": {
+         "median": 31,
+         "min": 31,
+         "max": 32,
+         "n": 3
+        }
+       }
+      },
+      "L256": {
+       "modelOnly": {
+        "median": {
+         "median": 84.5,
+         "min": 83,
+         "max": 85,
+         "n": 3
+        },
+        "p95": {
+         "median": 109,
+         "min": 108,
+         "max": 111,
+         "n": 3
+        }
+       },
+       "e2e": {
+        "median": {
+         "median": 84,
+         "min": 83,
+         "max": 85.5,
+         "n": 3
+        },
+        "p95": {
+         "median": 109,
+         "min": 108,
+         "max": 111,
+         "n": 3
+        }
+       }
+      }
+     },
+     "loadWallMs": {
+      "median": 674,
+      "min": 566,
+      "max": 787,
+      "n": 3
+     },
+     "gpuBytes": 114169100,
+     "jsHeapPeakMinusBaselineMb": null,
+     "gates": {
+      "parity": "pass",
+      "l256P95": {
+       "limitMs": 20,
+       "e2eMs": 109,
+       "modelOnlyMs": 109,
+       "e2e": "fail",
+       "modelOnly": "fail"
+      }
+     }
+    },
+    "wasm": {
+     "ran": true,
+     "repsOk": 3,
+     "repsTried": 3,
+     "parity": {
+      "passAllReps": true,
+      "minArgmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.00001916549682601243,
+      "maxAbsProbDiff": 0.000006000731789468361
+     },
+     "latency": {
+      "L128": {
+       "modelOnly": {
+        "median": {
+         "median": 160,
+         "min": 158.5,
+         "max": 161,
+         "n": 3
+        },
+        "p95": {
+         "median": 262,
+         "min": 261,
+         "max": 262,
+         "n": 3
+        }
+       },
+       "e2e": {
+        "median": {
+         "median": 160,
+         "min": 160,
+         "max": 161,
+         "n": 3
+        },
+        "p95": {
+         "median": 262,
+         "min": 262,
+         "max": 264,
+         "n": 3
+        }
+       }
+      },
+      "L256": {
+       "modelOnly": {
+        "median": {
+         "median": 709.5,
+         "min": 706.5,
+         "max": 718,
+         "n": 3
+        },
+        "p95": {
+         "median": 890,
+         "min": 886,
+         "max": 895,
+         "n": 3
+        }
+       },
+       "e2e": {
+        "median": {
+         "median": 707.5,
+         "min": 706,
+         "max": 716,
+         "n": 3
+        },
+        "p95": {
+         "median": 887,
+         "min": 883,
+         "max": 898,
+         "n": 3
+        }
+       }
+      }
+     },
+     "loadWallMs": {
+      "median": 756,
+      "min": 729,
+      "max": 779,
+      "n": 3
+     },
+     "gpuBytes": null,
+     "jsHeapPeakMinusBaselineMb": null,
+     "gates": {
+      "parity": "pass",
+      "l256P95": {
+       "limitMs": 300,
+       "e2eMs": 887,
+       "modelOnlyMs": 890,
+       "e2e": "fail",
+       "modelOnly": "fail"
+      }
+     }
+    }
+   },
+   "adapter": {
+    "vendor": "apple",
+    "architecture": "apple",
+    "device": "apple",
+    "description": "apple",
+    "subgroupMinSize": null,
+    "subgroupMaxSize": null,
+    "isFallbackAdapter": false
+   },
+   "environment": {
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.0 Safari/605.1.15",
+    "hardwareConcurrency": 8,
+    "crossOriginIsolated": false,
+    "wasmSimd": true
+   }
+  },
+  {
+   "row": "firefox",
+   "browser": "firefox-153.0",
+   "reps": [
+    {
+     "rep": 1,
+     "file": "k5-official-firefox-20260929T205310-r1.json",
+     "loadAvgStart": "3.78 4.73 5.89",
+     "waitedMin": 0,
+     "provisional": false,
+     "dirtyTree": false,
+     "frontApps": [
+      "Nightly"
+     ],
+     "frontChanges": 0,
+     "error": null,
+     "checkerErrors": [],
+     "safariMode": null,
+     "memoryPeakMinusBaselineMb": 1371
+    },
+    {
+     "rep": 2,
+     "file": "k5-official-firefox-20260929T213226-r2.json",
+     "loadAvgStart": "3.28 4.48 5.04",
+     "waitedMin": 0,
+     "provisional": false,
+     "dirtyTree": false,
+     "frontApps": [
+      "loginwindow"
+     ],
+     "frontChanges": 0,
+     "error": null,
+     "checkerErrors": [],
+     "safariMode": null,
+     "memoryPeakMinusBaselineMb": 1323
+    },
+    {
+     "rep": 3,
+     "file": "k5-official-firefox-20260929T220726-r3.json",
+     "loadAvgStart": "2.72 4.45 4.71",
+     "waitedMin": 0,
+     "provisional": false,
+     "dirtyTree": false,
+     "frontApps": [
+      "loginwindow"
+     ],
+     "frontChanges": 0,
+     "error": null,
+     "checkerErrors": [],
+     "safariMode": null,
+     "memoryPeakMinusBaselineMb": 1374
+    }
+   ],
+   "runMemoryPeakMinusBaselineMb": {
+    "median": 1371,
+    "min": 1323,
+    "max": 1374,
+    "n": 3
+   },
+   "runMemoryMethod": "footprint of the runner process tree, every 100 ms; peak minus median of the samples before page load",
+   "stages": {
+    "f16": {
+     "ran": true,
+     "repsOk": 3,
+     "repsTried": 3,
+     "parity": {
+      "passAllReps": true,
+      "minArgmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.0181588224029543,
+      "maxAbsProbDiff": 0.004055787720072979
+     },
+     "latency": {
+      "L128": {
+       "modelOnly": {
+        "median": {
+         "median": 109,
+         "min": 109,
+         "max": 110,
+         "n": 3
+        },
+        "p95": {
+         "median": 111,
+         "min": 111,
+         "max": 111,
+         "n": 3
+        }
+       },
+       "e2e": {
+        "median": {
+         "median": 109,
+         "min": 109,
+         "max": 110,
+         "n": 3
+        },
+        "p95": {
+         "median": 111,
+         "min": 111,
+         "max": 111,
+         "n": 3
+        }
+       }
+      },
+      "L256": {
+       "modelOnly": {
+        "median": {
+         "median": 110,
+         "min": 109,
+         "max": 110,
+         "n": 3
+        },
+        "p95": {
+         "median": 215,
+         "min": 212,
+         "max": 219,
+         "n": 3
+        }
+       },
+       "e2e": {
+        "median": {
+         "median": 110,
+         "min": 109,
+         "max": 110,
+         "n": 3
+        },
+        "p95": {
+         "median": 215,
+         "min": 214,
+         "max": 220,
+         "n": 3
+        }
+       }
+      }
+     },
+     "loadWallMs": {
+      "median": 612,
+      "min": 555,
+      "max": 674,
+      "n": 3
+     },
+     "gpuBytes": 57249484,
+     "jsHeapPeakMinusBaselineMb": null,
+     "gates": {
+      "parity": "pass",
+      "l256P95": {
+       "limitMs": 20,
+       "e2eMs": 215,
+       "modelOnlyMs": 215,
+       "e2e": "fail",
+       "modelOnly": "fail"
+      }
+     }
+    },
+    "f32": {
+     "ran": true,
+     "repsOk": 3,
+     "repsTried": 3,
+     "parity": {
+      "passAllReps": true,
+      "minArgmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000030834632921219324,
+      "maxAbsProbDiff": 0.000010227653457872687
+     },
+     "latency": {
+      "L128": {
+       "modelOnly": {
+        "median": {
+         "median": 109,
+         "min": 109,
+         "max": 110,
+         "n": 3
+        },
+        "p95": {
+         "median": 111,
+         "min": 111,
+         "max": 112,
+         "n": 3
+        }
+       },
+       "e2e": {
+        "median": {
+         "median": 110,
+         "min": 109,
+         "max": 110,
+         "n": 3
+        },
+        "p95": {
+         "median": 111,
+         "min": 111,
+         "max": 112,
+         "n": 3
+        }
+       }
+      },
+      "L256": {
+       "modelOnly": {
+        "median": {
+         "median": 110,
+         "min": 109,
+         "max": 110,
+         "n": 3
+        },
+        "p95": {
+         "median": 217,
+         "min": 216,
+         "max": 220,
+         "n": 3
+        }
+       },
+       "e2e": {
+        "median": {
+         "median": 110,
+         "min": 109,
+         "max": 110,
+         "n": 3
+        },
+        "p95": {
+         "median": 219,
+         "min": 218,
+         "max": 219,
+         "n": 3
+        }
+       }
+      }
+     },
+     "loadWallMs": {
+      "median": 852,
+      "min": 723,
+      "max": 874,
+      "n": 3
+     },
+     "gpuBytes": 114169100,
+     "jsHeapPeakMinusBaselineMb": null,
+     "gates": {
+      "parity": "pass",
+      "l256P95": {
+       "limitMs": 20,
+       "e2eMs": 219,
+       "modelOnlyMs": 217,
+       "e2e": "fail",
+       "modelOnly": "fail"
+      }
+     }
+    }
+   },
+   "adapter": {
+    "vendor": "",
+    "architecture": "",
+    "device": "",
+    "description": "",
+    "subgroupMinSize": 4,
+    "subgroupMaxSize": 128,
+    "isFallbackAdapter": false
+   },
+   "environment": {
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:153.0) Gecko/20100101 Firefox/153.0",
+    "hardwareConcurrency": 10,
+    "crossOriginIsolated": false,
+    "wasmSimd": true
+   }
+  },
+  {
+   "row": "chromium-nogpu",
+   "browser": "chromium-nogpu-151.0.7922.34",
+   "reps": [
+    {
+     "rep": 1,
+     "file": "k5-official-chromium-nogpu-20260929T210042-r1.json",
+     "loadAvgStart": "3.09 4.54 5.39",
+     "waitedMin": 0,
+     "provisional": false,
+     "dirtyTree": false,
+     "frontApps": [
+      "loginwindow"
+     ],
+     "frontChanges": 0,
+     "error": null,
+     "checkerErrors": [],
+     "safariMode": null,
+     "memoryPeakMinusBaselineMb": 505
+    },
+    {
+     "rep": 2,
+     "file": "k5-official-chromium-nogpu-20260929T214259-r2.json",
+     "loadAvgStart": "2.95 4.48 4.99",
+     "waitedMin": 0,
+     "provisional": false,
+     "dirtyTree": false,
+     "frontApps": [
+      "loginwindow"
+     ],
+     "frontChanges": 0,
+     "error": null,
+     "checkerErrors": [],
+     "safariMode": null,
+     "memoryPeakMinusBaselineMb": 620
+    },
+    {
+     "rep": 3,
+     "file": "k5-official-chromium-nogpu-20260929T221155-r3.json",
+     "loadAvgStart": "2.57 4.08 4.53",
+     "waitedMin": 0,
+     "provisional": false,
+     "dirtyTree": false,
+     "frontApps": [
+      "loginwindow"
+     ],
+     "frontChanges": 0,
+     "error": null,
+     "checkerErrors": [],
+     "safariMode": null,
+     "memoryPeakMinusBaselineMb": 610
+    }
+   ],
+   "runMemoryPeakMinusBaselineMb": {
+    "median": 610,
+    "min": 505,
+    "max": 620,
+    "n": 3
+   },
+   "runMemoryMethod": "footprint of the runner process tree, every 100 ms; peak minus median of the samples before page load",
+   "stages": {
+    "wasm": {
+     "ran": true,
+     "repsOk": 3,
+     "repsTried": 3,
+     "parity": {
+      "passAllReps": true,
+      "minArgmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.00001916549682601243,
+      "maxAbsProbDiff": 0.000006000731789468361
+     },
+     "latency": {
+      "L128": {
+       "modelOnly": {
+        "median": {
+         "median": 78.34999996423721,
+         "min": 77.59999996423721,
+         "max": 79.35000002384186,
+         "n": 3
+        },
+        "p95": {
+         "median": 126,
+         "min": 125.89999997615814,
+         "max": 126.39999997615814,
+         "n": 3
+        }
+       },
+       "e2e": {
+        "median": {
+         "median": 78.59999996423721,
+         "min": 78.25,
+         "max": 78.70000004768372,
+         "n": 3
+        },
+        "p95": {
+         "median": 125.79999995231628,
+         "min": 125.70000004768372,
+         "max": 126.20000004768372,
+         "n": 3
+        }
+       }
+      },
+      "L256": {
+       "modelOnly": {
+        "median": {
+         "median": 364.30000001192093,
+         "min": 363.60000002384186,
+         "max": 366.39999997615814,
+         "n": 3
+        },
+        "p95": {
+         "median": 455.5,
+         "min": 455.2000000476837,
+         "max": 456.89999997615814,
+         "n": 3
+        }
+       },
+       "e2e": {
+        "median": {
+         "median": 363.55000001192093,
+         "min": 363.25,
+         "max": 365.94999998807907,
+         "n": 3
+        },
+        "p95": {
+         "median": 455.60000002384186,
+         "min": 455,
+         "max": 458.10000002384186,
+         "n": 3
+        }
+       }
+      }
+     },
+     "loadWallMs": {
+      "median": 982.5,
+      "min": 918.8999999761581,
+      "max": 1058.6000000238419,
+      "n": 3
+     },
+     "gpuBytes": null,
+     "jsHeapPeakMinusBaselineMb": {
+      "median": 1.1257381439208984,
+      "min": 1.1256771087646484,
+      "max": 1.1486530303955078,
+      "n": 3
+     },
+     "gates": {
+      "parity": "pass",
+      "l256P95": {
+       "limitMs": 300,
+       "e2eMs": 455.60000002384186,
+       "modelOnlyMs": 455.5,
+       "e2e": "fail",
+       "modelOnly": "fail"
+      }
+     }
+    }
+   },
+   "adapter": null,
+   "environment": {
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    "hardwareConcurrency": 10,
+    "crossOriginIsolated": false,
+    "wasmSimd": true
+   }
+  }
+ ],
+ "control": {
+  "description": "ABAB, L128 f16, Chromium: site page (stages=f16) against bench/run-kleinhirn.mjs small-upstream f16 (968 goldens). FINDINGS section 16 reference: kleinhirn f16 6.5 ms median, p95 11.5.",
+  "page": {
+   "reps": [
+    {
+     "file": "k5-control-page-chromium-20260929T221721-r1.json",
+     "rep": 1,
+     "loadAvgStart": "3.17 4.36 4.59",
+     "modelOnly": {
+      "medianMs": 7.200000047683716,
+      "p95Ms": 11.5
+     },
+     "e2e": {
+      "medianMs": 7.400000095367432,
+      "p95Ms": 11.799999952316284
+     }
+    },
+    {
+     "file": "k5-control-page-chromium-20260929T221807-r2.json",
+     "rep": 2,
+     "loadAvgStart": "3.47 4.29 4.55",
+     "modelOnly": {
+      "medianMs": 7.200000047683716,
+      "p95Ms": 11.600000023841858
+     },
+     "e2e": {
+      "medianMs": 7.399999976158142,
+      "p95Ms": 11.799999952316284
+     }
+    },
+    {
+     "file": "k5-control-page-chromium-20260929T221952-r3.json",
+     "rep": 3,
+     "loadAvgStart": "3.93 4.18 4.48",
+     "modelOnly": {
+      "medianMs": 7.199999928474426,
+      "p95Ms": 11.5
+     },
+     "e2e": {
+      "medianMs": 7.399999976158142,
+      "p95Ms": 11.700000047683716
+     }
+    }
+   ],
+   "modelOnly": {
+    "median": {
+     "median": 7.200000047683716,
+     "min": 7.199999928474426,
+     "max": 7.200000047683716,
+     "n": 3
+    },
+    "p95": {
+     "median": 11.5,
+     "min": 11.5,
+     "max": 11.600000023841858,
+     "n": 3
+    }
+   },
+   "e2e": {
+    "median": {
+     "median": 7.399999976158142,
+     "min": 7.399999976158142,
+     "max": 7.400000095367432,
+     "n": 3
+    },
+    "p95": {
+     "median": 11.799999952316284,
+     "min": 11.700000047683716,
+     "max": 11.799999952316284,
+     "n": 3
+    }
+   }
+  },
+  "runner": {
+   "reps": [
+    {
+     "file": "bench/results/2026-09-29-kh-small-upstream-f16-1790720268038.json",
+     "runId": "kh-small-upstream-f16-1790720268038",
+     "n": 968,
+     "loadAvg": "3.52 4.34 4.58",
+     "modelOnly": {
+      "medianMs": 6.100000023841858,
+      "p95Ms": 11.200000047683716
+     },
+     "e2e": {
+      "medianMs": 6.299999952316284,
+      "p95Ms": 11.100000023841858
+     }
+    },
+    {
+     "file": "bench/results/2026-09-29-kh-small-upstream-f16-1790720373547.json",
+     "runId": "kh-small-upstream-f16-1790720373547",
+     "n": 968,
+     "loadAvg": "3.64 4.14 4.47",
+     "modelOnly": {
+      "medianMs": 6.100000023841858,
+      "p95Ms": 11.399999976158142
+     },
+     "e2e": {
+      "medianMs": 6.299999952316284,
+      "p95Ms": 11.600000023841858
+     }
+    },
+    {
+     "file": "bench/results/2026-09-29-kh-small-upstream-f16-1790720478778.json",
+     "runId": "kh-small-upstream-f16-1790720478778",
+     "n": 968,
+     "loadAvg": "3.81 4.16 4.45",
+     "modelOnly": {
+      "medianMs": 6.199999928474426,
+      "p95Ms": 11.399999976158142
+     },
+     "e2e": {
+      "medianMs": 6.300000071525574,
+      "p95Ms": 11.599999904632568
+     }
+    }
+   ],
+   "modelOnly": {
+    "median": {
+     "median": 6.100000023841858,
+     "min": 6.100000023841858,
+     "max": 6.199999928474426,
+     "n": 3
+    },
+    "p95": {
+     "median": 11.399999976158142,
+     "min": 11.200000047683716,
+     "max": 11.399999976158142,
+     "n": 3
+    }
+   },
+   "e2e": {
+    "median": {
+     "median": 6.299999952316284,
+     "min": 6.299999952316284,
+     "max": 6.300000071525574,
+     "n": 3
+    },
+    "p95": {
+     "median": 11.599999904632568,
+     "min": 11.100000023841858,
+     "max": 11.600000023841858,
+     "n": 3
+    }
+   }
+  }
+ },
+ "firefoxWasm": {
+  "note": "Full stage not run: projected wall time above 20 min. Per-item times come from the diagnosis runs (uniformly slow, no stalls).",
+  "runs": [
+   {
+    "file": "k5-diag-firefox-wasm-firefox-20260929T174350.json",
+    "browser": "firefox-153.0",
+    "protocol": {
+     "warmup": 5,
+     "limit": 20,
+     "trace": true,
+     "diagnostic": true
+    },
+    "crossOriginIsolated": false,
+    "wasmSimd": true,
+    "hardwareConcurrency": 10,
+    "workerHardwareConcurrency": 10,
+    "frontApps": [],
+    "perItem": {
+     "L128": {
+      "modelOnlyMedianMs": 1904.5,
+      "modelOnlyMinMs": 951,
+      "modelOnlyMaxMs": 2677,
+      "e2eMedianMs": 1877,
+      "items": 20
+     },
+     "L256": {
+      "modelOnlyMedianMs": 7857.5,
+      "modelOnlyMinMs": 5149,
+      "modelOnlyMaxMs": 9692,
+      "e2eMedianMs": 7911,
+      "items": 20
+     }
+    },
+    "projectedFullStageMinutes": 72
+   },
+   {
+    "file": "k5-diag-firefox-wasm-front-firefox-20260929T185611.json",
+    "browser": "firefox-153.0",
+    "protocol": {
+     "warmup": 5,
+     "limit": 20,
+     "trace": true,
+     "diagnostic": true
+    },
+    "crossOriginIsolated": false,
+    "wasmSimd": true,
+    "hardwareConcurrency": 10,
+    "workerHardwareConcurrency": 10,
+    "frontApps": [
+     "Nightly",
+     "loginwindow"
+    ],
+    "perItem": {
+     "L128": {
+      "modelOnlyMedianMs": 1897,
+      "modelOnlyMinMs": 935,
+      "modelOnlyMaxMs": 2717,
+      "e2eMedianMs": 1903.5,
+      "items": 20
+     },
+     "L256": {
+      "modelOnlyMedianMs": 7747,
+      "modelOnlyMinMs": 5063,
+      "modelOnlyMaxMs": 9504,
+      "e2eMedianMs": 7672,
+      "items": 20
+     }
+    },
+    "projectedFullStageMinutes": 70
+   }
+  ]
+ },
+ "notes": null
+}

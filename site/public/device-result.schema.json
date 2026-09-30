@@ -1,0 +1,283 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "kleinhirn-device-result/1",
+  "title": "kleinhirn device result",
+  "description": "Result of the kleinhirn device benchmark page. Human description: publish/docs/device-results.md.",
+  "type": "object",
+  "required": ["schema", "createdAt", "page", "weights", "goldens", "device", "environment", "autoStage", "stages"],
+  "properties": {
+    "schema": { "const": "kleinhirn-device-result/1" },
+    "createdAt": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}T" },
+    "page": {
+      "type": "object",
+      "required": ["url", "buildId", "engineCommit", "bundleSha256", "workerSha256"],
+      "properties": {
+        "url": { "type": "string" },
+        "buildId": { "type": "string" },
+        "engineCommit": { "type": "string" },
+        "engineBuildId": { "type": ["string", "null"] },
+        "bundleSha256": { "type": ["string", "null"] },
+        "workerSha256": { "type": ["string", "null"] }
+      }
+    },
+    "weights": {
+      "type": "object",
+      "required": ["base", "stages"],
+      "properties": {
+        "base": { "type": "string" },
+        "stages": {
+          "type": "object",
+          "required": ["f16", "f32"],
+          "properties": {
+            "f16": { "$ref": "#/$defs/weightSet" },
+            "f32": { "$ref": "#/$defs/weightSet" }
+          }
+        }
+      }
+    },
+    "goldens": {
+      "type": "object",
+      "required": ["sha256", "model", "buckets"],
+      "properties": {
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "model": { "const": "small-upstream" },
+        "buckets": { "type": "array", "items": { "enum": ["L128", "L256"] } },
+        "sourceSha256": { "type": "object" }
+      }
+    },
+    "device": {
+      "type": "object",
+      "required": ["model", "os", "protocol"],
+      "properties": {
+        "model": { "type": "string" },
+        "os": { "type": "string" },
+        "protocol": {
+          "type": "object",
+          "required": ["pluggedIn", "screenOn", "lowPowerModeOff", "otherTabsClosed"],
+          "properties": {
+            "pluggedIn": { "type": "boolean" },
+            "screenOn": { "type": "boolean" },
+            "lowPowerModeOff": { "type": "boolean" },
+            "otherTabsClosed": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "environment": {
+      "type": "object",
+      "required": ["userAgent", "isSecureContext", "float16Array", "opfs", "webgpu", "rangeProbe"],
+      "properties": {
+        "userAgent": { "type": "string" },
+        "userAgentData": { "type": ["object", "null"] },
+        "hardwareConcurrency": { "type": ["number", "null"] },
+        "deviceMemory": { "type": ["number", "null"] },
+        "maxTouchPoints": { "type": ["number", "null"] },
+        "isSecureContext": { "type": "boolean" },
+        "crossOriginIsolated": { "type": ["boolean", "null"] },
+        "wasmSimd": { "type": ["boolean", "null"] },
+        "workerHardwareConcurrency": { "type": ["number", "null"] },
+        "float16Array": { "type": "string" },
+        "opfs": { "type": "boolean" },
+        "storagePersisted": { "type": ["boolean", "null"] },
+        "storageQuotaBytes": { "type": ["number", "null"] },
+        "webgpu": {
+          "type": "object",
+          "required": ["present", "adapter", "error"],
+          "properties": {
+            "present": { "type": "boolean" },
+            "error": { "type": ["string", "null"] },
+            "adapter": {
+              "type": ["object", "null"],
+              "required": ["info", "features", "limits"],
+              "properties": {
+                "info": { "type": "object" },
+                "features": { "type": "array", "items": { "type": "string" } },
+                "limits": { "type": "object" }
+              }
+            }
+          }
+        },
+        "storageMarker": {
+          "type": "object",
+          "required": ["checkedAt", "opfs", "cache", "localStorage"],
+          "properties": {
+            "checkedAt": { "type": "string" },
+            "opfs": { "$ref": "#/$defs/storeMarker" },
+            "cache": { "$ref": "#/$defs/storeMarker" },
+            "localStorage": { "$ref": "#/$defs/storeMarker" }
+          }
+        },
+        "rangeProbe": {
+          "type": "object",
+          "required": ["url", "status", "bytesReceived", "contentRange", "error"],
+          "properties": {
+            "url": { "type": "string" },
+            "status": { "type": ["number", "null"] },
+            "bytesReceived": { "type": ["number", "null"] },
+            "contentRange": { "type": ["string", "null"] },
+            "error": { "type": ["string", "null"] }
+          }
+        }
+      }
+    },
+    "protocol": {
+      "type": "object",
+      "description": "Run options. limit below 200 marks a diagnostic run, not a matrix row.",
+      "required": ["warmup", "limit", "trace", "diagnostic"],
+      "properties": {
+        "warmup": { "type": "integer", "minimum": 0 },
+        "limit": { "type": ["integer", "null"], "minimum": 0 },
+        "trace": { "type": "boolean" },
+        "diagnostic": { "type": "boolean" }
+      }
+    },
+    "autoStage": {
+      "type": "object",
+      "required": ["picked", "error"],
+      "properties": {
+        "picked": { "enum": ["f16", "f32", "wasm", null] },
+        "manifest": { "type": ["string", "null"] },
+        "error": { "type": ["string", "null"] },
+        "reusedAsMeasured": { "type": "boolean" }
+      }
+    },
+    "stages": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/stage" }
+    }
+  },
+  "$defs": {
+    "weightSet": {
+      "type": "object",
+      "required": ["manifestSha256", "shards", "tokenizerBytes", "error"],
+      "properties": {
+        "manifestSha256": { "type": ["string", "null"] },
+        "tokenizerBytes": { "type": ["number", "null"] },
+        "error": { "type": ["string", "null"] },
+        "shards": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["file", "bytes", "sha256"],
+            "properties": {
+              "file": { "type": "string" },
+              "bytes": { "type": "number" },
+              "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+            }
+          }
+        }
+      }
+    },
+    "stage": {
+      "type": "object",
+      "required": ["name", "ok", "error", "parityPass", "gateRule", "load", "parity", "latency", "memory"],
+      "properties": {
+        "name": { "enum": ["f16", "f32", "wasm"] },
+        "ok": { "type": "boolean" },
+        "error": { "type": ["string", "null"] },
+        "errorPhase": { "enum": ["load", "measure", null] },
+        "parityPass": { "type": "boolean" },
+        "gateRule": { "enum": ["exact", "f16"] },
+        "load": {
+          "type": ["object", "null"],
+          "properties": {
+            "wallMs": { "type": "number", "minimum": 0 },
+            "loadTiming": { "type": ["object", "null"] },
+            "backend": { "type": "string" },
+            "precision": { "type": ["string", "null"] },
+            "hasF16": { "type": "boolean" },
+            "limitsMode": { "type": ["string", "null"] },
+            "gpuBytes": { "type": ["number", "null"] },
+            "downloadBytes": { "type": ["number", "null"] },
+            "engineBuildId": { "type": ["string", "null"] }
+          }
+        },
+        "parity": {
+          "type": ["object", "null"],
+          "properties": {
+            "L128": { "$ref": "#/$defs/parityBucket" },
+            "L256": { "$ref": "#/$defs/parityBucket" }
+          }
+        },
+        "latency": {
+          "type": ["object", "null"],
+          "properties": {
+            "L128": { "$ref": "#/$defs/latencyBucket" },
+            "L256": { "$ref": "#/$defs/latencyBucket" }
+          }
+        },
+        "memory": {
+          "type": ["object", "null"],
+          "required": ["gpuBytes", "jsHeapMeasurable", "jsHeapBaselineBytes", "jsHeapPeakBytes", "note"],
+          "properties": {
+            "gpuBytes": { "type": ["number", "null"] },
+            "jsHeapMeasurable": { "type": "boolean" },
+            "jsHeapBaselineBytes": { "type": ["number", "null"] },
+            "jsHeapPeakBytes": { "type": ["number", "null"] },
+            "note": { "type": "string" }
+          }
+        }
+      }
+    },
+    "parityBucket": {
+      "type": "object",
+      "required": ["summary", "pass", "missing", "perCaseLogits"],
+      "properties": {
+        "pass": { "type": "boolean" },
+        "missing": { "type": "number", "minimum": 0 },
+        "summary": {
+          "type": "object",
+          "required": ["n", "argmaxAgreement", "maxAbsLogitDiff", "meanAbsLogitDiff", "maxAbsProbDiff", "disagreements"],
+          "properties": {
+            "n": { "type": "number" },
+            "argmaxAgreement": { "type": "number", "minimum": 0 },
+            "maxAbsLogitDiff": { "type": "number", "minimum": 0 },
+            "meanAbsLogitDiff": { "type": "number", "minimum": 0 },
+            "maxAbsProbDiff": { "type": "number", "minimum": 0 },
+            "disagreements": { "type": "array", "items": { "type": "number" } }
+          }
+        },
+        "perCaseLogits": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": ["array", "null"], "items": { "type": "number" } }
+        }
+      }
+    },
+    "storeMarker": {
+      "type": "object",
+      "required": ["present", "firstSeen", "lastSeen", "visits", "ageDays", "readError", "writeError"],
+      "properties": {
+        "present": { "type": "boolean" },
+        "firstSeen": { "type": ["string", "null"] },
+        "lastSeen": { "type": ["string", "null"] },
+        "visits": { "type": ["number", "null"] },
+        "ageDays": { "type": ["number", "null"] },
+        "readError": { "type": ["string", "null"] },
+        "writeError": { "type": ["string", "null"] }
+      }
+    },
+    "latencyBucket": {
+      "type": "object",
+      "required": ["e2e", "modelOnly"],
+      "properties": {
+        "e2e": { "$ref": "#/$defs/latencySummary" },
+        "modelOnly": { "$ref": "#/$defs/latencySummary" }
+      }
+    },
+    "latencySummary": {
+      "type": "object",
+      "required": ["n", "medianMs", "p95Ms", "skipped"],
+      "properties": {
+        "n": { "type": "number", "minimum": 1 },
+        "medianMs": { "type": "number", "minimum": 0 },
+        "p95Ms": { "type": "number", "minimum": 0 },
+        "minMs": { "type": "number" },
+        "maxMs": { "type": "number" },
+        "meanMs": { "type": "number" },
+        "skipped": { "type": "number", "minimum": 0 }
+      }
+    }
+  }
+}

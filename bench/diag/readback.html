@@ -1,0 +1,98 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>readback diagnosis</title>
+<body data-state="running">
+<pre id="out">running</pre>
+<script type="module">
+// K5 diagnosis a: is the WebGPU readback floor a browser quantum?
+// Per variant, N iterations (after 10 warm-up), ms per iteration:
+//   plain    write 4 B, copy to MAP_READ buffer, submit, await mapAsync, unmap
+//   done     as plain, but await queue.onSubmittedWorkDone() before mapAsync
+//   emptydone  empty submit + await queue.onSubmittedWorkDone() only
+// URL params: n=<iterations> (default 200), report=local, rid=<id>.
+const params = new URLSearchParams(location.search);
+const N = Number(params.get('n') ?? 200);
+const WARM = 10;
+const out = document.getElementById('out');
+const q = (sorted, p) => {
+  const pos = (sorted.length - 1) * p;
+  const lo = Math.floor(pos);
+  return sorted[lo] + (sorted[Math.min(lo + 1, sorted.length - 1)] - sorted[lo]) * (pos - lo);
+};
+const summarize = (xs) => {
+  const s = [...xs].sort((a, b) => a - b);
+  return { n: s.length, medianMs: q(s, 0.5), p95Ms: q(s, 0.95), minMs: s[0], maxMs: s[s.length - 1] };
+};
+
+async function main() {
+  const result = {
+    schema: 'kleinhirn-diag-readback/1', createdAt: new Date().toISOString(), userAgent: navigator.userAgent,
+    n: N, warmup: WARM, variants: {},
+  };
+  if (!navigator.gpu) throw new Error('no navigator.gpu');
+  const adapter = await navigator.gpu.requestAdapter();
+  if (!adapter) throw new Error('requestAdapter returned null');
+  const info = adapter.info ?? {};
+  result.adapter = { vendor: info.vendor ?? null, architecture: info.architecture ?? null, description: info.description ?? null };
+  const device = await adapter.requestDevice();
+  const storage = device.createBuffer({ size: 4, usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST | GPUBufferUsage.COPY_SRC });
+  const readBuf = device.createBuffer({ size: 4, usage: GPUBufferUsage.MAP_READ | GPUBufferUsage.COPY_DST });
+  const data = new Uint32Array(1);
+
+  const variants = {
+    async plain(i) {
+      data[0] = i;
+      device.queue.writeBuffer(storage, 0, data);
+      const enc = device.createCommandEncoder();
+      enc.copyBufferToBuffer(storage, 0, readBuf, 0, 4);
+      device.queue.submit([enc.finish()]);
+      await readBuf.mapAsync(GPUMapMode.READ);
+      const got = new Uint32Array(readBuf.getMappedRange().slice(0))[0];
+      readBuf.unmap();
+      if (got !== i) throw new Error(`readback mismatch: wrote ${i}, read ${got}`);
+    },
+    async done(i) {
+      data[0] = i;
+      device.queue.writeBuffer(storage, 0, data);
+      const enc = device.createCommandEncoder();
+      enc.copyBufferToBuffer(storage, 0, readBuf, 0, 4);
+      device.queue.submit([enc.finish()]);
+      await device.queue.onSubmittedWorkDone();
+      await readBuf.mapAsync(GPUMapMode.READ);
+      const got = new Uint32Array(readBuf.getMappedRange().slice(0))[0];
+      readBuf.unmap();
+      if (got !== i) throw new Error(`readback mismatch: wrote ${i}, read ${got}`);
+    },
+    async emptydone() {
+      device.queue.submit([]);
+      await device.queue.onSubmittedWorkDone();
+    },
+  };
+  for (const [name, fn] of Object.entries(variants)) {
+    for (let i = 0; i < WARM; i += 1) await fn(i);
+    const ms = [];
+    for (let i = 0; i < N; i += 1) {
+      const t0 = performance.now();
+      await fn(i);
+      ms.push(performance.now() - t0);
+    }
+    result.variants[name] = { ...summarize(ms), ms: ms.map((v) => Number(v.toFixed(3))) };
+    out.textContent = `${name}: median ${result.variants[name].medianMs.toFixed(2)} ms`;
+  }
+  device.destroy();
+  return result;
+}
+
+let result;
+try { result = await main(); } catch (e) { result = { schema: 'kleinhirn-diag-readback/1', error: String(e && e.message || e) }; }
+window.__diagResult = result;
+out.textContent = JSON.stringify(result, (k, v) => (k === 'ms' ? undefined : v), 1);
+if (params.get('report') === 'local') {
+  try {
+    await fetch(`/__result?rid=${encodeURIComponent(params.get('rid') ?? 'diag-readback')}`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(result),
+    });
+  } catch (e) { console.log('report failed', e); }
+}
+document.body.dataset.state = result.error ? 'error' : 'done';
+</script>

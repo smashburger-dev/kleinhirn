@@ -20,9 +20,11 @@
   },
   "include": [
     "bench/**/*.ts",
+    "site/**/*.ts",
     "src/**/*.ts",
     "tests/**/*.ts",
-    "vite.config.ts"
+    "vite.config.ts",
+    "vite.site.config.ts"
   ],
   "exclude": [
     "src/wasm"
