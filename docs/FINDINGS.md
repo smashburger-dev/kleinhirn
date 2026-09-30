@@ -558,8 +558,9 @@ latency targets miss?
 Parity holds in all 15 stages that run. The p95 latency target for
 L256 (desktop WebGPU at most 20 ms, WASM on the M1 Pro at most 300 ms)
 is missed by every row and stage, Chromium f16 included at 46.7 ms.
-The download target of 80 MB is missed by f16 at 152.3 MiB. iPhone
-measurements are still open.
+The download target of 80 MB is missed by f16 at 152.3 MiB. On an
+iPhone 16 Pro f16 passes parity and misses the L256 phone target of 60
+ms at 166 ms (see the iPhone subsection).
 
 Setup:
 - Page: `site/` (Vite, static), built with `npm run build:site`. It
@@ -761,6 +762,100 @@ the p95. The item sets differ (200 against 968), so the gap cannot be
 put down to the page alone. The 6.5 ms of section 11 comes from a
 different pass of the same runner.
 
+### iPhone 16 Pro (iOS 27)
+
+One run per browser on 30 September, made by the owner on the public
+page https://smashburger-dev.github.io/kleinhirn/, without repetitions:
+Safari 27 and Brave on the same device, plugged in, screen on, low power
+mode off, other tabs closed. Files
+`bench/results/k5-iphone16pro-safari-20260930.result.json` and
+`k5-iphone16pro-brave-20260930.result.json`; both pass
+`tools/check_device_result.mjs`. Both ran page build `munat6gw` (engine
+build `munat69a`, commit e9dcb26), whose `bundleSha256` equals the
+sha256 of `site/dist/kleinhirn.js`. Weights came from Hugging Face,
+stages f16 and f32 one after the other in one page. The wasm stage did
+not run in these two. Three more runs from a Mac over safaridriver follow below.
+
+Brave on iOS is WebKit, not Chromium: its user agent names AppleWebKit
+and "Brave". The Brave row is a second sample of the same engine, not a
+Chromium row. Both user agents report "iPhone OS 18_7" although the
+device runs iOS 27 (frozen user agent).
+
+Capabilities, the same in both browsers:
+
+| Field | Value |
+|---|---|
+| shader-f16 | yes |
+| subgroups | no (sizes `null`) |
+| Float16Array, OPFS | yes, yes |
+| Range request against Hugging Face | 206 |
+| Auto stage | f16 |
+| Adapter info | apple (all four fields) |
+| maxStorageBufferBindingSize, maxBufferSize | 1 GiB each |
+| maxComputeInvocationsPerWorkgroup | 1,024 |
+| maxComputeWorkgroupStorageSize | 32,768 B |
+| hardwareConcurrency | 4 (Safari), 3 (Brave) |
+
+Parity: argmax agreement is 100 % in both stages and buckets. The
+largest f16 logit difference is 1.4e-2 (L128) and 9.2e-3 (L256), the
+largest probability difference 4.1e-3 and 2.1e-3. f32 is exact, with a
+largest logit difference of 2.5e-5 and 1.5e-5. The logits are identical
+value for value in Safari and Brave. The engine's GPU buffers are as on
+desktop (57,249,484 B f16, 114,169,100 B f32).
+
+Latency, ms per call, median / p95 over 200 items per bucket, model
+only and end to end:
+
+| Browser | Stage | L128 model only | L128 E2E | L256 model only | L256 E2E |
+|---|---|---|---|---|---|
+| Safari 27 | f16 | 30 / 44 | 29 / 42 | 156.5 / 248 | 126 / 166 |
+| Safari 27 | f32 | 30 / 44 | 40 / 87 | 156 / 198 | 146.5 / 189 |
+| Brave (WebKit) | f16 | 29 / 43 | 29 / 43 | 143 / 182 | 123 / 162 |
+| Brave (WebKit) | f32 | 29 / 49 | 37 / 56 | 180 / 228 | 179 / 335 |
+| Safari 27, WebDriver wasm | wasm | 127 / 208 | 122.5 / 199 | 640.5 / 795 | 615 / 775 |
+| Safari 27, WebDriver f16 with profiling | f16 | 30 / 44 | 29 / 43 | 200 / 252 | 176 / 411 |
+| Safari 27, WebDriver f16+f32 | f16 | 31 / 45 | 29 / 42 | 160.5 / 202 | 145 / 187 |
+| Safari 27, WebDriver f16+f32 | f32 | 42 / 62 | 44 / 68 | 164 / 208 | 154.5 / 197 |
+
+`performance.now()` has 1 ms resolution in WebKit.
+
+WebDriver runs: three runs on 30 September from a Mac over safaridriver on the same iPhone, same page and build (`munat6gw`). Files `bench/results/k5-iphone16pro-wasm-20260930T102600.result.json`, `k5-iphone16pro-f16-profiling-20260930T103318.result.json` and `k5-iphone16pro-f16-f32-20260930T103607.result.json`, runner commit 6aa2cac (`bench/run-site.mjs --browser ios-safari`). All three pass parity. The tab was never in the background (`visibilityState` in the poll) and iOS never ended it. The runs are provisional because the tree was dirty at the start (the runner change was not committed). `data/hillclimb/runs.tsv` also holds two failed session attempts (safaridriver reports "session not created").
+
+wasm on the iPhone: parity is exact, largest logit difference 1.9e-5 (L128) and 1.5e-5 (L256), argmax agreement 100 %. The run takes about 6.5 minutes. Latency is 122.5 ms (L128 end-to-end median, p95 199 ms) and 615 ms (L256, p95 775 ms). The WASM target (at most 300 ms) applies to the M1 Pro, not to the phone; for comparison, L256 p95 is 775 ms on the iPhone against 453.3 ms on the M1 Pro. Loading over the network takes 34,869 ms (311,029,292 B of f32 weights; `fetchMs` 34,303 ms).
+
+f16 in four samples (Safari and Brave by hand, two WebDriver runs): the L256 end-to-end median lies between 123 and 176 ms, the p95 between 162 and 411 ms. All four miss the target (p95 at most 60 ms). The run with profiling (176 / 411 ms) is an outlier: its maximum is 1,288 ms, while its L128 result (29 / 43 ms) matches the other samples. f16 loads in 17,045 and 20,328 ms, f32 in 37,936 ms. The second f16 run and f32 match the hand runs: L256 end to end 145 / 187 ms and 154.5 / 197 ms.
+
+Web Inspector did not open under safaridriver (`safari:automaticProfiling` produced no inspector window). Peak memory is therefore still not measured, wasm included (`jsHeapMeasurable` false).
+
+The phone target (L256 end-to-end p95 at most 60 ms) is missed: Safari
+f16 is at 166 ms, 2.8 times the limit, Brave f16 at 162 ms, the two WebDriver runs at 187 and 411 ms. The L128 p95
+is under 60 ms in f16; in f32 only in Brave (56 ms), while Safari f32
+end to end is at 87 ms.
+
+Against Chromium on the M1 Pro (model only, L128 median) the iPhone is
+4.1 times slower in Safari (30 against 7.3 ms) and 4.0 times in Brave
+(29 ms). Against desktop Safari (20 ms) it is 1.5 times slower. At the
+L256 end-to-end p95, Safari f16 on the iPhone is 3.6 times Chromium (166
+against 46.7 ms).
+
+An observation, not explained: in L256 f16 the model-only pass is
+slower than the end-to-end pass (Safari 156.5 against 126 ms median,
+Brave 143 against 123 ms). The passes run one after the other; thermal
+state or order are candidates, neither is measured. Brave f32 L256 shows
+outliers in the end-to-end pass (p95 335 ms, maximum 470 ms).
+
+Load over the network (weights from Hugging Face, `loadTiming` in the
+files): f16 takes 16,320 ms (Brave) and 17,056 ms (Safari), f32 36,306
+ms and 40,131 ms. Fetching the shards is nearly all of it (`fetchMs`
+15,814 to 16,594 ms in f16). No tab crashed with f16 and f32 one after
+the other in one page.
+
+Storage marker: Brave found markers from a visit 13 minutes earlier in
+OPFS, Cache Storage and localStorage (`visits` 1, `ageDays` 0.0089).
+Safari saw a first visit with all three markers empty. The lifetime over
+days is open. Peak memory is not measured: iOS has no web API for it and
+`performance.memory` is missing (`jsHeapMeasurable` false).
+
 ### Findings
 
 - Parity holds on every stage that runs, on every desktop browser we
@@ -770,10 +865,18 @@ different pass of the same runner.
   it. The dispatch profile of section 12 covers L128 only.
 - The 80 MB download target is missed by f16 at 152.3 MiB. Vocabulary
   compression and int8 weights are the way down.
+- wasm runs on the iPhone with exact parity (one WebDriver run) but needs 615 ms end-to-end median in L256, 3.5 to 4.2 times f16 (145 and 176 ms in the two WebDriver runs). The page picks f16 on the iPhone whenever WebGPU is there; wasm stays the path without WebGPU.
+- f16 stays the mobile path: the page picks it on the iPhone by itself,
+  parity holds, and f32 is no faster there. The iPhone 16 Pro is about
+  four times slower than Chromium on the M1 Pro in L128 f16 and misses
+  the L256 target by about 2.8 times. The kernel search has to close
+  that gap; whether 60 ms is reachable in L256 needs an L256 dispatch
+  profile first.
 - Safari 27 and Firefox 153 have no `subgroups`. The kernel rule of
   minimum limits and no subgroups stays right; a subgroup variant would
   be unavailable on two of five browsers. `shader-f16` is present in
-  every desktop browser.
+  every desktop browser and on the iPhone 16 Pro with iOS 27 (Safari
+  and Brave), which also lacks `subgroups`.
 - Firefox pays about 104 ms per asynchronous completion. While a call
   ends with one readback, its latency there is at least 109 ms. Keeping
   the number of completions per call small matters more there than
@@ -790,6 +893,8 @@ different pass of the same runner.
 
 ### Open
 
-iPhone 16 Pro with iOS 27: whether `shader-f16` is available, the
-memory peak and when iOS ends the tab, the age of the storage marker on
-a second visit after days, and latency against the 60 ms phone target.
+On the iPhone 16 Pro with iOS 27: peak memory and when iOS ends the tab
+by hand (Mac Safari, Develop, iPhone, the page, Timelines, Memory;
+Web Inspector does not open under safaridriver), the age of the storage
+marker after days, and repetitions by hand, since there is one run per
+browser and one WebDriver run of the wasm stage.

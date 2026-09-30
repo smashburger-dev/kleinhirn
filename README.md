@@ -74,7 +74,8 @@ The usual tool for running such models in a browser is ONNX Runtime Web
   WebGPU, 300 ms for WASM) are missed in every row: 46.7 ms for f16 and
   453 ms for WASM in Chromium, 107 ms for f16 in Safari, 215 ms in
   Firefox, where every asynchronous GPU readback costs about 104 ms.
-- Phones are next: the first measurement will be an iPhone 16 Pro.
+- On an iPhone 16 Pro (iOS 27, Safari and Brave, which is WebKit there) f16 runs with full parity, but the 256-token p95 is 166 ms against the 60 ms target.
+  The wasm stage also runs on the iPhone with exact parity (L256 p95 775 ms). Peak memory and the tab kill threshold are not measured yet.
 - The f16 GLiNER2.5-small download is 152 MB.
 
 ## Measure your device

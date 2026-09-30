@@ -8,6 +8,7 @@
 //        [--max-load <n> [--wait-min 20] [--no-wait] [--run-anyway]] [--reps <n>]
 //        [--extra "trace=1&limit=20&warmup=5"] [--poll-s <n>] [--out-root <dir>]
 //        [--safari-mode webdriver|local] [--diag readback] [--n <iterations>]
+//        [--browser ios-safari [--safari-profiling] [--inspector-shots <dir>] [--tag <name>]]
 //
 // --extra       raw URL params appended to the page URL (trace, limit, warmup).
 // --poll-s      seconds between state polls (default 1; safari webdriver 3).
@@ -21,6 +22,18 @@
 //               report=local, waits for the POSTed file and closes the tab with
 //               AppleScript.
 // --diag readback: run /diag/readback.html (bench/diag) instead of the page.
+//
+// ios-safari: Safari on the plugged-in iPhone over safaridriver (no simulator),
+// page = the public Pages URL, default device "iPhone 16 Pro 256GB", os
+// "iOS 27.0 (24A437)", no local server, poll every 15 s, timeout 40 min. Each poll
+// logs visibilityState and the progress text; a poll with visibilityState other
+// than 'visible' marks the run backgrounded:true. Memory is not measurable from
+// the Mac; the Mac load average is recorded but there is no max-load gate.
+// --safari-profiling sets safari:automaticProfiling (Web Inspector timeline on
+// the Mac). --inspector-shots <dir>: after the page reports done, wait 5 s,
+// bring Safari to the front, screenshot the screen (ios-inspector-1.png), end
+// the session, screenshot again (ios-inspector-2.png); Safari window names are
+// logged at every poll. Files: k5-iphone16pro-<tag>-<stamp>.json / .result.json.
 //
 // Browsers: chromium, chromium-nogpu, webkit, firefox, brave, safari. All run
 // visible (headless: false). One fresh browser per rep.
@@ -59,7 +72,7 @@ const COLS = [
   'peak_mem_mb', 'browser', 'adapter', 'kept', 'note',
 ];
 
-const BOOLEAN_FLAGS = new Set(['no-wait', 'run-anyway', 'no-activate']);
+const BOOLEAN_FLAGS = new Set(['no-wait', 'run-anyway', 'no-activate', 'safari-profiling']);
 const args = new Map();
 for (let i = 2; i < process.argv.length; i += 1) {
   const key = process.argv[i].replace(/^--/, '');
@@ -69,10 +82,15 @@ for (let i = 2; i < process.argv.length; i += 1) {
 const browserName = args.get('browser') ?? 'chromium';
 const stages = args.get('stages') ?? 'f16,f32,wasm';
 const weights = args.get('weights') ?? 'default';
-const change = args.get('change') ?? 'k5-site';
-const deviceName = args.get('device') ?? 'MacBook Pro M1 Pro 16 GB (runner)';
+const change = args.get('change') ?? (browserName === 'ios-safari' ? 'k5-iphone' : 'k5-site');
+const isIos = browserName === 'ios-safari';
+const IOS_URL = 'https://smashburger-dev.github.io/kleinhirn';
+const deviceName = args.get('device') ?? (isIos ? 'iPhone 16 Pro 256GB' : 'MacBook Pro M1 Pro 16 GB (runner)');
+const osName = args.get('os') ?? (isIos ? 'iOS 27.0 (24A437)' : null);
+const tag = args.get('tag') ?? stages.replaceAll(',', '-');
+const inspectorShots = args.get('inspector-shots') ?? null;
 const screenshotDir = args.get('screenshots');
-const timeoutMs = Number(args.get('timeout-min') ?? 45) * 60000;
+const timeoutMs = Number(args.get('timeout-min') ?? (isIos ? 40 : 45)) * 60000;
 const maxLoad = args.has('max-load') ? Number(args.get('max-load')) : null;
 const waitMin = Number(args.get('wait-min') ?? 20);
 const noWait = args.get('no-wait') === true;
@@ -87,7 +105,7 @@ const RUNS = resolve(OUT, 'data/hillclimb/runs.tsv');
 const RESULTS = resolve(OUT, 'bench/results');
 const safariMode = args.get('safari-mode') ?? 'webdriver';
 const diag = args.get('diag') ?? null;
-const pollMs = Number(args.get('poll-s') ?? (browserName === 'safari' && safariMode === 'webdriver' ? 3 : 1)) * 1000;
+const pollMs = Number(args.get('poll-s') ?? (isIos ? 15 : browserName === 'safari' && safariMode === 'webdriver' ? 3 : 1)) * 1000;
 const localReport = browserName === 'safari' && safariMode === 'local';
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -96,9 +114,9 @@ const gitDirty = () => execFileSync('git', ['status', '--porcelain'], { encoding
 const load1 = () => loadavg()[0];
 const loadStr = () => loadavg().map((v) => v.toFixed(2)).join(' ');
 const queryOf = (rid) => (diag ? `n=${args.get('n') ?? 200}` : `autorun=1&stages=${stages}${weights === 'default' ? '' : `&weights=${encodeURIComponent(weights)}`}`
-  + `&device=${encodeURIComponent(deviceName)}`)
+  + `&device=${encodeURIComponent(deviceName)}` + (osName ? `&os=${encodeURIComponent(osName)}` : ''))
   + (extra ? `&${extra}` : '') + (localReport ? `&report=local&rid=${encodeURIComponent(rid)}` : '');
-const pagePath = () => (diag ? '/diag/readback.html' : '/index.html');
+const pagePath = () => (diag ? '/diag/readback.html' : isIos ? '/' : '/index.html');
 const resultGlobal = () => (diag ? '__diagResult' : '__khResult');
 
 // ---- memory samplers -------------------------------------------------------
@@ -315,6 +333,90 @@ async function safariDriver(sampler) {
   }
 }
 
+// Safari on the iPhone over safaridriver. Same raw WebDriver calls as above, with
+// the iOS capabilities. visibility() and safariWindows() feed the poll log.
+async function iosSafariDriver() {
+  const dPort = 4444 + Math.floor(Math.random() * 500);
+  const driver = spawn('safaridriver', ['-p', String(dPort)], { stdio: 'ignore' });
+  const root = `http://127.0.0.1:${dPort}`;
+  const call = async (method, path, body) => {
+    const res = await fetch(`${root}${path}`, {
+      method, headers: { 'Content-Type': 'application/json' }, body: body ? JSON.stringify(body) : undefined,
+    });
+    const json = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(`webdriver ${method} ${path}: ${res.status} ${JSON.stringify(json.value)}`);
+    return json.value;
+  };
+  let sid = null;
+  const cleanup = async () => {
+    if (sid) { try { await call('DELETE', `/session/${sid}`); } catch { /* gone */ } sid = null; }
+    driver.kill();
+  };
+  const shot = (name) => {
+    try { execFileSync('screencapture', ['-x', `${inspectorShots}/${name}`]); return `${inspectorShots}/${name}`; } catch (e) { return `screencapture failed: ${String(e.message).slice(0, 120)}`; }
+  };
+  const windowNames = () => {
+    try {
+      return execFileSync('osascript', ['-e', 'tell application "System Events" to if exists process "Safari" then return name of every window of process "Safari"'], { encoding: 'utf8' }).trim();
+    } catch (e) { return `osascript failed: ${String(e.message).slice(0, 120)}`; }
+  };
+  const inspector = {};
+  try {
+    for (let i = 0; i < 100; i += 1) {
+      try { if ((await fetch(`${root}/status`)).ok) break; } catch { /* not up yet */ }
+      await sleep(100);
+    }
+    const alwaysMatch = { browserName: 'safari', platformName: 'iOS', 'safari:useSimulator': false };
+    if (args.has('safari-profiling')) alwaysMatch['safari:automaticProfiling'] = true;
+    // The first POST right after startup can fail while safaridriver still
+    // enumerates devices ("Some devices were found, but could not be used").
+    await sleep(3000);
+    let created = null;
+    for (let attempt = 1; !created; attempt += 1) {
+      try { created = await call('POST', '/session', { capabilities: { alwaysMatch } }); } catch (e) {
+        if (attempt >= 5) throw e;
+        console.log(`session create attempt ${attempt} failed: ${String(e.message).slice(0, 160)}`);
+        await sleep(5000);
+      }
+    }
+    sid = created.sessionId;
+    const version = created.capabilities.browserVersion;
+    const exec = (script) => call('POST', `/session/${sid}/execute/sync`, { script, args: [] });
+    return {
+      label: `ios-safari-${version}`, version, flags: [], base: IOS_URL, frontNames: [],
+      notes: { webdriver: { capabilities: alwaysMatch, returned: created.capabilities }, inspector },
+      async goto(url) { await call('POST', `/session/${sid}/url`, { url }); },
+      state: () => exec('return document.body.dataset.state'),
+      progressText: () => exec("return document.getElementById('progress') && document.getElementById('progress').textContent"),
+      visibility: () => exec('return document.visibilityState'),
+      safariWindows: windowNames,
+      resultObject: async () => JSON.parse(await exec(`return JSON.stringify(window.${resultGlobal()}) || 'null'`)),
+      url: () => call('GET', `/session/${sid}/url`),
+      async beforeClose() {
+        if (!inspectorShots) return;
+        mkdirSync(inspectorShots, { recursive: true });
+        await sleep(5000);
+        try { execFileSync('osascript', ['-e', 'tell application "Safari" to activate']); } catch { /* best effort */ }
+        await sleep(1500);
+        inspector.windowsBeforeClose = windowNames();
+        inspector.shot1 = shot('ios-inspector-1.png');
+      },
+      async screenshot() { /* page screenshot not needed */ },
+      async close() {
+        await cleanup();
+        if (inspectorShots) {
+          await sleep(3000);
+          inspector.windowsAfterClose = windowNames();
+          inspector.shot2 = shot('ios-inspector-2.png');
+        }
+      },
+    };
+  } catch (e) {
+    await cleanup();
+    throw e;
+  }
+}
+
 // Safari without WebDriver: the page reports itself (report=local) to the local
 // server, the runner only opens the URL and closes the tab afterwards.
 async function safariLocalDriver(sampler) {
@@ -366,6 +468,7 @@ const BROWSERS = {
   webkit: (s) => launch(webkit, s, { label: 'webkit' }),
   firefox: (s) => launch(firefox, s, { label: 'firefox' }),
   'chromium-nogpu': nogpuDriver,
+  'ios-safari': () => iosSafariDriver(),
   safari: (s) => (safariMode === 'local' ? safariLocalDriver(s) : safariDriver(s)),
 };
 const SAMPLER_KIND = { webkit: 'tree+webkit', safari: 'webkit' };
@@ -421,44 +524,74 @@ async function oneRun(rep) {
   const stamp = new Date().toISOString().replace(/[-:]/g, '').slice(0, 15);
   const suffix = repIndex !== null ? `-r${repIndex}` : reps > 1 ? `-r${rep}` : '';
   const runId = `${change}-${browserName}-${stamp}${suffix}`;
-  const gate = await loadGate();
+  const gate = isIos ? { policy: 'none (device run, Mac load recorded only)', waitedMin: 0, startedAboveMax: false } : await loadGate();
   const loadStart = loadStr();
   const commit = gitCommit();
   const dirty = gitDirty();
-  const provisional = maxLoad === null || gate.startedAboveMax || dirty;
+  const provisional = isIos ? dirty : (maxLoad === null || gate.startedAboveMax || dirty);
   appendRun(runId, `provisional=${provisional}; 1-min load ${loadStart} at start; pending`);
   mkdirSync(RESULTS, { recursive: true });
-  const sampler = makeSampler(SAMPLER_KIND[browserName] ?? 'tree');
+  const sampler = isIos ? {
+    markBefore() {}, start() {}, markLoad() {}, halt() {},
+    stop: () => ({ available: false, peakMb: null, note: 'not measurable from the Mac (iOS has no memory web API; Web Inspector timeline only with --safari-profiling)' }),
+  } : makeSampler(SAMPLER_KIND[browserName] ?? 'tree');
   let drv = null;
+  let t0 = Date.now();
+  let backgrounded = false;
+  const pollLog = [];
   try {
     drv = await BROWSERS[browserName](sampler);
     sampler.start();
     await sleep(2000); // pre-load samples for the baseline
     sampler.markLoad();
     await drv.goto(`${drv.base}${pagePath()}?${queryOf(runId)}`);
-    const t0 = Date.now();
+    t0 = Date.now();
     let lastLog = 0;
-    for (;;) {
-      await tickFront(drv);
-      const state = await drv.state();
-      if (state === 'done' || state === 'error') break;
-      if (Date.now() - t0 > timeoutMs) throw new Error('timeout waiting for body[data-state]');
-      if (Date.now() - lastLog > 30000) {
-        lastLog = Date.now();
-        console.log(await drv.progressText());
+    let lastWindows = null;
+    try {
+      for (;;) {
+        await tickFront(drv);
+        const state = await drv.state();
+        if (drv.visibility) {
+          const visibility = await drv.visibility();
+          const progress = await drv.progressText();
+          const windows = args.has('safari-profiling') ? drv.safariWindows() : undefined;
+          if (visibility !== 'visible') backgrounded = true;
+          pollLog.push({ t: new Date().toISOString(), elapsedS: Math.round((Date.now() - t0) / 1000), state, visibility, progress, ...(windows !== undefined && windows !== lastWindows ? { safariWindows: windows } : {}) });
+          if (windows !== undefined) lastWindows = windows;
+          console.log(`${pollLog[pollLog.length - 1].t} ${visibility} ${state ?? '-'} ${progress}`);
+        }
+        if (state === 'done' || state === 'error') break;
+        if (Date.now() - t0 > timeoutMs) throw new Error('timeout waiting for body[data-state]');
+        if (!drv.visibility && Date.now() - lastLog > 30000) {
+          lastLog = Date.now();
+          console.log(await drv.progressText());
+        }
+        await sleep(pollMs);
       }
-      await sleep(pollMs);
+    } catch (e) {
+      if (drv.visibility) {
+        const at = new Date().toISOString();
+        const last = pollLog[pollLog.length - 1];
+        const fail = { runId, failedAt: at, elapsedS: Math.round((Date.now() - t0) / 1000), error: e.message, lastPoll: last ?? null, backgrounded, pollLog, loadAvgStart: loadStart, loadAvgEnd: loadStr() };
+        const fbase = `${RESULTS}/k5-iphone16pro-${tag}-${stamp}`;
+        writeFileSync(`${fbase}.json`, JSON.stringify({ run: fail, result: null }));
+        console.log(`run failed, wrote ${fbase}.json`);
+      }
+      throw e;
     }
     const result = await drv.resultObject();
+    if (drv.beforeClose) await drv.beforeClose();
     const memory = sampler.stop();
     const loadEnd = loadStr();
-    const base = `${RESULTS}/${change}-${browserName}-${stamp}${suffix}`;
+    const base = isIos ? `${RESULTS}/k5-iphone16pro-${tag}-${stamp}` : `${RESULTS}/${change}-${browserName}-${stamp}${suffix}`;
     const rel = (f) => f.replace(`${OUT}/`, '');
     const run = {
       runId, browser: drv.label, browserVersion: drv.version, flags: drv.flags, ...drv.notes,
       url: await drv.url(), loadAvgStart: loadStart, loadAvgEnd: loadEnd, maxLoadPolicy: gate.policy,
       waitedMin: gate.waitedMin, provisional, commit, dirtyTree: dirty, weights, stages, rep: repIndex ?? rep, reps, extra, serverRoot: process.cwd(), outRoot: OUT, memory,
       frontLog: frontLog.splice(0),
+      ...(isIos ? { backgrounded, pollLog, osName, deviceName } : {}),
     };
     writeFileSync(`${base}.json`, JSON.stringify({ run, result }));
     if (result && !result.error) writeFileSync(`${base}.result.json`, JSON.stringify(result, null, 1));
@@ -500,7 +633,7 @@ async function oneRun(rep) {
       browser: drv.label,
       adapter: JSON.stringify({ vendor: adapter.vendor, architecture: adapter.architecture }),
       kept: '',
-      note: `provisional=${provisional}; load ${loadStart} -> ${loadEnd}; weights=${weights}; `
+      note: `provisional=${provisional}; ${isIos ? `backgrounded=${backgrounded}; ` : ''}load ${loadStart} -> ${loadEnd}; weights=${weights}; `
         + `auto=${result.autoStage?.picked ?? 'none'}; L256 model-only median ${per((s) => lat(s, 'L256', 'modelOnly', 'medianMs'))}; ${rel(base)}.json`,
     });
     for (const s of result.stages) {
@@ -517,6 +650,7 @@ async function oneRun(rep) {
 
 async function main() {
   if (!BROWSERS[browserName]) throw new Error(`unknown browser ${browserName}; one of ${Object.keys(BROWSERS).join(', ')}`);
+  if (isIos) { await oneRun(1); return; }
   if (!existsSync('site/dist/index.html')) throw new Error('site/dist missing; run npm run build:site');
   // Always our own server: a leftover one could serve another checkout's dist.
   if (await serverUp()) throw new Error(`port ${PORT} is already served; stop that server first`);
