@@ -1,0 +1,11 @@
+name: Question or other
+description: Anything that fits no other form.
+title: ""
+labels: ["question"]
+body:
+  - type: textarea
+    id: text
+    attributes:
+      label: What is it about?
+    validations:
+      required: true

@@ -1,0 +1,28 @@
+name: Proposal
+description: A new model, task or feature, or a larger change you want to send as a pull request.
+title: "Proposal: "
+labels: ["proposal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Pull requests beyond a small fix need an agreed issue first. Describe the change here before you write the code; see CONTRIBUTING.md.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is missing or what is the problem?
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: What do you propose?
+      description: For a code change, say which parts change and roughly how large it is.
+    validations:
+      required: true
+  - type: checkboxes
+    id: pr
+    attributes:
+      label: Pull request
+      options:
+        - label: I would like to send the pull request myself.

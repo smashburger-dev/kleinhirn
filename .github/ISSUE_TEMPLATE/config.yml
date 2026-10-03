@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Device benchmark page
+    url: https://smashburger-dev.github.io/kleinhirn/
+    about: Measure kleinhirn on your device, then post the result with the "Device result" form.
+  - name: Contributing
+    url: https://github.com/smashburger-dev/kleinhirn/blob/main/CONTRIBUTING.md
+    about: How to report bugs, contribute results and send pull requests.
+  - name: Report a vulnerability
+    url: https://github.com/smashburger-dev/kleinhirn/security/advisories/new
+    about: Security problems are reported confidentially, not as a public issue.
