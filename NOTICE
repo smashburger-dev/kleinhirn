@@ -5,7 +5,7 @@ This product includes software and content from the following sources:
 
 - convert/gliner2_export.py is adapted from FluidInference's
   gliner2-5-small-coreml export tooling (Apache-2.0).
-  https://github.com/FluidInference/gliner2-5-small-coreml
+  https://huggingface.co/FluidInference/gliner2-5-small-coreml
 
 - The supported GLiNER2.5 model checkpoints (fastino/gliner2.5-small-v1,
   fastino/gliner2.5-base-v1, fastino/gliner2.5-multi-v1) are released under

@@ -7,24 +7,37 @@ zero-shot classification over NLI, sentence embeddings, named entities
 and reranking. The text stays on the device, there is no inference
 server to pay for, and it works offline once the model is cached.
 
-It loads Hugging Face checkpoints of six encoder families directly from
-`config.json` and safetensors: BERT (with ELECTRA and MiniLM), RoBERTa,
-XLM-R, DistilBERT, DeBERTa-v2/v3 and ModernBERT. Two models with their
-own heads run on the same engine: GLiNER2.5, a zero-shot classifier
-that takes any set of labels, and Julia 1, a decision model that picks
-one of up to 20 options. The engine ships its own GPU programs (WGSL
-kernels) for WebGPU; browsers without WebGPU fall back to a
-hand-written WASM-SIMD module on the CPU (today for the DeBERTa models
-only).
+It loads [Hugging Face](https://huggingface.co/) checkpoints of six
+encoder families directly from `config.json` and
+[safetensors](https://github.com/safetensors/safetensors):
+[BERT](https://github.com/google-research/bert) (with
+[ELECTRA](https://github.com/google-research/electra) and
+[MiniLM](https://github.com/microsoft/unilm/tree/master/minilm)),
+[RoBERTa](https://github.com/facebookresearch/fairseq/tree/main/examples/roberta),
+[XLM-R](https://github.com/facebookresearch/fairseq/tree/main/examples/xlmr),
+[DistilBERT](https://huggingface.co/distilbert/distilbert-base-uncased),
+[DeBERTa-v2/v3](https://github.com/microsoft/DeBERTa) and
+[ModernBERT](https://github.com/AnswerDotAI/ModernBERT). Two models with
+their own heads run on the same engine:
+[GLiNER2.5](https://github.com/fastino-ai/GLiNER2), a zero-shot
+classifier that takes any set of labels, and
+[Julia 1](https://huggingface.co/SupersonicLabs/Julia-1), a decision
+model that picks one of up to 20 options. The engine ships its own GPU
+programs ([WGSL](https://www.w3.org/TR/WGSL/) kernels) for
+[WebGPU](https://www.w3.org/TR/webgpu/); browsers without WebGPU fall
+back to a hand-written WASM-SIMD module on the CPU (today for the
+DeBERTa models only).
 
-The usual tool for running such models in a browser is ONNX Runtime Web
-(ORT) from Microsoft. It is the baseline for every speed number below.
+The usual tool for running such models in a browser is
+[ONNX Runtime Web](https://github.com/microsoft/onnxruntime) (ORT) from
+Microsoft. It is the baseline for every speed number below.
 
 ## Results
 
 - **Same answers as the original.** 88 of the 89 checkpoints on our list
   (the three most downloaded per family and task, up to 200M parameters)
-  make the same decisions as the PyTorch reference: 100 % in full
+  make the same decisions as the [PyTorch](https://github.com/pytorch/pytorch)
+  reference: 100 % in full
   precision (f32), at least 99.5 % in half precision (f16) of the
   decisions that f16 rounding cannot flip, embeddings with cosine at
   least 0.9999 and 0.999. The 89th passes in f32 and the
@@ -36,12 +49,12 @@ The usual tool for running such models in a browser is ONNX Runtime Web
 
   | Model | 128 tokens kleinhirn / ORT | 512 tokens kleinhirn / ORT |
   |---|---|---|
-  | all-MiniLM-L6-v2 (BERT) | 3.29 / 5.29 ms | 8.97 / 12.06 ms |
-  | twitter-roberta-base-sentiment (RoBERTa) | 13.40 / 18.96 ms | 47.55 / 59.67 ms |
-  | mmarco-mMiniLMv2-L12 (XLM-R) | 6.07 / 10.09 ms | 17.86 / 24.33 ms |
-  | distilbert-base-uncased-sst-2 (DistilBERT) | 6.99 / 9.76 ms | 24.54 / 33.34 ms |
-  | deberta-v3-base-prompt-injection-v2 (DeBERTa-v3) | 14.54 / 24.35 ms | 57.31 / 95.53 ms |
-  | granite-embedding-small-english-r2 (ModernBERT) | 6.99 / 12.44 ms | 21.35 / 35.81 ms |
+  | [all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) (BERT) | 3.29 / 5.29 ms | 8.97 / 12.06 ms |
+  | [twitter-roberta-base-sentiment](https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment-latest) (RoBERTa) | 13.40 / 18.96 ms | 47.55 / 59.67 ms |
+  | [mmarco-mMiniLMv2-L12](https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1) (XLM-R) | 6.07 / 10.09 ms | 17.86 / 24.33 ms |
+  | [distilbert-base-uncased-sst-2](https://huggingface.co/distilbert/distilbert-base-uncased-finetuned-sst-2-english) (DistilBERT) | 6.99 / 9.76 ms | 24.54 / 33.34 ms |
+  | [deberta-v3-base-prompt-injection-v2](https://huggingface.co/protectai/deberta-v3-base-prompt-injection-v2) (DeBERTa-v3) | 14.54 / 24.35 ms | 57.31 / 95.53 ms |
+  | [granite-embedding-small-english-r2](https://huggingface.co/ibm-granite/granite-embedding-small-english-r2) (ModernBERT) | 6.99 / 12.44 ms | 21.35 / 35.81 ms |
 
   1.26x to 1.78x faster; all three kleinhirn repetitions below all three
   ORT repetitions in each of the twelve cells.
@@ -75,7 +88,8 @@ The usual tool for running such models in a browser is ONNX Runtime Web
 ## Use cases
 
 - Learning platforms that give feedback on student answers on the
-  device. The first user is argmin, a German learning platform that
+  device. The first user is [argmin](https://github.com/smashburger-dev/argmin),
+  a German learning platform that
   classifies misconceptions in learner answers.
 - Local-first and offline apps: notes, mail or task tools that tag, sort
   or route text where it was written.
@@ -98,12 +112,17 @@ The usual tool for running such models in a browser is ONNX Runtime Web
   classification, reranking), GLiNER2.5 small, base and multi
   (classification) and Julia 1. GLiNER2.5's entity extraction is not
   implemented yet.
-- The speed numbers above are from an M1 Pro in Chromium. The new
-  kernels give the same decisions in Playwright WebKit and Firefox.
+- The speed numbers above are from an M1 Pro in
+  [Chromium](https://www.chromium.org/). The new kernels give the same
+  decisions in [Playwright](https://github.com/microsoft/playwright)
+  [WebKit](https://github.com/WebKit/WebKit) and
+  [Firefox](https://github.com/mozilla-firefox/firefox).
 - Device matrix from September 2026 (before the kernel rewrite): parity
   with the PyTorch reference holds in every stage that runs in Chromium,
-  Brave, Playwright WebKit, Safari 27, Playwright Firefox 153 and
-  Chromium without WebGPU, and on an NVIDIA L4
+  [Brave](https://github.com/brave/brave-browser), Playwright WebKit,
+  [Safari](https://www.apple.com/safari/) 27, Playwright Firefox 153 and
+  Chromium without WebGPU, and on an
+  [NVIDIA L4](https://www.nvidia.com/en-us/data-center/l4/)
   ([FINDINGS section 13](docs/FINDINGS.md)). Latency for the 256-token
   bucket missed the targets (p95 of 20 ms on desktop WebGPU, 300 ms for
   WASM) in every row then; Firefox pays about 104 ms for every
@@ -203,11 +222,16 @@ call.
   `node tools/k28_convert.ts <model-id>` after fetching it
   (`convert/k28_fetch.py`).
 - GLiNER2.5 classification models (DeBERTa-v2/v3 encoders):
-  `small-upstream` (fastino/gliner2.5-small-v1), `base-upstream`
-  (fastino/gliner2.5-base-v1), `multi-upstream`
-  (fastino/gliner2.5-multi-v1), each at a pinned revision
-  (`tools/fetch_models.py`).
-- Julia 1 (SupersonicLabs/Julia-1), a ModernBERT decision model:
+  `small-upstream`
+  ([fastino/gliner2.5-small-v1](https://huggingface.co/fastino/gliner2.5-small-v1)),
+  `base-upstream`
+  ([fastino/gliner2.5-base-v1](https://huggingface.co/fastino/gliner2.5-base-v1)),
+  `multi-upstream`
+  ([fastino/gliner2.5-multi-v1](https://huggingface.co/fastino/gliner2.5-multi-v1)),
+  each at a pinned revision (`tools/fetch_models.py`).
+- Julia 1 ([SupersonicLabs/Julia-1](https://huggingface.co/SupersonicLabs/Julia-1)),
+  a ModernBERT decision model fine-tuned from
+  [mmBERT-small](https://huggingface.co/jhu-clsp/mmBERT-small):
   state + question + 2-20 options in, one decision out.
 
 ## Bundle size
@@ -238,8 +262,10 @@ Fallback chain (`backend: 'auto'`):
 
 1. WebGPU f16 (when the adapter supports `shader-f16`)
 2. WebGPU f32
-3. WASM-SIMD in a worker (AssemblyScript, no Emscripten), DeBERTa
-   models only
+3. WASM-SIMD in a worker
+   ([AssemblyScript](https://github.com/AssemblyScript/assemblyscript),
+   no [Emscripten](https://github.com/emscripten-core/emscripten)),
+   DeBERTa models only
 
 The engine requests the device with exactly the WebGPU minimum limits
 (`limits: 'minimum'`, the default): 256 invocations per workgroup,
@@ -479,7 +505,7 @@ load did affect earlier runs, so the start-load bound stays.
 
 ### Second platform (provisional)
 
-On a Modal NVIDIA L4 under Linux (Chromium 151, Vulkan; gate:
+On a [Modal](https://modal.com/) NVIDIA L4 under Linux (Chromium 151, Vulkan; gate:
 `adapterInfo` reports vendor `nvidia`, architecture `lovelace`, no
 fallback adapter) kleinhirn f32 passed every parity gate:
 small-upstream 100 % argmax (968 cases) with max logit diff 2.35e-5,
@@ -526,17 +552,23 @@ for hosts that batch anyway.
 
 | Task | Published | Measured here | Status |
 |---|---|---|---|
-| Typed Decisions | 1,463/2,000 (their GPU BF16 run); 1,451/2,000 (their CPU run) | 1,451/2,000 | matches their CPU run exactly |
-| AG News | 94/100 | 94/100 | exact |
-| DAIR Emotion | 86/100 | 86/100 | exact |
-| Banking77 | 64/100 | ambiguous: 57-69 by router parameters | open, "top-16" not uniquely reconstructable |
-| MASSIVE | 71.50 % | en-US 51.71 % | not reproducible; no public request format derives it |
+| [Typed Decisions](https://huggingface.co/datasets/LocalLLaMA/typed-decisions) | 1,463/2,000 (their GPU BF16 run); 1,451/2,000 (their CPU run) | 1,451/2,000 | matches their CPU run exactly |
+| [AG News](https://huggingface.co/datasets/fancyzhx/ag_news) | 94/100 | 94/100 | exact |
+| [DAIR Emotion](https://huggingface.co/datasets/dair-ai/emotion) | 86/100 | 86/100 | exact |
+| [Banking77](https://huggingface.co/datasets/PolyAI/banking77) | 64/100 | ambiguous: 57-69 by router parameters | open, "top-16" not uniquely reconstructable |
+| [MASSIVE](https://github.com/alexa/massive) | 71.50 % | en-US 51.71 % | not reproducible; no public request format derives it |
+
+AG News, DAIR Emotion and Banking77 are read from the
+[BTZSC](https://huggingface.co/datasets/btzsc/btzsc) copies, sampled as in
+[jev-benchmarks](https://github.com/AbdelStark/jev-benchmarks); MASSIVE
+from the [AmazonScience/massive](https://huggingface.co/datasets/AmazonScience/massive)
+dataset.
 
 kleinhirn's Julia engine (WebGPU f16, minimum limits) scores the same
 1,451/2,000 on Typed Decisions as PyTorch CPU; argmax agreement
 1,997/2,000 (`bench/results/k9-typed-kleinhirn-julia-f16.json`).
 
-### GLiNER2.5 zero-shot on the K9 tasks (PyTorch CPU, Jev adapter)
+### GLiNER2.5 zero-shot on the K9 tasks (PyTorch CPU, [Jev](https://github.com/AbdelStark/jev-benchmarks) adapter)
 
 | Task | small | base | multi |
 |---|---|---|---|
@@ -549,8 +581,9 @@ Jev reference values under the pinned protocol are reported, not
 measured by us: AG News 91/100, DAIR Emotion 48/100 and Banking77
 87/100 come from the pinned `btzsc-pilot-v1` report (see
 `docs/BENCHMARKS.md`); Typed Decisions 72.70 % is listed on the
-Julia 1 model card (huggingface.co/SupersonicLabs/Julia-1, "Evaluation",
-column "Jev reference") as a supplied comparison reference.
+[Julia 1 model card](https://huggingface.co/SupersonicLabs/Julia-1)
+("Evaluation", column "Jev reference") as a supplied comparison
+reference.
 
 ## Repository layout
 
@@ -565,6 +598,80 @@ pages/     prebuilt page served by GitHub Pages, no weights
 docs/      ARCHITECTURE, RESEARCH, BENCHMARKS, FINDINGS
 models/    checkpoints and weights, never in git
 ```
+
+## Third-party projects
+
+Every project, model and dataset this README names, with the place its
+owners publish it. kleinhirn is not affiliated with any of them.
+
+Models measured or supported:
+
+- [fastino/gliner2.5-small-v1](https://huggingface.co/fastino/gliner2.5-small-v1),
+  [-base-v1](https://huggingface.co/fastino/gliner2.5-base-v1),
+  [-multi-v1](https://huggingface.co/fastino/gliner2.5-multi-v1) by
+  Fastino; library and paper code in
+  [fastino-ai/GLiNER2](https://github.com/fastino-ai/GLiNER2)
+- [SupersonicLabs/Julia-1](https://huggingface.co/SupersonicLabs/Julia-1),
+  fine-tuned from [jhu-clsp/mmBERT-small](https://huggingface.co/jhu-clsp/mmBERT-small)
+  ([JHU-CLSP/mmBERT](https://github.com/JHU-CLSP/mmBERT))
+- [sentence-transformers/all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)
+- [cardiffnlp/twitter-roberta-base-sentiment-latest](https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment-latest)
+- [cross-encoder/mmarco-mMiniLMv2-L12-H384-v1](https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1)
+- [distilbert/distilbert-base-uncased-finetuned-sst-2-english](https://huggingface.co/distilbert/distilbert-base-uncased-finetuned-sst-2-english)
+- [protectai/deberta-v3-base-prompt-injection-v2](https://huggingface.co/protectai/deberta-v3-base-prompt-injection-v2)
+- [ibm-granite/granite-embedding-small-english-r2](https://huggingface.co/ibm-granite/granite-embedding-small-english-r2)
+- the other 83 checkpoints: Hugging Face IDs and revisions in
+  `data/k28/models.json`
+
+Model families:
+
+- BERT: [google-research/bert](https://github.com/google-research/bert)
+- ELECTRA: [google-research/electra](https://github.com/google-research/electra)
+- MiniLM: [microsoft/unilm](https://github.com/microsoft/unilm/tree/master/minilm)
+- RoBERTa and XLM-R: [facebookresearch/fairseq](https://github.com/facebookresearch/fairseq)
+- DistilBERT: [distilbert/distilbert-base-uncased](https://huggingface.co/distilbert/distilbert-base-uncased)
+- DeBERTa: [microsoft/DeBERTa](https://github.com/microsoft/DeBERTa)
+- ModernBERT: [AnswerDotAI/ModernBERT](https://github.com/AnswerDotAI/ModernBERT)
+
+Runtimes, formats and tools:
+
+- ONNX Runtime and ONNX Runtime Web: [microsoft/onnxruntime](https://github.com/microsoft/onnxruntime)
+- PyTorch: [pytorch/pytorch](https://github.com/pytorch/pytorch)
+- Hugging Face Hub: [huggingface.co](https://huggingface.co/)
+- safetensors: [safetensors/safetensors](https://github.com/safetensors/safetensors)
+- WebGPU and WGSL: [W3C WebGPU](https://www.w3.org/TR/webgpu/), [W3C WGSL](https://www.w3.org/TR/WGSL/)
+- AssemblyScript: [AssemblyScript/assemblyscript](https://github.com/AssemblyScript/assemblyscript)
+- Emscripten (not used, named for contrast): [emscripten-core/emscripten](https://github.com/emscripten-core/emscripten)
+- Playwright: [microsoft/playwright](https://github.com/microsoft/playwright)
+- GLiNER2.5 CoreML export, from which `convert/gliner2_export.py` is
+  adapted: [FluidInference/gliner2-5-small-coreml](https://huggingface.co/FluidInference/gliner2-5-small-coreml)
+
+Browsers and platforms:
+
+- Chromium: [chromium.org](https://www.chromium.org/)
+- Brave: [brave/brave-browser](https://github.com/brave/brave-browser)
+- WebKit: [WebKit/WebKit](https://github.com/WebKit/WebKit)
+- Safari: [apple.com/safari](https://www.apple.com/safari/)
+- Firefox: [mozilla-firefox/firefox](https://github.com/mozilla-firefox/firefox)
+- NVIDIA L4: [nvidia.com](https://www.nvidia.com/en-us/data-center/l4/), run on [Modal](https://modal.com/)
+
+Datasets and benchmarks:
+
+- Typed Decisions: [LocalLLaMA/typed-decisions](https://huggingface.co/datasets/LocalLLaMA/typed-decisions)
+- BTZSC: [btzsc/btzsc](https://huggingface.co/datasets/btzsc/btzsc)
+- Jev benchmark protocol: [AbdelStark/jev-benchmarks](https://github.com/AbdelStark/jev-benchmarks)
+- AG News: [fancyzhx/ag_news](https://huggingface.co/datasets/fancyzhx/ag_news)
+- DAIR Emotion: [dair-ai/emotion](https://huggingface.co/datasets/dair-ai/emotion)
+- Banking77: [PolyAI/banking77](https://huggingface.co/datasets/PolyAI/banking77)
+- MASSIVE: [alexa/massive](https://github.com/alexa/massive), data from
+  [AmazonScience/massive](https://huggingface.co/datasets/AmazonScience/massive)
+
+Corpus and first user:
+
+- argmin, a German learning platform by the author of kleinhirn:
+  [smashburger-dev/argmin](https://github.com/smashburger-dev/argmin),
+  app at [smashburger-dev.github.io/argmin](https://smashburger-dev.github.io/argmin/).
+  500 of the 1,000 corpus texts come from its content (CC-BY-4.0).
 
 ## License
 
