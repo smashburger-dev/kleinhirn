@@ -673,6 +673,13 @@ Corpus and first user:
   app at [smashburger-dev.github.io/argmin](https://smashburger-dev.github.io/argmin/).
   500 of the 1,000 corpus texts come from its content (CC-BY-4.0).
 
+## Contributing
+
+Device results, bug reports and pull requests are welcome; see
+[`CONTRIBUTING.md`](CONTRIBUTING.md). Anything beyond a small fix starts
+with an issue. Security problems go through
+[`SECURITY.md`](SECURITY.md), not a public issue.
+
 ## License
 
 Apache-2.0, copyright Noa Katana (see `LICENSE`). Third-party models,

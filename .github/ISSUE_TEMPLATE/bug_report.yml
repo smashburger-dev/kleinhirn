@@ -1,0 +1,50 @@
+name: Bug report
+description: Something does not work, crashes, or gives a different answer than the PyTorch reference.
+title: "Bug: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you ran, and what happened. Paste error messages as text.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+      description: For a wrong answer, name the input text and the answer of the PyTorch reference.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: How to reproduce
+      placeholder: |
+        1. Load model ... with backend 'auto'
+        2. Call ... with the text "..."
+        3. ...
+    validations:
+      required: true
+  - type: input
+    id: model
+    attributes:
+      label: Model and precision
+      placeholder: sentence-transformers/all-MiniLM-L6-v2, f16
+  - type: input
+    id: env
+    attributes:
+      label: Browser, OS and GPU
+      placeholder: Chrome 151 on Windows 11, NVIDIA RTX 4070 / Safari 26 on iPhone 16 Pro / no WebGPU
+    validations:
+      required: true
+  - type: dropdown
+    id: backend
+    attributes:
+      label: Backend
+      options:
+        - auto
+        - webgpu
+        - wasm
+        - I don't know

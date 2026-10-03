@@ -1,0 +1,48 @@
+# Closes oversized pull requests from people without write access, with a
+# comment that points to CONTRIBUTING.md. Owners, members and collaborators
+# are not checked. A maintainer lets an agreed large pull request through by
+# adding the label "size-ok" and reopening it.
+#
+# pull_request_target runs with a write token, so this workflow must never
+# check out or run code from the pull request. It only reads the event
+# payload and calls the GitHub CLI.
+name: PR size
+
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize, ready_for_review]
+
+permissions:
+  pull-requests: write
+
+env:
+  MAX_LINES: 800
+  MAX_FILES: 20
+
+jobs:
+  size:
+    if: >-
+      !contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.pull_request.author_association)
+      && !contains(github.event.pull_request.labels.*.name, 'size-ok')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check size
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number }}
+          ADDITIONS: ${{ github.event.pull_request.additions }}
+          DELETIONS: ${{ github.event.pull_request.deletions }}
+          FILES: ${{ github.event.pull_request.changed_files }}
+        run: |
+          lines=$((ADDITIONS + DELETIONS))
+          echo "Changed lines: $lines (limit $MAX_LINES), changed files: $FILES (limit $MAX_FILES)"
+          if [ "$lines" -le "$MAX_LINES" ] && [ "$FILES" -le "$MAX_FILES" ]; then
+            exit 0
+          fi
+          gh pr comment "$PR" --body "Thanks for the pull request. It changes $lines lines in $FILES files, more than the limit of $MAX_LINES lines and $MAX_FILES files for contributors without write access, so it is closed automatically.
+
+          Please split it into smaller pull requests with one topic each, or open an issue first and agree on the larger change with a maintainer. See [CONTRIBUTING.md](https://github.com/$GH_REPO/blob/main/CONTRIBUTING.md#pull-requests)."
+          gh pr close "$PR"
+          echo "::error::Pull request exceeds $MAX_LINES lines or $MAX_FILES files"
+          exit 1
