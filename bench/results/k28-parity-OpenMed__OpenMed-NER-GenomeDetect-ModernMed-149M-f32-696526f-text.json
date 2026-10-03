@@ -1,0 +1,1195 @@
+{
+ "date": "2026-10-01",
+ "run_id": "k28-parity-OpenMed__OpenMed-NER-GenomeDetect-ModernMed-149M-f32-696526f-text-1790832355474",
+ "commit": "696526f",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "4.50",
+ "loadAvgEnd": "4.46 5.08 4.57",
+ "stage": "done",
+ "model": "OpenMed__OpenMed-NER-GenomeDetect-ModernMed-149M",
+ "precision": "f32",
+ "task": "token-classification",
+ "info": {
+  "precision": "f32",
+  "buildId": "mup3bpcy",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "modernbert",
+  "task": "token-classification",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 476830228,
+  "downloadBytes": 598446444,
+  "loadTiming": {
+   "fetchMs": 807.1000000014901,
+   "bodyMs": 3125.3000000044703,
+   "sha256Ms": 338.6000000014901,
+   "uploadMs": 88.39999999850988,
+   "embedJoinMs": 14.899999998509884,
+   "manifestMs": 3.100000001490116,
+   "planMs": 7.399999998509884
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "spanExactAgreement": 1,
+  "spansGot": [
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.7116901278495789,
+     "start": 9,
+     "end": 10
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.8486466407775879,
+     "start": 58,
+     "end": 59
+    }
+   ],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.8272954821586609,
+     "start": 24,
+     "end": 27
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.9036933183670044,
+     "start": 27,
+     "end": 28
+    }
+   ],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.4616435170173645,
+     "start": 61,
+     "end": 62
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5353944301605225,
+     "start": 44,
+     "end": 46
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5944732427597046,
+     "start": 46,
+     "end": 48
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.4509016275405884,
+     "start": 52,
+     "end": 54
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5742966532707214,
+     "start": 58,
+     "end": 60
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.6644225120544434,
+     "start": 60,
+     "end": 62
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.7195387482643127,
+     "start": 77,
+     "end": 79
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.7078269720077515,
+     "start": 79,
+     "end": 81
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5801892876625061,
+     "start": 85,
+     "end": 87
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.7168537974357605,
+     "start": 91,
+     "end": 93
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.7442861795425415,
+     "start": 93,
+     "end": 95
+    }
+   ],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5708461403846741,
+     "start": 1,
+     "end": 2
+    }
+   ],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.710848867893219,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5472948551177979,
+     "start": 2,
+     "end": 5
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5796825885772705,
+     "start": 5,
+     "end": 7
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.4607625901699066,
+     "start": 8,
+     "end": 12
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.8532252311706543,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.888804018497467,
+     "start": 1,
+     "end": 3
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.7569296360015869,
+     "start": 3,
+     "end": 12
+    }
+   ],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.6684417724609375,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.7567043900489807,
+     "start": 2,
+     "end": 4
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.4223414957523346,
+     "start": 47,
+     "end": 51
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.40486812591552734,
+     "start": 51,
+     "end": 55
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.8902202248573303,
+     "start": 9,
+     "end": 10
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.8233766257762909,
+     "start": 10,
+     "end": 27
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.9121717214584351,
+     "start": 34,
+     "end": 35
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.6762529412905375,
+     "start": 35,
+     "end": 42
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.7304133772850037,
+     "start": 21,
+     "end": 22
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5498328804969788,
+     "start": 22,
+     "end": 23
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.7782977223396301,
+     "start": 58,
+     "end": 59
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.695054829120636,
+     "start": 59,
+     "end": 60
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.44462865591049194,
+     "start": 1,
+     "end": 3
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.43739134073257446,
+     "start": 11,
+     "end": 13
+    }
+   ],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5012476444244385,
+     "start": 11,
+     "end": 13
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5147088766098022,
+     "start": 13,
+     "end": 15
+    }
+   ],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.9194144010543823,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.9038681983947754,
+     "start": 1,
+     "end": 3
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5272355079650879,
+     "start": 2,
+     "end": 4
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5208989381790161,
+     "start": 8,
+     "end": 10
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.40747374296188354,
+     "start": 14,
+     "end": 15
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.6488770246505737,
+     "start": 17,
+     "end": 19
+    }
+   ],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.7159157991409302,
+     "start": 24,
+     "end": 27
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.8587437868118286,
+     "start": 27,
+     "end": 28
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.948130190372467,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.9358552694320679,
+     "start": 1,
+     "end": 2
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5167737305164337,
+     "start": 3,
+     "end": 8
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5067525506019592,
+     "start": 10,
+     "end": 11
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5228463411331177,
+     "start": 15,
+     "end": 16
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.7278106808662415,
+     "start": 0,
+     "end": 4
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.6912897229194641,
+     "start": 4,
+     "end": 7
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.6269274950027466,
+     "start": 7,
+     "end": 17
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5524312853813171,
+     "start": 30,
+     "end": 32
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.4414619505405426,
+     "start": 16,
+     "end": 18
+    }
+   ],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5223307982087135,
+     "start": 41,
+     "end": 49
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5914002656936646,
+     "start": 0,
+     "end": 1
+    }
+   ],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5380855202674866,
+     "start": 39,
+     "end": 41
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5341828465461731,
+     "start": 41,
+     "end": 45
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.6405102610588074,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.649259626865387,
+     "start": 1,
+     "end": 2
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.542195737361908,
+     "start": 29,
+     "end": 30
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5591433644294739,
+     "start": 30,
+     "end": 31
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.6408488750457764,
+     "start": 50,
+     "end": 51
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.6670305132865906,
+     "start": 51,
+     "end": 52
+    }
+   ],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.659337043762207,
+     "start": 15,
+     "end": 17
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.595800518989563,
+     "start": 17,
+     "end": 18
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.49707719683647156,
+     "start": 0,
+     "end": 1
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.6801186800003052,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5730444192886353,
+     "start": 2,
+     "end": 3
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.6520947217941284,
+     "start": 3,
+     "end": 4
+    }
+   ],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5870780944824219,
+     "start": 0,
+     "end": 1
+    }
+   ],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5654745697975159,
+     "start": 0,
+     "end": 1
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.42287248373031616,
+     "start": 54,
+     "end": 56
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5303348302841187,
+     "start": 27,
+     "end": 28
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.7959489822387695,
+     "start": 29,
+     "end": 31
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.735223650932312,
+     "start": 31,
+     "end": 32
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.8128911852836609,
+     "start": 33,
+     "end": 35
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.7736989855766296,
+     "start": 35,
+     "end": 36
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.755586564540863,
+     "start": 37,
+     "end": 39
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.726422131061554,
+     "start": 39,
+     "end": 40
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.6755310893058777,
+     "start": 41,
+     "end": 44
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5495383143424988,
+     "start": 3,
+     "end": 5
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.4440620541572571,
+     "start": 35,
+     "end": 36
+    }
+   ],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.6594089269638062,
+     "start": 0,
+     "end": 3
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5116207599639893,
+     "start": 3,
+     "end": 4
+    }
+   ],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5197758078575134,
+     "start": 10,
+     "end": 11
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5078483819961548,
+     "start": 4,
+     "end": 6
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5745592713356018,
+     "start": 6,
+     "end": 8
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.6315088272094727,
+     "start": 8,
+     "end": 11
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.8021697998046875,
+     "start": 74,
+     "end": 79
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.708453893661499,
+     "start": 79,
+     "end": 86
+    }
+   ],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.6567879319190979,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.6540496349334717,
+     "start": 1,
+     "end": 2
+    }
+   ],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5725703835487366,
+     "start": 0,
+     "end": 4
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5853085666894913,
+     "start": 4,
+     "end": 7
+    }
+   ],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5072147250175476,
+     "start": 3,
+     "end": 5
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5519634485244751,
+     "start": 137,
+     "end": 145
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.6254428386688232,
+     "start": 145,
+     "end": 158
+    }
+   ],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.7708740234375,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.6435453361935086,
+     "start": 1,
+     "end": 25
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.7248358726501465,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.8074041604995728,
+     "start": 2,
+     "end": 4
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5167085528373718,
+     "start": 4,
+     "end": 8
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5934562087059021,
+     "start": 8,
+     "end": 11
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5125755071640015,
+     "start": 0,
+     "end": 1
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.7024845480918884,
+     "start": 13,
+     "end": 15
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.7320407629013062,
+     "start": 29,
+     "end": 31
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5320887565612793,
+     "start": 5,
+     "end": 7
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.6738920211791992,
+     "start": 7,
+     "end": 8
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.48091623187065125,
+     "start": 17,
+     "end": 18
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.4986244738101959,
+     "start": 18,
+     "end": 19
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.58054119348526,
+     "start": 24,
+     "end": 26
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5083974599838257,
+     "start": 26,
+     "end": 31
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.4079292118549347,
+     "start": 32,
+     "end": 34
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.6730157136917114,
+     "start": 9,
+     "end": 11
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.6050496101379395,
+     "start": 11,
+     "end": 12
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.700193464756012,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.7388056516647339,
+     "start": 10,
+     "end": 11
+    }
+   ],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.7317479848861694,
+     "start": 13,
+     "end": 14
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.618715226650238,
+     "start": 14,
+     "end": 15
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.7316584587097168,
+     "start": 26,
+     "end": 27
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.527449369430542,
+     "start": 27,
+     "end": 28
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.7525733113288879,
+     "start": 1,
+     "end": 3
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.6350182890892029,
+     "start": 3,
+     "end": 5
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.701485276222229,
+     "start": 13,
+     "end": 16
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5625375509262085,
+     "start": 16,
+     "end": 18
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.6375564336776733,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.488338440656662,
+     "start": 4,
+     "end": 6
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.6341180205345154,
+     "start": 6,
+     "end": 7
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5388169884681702,
+     "start": 15,
+     "end": 17
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.45723462104797363,
+     "start": 17,
+     "end": 18
+    }
+   ],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.4929284155368805,
+     "start": 8,
+     "end": 11
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5473363399505615,
+     "start": 13,
+     "end": 16
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5374477505683899,
+     "start": 18,
+     "end": 21
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.533564031124115,
+     "start": 27,
+     "end": 30
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.6911062598228455,
+     "start": 2,
+     "end": 4
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.6350324153900146,
+     "start": 4,
+     "end": 7
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.6110842227935791,
+     "start": 23,
+     "end": 24
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5934649109840393,
+     "start": 24,
+     "end": 27
+    }
+   ],
+   [
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.476508229970932,
+     "start": 9,
+     "end": 11
+    },
+    {
+     "entity_group": "GENE/PROTEIN",
+     "score": 0.5111759205659231,
+     "start": 11,
+     "end": 20
+    }
+   ]
+  ],
+  "spanTexts": 200,
+  "spans": 144,
+  "maxAbsScoreDiff": 0.000016033649444580078,
+  "textStats": {
+   "cases": 200,
+   "calls": 200,
+   "inputMismatch": 0,
+   "rows": 200,
+   "bitDiffRows": 0,
+   "batchRows": 0,
+   "batchVsSingleDiffRows": 0
+  }
+ },
+ "gpuErrors": []
+}

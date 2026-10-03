@@ -1,0 +1,70 @@
+{
+ "date": "2026-10-01",
+ "run_id": "k28-parity-MoritzLaurer__xtremedistil-l6-h256-zeroshot-v1.1-all-33-f16-7899016-1790820761623",
+ "commit": "7899016",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "3.31",
+ "loadAvgEnd": "3.45 3.16 3.34",
+ "stage": "done",
+ "model": "MoritzLaurer__xtremedistil-l6-h256-zeroshot-v1.1-all-33",
+ "precision": "f16",
+ "task": "nli",
+ "info": {
+  "precision": "f16",
+  "buildId": "muotp2us",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "bert",
+  "task": "nli",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 14140972,
+  "downloadBytes": 25511304,
+  "loadTiming": {
+   "fetchMs": 63.20000000298023,
+   "bodyMs": 48.19999999925494,
+   "sha256Ms": 13.700000002980232,
+   "uploadMs": 2.699999999254942,
+   "embedJoinMs": 1.5999999977648258,
+   "manifestMs": 2.600000001490116,
+   "planMs": 2.300000000745058
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.0037145614624023438,
+  "meanAbsLogitDiff": 0.000815460872836411,
+  "disagreements": [],
+  "zeroShotAgreement": 1,
+  "zeroShotTexts": 40
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0,
+  "groups": 50
+ },
+ "gpuErrors": []
+}

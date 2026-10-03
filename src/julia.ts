@@ -4,15 +4,19 @@
 // (256k x 384 exceeds the 128 MiB binding limit); sequence assembly follows
 // julia/data.py via prepareDecision.
 
-import { getDevice, type KhDevice } from './device.ts';
+import { getDevice, scopedCall, scopedSync, type KhDevice } from './device.ts';
 import { fetchManifest, loadWeights, type LoadedWeights, type Manifest } from './weights.ts';
+import { assertFinite, tokenRowOffset } from './tasks.ts';
 import { BpeTokenizer } from './tokenizer/bpe.ts';
 import { BucketOverflowError } from './tokenizer/schema.ts';
 import {
   prepareDecision, type JuliaInput, type JuliaRequest,
 } from './tokenizer/julia-input.ts';
-import { JuliaPlan, type JuliaSpec } from './graph/julia.ts';
-import type { ProfileGranularity } from './graph/deberta.ts';
+import { buildPlan } from './plan/build.ts';
+import { assertPlan, fitBatchPlan } from './plan/check.ts';
+import type { Plan } from './plan/ir.ts';
+import { PlanExecutor, type ProfileGranularity } from './plan/executor.ts';
+import { specFromJuliaManifest, type JuliaSpec } from './plan/spec.ts';
 import type { LoadOptions } from './index.ts';
 import {
   LruCache, MAX_BATCH, batchStride, dedupMerge, juliaMergeKey,
@@ -41,6 +45,12 @@ export interface DecisionResult {
   timings: { tokenizeMs: number; gpuMs: number; totalMs: number };
 }
 
+// Cache entries and caller results never share arrays: a caller that edits
+// its logits cannot change what a later identical call returns.
+function copyResult(r: JuliaPreparedResult): JuliaPreparedResult {
+  return { logits: r.logits.slice(), probabilities: r.probabilities.slice() };
+}
+
 function softmaxPrefix(logits: Float32Array, valid: number): Float32Array {
   const out = new Float32Array(valid);
   let mx = -Infinity;
@@ -56,12 +66,14 @@ function softmaxPrefix(logits: Float32Array, valid: number): Float32Array {
 const MAX_BATCH_PLANS = 8;
 
 export class JuliaEngine {
-  private plans = new Map<number, JuliaPlan>();
-  private batchPlans = new Map<string, JuliaPlan>();
+  private plans = new Map<number, PlanExecutor>();
+  private batchPlans = new Map<string, PlanExecutor>();
+  // `${stride}:${asked batch}` -> the batch size that fits the device (1: none, use the bucket plan)
+  private batchFit = new Map<string, number>();
   private queue: Promise<unknown> = Promise.resolve();
   private downloadBytes = 0;
   private tokenizerBytes = 0;
-  private gpuBytes = 0;
+  private weightGpuBytes = 0;
   private loadTiming: Record<string, number> = {};
   private cache = new LruCache<JuliaPreparedResult>(0);
 
@@ -104,33 +116,40 @@ export class JuliaEngine {
     const engine = new JuliaEngine(kh, weights, tokenizer, spec, precision);
     engine.downloadBytes = weights.downloadBytes + tokBuf.byteLength;
     engine.tokenizerBytes = tokBuf.byteLength;
-    engine.gpuBytes = weights.gpuBytes;
+    engine.weightGpuBytes = weights.gpuBytes;
     engine.loadTiming = {
       ...weights.timing, manifestMs, tokenizerMs, planMs: 0 };
     const tPlan = performance.now();
-    for (const bucket of options.buckets ?? [512]) {
-      const length = typeof bucket === 'number' ? bucket : bucket.length;
-      const plan = new JuliaPlan(
-        kh.device, spec, weights.tensors, length, precision === 'f16');
-      engine.gpuBytes += plan.gpuBytes;
-      engine.plans.set(length, plan);
-    }
+    await scopedSync(kh, () => {
+      for (const bucket of options.buckets ?? [512]) {
+        const length = typeof bucket === 'number' ? bucket : bucket.length;
+        const bucketPlan = engine.planFor(length, 1);
+        assertPlan(bucketPlan, kh.device.limits, (name) => weights.tensors.get(name)?.size);
+        engine.plans.set(length, new PlanExecutor(kh.device, bucketPlan, weights.tensors));
+      }
+    });
     engine.cache = new LruCache(options.cacheSize ?? 256);
     engine.loadTiming.planMs = performance.now() - tPlan;
     return engine;
   }
 
-  private pickBucket(seqLen: number): JuliaPlan {
+  private planFor(length: number, batch: number): Plan {
+    const { spec, head } = specFromJuliaManifest(this.spec);
+    return buildPlan(spec, head, {
+      length, batch, markers: this.spec.options, f16: this.precision === 'f16' });
+  }
+
+  private pickBucket(seqLen: number): PlanExecutor {
     const fits = [...this.plans.keys()].sort((a, b) => a - b)
       .find((b) => seqLen <= b);
     if (fits === undefined) {
       throw new BucketOverflowError(`seqLen ${seqLen} exceeds largest bucket`);
     }
-    return this.plans.get(fits) as JuliaPlan;
+    return this.plans.get(fits) as PlanExecutor;
   }
 
   private embeddingRows(
-    input: JuliaPreparedInput, plan: JuliaPlan,
+    input: JuliaPreparedInput, plan: PlanExecutor,
   ): Float32Array<ArrayBuffer> | Uint16Array<ArrayBuffer> {
     const L = plan.length;
     const hidden = this.spec.hiddenSize;
@@ -138,7 +157,7 @@ export class JuliaEngine {
       const rows = new Float32Array(L * hidden);
       const emb = this.weights.embeddings;
       for (let i = 0; i < input.seqLen; i += 1) {
-        const off = input.inputIds[i] * hidden;
+        const off = tokenRowOffset(input.inputIds[i], hidden, emb.length);
         rows.set(emb.subarray(off, off + hidden), i * hidden);
       }
       return rows;
@@ -146,7 +165,7 @@ export class JuliaEngine {
     const rows = new Uint16Array(L * hidden);
     const emb = this.weights.embeddings;
     for (let i = 0; i < input.seqLen; i += 1) {
-      const off = input.inputIds[i] * hidden;
+      const off = tokenRowOffset(input.inputIds[i], hidden, emb.length);
       rows.set(emb.subarray(off, off + hidden), i * hidden);
     }
     return rows;
@@ -181,60 +200,58 @@ export class JuliaEngine {
   ): Promise<JuliaPreparedResult> {
     const plan = bucket === undefined
       ? this.pickBucket(input.seqLen)
-      : this.plans.get(bucket) as JuliaPlan;
+      : this.plans.get(bucket) as PlanExecutor;
     if (!plan) throw new Error(`bucket ${bucket} not loaded`);
     if (input.seqLen > plan.length) {
       throw new BucketOverflowError(
         `seqLen ${input.seqLen} exceeds bucket ${plan.length}`);
     }
+    if (capture) plan.assertCapturable();
     const key = juliaMergeKey(input);
     const hit = capture ? undefined : this.cache.get(key);
-    if (hit) return { logits: hit.logits, probabilities: hit.probabilities };
-    return this.enqueue(async () => {
+    if (hit) return copyResult(hit);
+    return this.enqueue(() => scopedCall(this.kh, () => {
       plan.upload({
         embeddings: this.embeddingRows(input, plan),
         mask: this.maskOf(input, plan.length),
         packedMarkers: this.packedMarkers(input),
         qtype: input.qtype,
       });
-      plan.submit(capture, input.seqLen, input.qtype);
+      plan.submit(capture, { seqLen: input.seqLen, qtype: input.qtype });
+    }, async () => {
       const logits = await plan.readLogits();
+      assertFinite(logits, 'logits');
       const probabilities = softmaxPrefix(
         logits, Math.min(input.markers.length, this.spec.options));
-      if (!capture) this.cache.set(key, { logits, probabilities });
+      if (!capture) this.cache.set(key, copyResult({ logits, probabilities }));
       const captureData = capture ? await plan.readCapture() : undefined;
       return { logits, probabilities, captureData };
-    });
+    }));
   }
 
-  // Lazily built batch plan for row stride at batch size B; stride is
-  // the row block each sequence occupies, not a weight bucket. The
-  // widest buffer B*stride*max(3H, 2I) elements is checked against the
-  // binding limit before allocation. Plans are capped so distinct
-  // strides cannot grow GPU memory without bound.
-  private batchPlan(stride: number, batch: number): JuliaPlan {
-    const key = `${stride}:${batch}`;
-    let p = this.batchPlans.get(key);
-    if (p) return p;
-    const elt = this.precision === 'f16' ? 2 : 4;
-    const H = this.spec.hiddenSize;
-    const I = this.spec.intermediate;
-    const limit = this.kh.device.limits.maxStorageBufferBindingSize;
-    const worst = batch * stride * Math.max(3 * H, 2 * I) * elt;
-    if (worst > limit) {
-      throw new BucketOverflowError(
-        `batch ${batch} x stride ${stride} needs ${worst} B > ${limit} B binding limit`);
-    }
+  // Lazily built batch plan for row stride at batch size B; stride is the
+  // row block each sequence occupies, not a weight bucket. It is the plan of
+  // the largest size up to B that fits the device limits (checkPlan), or
+  // undefined when none does and the rows run on the bucket plan. Plans are
+  // capped so distinct strides cannot grow GPU memory without bound.
+  private batchPlan(stride: number, batch: number): PlanExecutor | undefined {
+    const asked = `${stride}:${batch}`;
+    const memo = this.batchFit.get(asked);
+    if (memo === 1) return undefined;
+    const known = this.batchPlans.get(`${stride}:${memo ?? batch}`);
+    if (known) return known;
+    const plan = memo === undefined
+      ? fitBatchPlan((b) => this.planFor(stride, b), this.kh.device.limits, batch)
+      : this.planFor(stride, memo);
+    this.batchFit.set(asked, plan ? plan.batch : 1);
+    if (!plan) return undefined;
     if (this.batchPlans.size >= MAX_BATCH_PLANS) {
       const oldest = this.batchPlans.keys().next().value as string;
       this.batchPlans.get(oldest)?.destroy();
       this.batchPlans.delete(oldest);
     }
-    p = new JuliaPlan(
-      this.kh.device, this.spec, this.weights.tensors, stride,
-      this.precision === 'f16', batch);
-    this.gpuBytes += p.gpuBytes;
-    this.batchPlans.set(key, p);
+    const p = new PlanExecutor(this.kh.device, plan, this.weights.tensors);
+    this.batchPlans.set(`${stride}:${plan.batch}`, p);
     return p;
   }
 
@@ -245,7 +262,7 @@ export class JuliaEngine {
   }
 
   private batchEmbeddingRows(
-    inputs: JuliaPreparedInput[], plan: JuliaPlan,
+    inputs: JuliaPreparedInput[], plan: PlanExecutor,
   ): Float32Array<ArrayBuffer> | Uint16Array<ArrayBuffer> {
     const hidden = this.spec.hiddenSize;
     const emb = this.weights.embeddings;
@@ -255,7 +272,7 @@ export class JuliaEngine {
     for (const [b, input] of inputs.entries()) {
       const base = b * plan.length * hidden;
       for (let i = 0; i < input.seqLen; i += 1) {
-        const off = input.inputIds[i] * hidden;
+        const off = tokenRowOffset(input.inputIds[i], hidden, emb.length);
         out.set(emb.subarray(off, off + hidden), base + i * hidden);
       }
     }
@@ -263,7 +280,7 @@ export class JuliaEngine {
   }
 
   private batchMask(
-    inputs: JuliaPreparedInput[], plan: JuliaPlan,
+    inputs: JuliaPreparedInput[], plan: PlanExecutor,
   ): Float32Array<ArrayBuffer> {
     const mask = new Float32Array(plan.length * plan.batch);
     for (const [b, input] of inputs.entries()) {
@@ -282,14 +299,19 @@ export class JuliaEngine {
     return packed;
   }
 
-  // One GPU batch pass over `inputs` (1..MAX_BATCH rows after padding).
+  // One GPU batch chunk over `inputs` (1..MAX_BATCH rows). Choosing, building
+  // and evicting the batch plan happen inside the queued function, next to
+  // upload, submit and readback. The plan that fits the device may be smaller
+  // than the chunk (or the bucket plan, B1): the rows then run in pieces of
+  // that plan's batch size, one after the other in the same queued function
+  // (a nested enqueue would wait on itself).
   private async runBatchChunk(
     inputs: JuliaPreparedInput[], bucket?: number,
   ): Promise<JuliaPreparedResult[]> {
     const maxSeq = Math.max(...inputs.map((i) => i.seqLen));
     const plan = bucket === undefined
       ? this.pickBucket(maxSeq)
-      : this.plans.get(bucket) as JuliaPlan;
+      : this.plans.get(bucket) as PlanExecutor;
     if (!plan) throw new Error(`bucket ${bucket} not loaded`);
     if (maxSeq > plan.length) {
       throw new BucketOverflowError(
@@ -298,46 +320,56 @@ export class JuliaEngine {
     const n = nextBatchSize(inputs.length);
     // B=1 runs on the bucket plan like the single path and dispatches
     // only the real rows; B>1 packs at the quantized stride.
-    const stride = n === 1
-      ? maxSeq
-      : Math.min(plan.length, batchStride(maxSeq));
-    let bPlan: JuliaPlan;
-    try {
-      bPlan = n === 1 ? plan : this.batchPlan(stride, n);
-    } catch (e) {
-      // A batch this size exceeds the binding limit (e.g. f32 L1024 B16);
-      // halving the chunk fits, so retry recursively instead of failing.
-      if (!(e instanceof BucketOverflowError) || inputs.length < 2) throw e;
-      const mid = Math.ceil(inputs.length / 2);
-      const a = await this.runBatchChunk(inputs.slice(0, mid), bucket);
-      const b = await this.runBatchChunk(inputs.slice(mid), bucket);
-      return [...a, ...b];
-    }
+    const stride = Math.min(plan.length, batchStride(maxSeq));
+    return this.enqueue(async () => {
+      const out: JuliaPreparedResult[] = [];
+      let bPlan: PlanExecutor | undefined;
+      while (out.length < inputs.length) {
+        const piece = await scopedCall(this.kh, () => {
+          bPlan ??= (n === 1 ? undefined : this.batchPlan(stride, n)) ?? plan;
+          const rows = inputs.slice(out.length, out.length + bPlan.batch);
+          this.submitPiece(rows, bPlan);
+          return { rows, plan: bPlan };
+        }, (p) => this.readPiece(p.rows, p.plan));
+        out.push(...piece);
+      }
+      return out;
+    });
+  }
+
+  // Upload and submit of one piece (the synchronous part of a scoped call).
+  private submitPiece(inputs: JuliaPreparedInput[], bPlan: PlanExecutor): void {
     const padded = inputs.length === bPlan.batch
       ? inputs
       : [...inputs, ...Array.from(
         { length: bPlan.batch - inputs.length }, () => this.padInput())];
-    return this.enqueue(async () => {
-      bPlan.upload({
-        embeddings: this.batchEmbeddingRows(padded, bPlan),
-        mask: this.batchMask(padded, bPlan),
-        packedMarkers: this.batchPackedMarkers(padded),
-        qtype: 0,
-      });
-      bPlan.submit(false, stride * bPlan.batch,
-        padded.map((p) => p.qtype));
-      const all = await bPlan.readLogits();
-      const K = this.spec.options;
-      return inputs.map((input, i) => {
-        const logits = all.slice(i * K, (i + 1) * K);
-        const res = {
-          logits,
-          probabilities: softmaxPrefix(
-            logits, Math.min(input.markers.length, K)),
-        };
-        this.cache.set(juliaMergeKey(input), res);
-        return res;
-      });
+    const rows = bPlan.batch === 1
+      ? Math.max(...inputs.map((i) => i.seqLen)) : bPlan.length * bPlan.batch;
+    bPlan.upload({
+      embeddings: this.batchEmbeddingRows(padded, bPlan),
+      mask: this.batchMask(padded, bPlan),
+      packedMarkers: this.batchPackedMarkers(padded),
+      qtype: 0,
+    });
+    bPlan.submit(false, {
+      seqLen: rows, qtype: padded.map((p) => p.qtype) });
+  }
+
+  private async readPiece(
+    inputs: JuliaPreparedInput[], bPlan: PlanExecutor,
+  ): Promise<JuliaPreparedResult[]> {
+    const all = await bPlan.readLogits();
+    const K = this.spec.options;
+    return inputs.map((input, i) => {
+      const logits = all.slice(i * K, (i + 1) * K);
+      assertFinite(logits, 'logits');
+      const res = {
+        logits,
+        probabilities: softmaxPrefix(
+          logits, Math.min(input.markers.length, K)),
+      };
+      this.cache.set(juliaMergeKey(input), copyResult(res));
+      return res;
     });
   }
 
@@ -353,7 +385,7 @@ export class JuliaEngine {
     for (const [i, input] of inputs.entries()) {
       const hit = this.cache.get(juliaMergeKey(input));
       if (hit) {
-        results[i] = { logits: hit.logits, probabilities: hit.probabilities };
+        results[i] = copyResult(hit);
       } else {
         pending.push(input);
         pendingIdx.push(i);
@@ -367,8 +399,12 @@ export class JuliaEngine {
         sorted.unique.slice(start, start + MAX_BATCH), bucket);
       uniqueResults.push(...chunkResults);
     }
+    // The first row of a slot gets the computed arrays, duplicates their own copies.
+    const handedOut = new Set<number>();
     for (const [i] of pending.entries()) {
-      results[pendingIdx[i]] = uniqueResults[sorted.slot[i]];
+      const r = uniqueResults[sorted.slot[i]] as JuliaPreparedResult;
+      results[pendingIdx[i]] = handedOut.has(sorted.slot[i]) ? copyResult(r) : r;
+      handedOut.add(sorted.slot[i]);
     }
     return results as JuliaPreparedResult[];
   }
@@ -453,6 +489,15 @@ export class JuliaEngine {
     }, options.granularity ?? 'pass', input.seqLen));
   }
 
+  // Weights plus every live plan (a capture buffer counts once it exists);
+  // an evicted batch plan is gone from the map and from the sum.
+  private liveGpuBytes(): number {
+    let n = this.weightGpuBytes;
+    for (const p of this.plans.values()) n += p.gpuBytes;
+    for (const p of this.batchPlans.values()) n += p.gpuBytes;
+    return n;
+  }
+
   info(): Record<string, unknown> {
     return {
       precision: this.precision,
@@ -460,7 +505,7 @@ export class JuliaEngine {
       limitsMode: this.kh.limitsMode,
       timestamps: this.kh.hasTimestamps,
       buckets: [...this.plans.keys()].sort((a, b) => a - b),
-      gpuBytes: this.gpuBytes,
+      gpuBytes: this.liveGpuBytes(),
       downloadBytes: this.downloadBytes,
       tokenizerBytes: this.tokenizerBytes,
       weightBytes: this.downloadBytes - this.tokenizerBytes,

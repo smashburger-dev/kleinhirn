@@ -1,0 +1,248 @@
+{
+ "date": "2026-10-02",
+ "maxLoad": 4,
+ "reps": 3,
+ "tag": null,
+ "pairs": [
+  "k20gc kh-small-f16-L128 vs ort-small-f16-webgpu-optgc-capture",
+  "k20gc kh-small-f32-L128 vs ort-small-f32-webgpu-optgc-capture",
+  "k20 kh-julia-batch-f16-B1 vs upstream-julia-batch4-graph-opt-f16",
+  "k20 kh-julia-f16 vs upstream-julia-batch1-graph-opt-f16",
+  "k20 kh-julia-f32 vs upstream-julia-batch1-graph-opt"
+ ],
+ "runs": [
+  {
+   "name": "kh-small-f16-L128",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k27r-official-kh-small-f16-L128-r1.json"
+  },
+  {
+   "name": "ort-small-f16-webgpu-optgc-capture",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k27r-official-ort-small-f16-webgpu-optgc-capture-r1.json"
+  },
+  {
+   "name": "kh-small-f16-L128",
+   "rep": 2,
+   "official": true,
+   "file": "bench/results/k27r-official-kh-small-f16-L128-r2.json"
+  },
+  {
+   "name": "ort-small-f16-webgpu-optgc-capture",
+   "rep": 2,
+   "official": true,
+   "file": "bench/results/k27r-official-ort-small-f16-webgpu-optgc-capture-r2.json"
+  },
+  {
+   "name": "kh-small-f16-L128",
+   "rep": 3,
+   "official": true,
+   "file": "bench/results/k27r-official-kh-small-f16-L128-r3.json"
+  },
+  {
+   "name": "ort-small-f16-webgpu-optgc-capture",
+   "rep": 3,
+   "official": true,
+   "file": "bench/results/k27r-official-ort-small-f16-webgpu-optgc-capture-r3.json"
+  },
+  {
+   "name": "kh-small-f32-L128",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k27r-official-kh-small-f32-L128-r1.json"
+  },
+  {
+   "name": "ort-small-f32-webgpu-optgc-capture",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k27r-official-ort-small-f32-webgpu-optgc-capture-r1.json"
+  },
+  {
+   "name": "kh-small-f32-L128",
+   "rep": 2,
+   "official": true,
+   "file": "bench/results/k27r-official-kh-small-f32-L128-r2.json"
+  },
+  {
+   "name": "ort-small-f32-webgpu-optgc-capture",
+   "rep": 2,
+   "official": true,
+   "file": "bench/results/k27r-official-ort-small-f32-webgpu-optgc-capture-r2.json"
+  },
+  {
+   "name": "kh-small-f32-L128",
+   "rep": 3,
+   "official": true,
+   "file": "bench/results/k27r-official-kh-small-f32-L128-r3.json"
+  },
+  {
+   "name": "ort-small-f32-webgpu-optgc-capture",
+   "rep": 3,
+   "official": true,
+   "file": "bench/results/k27r-official-ort-small-f32-webgpu-optgc-capture-r3.json"
+  },
+  {
+   "name": "kh-julia-batch-f16-B1",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k27r-official-kh-julia-batch-f16-B1-r1.json"
+  },
+  {
+   "name": "upstream-julia-batch4-graph-opt-f16",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k27r-official-upstream-julia-batch4-graph-opt-f16-r1.json"
+  },
+  {
+   "name": "kh-julia-batch-f16-B1",
+   "rep": 2,
+   "official": true,
+   "file": "bench/results/k27r-official-kh-julia-batch-f16-B1-r2.json"
+  },
+  {
+   "name": "upstream-julia-batch4-graph-opt-f16",
+   "rep": 2,
+   "official": true,
+   "file": "bench/results/k27r-official-upstream-julia-batch4-graph-opt-f16-r2.json"
+  },
+  {
+   "name": "kh-julia-batch-f16-B1",
+   "rep": 3,
+   "official": true,
+   "file": "bench/results/k27r-official-kh-julia-batch-f16-B1-r3.json"
+  },
+  {
+   "name": "upstream-julia-batch4-graph-opt-f16",
+   "rep": 3,
+   "official": true,
+   "file": "bench/results/k27r-official-upstream-julia-batch4-graph-opt-f16-r3.json"
+  },
+  {
+   "name": "kh-julia-f16",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k27r-official-kh-julia-f16-r1.json"
+  },
+  {
+   "name": "upstream-julia-batch1-graph-opt-f16",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k27r-official-upstream-julia-batch1-graph-opt-f16-r1.json"
+  },
+  {
+   "name": "kh-julia-f16",
+   "rep": 2,
+   "official": true,
+   "file": "bench/results/k27r-official-kh-julia-f16-r2.json"
+  },
+  {
+   "name": "upstream-julia-batch1-graph-opt-f16",
+   "rep": 2,
+   "official": true,
+   "file": "bench/results/k27r-official-upstream-julia-batch1-graph-opt-f16-r2.json"
+  },
+  {
+   "name": "kh-julia-f16",
+   "rep": 3,
+   "official": true,
+   "file": "bench/results/k27r-official-kh-julia-f16-r3.json"
+  },
+  {
+   "name": "upstream-julia-batch1-graph-opt-f16",
+   "rep": 3,
+   "official": true,
+   "file": "bench/results/k27r-official-upstream-julia-batch1-graph-opt-f16-r3.json"
+  },
+  {
+   "name": "kh-julia-f32",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k27r-official-kh-julia-f32-r1.json"
+  },
+  {
+   "name": "upstream-julia-batch1-graph-opt",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k27r-official-upstream-julia-batch1-graph-opt-r1.json"
+  },
+  {
+   "name": "kh-julia-f32",
+   "rep": 2,
+   "official": true,
+   "file": "bench/results/k27r-official-kh-julia-f32-r2.json"
+  },
+  {
+   "name": "upstream-julia-batch1-graph-opt",
+   "rep": 2,
+   "official": true,
+   "file": "bench/results/k27r-official-upstream-julia-batch1-graph-opt-r2.json"
+  },
+  {
+   "name": "kh-julia-f32",
+   "rep": 3,
+   "official": true,
+   "file": "bench/results/k27r-official-kh-julia-f32-r3.json"
+  },
+  {
+   "name": "upstream-julia-batch1-graph-opt",
+   "rep": 3,
+   "official": false,
+   "file": "bench/results/k27r-official-upstream-julia-batch1-graph-opt-r3.json"
+  }
+ ],
+ "aggregates": [
+  {
+   "name": "kh-small-f16-L128",
+   "official": true,
+   "medianMs": 4.4000000059604645
+  },
+  {
+   "name": "ort-small-f16-webgpu-optgc-capture",
+   "official": true,
+   "medianMs": 12.199999988079071
+  },
+  {
+   "name": "kh-small-f32-L128",
+   "official": true,
+   "medianMs": 5.4000000059604645
+  },
+  {
+   "name": "ort-small-f32-webgpu-optgc-capture",
+   "official": true,
+   "medianMs": 14.800000011920929
+  },
+  {
+   "name": "kh-julia-batch-f16-B1",
+   "official": true,
+   "medianMs": 9.400000005960464
+  },
+  {
+   "name": "upstream-julia-batch4-graph-opt-f16",
+   "official": true,
+   "medianMs": 16.64800000011921
+  },
+  {
+   "name": "kh-julia-f16",
+   "official": true,
+   "medianMs": 10.417999999821186
+  },
+  {
+   "name": "upstream-julia-batch1-graph-opt-f16",
+   "official": true,
+   "medianMs": 25.445
+  },
+  {
+   "name": "kh-julia-f32",
+   "official": true,
+   "medianMs": 13.97199999988079
+  },
+  {
+   "name": "upstream-julia-batch1-graph-opt",
+   "official": false,
+   "medianMs": 29.18
+  }
+ ],
+ "aborted": false
+}

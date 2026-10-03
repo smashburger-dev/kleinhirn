@@ -1,0 +1,74 @@
+{
+ "date": "2026-09-30",
+ "run_id": "k28-parity-daekeun-ml__koelectra-small-v3-nsmc-f32-50f4150-layers-1790781841675",
+ "commit": "50f4150",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "4.47",
+ "loadAvgEnd": "4.47 4.06 3.36",
+ "stage": "done",
+ "model": "daekeun-ml__koelectra-small-v3-nsmc",
+ "precision": "f32",
+ "task": "sequence-classification",
+ "info": {
+  "precision": "f32",
+  "buildId": "muo7ndkw",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "electra",
+  "task": "sequence-classification",
+  "buckets": [
+   128,
+   512
+  ],
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 47098944,
+  "downloadBytes": 56508240,
+  "loadTiming": {
+   "fetchMs": 106.5,
+   "bodyMs": 73.5,
+   "sha256Ms": 31.399999998509884,
+   "uploadMs": 9.600000001490116,
+   "embedJoinMs": 2.5,
+   "manifestMs": 2.699999999254942,
+   "planMs": 3.2000000029802322
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "layers": {
+  "maxAbsDiff": [
+   0.0000016689300537109375,
+   0.000002384185791015625,
+   0.00000286102294921875,
+   0.0000027418136596679688,
+   0.0000027865171432495117,
+   0.0000040531158447265625,
+   0.0000050067901611328125,
+   0.000005424022674560547,
+   0.000006556510925292969,
+   0.000007510185241699219,
+   0.000009298324584960938,
+   0.000006645917892456055,
+   0.000006616115570068359
+  ],
+  "worstLayer": 10,
+  "cases": 8
+ },
+ "gpuErrors": []
+}

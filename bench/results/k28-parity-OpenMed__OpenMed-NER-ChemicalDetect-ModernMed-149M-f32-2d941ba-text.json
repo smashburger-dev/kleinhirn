@@ -1,0 +1,847 @@
+{
+ "date": "2026-10-01",
+ "run_id": "k28-parity-OpenMed__OpenMed-NER-ChemicalDetect-ModernMed-149M-f32-2d941ba-text-1790817601205",
+ "commit": "2d941ba",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "5.36",
+ "loadAvgEnd": "5.08 6.35 5.96",
+ "stage": "done",
+ "model": "OpenMed__OpenMed-NER-ChemicalDetect-ModernMed-149M",
+ "precision": "f32",
+ "task": "token-classification",
+ "info": {
+  "precision": "f32",
+  "buildId": "muotp2us",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "modernbert",
+  "task": "token-classification",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 476830228,
+  "downloadBytes": 598446430,
+  "loadTiming": {
+   "fetchMs": 807.9000000022352,
+   "bodyMs": 3033.099999997765,
+   "sha256Ms": 327.6000000014901,
+   "uploadMs": 92.19999999925494,
+   "embedJoinMs": 15.5,
+   "manifestMs": 2.600000001490116,
+   "planMs": 8.199999999254942
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "spanExactAgreement": 1,
+  "spansGot": [
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "CHEM",
+     "score": 0.9476019740104675,
+     "start": 0,
+     "end": 3
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.9264493584632874,
+     "start": 3,
+     "end": 7
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.9254956841468811,
+     "start": 7,
+     "end": 12
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "CHEM",
+     "score": 0.6252743601799011,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.6987181901931763,
+     "start": 2,
+     "end": 4
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "CHEM",
+     "score": 0.7204644680023193,
+     "start": 57,
+     "end": 61
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.5493592023849487,
+     "start": 61,
+     "end": 63
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.6110384464263916,
+     "start": 63,
+     "end": 65
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "CHEM",
+     "score": 0.9340965747833252,
+     "start": 46,
+     "end": 48
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.9171140789985657,
+     "start": 48,
+     "end": 50
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.9342982172966003,
+     "start": 50,
+     "end": 53
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "CHEM",
+     "score": 0.8813716769218445,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.8026866316795349,
+     "start": 2,
+     "end": 4
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.8568109273910522,
+     "start": 4,
+     "end": 7
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.8030190467834473,
+     "start": 7,
+     "end": 11
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "CHEM",
+     "score": 0.8881900906562805,
+     "start": 9,
+     "end": 10
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.907254159450531,
+     "start": 10,
+     "end": 12
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.8758522272109985,
+     "start": 12,
+     "end": 15
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "CHEM",
+     "score": 0.8675207495689392,
+     "start": 95,
+     "end": 98
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.8339878916740417,
+     "start": 98,
+     "end": 100
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.873094379901886,
+     "start": 100,
+     "end": 103
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "CHEM",
+     "score": 0.9015609622001648,
+     "start": 43,
+     "end": 47
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.9067085385322571,
+     "start": 47,
+     "end": 50
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.8958046436309814,
+     "start": 50,
+     "end": 52
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.9130168557167053,
+     "start": 65,
+     "end": 69
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.8811853528022766,
+     "start": 69,
+     "end": 73
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "CHEM",
+     "score": 0.8721244931221008,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.8486976027488708,
+     "start": 2,
+     "end": 4
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.7970818877220154,
+     "start": 37,
+     "end": 39
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.8601929545402527,
+     "start": 39,
+     "end": 42
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.6615423560142517,
+     "start": 42,
+     "end": 46
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "CHEM",
+     "score": 0.8627253770828247,
+     "start": 51,
+     "end": 55
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.8986159563064575,
+     "start": 55,
+     "end": 56
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "CHEM",
+     "score": 0.48053672909736633,
+     "start": 0,
+     "end": 1
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "CHEM",
+     "score": 0.6705706119537354,
+     "start": 0,
+     "end": 3
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.6420257687568665,
+     "start": 3,
+     "end": 4
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.6373358368873596,
+     "start": 4,
+     "end": 6
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "CHEM",
+     "score": 0.8540006279945374,
+     "start": 33,
+     "end": 38
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.7989507913589478,
+     "start": 38,
+     "end": 41
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "CHEM",
+     "score": 0.917907178401947,
+     "start": 52,
+     "end": 56
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.9007313251495361,
+     "start": 56,
+     "end": 57
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.8954045176506042,
+     "start": 57,
+     "end": 60
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.7052393555641174,
+     "start": 60,
+     "end": 67
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.5941648483276367,
+     "start": 67,
+     "end": 71
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "CHEM",
+     "score": 0.5328226685523987,
+     "start": 60,
+     "end": 64
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.5232060551643372,
+     "start": 64,
+     "end": 66
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "CHEM",
+     "score": 0.7863299250602722,
+     "start": 9,
+     "end": 12
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.7991147637367249,
+     "start": 12,
+     "end": 13
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.757305920124054,
+     "start": 13,
+     "end": 16
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.8183353543281555,
+     "start": 16,
+     "end": 18
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.75986647605896,
+     "start": 18,
+     "end": 19
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.7407407760620117,
+     "start": 19,
+     "end": 23
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "CHEM",
+     "score": 0.9271354079246521,
+     "start": 50,
+     "end": 52
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.894421398639679,
+     "start": 52,
+     "end": 55
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.8515481948852539,
+     "start": 55,
+     "end": 59
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.8629328608512878,
+     "start": 59,
+     "end": 63
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.9132698178291321,
+     "start": 98,
+     "end": 102
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.8978952765464783,
+     "start": 102,
+     "end": 105
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "CHEM",
+     "score": 0.8203375935554504,
+     "start": 50,
+     "end": 52
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.704497218132019,
+     "start": 52,
+     "end": 56
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.49631503224372864,
+     "start": 80,
+     "end": 83
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.5837644338607788,
+     "start": 83,
+     "end": 84
+    }
+   ],
+   [
+    {
+     "entity_group": "CHEM",
+     "score": 0.8550496101379395,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.8679770231246948,
+     "start": 2,
+     "end": 3
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "CHEM",
+     "score": 0.9136202931404114,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.9005799293518066,
+     "start": 1,
+     "end": 4
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.5056498050689697,
+     "start": 4,
+     "end": 6
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.7461109161376953,
+     "start": 6,
+     "end": 9
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.5607258081436157,
+     "start": 9,
+     "end": 13
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.5636475682258606,
+     "start": 16,
+     "end": 17
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.4935799241065979,
+     "start": 17,
+     "end": 20
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "CHEM",
+     "score": 0.7162611484527588,
+     "start": 39,
+     "end": 41
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.45880135893821716,
+     "start": 41,
+     "end": 43
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.6407911777496338,
+     "start": 43,
+     "end": 44
+    }
+   ],
+   [
+    {
+     "entity_group": "CHEM",
+     "score": 0.9018285870552063,
+     "start": 4,
+     "end": 8
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.9279130101203918,
+     "start": 8,
+     "end": 11
+    }
+   ],
+   [
+    {
+     "entity_group": "CHEM",
+     "score": 0.9374911785125732,
+     "start": 0,
+     "end": 4
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.9297211766242981,
+     "start": 4,
+     "end": 7
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "CHEM",
+     "score": 0.7074382305145264,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.6281435489654541,
+     "start": 1,
+     "end": 4
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.5704167485237122,
+     "start": 4,
+     "end": 6
+    }
+   ],
+   [
+    {
+     "entity_group": "CHEM",
+     "score": 0.6269569993019104,
+     "start": 29,
+     "end": 31
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.48266351222991943,
+     "start": 31,
+     "end": 33
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.47678342461586,
+     "start": 33,
+     "end": 36
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "CHEM",
+     "score": 0.5743323564529419,
+     "start": 18,
+     "end": 20
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.63860023021698,
+     "start": 20,
+     "end": 21
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.5631052851676941,
+     "start": 24,
+     "end": 26
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.9112420082092285,
+     "start": 38,
+     "end": 42
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.9034690260887146,
+     "start": 42,
+     "end": 45
+    },
+    {
+     "entity_group": "CHEM",
+     "score": 0.8738580346107483,
+     "start": 45,
+     "end": 48
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "CHEM",
+     "score": 0.5139951705932617,
+     "start": 18,
+     "end": 22
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   []
+  ],
+  "spanTexts": 200,
+  "spans": 91,
+  "maxAbsScoreDiff": 0.000008761882781982422,
+  "textStats": {
+   "cases": 200,
+   "calls": 200,
+   "inputMismatch": 0,
+   "rows": 200,
+   "bitDiffRows": 0,
+   "batchRows": 0,
+   "batchVsSingleDiffRows": 0
+  }
+ },
+ "gpuErrors": []
+}

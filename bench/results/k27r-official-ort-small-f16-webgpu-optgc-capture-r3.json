@@ -1,0 +1,98 @@
+{
+ "date": "2026-10-02",
+ "run_id": "k27r-official-ort-small-f16-webgpu-optgc-capture-r3-1790981409088",
+ "official": true,
+ "provisionalReason": null,
+ "engine": "ort-web",
+ "model": "small-upstream",
+ "precision": "f16",
+ "bucket": null,
+ "backend": "webgpu",
+ "ep": "webgpu",
+ "batchSize": null,
+ "graph": "optgc",
+ "capture": true,
+ "browser": "chromium-151.0.7922.34",
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "loadAvgStart": 3.7919921875,
+ "loadAvgEnd": 3.615234375,
+ "loadMaxObserved": 3.7919921875,
+ "baselineMb": 0,
+ "peakMemMb": null,
+ "page": {
+  "stage": "done",
+  "model": "small-upstream",
+  "precision": "f16",
+  "ep": "webgpu",
+  "graph": "optgc",
+  "capture": true,
+  "adapterInfo": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "onnxBytes": 170014190,
+  "loadMs": 514.2000000178814,
+  "downloadBytes": 196856152,
+  "warmupMs": [
+   59.099999994039536,
+   1,
+   0.30000001192092896,
+   0.30000001192092896
+  ],
+  "latency": {
+   "n": 968,
+   "medianMs": 12.199999988079071,
+   "p95Ms": 13.199999988079071,
+   "minMs": 11.799999982118607,
+   "maxMs": 250.10000002384186,
+   "meanMs": 12.707747933908928
+  },
+  "parity": {
+   "n": 968,
+   "argmaxAgreement": 0.9958677685950413,
+   "maxAbsLogitDiff": 0.1449974775314331,
+   "meanAbsLogitDiff": 0.0159985040737824,
+   "maxAbsProbDiff": 0.03462342141626884,
+   "disagreements": [
+    135,
+    327,
+    696,
+    907
+   ]
+  },
+  "n": 968,
+  "done": true
+ },
+ "pair": "k20gc kh-small-f16-L128 vs ort-small-f16-webgpu-optgc-capture",
+ "repetition": 3,
+ "latency": {
+  "medianMs": 12.199999988079071,
+  "p95Ms": 13.199999988079071,
+  "loadMs": 514.2000000178814
+ },
+ "parity": {
+  "n": 968,
+  "argmaxAgreement": 0.9958677685950413,
+  "maxAbsLogitDiff": 0.1449974775314331,
+  "meanAbsLogitDiff": 0.0159985040737824,
+  "maxAbsProbDiff": 0.03462342141626884,
+  "disagreements": [
+   135,
+   327,
+   696,
+   907
+  ]
+ },
+ "downloadBytes": 196856152,
+ "onnxBytes": 170014190,
+ "runtimeBytes": 26841962,
+ "n": 968,
+ "file": "bench/results/k27r-official-ort-small-f16-webgpu-optgc-capture-r3.json"
+}

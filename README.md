@@ -1,49 +1,76 @@
 # kleinhirn
 
-Text classification in the browser, on the GPU, with no server.
+Encoder models in the browser, on the GPU, with no server.
 
-A text classifier answers questions like "which misconception does this
-answer show?" or "which of these five options fits?". Usually the model
-runs on a server, and every text travels there first. kleinhirn runs the
-model in the user's browser instead. The text stays on the device, there
-is no inference server to pay for, and it works offline once the model
-is cached.
+kleinhirn runs text encoders in the user's browser: classification,
+zero-shot classification over NLI, sentence embeddings, named entities
+and reranking. The text stays on the device, there is no inference
+server to pay for, and it works offline once the model is cached.
 
-Browsers let web pages use the graphics chip through WebGPU. kleinhirn
-ships its own GPU programs (WGSL kernels) for the models it runs. Today
-these are GLiNER2.5, a zero-shot classifier that takes any set of
-labels, and Julia 1, a decision model that picks one of up to 20
-options; more encoder models are on the roadmap. Browsers without
-WebGPU fall back to a hand-written WASM-SIMD module on the CPU.
+It loads Hugging Face checkpoints of six encoder families directly from
+`config.json` and safetensors: BERT (with ELECTRA and MiniLM), RoBERTa,
+XLM-R, DistilBERT, DeBERTa-v2/v3 and ModernBERT. Two models with their
+own heads run on the same engine: GLiNER2.5, a zero-shot classifier
+that takes any set of labels, and Julia 1, a decision model that picks
+one of up to 20 options. The engine ships its own GPU programs (WGSL
+kernels) for WebGPU; browsers without WebGPU fall back to a
+hand-written WASM-SIMD module on the CPU (today for the DeBERTa models
+only).
 
 The usual tool for running such models in a browser is ONNX Runtime Web
 (ORT) from Microsoft. It is the baseline for every speed number below.
 
 ## Results
 
-- **Same answers as the original.** In full precision (f32) kleinhirn
-  makes the same decision as the PyTorch reference in 100 % of cases, in
-  half precision (f16) in at least 99.9 %, on a 1,000-text corpus.
-- **Faster than ORT at its best.** 1.9x in f16 and 2.2x in f32 on
-  WebGPU, 2.6x on the WASM path (GLiNER2.5-small, 128-token inputs,
-  M1 Pro, Chromium). ORT got every advantage we could find: Microsoft's
-  own graph optimizer, a two-node rewrite so that ORT's graph capture
-  can run, and graph capture itself. Together they shrank our lead in
-  f16 from about 2.7x to 1.9x, and the smaller numbers are the ones we
-  publish.
-- **Less memory.** 45 to 59 % of ORT's peak memory, depending on the
-  path (850 vs 1,442 MiB in f16).
-- **Small.** The engine is 31 KB gzip including the WASM fallback. ORT's
-  WebGPU runtime files are 6.3 MB gzip (25.9 MB raw). The model weights
-  come on top in both cases.
-- **Not faster everywhere.** On Julia 1 in f16, ORT with the optimizer's
-  fp16 graph is faster than kleinhirn (21.5 vs 24.1 ms per decision).
-  kleinhirn stays closer to the reference there (max logit error 0.091
-  vs 1.02) and uses less memory (1,001 vs 1,599 MiB).
+- **Same answers as the original.** 88 of the 89 checkpoints on our list
+  (the three most downloaded per family and task, up to 200M parameters)
+  make the same decisions as the PyTorch reference: 100 % in full
+  precision (f32), at least 99.5 % in half precision (f16) of the
+  decisions that f16 rounding cannot flip, embeddings with cosine at
+  least 0.9999 and 0.999. The 89th passes in f32 and the
+  engine picks f32 for it.
+- **Faster than ORT at its best, in every family.** One model per family
+  (the most downloaded), inputs of exactly 128 and 512 tokens, f16,
+  against ORT's fastest setting we found for each model (graph optimizer
+  variants, three ORT builds, graph capture where it starts):
+
+  | Model | 128 tokens kleinhirn / ORT | 512 tokens kleinhirn / ORT |
+  |---|---|---|
+  | all-MiniLM-L6-v2 (BERT) | 3.29 / 5.29 ms | 8.97 / 12.06 ms |
+  | twitter-roberta-base-sentiment (RoBERTa) | 13.40 / 18.96 ms | 47.55 / 59.67 ms |
+  | mmarco-mMiniLMv2-L12 (XLM-R) | 6.07 / 10.09 ms | 17.86 / 24.33 ms |
+  | distilbert-base-uncased-sst-2 (DistilBERT) | 6.99 / 9.76 ms | 24.54 / 33.34 ms |
+  | deberta-v3-base-prompt-injection-v2 (DeBERTa-v3) | 14.54 / 24.35 ms | 57.31 / 95.53 ms |
+  | granite-embedding-small-english-r2 (ModernBERT) | 6.99 / 12.44 ms | 21.35 / 35.81 ms |
+
+  1.26x to 1.78x faster; all three kleinhirn repetitions below all three
+  ORT repetitions in each of the twelve cells.
+- **Faster again on real texts.** kleinhirn computes only the rows a text
+  has; ORT's fixed-shape graphs compute the whole bucket. On the
+  1,000-text corpus (median 45 of 128 tokens) GLiNER2.5-small runs 4.4
+  ms against 12.2 ms for ORT with graph capture in f16 (2.8x) and 5.4
+  against 14.8 ms in f32 (2.7x). Julia 1 decides in 10.4 ms against
+  25.5 ms for its upstream ORT pipeline in f16 (2.4x) and 14.0 against
+  29.2 ms in f32 (2.1x).
+- **Closer to the reference than ORT.** On the measurement inputs above,
+  ORT's f16 output deviates 2.9 to 20.5 times more from ORT's own f32
+  output than kleinhirn's f16 does. On Julia 1 the largest logit error
+  in f16 is 0.109 for kleinhirn and 1.02 for ORT. Every kernel
+  accumulates in f32.
+- **Less memory.** 52 to 71 % of ORT's peak memory, depending on the
+  path (941 vs 1,442 MiB for GLiNER2.5-small in f16, 1,138 vs 1,599 MiB
+  for Julia 1). The ORT peaks are from September; kleinhirn's grew by 5
+  to 14 % with the new kernels.
+- **Small.** The engine is 46 KB gzip, plus 10 KB for the WASM
+  fallback. ORT's WebGPU runtime files are 6.3 MB gzip (25.9 MB raw).
+  The model weights come on top in both cases.
+- **Not done yet.** The WASM fallback covers only the DeBERTa models.
+  Phones have not been measured since the kernels changed (October
+  2026); the last iPhone run missed the latency target (below).
 - **Reproducible.** Every number comes from a script in this repo under
   a fixed protocol: interleaved runs, a quiet machine, the median of
   three repetitions. Details under "How we measure" and in
-  `docs/FINDINGS.md`.
+  `docs/FINDINGS.md`, sections 14 and 15.
 
 ## Use cases
 
@@ -52,6 +79,8 @@ The usual tool for running such models in a browser is ONNX Runtime Web
   classifies misconceptions in learner answers.
 - Local-first and offline apps: notes, mail or task tools that tag, sort
   or route text where it was written.
+- Semantic search and deduplication with sentence embeddings, computed
+  where the text is.
 - Browser extensions that classify the current page or the text being
   typed, with no backend.
 - Support forms that suggest the right category or queue while the user
@@ -64,19 +93,26 @@ The usual tool for running such models in a browser is ONNX Runtime Web
 
 ## Status
 
-- Models: GLiNER2.5 small, base and multi (classification) and Julia 1.
-  GLiNER2.5's entity extraction is not implemented yet.
-- Measured on an M1 Pro in Chromium, Brave, Playwright WebKit, Safari
-  27, Playwright Firefox 153 and Chromium without WebGPU, and on an
-  NVIDIA L4. Parity with the PyTorch reference holds in every stage that
-  runs (device matrix: [FINDINGS section 13](docs/FINDINGS.md)).
-- The latency targets for the 256-token bucket (p95 of 20 ms on desktop
-  WebGPU, 300 ms for WASM) are missed in every row: 46.7 ms for f16 and
-  453 ms for WASM in Chromium, 107 ms for f16 in Safari, 215 ms in
-  Firefox, where every asynchronous GPU readback costs about 104 ms.
-- On an iPhone 16 Pro (iOS 27, Safari and Brave, which is WebKit there) f16 runs with full parity, but the 256-token p95 is 166 ms against the 60 ms target.
-  The wasm stage also runs on the iPhone with exact parity (L256 p95 775 ms). Peak memory and the tab kill threshold are not measured yet.
-- The f16 GLiNER2.5-small download is 152 MB.
+- Models: the 89 checkpoints of `data/k28/models.json` (six families,
+  five tasks: sequence classification, NLI, embeddings, token
+  classification, reranking), GLiNER2.5 small, base and multi
+  (classification) and Julia 1. GLiNER2.5's entity extraction is not
+  implemented yet.
+- The speed numbers above are from an M1 Pro in Chromium. The new
+  kernels give the same decisions in Playwright WebKit and Firefox.
+- Device matrix from September 2026 (before the kernel rewrite): parity
+  with the PyTorch reference holds in every stage that runs in Chromium,
+  Brave, Playwright WebKit, Safari 27, Playwright Firefox 153 and
+  Chromium without WebGPU, and on an NVIDIA L4
+  ([FINDINGS section 13](docs/FINDINGS.md)). Latency for the 256-token
+  bucket missed the targets (p95 of 20 ms on desktop WebGPU, 300 ms for
+  WASM) in every row then; Firefox pays about 104 ms for every
+  asynchronous GPU readback.
+- On an iPhone 16 Pro (iOS 27, Safari and Brave, which is WebKit there)
+  f16 ran with full parity, but the 256-token p95 was 166 ms against
+  the 60 ms target; the WASM stage also runs there with exact parity
+  (L256 p95 775 ms). Peak memory and the tab kill threshold are not
+  measured yet.
 
 ## Measure your device
 
@@ -107,51 +143,65 @@ https://smashburger-dev.github.io/kleinhirn/
 
 ## Why it is faster
 
-- DeBERTa's disentangled attention (content-to-position and
-  position-to-content terms over relative position buckets) runs as one
-  fused kernel. ORT's transformer optimizer has no pattern for it: after
-  optimization the graph still has 0 Attention nodes, and the relative
-  terms stay as separate GatherElements and Softmax nodes.
+- The encoder matmuls are register-blocked: every GPU thread computes a
+  4x4 block of the output from tiles in workgroup memory, and each output
+  still sums in a fixed order in f32. Three tile sizes give the same
+  bits; each call picks the one that keeps the GPU busy for its row
+  count.
+- Attention runs as three matmul-shaped kernels (scores, softmax,
+  context). DeBERTa's relative terms (content-to-position and
+  position-to-content) are matmuls over the relative positions the
+  input can reach. Tiles that no valid token reaches are skipped.
+- Only the rows a text has are computed; buckets only fix buffer sizes.
 - Each sequence bucket gets a fixed plan built at load time: pipelines,
   buffers and bind groups exist before the first call. A call uploads
-  the inputs, encodes one command buffer and reads back one logit per
-  label. Rows are dispatched only up to the real sequence length.
-- Conversion fuses Q, K and V into one matmul and precomputes the
-  relative position projections; GELU runs inside the matmul. In f16
-  mode weights and activations are stored as f16, and every kernel
-  accumulates in f32.
+  the inputs, encodes one command buffer and reads back once.
 - The engine requests exactly the WebGPU minimum device limits (256
   invocations per workgroup, 16 KiB workgroup memory, 128 MiB per
-  storage binding), and every kernel fits inside them, so a desktop GPU
-  cannot use more than a phone GPU guarantees.
-- A per-dispatch GPU timestamp profile shows where the time goes. For
-  small-upstream f16 at L128 the GPU is busy for 6.8 of the 7.2 ms wall
-  time per call in the profiling run; the encoder matmuls take 65 % of
-  that GPU time, attention 30 % (`docs/FINDINGS.md`, section 12).
+  storage binding) and uses no subgroups, so a desktop GPU cannot use
+  more than a phone GPU guarantees. ORT asks for more (1,024
+  invocations, 32 KiB) and accumulates its f16 matmuls in f16.
 
 ## How ORT was set up
 
-The plain ONNX export goes through `onnxruntime.transformers.optimizer`
-(BERT path, the only one that applies to either model). For WebGPU,
-`convert/capture_surgery.py` then replaces a Squeeze/Unsqueeze pair in
-the attention-mask chain with one Reshape. Without that rewrite ORT
-refuses graph capture, because the mask chain forces copies between CPU
-and GPU; with it every node runs on WebGPU and capture cuts ORT's time
-by 15 to 16 %. ORT also gets its cheapest timing boundary: inputs in
-persistent GPU buffers, one readback per call.
+For the six families: one ONNX export per model and length with fixed
+shape [1, L] and the head inside the graph, then
+`onnxruntime.transformers.optimizer` with its default fusions and two
+variants (without EmbedLayerNormalization, with MultiHeadAttention), the
+optimizer's fp16 conversion, three ORT Web 1.29.0 builds (default,
+`webgpu`, `jspi`), graph capture on and off. The fastest combination per
+model and length that passes the parity check on the CPU is the
+baseline (`data/k28/k28.8-best.json`): the plain export with graph
+capture in six cells, the optimized graph with capture in four, and for
+DeBERTa the optimized graph without capture (capture does not start
+there), always in one of the native WebGPU builds.
+
+For GLiNER2.5 and Julia 1 the plain export goes through the same
+optimizer (BERT path). For WebGPU, `convert/capture_surgery.py` replaces
+a Squeeze/Unsqueeze pair in GLiNER's attention-mask chain with one
+Reshape, so ORT's graph capture can run. ORT also gets its cheapest
+timing boundary: inputs in persistent GPU buffers, one readback per
+call.
 
 ## Roadmap
 
-- More encoder models.
-- An automatic kernel search for the matmuls that picks the variant
-  with the best worst case across the devices we can measure.
-- First measurements on a phone, starting with an iPhone.
-- Early exit: stop after fewer layers when the decision is already
-  clear.
-- Smaller downloads through vocabulary compression.
+- WASM for every family, so a model that runs on one path runs on all.
+- Phones: the iPhone with the new kernels, peak memory, how the weights
+  are loaded.
+- Smaller downloads: the word-embedding table is 31 to 82 % of a
+  model's weights, but a text needs only a few of its rows; fetch rows
+  on demand, and int8 weights.
+- Kernel choice per device by the best worst case.
+- A public benchmark for encoders in the browser that compares engines
+  with a parity column.
 
 ## Supported models
 
+- The 89 checkpoints of `data/k28/models.json`, each at a pinned
+  revision: per family and task the three most downloaded Hugging Face
+  models up to 200M parameters. Convert one with
+  `node tools/k28_convert.ts <model-id>` after fetching it
+  (`convert/k28_fetch.py`).
 - GLiNER2.5 classification models (DeBERTa-v2/v3 encoders):
   `small-upstream` (fastino/gliner2.5-small-v1), `base-upstream`
   (fastino/gliner2.5-base-v1), `multi-upstream`
@@ -167,12 +217,14 @@ WASM worker with the embedded `.wasm` module:
 
 | File | Raw | gzip -9 |
 |---|---|---|
-| kleinhirn.js | 86,956 B | 20,948 B |
+| kleinhirn.js | 179,317 B | 46,253 B |
 | wasm-worker.js incl. deberta.wasm | 35,771 B | 10,000 B |
-| total | 122,727 B | 30,948 B |
+| total | 215,088 B | 56,253 B |
 
 `kleinhirn.js` embeds a build id (`Date.now()` in base 36), so its gzip
-size can differ by a byte between builds.
+size can differ by a byte between builds. It grew from 20,948 B with the
+general engine (the tokenizers for every family alone: 11.5 KB) and the
+new kernels (5.5 KB).
 
 For comparison, onnxruntime-web 1.29.0 loads three runtime files on its
 WebGPU path (`ort.webgpu.bundle.min.mjs`,
@@ -186,7 +238,8 @@ Fallback chain (`backend: 'auto'`):
 
 1. WebGPU f16 (when the adapter supports `shader-f16`)
 2. WebGPU f32
-3. WASM-SIMD in a worker (AssemblyScript, no Emscripten)
+3. WASM-SIMD in a worker (AssemblyScript, no Emscripten), DeBERTa
+   models only
 
 The engine requests the device with exactly the WebGPU minimum limits
 (`limits: 'minimum'`, the default): 256 invocations per workgroup,
@@ -194,9 +247,10 @@ The engine requests the device with exactly the WebGPU minimum limits
 stay inside these limits, so a desktop adapter cannot silently use more
 than a mobile adapter provides.
 
-Sequence buckets: L64-L1024 with up to 16 labels per call; a wide
-L1280/K80 bucket covers label sets up to 80 in one call (used for
-Banking77-style tasks; see `docs/ARCHITECTURE.md`).
+Sequence buckets: the general engine loads 128 and 512 by default (any
+multiple of 4 up to the model's positions); GLiNER uses L64-L1024 with up
+to 16 labels per call and a wide L1280/K80 bucket for label sets up to
+80 (see `docs/ARCHITECTURE.md`).
 
 ## Quickstart
 
@@ -224,6 +278,25 @@ node --test tests/*.test.ts         # tokenizer + limits tests
 
 In the browser (the package is not on npm; serve `dist/` or import the
 built file directly):
+
+Any model of the list (Python env with `convert/requirements-k28.txt`):
+
+```bash
+.venv-k28/bin/python convert/k28_fetch.py sentence-transformers/all-MiniLM-L6-v2
+node tools/k28_convert.ts sentence-transformers/all-MiniLM-L6-v2   # -> models/k28/<slug>/{f32,f16}
+```
+
+```ts
+import { EncoderModel } from './dist/kleinhirn.js';
+
+const model = await EncoderModel.load({
+  manifestUrl: '/models/k28/sentence-transformers__all-MiniLM-L6-v2/f16/manifest.json',
+});
+const [vector] = await model.embed(['The rocket launched successfully.']);
+// also: classify(text), zeroShot(text, labels), rerank(query, passages), tokenClassify(text)
+```
+
+GLiNER2.5:
 
 ```ts
 import { loadEngine } from './dist/kleinhirn.js';
@@ -269,6 +342,10 @@ const out = await kh.classify(text, [
   one readback per call.
 
 ## Numbers
+
+The tables below are the September measurements of GLiNER2.5 and Julia 1
+(before the kernel rewrite); current numbers are under Results and in
+`docs/FINDINGS.md`, sections 14 and 15.
 
 Engine parity on the 1,000-text corpus (WebGPU, minimum limits;
 `bench/run-parity.mjs`):

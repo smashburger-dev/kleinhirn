@@ -1,0 +1,69 @@
+{
+ "date": "2026-10-02",
+ "run_id": "k28-parity-antoinelouis__crossencoder-camemberta-L6-mmarcoFR-f16-5f435f3-1790972843438",
+ "commit": "5f435f3",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "4.29",
+ "loadAvgEnd": "3.95 4.17 4.00",
+ "stage": "done",
+ "model": "antoinelouis__crossencoder-camemberta-L6-mmarcoFR",
+ "precision": "f16",
+ "task": "reranking",
+ "info": {
+  "precision": "f16",
+  "buildId": "murdtr5v",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "deberta-v2",
+  "task": "reranking",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 256,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 158674996,
+  "downloadBytes": 150813554,
+  "loadTiming": {
+   "fetchMs": 256.3700000047684,
+   "bodyMs": 325.14500001072884,
+   "sha256Ms": 75.81000000238419,
+   "uploadMs": 20,
+   "embedJoinMs": 4.159999996423721,
+   "manifestMs": 2.7349999845027924,
+   "planMs": 28.934999972581863
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "maxAbsLogitDiff": 0.0060825347900390625,
+  "meanAbsLogitDiff": 0.0013551557809114456,
+  "bestPassageAgreement": 1,
+  "bestPassageDisagreements": [],
+  "queries": 20
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0,
+  "groups": 50
+ },
+ "gpuErrors": []
+}

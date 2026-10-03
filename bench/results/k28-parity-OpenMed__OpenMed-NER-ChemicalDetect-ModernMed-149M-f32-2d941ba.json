@@ -1,0 +1,68 @@
+{
+ "date": "2026-10-01",
+ "run_id": "k28-parity-OpenMed__OpenMed-NER-ChemicalDetect-ModernMed-149M-f32-2d941ba-1790817525025",
+ "commit": "2d941ba",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "5.66",
+ "loadAvgEnd": "6.34 6.77 6.06",
+ "stage": "done",
+ "model": "OpenMed__OpenMed-NER-ChemicalDetect-ModernMed-149M",
+ "precision": "f32",
+ "task": "token-classification",
+ "info": {
+  "precision": "f32",
+  "buildId": "muotp2us",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "modernbert",
+  "task": "token-classification",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 476830228,
+  "downloadBytes": 598446430,
+  "loadTiming": {
+   "fetchMs": 849.7000000029802,
+   "bodyMs": 3179.8000000081956,
+   "sha256Ms": 354,
+   "uploadMs": 100.5,
+   "embedJoinMs": 27.199999999254942,
+   "manifestMs": 2.600000001490116,
+   "planMs": 6.199999999254942
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "argmaxPerTokenAgreement": 1,
+  "tokens": 6350,
+  "maxAbsLogitDiff": 0.0002970695495605469,
+  "meanAbsLogitDiff": 0.0000018305794441011633
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0,
+  "groups": 50
+ },
+ "gpuErrors": []
+}

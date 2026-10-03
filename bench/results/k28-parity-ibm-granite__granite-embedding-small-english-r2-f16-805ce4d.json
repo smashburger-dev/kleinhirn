@@ -1,0 +1,69 @@
+{
+ "date": "2026-10-01",
+ "run_id": "k28-parity-ibm-granite__granite-embedding-small-english-r2-f16-805ce4d-1790816466402",
+ "commit": "805ce4d",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "5.04",
+ "loadAvgEnd": "5.04 4.91 5.07",
+ "stage": "done",
+ "model": "ibm-granite__granite-embedding-small-english-r2",
+ "precision": "f16",
+ "task": "embeddings",
+ "info": {
+  "precision": "f32",
+  "buildId": "muotp2us",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "modernbert",
+  "task": "embeddings",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 78630176,
+  "downloadBytes": 95334981,
+  "loadTiming": {
+   "fetchMs": 238.69999999925494,
+   "bodyMs": 196.30000000074506,
+   "sha256Ms": 54.099999997764826,
+   "uploadMs": 15.800000000745058,
+   "embedJoinMs": 4.699999999254942,
+   "manifestMs": 2.699999999254942,
+   "planMs": 4.200000002980232
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "minCosineFinal": -0.087132977242798,
+  "meanCosineFinal": -0.026175300835481353,
+  "maxAbsDiffFinal": 13.786278541723732,
+  "minCosinePooled": -0.087132977242798,
+  "meanCosinePooled": -0.026175300835481353
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 146,
+  "groups": 50
+ },
+ "gpuErrors": []
+}

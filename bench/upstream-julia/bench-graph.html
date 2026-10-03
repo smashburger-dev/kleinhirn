@@ -21,6 +21,10 @@ document.querySelector('#run').onclick = async () => {
     if (!['model.onnx', 'model_opt.onnx', 'model_opt_f16.onnx'].includes(model)) throw new Error(`unknown model ${model}`);
     if (batch !== 1 && batch !== 4) throw new Error(`unsupported batch ${batch}`);
     status.textContent = 'Loading model and warming WebGPU…';
+    // ORT's wasm from its package, not next to Vite's pre-bundled copy (that fetch fails);
+    // index.js imports the same module instance. Outside the measured window.
+    const ort = await import('onnxruntime-web/webgpu');
+    ort.env.wasm.wasmPaths = new URL('./node_modules/onnxruntime-web/dist/', location.href).href;
     const { JuliaWebGPU } = await import('./index.js');
     const start = performance.now();
     const engine = await JuliaWebGPU.load(undefined, { modelUrl: new URL(model, location.href).href });

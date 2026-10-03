@@ -1,0 +1,69 @@
+{
+ "date": "2026-10-01",
+ "run_id": "k28-parity-cross-encoder__qnli-distilroberta-base-f32-7ac9f32-1790847628713",
+ "commit": "7ac9f32",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "3.74",
+ "loadAvgEnd": "3.64 4.07 4.68",
+ "stage": "done",
+ "model": "cross-encoder__qnli-distilroberta-base",
+ "precision": "f32",
+ "task": "reranking",
+ "info": {
+  "precision": "f32",
+  "buildId": "mupcftiu",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "roberta",
+  "task": "reranking",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 199639084,
+  "downloadBytes": 328487038,
+  "loadTiming": {
+   "fetchMs": 568.8999999985099,
+   "bodyMs": 1121,
+   "sha256Ms": 181.79999999701977,
+   "uploadMs": 35.100000001490116,
+   "embedJoinMs": 15.600000001490116,
+   "manifestMs": 2.899999998509884,
+   "planMs": 5.5999999940395355
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "maxAbsLogitDiff": 0.000021636486053466797,
+  "meanAbsLogitDiff": 0.0000036553852260112763,
+  "bestPassageAgreement": 1,
+  "bestPassageDisagreements": [],
+  "queries": 20
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0,
+  "groups": 50
+ },
+ "gpuErrors": []
+}

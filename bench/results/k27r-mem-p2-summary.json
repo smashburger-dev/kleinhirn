@@ -1,0 +1,49 @@
+{
+ "date": "2026-10-02",
+ "maxLoad": 4,
+ "reps": 1,
+ "tag": "mem",
+ "pairs": [
+  "kh-small-f16-L128",
+  "kh-small-f32-L128",
+  "kh-julia-f16"
+ ],
+ "runs": [
+  {
+   "name": "kh-small-f16-L128",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k27r-mem-p2-kh-small-f16-L128-r1.json"
+  },
+  {
+   "name": "kh-small-f32-L128",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k27r-mem-p2-kh-small-f32-L128-r1.json"
+  },
+  {
+   "name": "kh-julia-f16",
+   "rep": 1,
+   "official": true,
+   "file": "bench/results/k27r-mem-p2-kh-julia-f16-r1.json"
+  }
+ ],
+ "aggregates": [
+  {
+   "name": "kh-small-f16-L128",
+   "official": true,
+   "medianMs": 4.5
+  },
+  {
+   "name": "kh-small-f32-L128",
+   "official": true,
+   "medianMs": 5.5
+  },
+  {
+   "name": "kh-julia-f16",
+   "official": true,
+   "medianMs": 10.455999999940396
+  }
+ ],
+ "aborted": false
+}

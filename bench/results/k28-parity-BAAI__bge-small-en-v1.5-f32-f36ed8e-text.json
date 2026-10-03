@@ -1,0 +1,71 @@
+{
+ "date": "2026-09-30",
+ "run_id": "k28-parity-BAAI__bge-small-en-v1.5-f32-f36ed8e-text-1790803433329",
+ "commit": "f36ed8e",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "5.82",
+ "loadAvgEnd": "5.67 5.03 5.40",
+ "stage": "done",
+ "model": "BAAI__bge-small-en-v1.5",
+ "precision": "f32",
+ "task": "embeddings",
+ "info": {
+  "precision": "f32",
+  "buildId": "muolyk0x",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "bert",
+  "task": "embeddings",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 98757656,
+  "downloadBytes": 132866632,
+  "loadTiming": {
+   "fetchMs": 209.5,
+   "bodyMs": 225.59999999962747,
+   "sha256Ms": 73.29999999888241,
+   "uploadMs": 21.799999998882413,
+   "embedJoinMs": 5.200000001117587,
+   "manifestMs": 2.400000000372529,
+   "planMs": 2.5
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "minCosineFinal": 0.999999999999236,
+  "meanCosineFinal": 0.9999999999997005,
+  "maxAbsDiffFinal": 3.2782554626464844e-7,
+  "textStats": {
+   "cases": 1,
+   "calls": 1,
+   "inputMismatch": 0,
+   "rows": 200,
+   "bitDiffRows": 0,
+   "batchRows": 200,
+   "batchVsSingleDiffRows": 0
+  }
+ },
+ "gpuErrors": []
+}

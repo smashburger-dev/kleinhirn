@@ -1,0 +1,68 @@
+{
+ "date": "2026-10-01",
+ "run_id": "k28-parity-lxyuan__distilbert-base-multilingual-cased-sentiments-student-f32-7a476a1-1790833479618",
+ "commit": "7a476a1",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "5.62",
+ "loadAvgEnd": "5.29 5.76 5.59",
+ "stage": "done",
+ "model": "lxyuan__distilbert-base-multilingual-cased-sentiments-student",
+ "precision": "f32",
+ "task": "sequence-classification",
+ "info": {
+  "precision": "f32",
+  "buildId": "mup3g5ui",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "distilbert",
+  "task": "sequence-classification",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 199642196,
+  "downloadBytes": 541318551,
+  "loadTiming": {
+   "fetchMs": 805.2000000029802,
+   "bodyMs": 1995.8999999985099,
+   "sha256Ms": 291.40000000596046,
+   "uploadMs": 45,
+   "embedJoinMs": 34.5,
+   "manifestMs": 3.5,
+   "planMs": 5.4000000059604645
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.0000017583370208740234,
+  "meanAbsLogitDiff": 2.2850445626924436e-7,
+  "disagreements": []
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0,
+  "groups": 50
+ },
+ "gpuErrors": []
+}

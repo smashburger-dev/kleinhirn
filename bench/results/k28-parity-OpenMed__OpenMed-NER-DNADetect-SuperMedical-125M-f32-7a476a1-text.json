@@ -1,0 +1,2697 @@
+{
+ "date": "2026-10-01",
+ "run_id": "k28-parity-OpenMed__OpenMed-NER-DNADetect-SuperMedical-125M-f32-7a476a1-text-1790837283035",
+ "commit": "7a476a1",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "4.86",
+ "loadAvgEnd": "4.71 5.45 5.53",
+ "stage": "done",
+ "model": "OpenMed__OpenMed-NER-DNADetect-SuperMedical-125M",
+ "precision": "f32",
+ "task": "token-classification",
+ "info": {
+  "precision": "f32",
+  "buildId": "mup3g5ui",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "roberta",
+  "task": "token-classification",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 367460396,
+  "downloadBytes": 496272387,
+  "loadTiming": {
+   "fetchMs": 771.2999999970198,
+   "bodyMs": 2497.60000000149,
+   "sha256Ms": 280.1000000089407,
+   "uploadMs": 97.89999999850988,
+   "embedJoinMs": 20,
+   "manifestMs": 3.100000001490116,
+   "planMs": 2.7999999970197678
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "spanExactAgreement": 1,
+  "spansGot": [
+   [],
+   [],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.4358249604701996,
+     "start": 9,
+     "end": 12
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.47021621465682983,
+     "start": 12,
+     "end": 17
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.45456358790397644,
+     "start": 17,
+     "end": 18
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.45179829001426697,
+     "start": 18,
+     "end": 19
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.41615691781044006,
+     "start": 19,
+     "end": 22
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.7644954919815063,
+     "start": 9,
+     "end": 10
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.7726244330406189,
+     "start": 10,
+     "end": 12
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.7590590715408325,
+     "start": 12,
+     "end": 15
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.336283802986145,
+     "start": 33,
+     "end": 36
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.5198990106582642,
+     "start": 38,
+     "end": 39
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.5753921866416931,
+     "start": 39,
+     "end": 41
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.5499837398529053,
+     "start": 41,
+     "end": 44
+    }
+   ],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.5823304653167725,
+     "start": 44,
+     "end": 46
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5575571060180664,
+     "start": 46,
+     "end": 48
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.352645605802536,
+     "start": 52,
+     "end": 54
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5597667694091797,
+     "start": 77,
+     "end": 79
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5166504383087158,
+     "start": 79,
+     "end": 81
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.3681492507457733,
+     "start": 85,
+     "end": 87
+    }
+   ],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.9091765284538269,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.9000645279884338,
+     "start": 1,
+     "end": 2
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.4949101507663727,
+     "start": 60,
+     "end": 65
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.5080421566963196,
+     "start": 65,
+     "end": 66
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.3516777753829956,
+     "start": 66,
+     "end": 68
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.3255872428417206,
+     "start": 68,
+     "end": 70
+    }
+   ],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.4223131388425827,
+     "start": 49,
+     "end": 52
+    }
+   ],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.8246574997901917,
+     "start": 4,
+     "end": 8
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.7851557731628418,
+     "start": 8,
+     "end": 9
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.763485848903656,
+     "start": 9,
+     "end": 12
+    }
+   ],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.48876190185546875,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.45657315850257874,
+     "start": 2,
+     "end": 4
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.470254510641098,
+     "start": 37,
+     "end": 41
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.5060656070709229,
+     "start": 41,
+     "end": 45
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.48156481981277466,
+     "start": 63,
+     "end": 65
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.8026742339134216,
+     "start": 10,
+     "end": 13
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.8563973903656006,
+     "start": 13,
+     "end": 16
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.8564132452011108,
+     "start": 16,
+     "end": 17
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.8665357232093811,
+     "start": 17,
+     "end": 18
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.8612131476402283,
+     "start": 18,
+     "end": 21
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.8353214263916016,
+     "start": 21,
+     "end": 22
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.6023496786753336,
+     "start": 30,
+     "end": 37
+    }
+   ],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.4825807809829712,
+     "start": 16,
+     "end": 17
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5579689383506775,
+     "start": 19,
+     "end": 26
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5625902613004049,
+     "start": 31,
+     "end": 40
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.43025171756744385,
+     "start": 50,
+     "end": 51
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.4239477217197418,
+     "start": 55,
+     "end": 56
+    }
+   ],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.794050395488739,
+     "start": 10,
+     "end": 15
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.8225306868553162,
+     "start": 15,
+     "end": 16
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.7962743639945984,
+     "start": 16,
+     "end": 21
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.7965173125267029,
+     "start": 27,
+     "end": 28
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.8261896967887878,
+     "start": 28,
+     "end": 31
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.8585180640220642,
+     "start": 0,
+     "end": 4
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.75595623254776,
+     "start": 4,
+     "end": 5
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.7448228597640991,
+     "start": 8,
+     "end": 10
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.7820514440536499,
+     "start": 10,
+     "end": 13
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.7123264074325562,
+     "start": 15,
+     "end": 41
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5147771120071412,
+     "start": 44,
+     "end": 52
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.44661226123571396,
+     "start": 54,
+     "end": 60
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.4652761220932007,
+     "start": 17,
+     "end": 18
+    }
+   ],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.5768174529075623,
+     "start": 6,
+     "end": 7
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.504164382815361,
+     "start": 7,
+     "end": 12
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5002678260207176,
+     "start": 17,
+     "end": 22
+    }
+   ],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.6716310977935791,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5695699453353882,
+     "start": 2,
+     "end": 3
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5583364963531494,
+     "start": 3,
+     "end": 7
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.539581835269928,
+     "start": 0,
+     "end": 3
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.49348658323287964,
+     "start": 3,
+     "end": 7
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5838608741760254,
+     "start": 29,
+     "end": 30
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5711283087730408,
+     "start": 49,
+     "end": 50
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.43585219979286194,
+     "start": 53,
+     "end": 55
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5371895432472229,
+     "start": 63,
+     "end": 64
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.4339525103569031,
+     "start": 9,
+     "end": 10
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.4796288013458252,
+     "start": 24,
+     "end": 27
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.6472742557525635,
+     "start": 28,
+     "end": 31
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.6233291029930115,
+     "start": 31,
+     "end": 32
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.4019184112548828,
+     "start": 34,
+     "end": 39
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5410653352737427,
+     "start": 44,
+     "end": 48
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5082343816757202,
+     "start": 48,
+     "end": 49
+    }
+   ],
+   [
+    {
+     "entity_group": "RNA",
+     "score": 0.33189108967781067,
+     "start": 14,
+     "end": 18
+    },
+    {
+     "entity_group": "RNA",
+     "score": 0.3289405405521393,
+     "start": 18,
+     "end": 20
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.6738752722740173,
+     "start": 49,
+     "end": 54
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.6060501933097839,
+     "start": 31,
+     "end": 35
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.6671738028526306,
+     "start": 35,
+     "end": 37
+    }
+   ],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.483389288187027,
+     "start": 8,
+     "end": 9
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.5326684713363647,
+     "start": 9,
+     "end": 11
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.5773321986198425,
+     "start": 11,
+     "end": 13
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.7874420881271362,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.8131303787231445,
+     "start": 1,
+     "end": 3
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.7689964175224304,
+     "start": 3,
+     "end": 4
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.7715353965759277,
+     "start": 4,
+     "end": 8
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.6190839409828186,
+     "start": 11,
+     "end": 15
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.6058958570162455,
+     "start": 17,
+     "end": 22
+    }
+   ],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.5609995126724243,
+     "start": 37,
+     "end": 40
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.45690229535102844,
+     "start": 40,
+     "end": 41
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.5227004885673523,
+     "start": 41,
+     "end": 51
+    }
+   ],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.5055298209190369,
+     "start": 9,
+     "end": 12
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.45948562026023865,
+     "start": 12,
+     "end": 15
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.518916666507721,
+     "start": 15,
+     "end": 16
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5092968344688416,
+     "start": 16,
+     "end": 17
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.5435492396354675,
+     "start": 19,
+     "end": 22
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.5487996935844421,
+     "start": 22,
+     "end": 23
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.31691911816596985,
+     "start": 23,
+     "end": 29
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.7504304051399231,
+     "start": 33,
+     "end": 34
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.7758456468582153,
+     "start": 34,
+     "end": 36
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.7746123671531677,
+     "start": 36,
+     "end": 38
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.7696179151535034,
+     "start": 38,
+     "end": 42
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.6431761980056763,
+     "start": 4,
+     "end": 5
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.6412435173988342,
+     "start": 5,
+     "end": 6
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.6439127326011658,
+     "start": 6,
+     "end": 8
+    }
+   ],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.398014634847641,
+     "start": 121,
+     "end": 123
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.46750903129577637,
+     "start": 123,
+     "end": 125
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.39114391803741455,
+     "start": 604,
+     "end": 606
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.42051276564598083,
+     "start": 606,
+     "end": 608
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.342847615480423,
+     "start": 608,
+     "end": 611
+    }
+   ],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.564499020576477,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5552923679351807,
+     "start": 1,
+     "end": 3
+    }
+   ],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.6201501488685608,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5064011216163635,
+     "start": 2,
+     "end": 4
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.8618019223213196,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.8651944994926453,
+     "start": 1,
+     "end": 2
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.5800027251243591,
+     "start": 4,
+     "end": 7
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.625446617603302,
+     "start": 7,
+     "end": 8
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.6035059094429016,
+     "start": 8,
+     "end": 10
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.6341889500617981,
+     "start": 10,
+     "end": 11
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.5920678377151489,
+     "start": 11,
+     "end": 15
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.591647744178772,
+     "start": 15,
+     "end": 16
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.36409713327884674,
+     "start": 16,
+     "end": 22
+    }
+   ],
+   [
+    {
+     "entity_group": "cell_type",
+     "score": 0.5028201341629028,
+     "start": 4,
+     "end": 6
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.32354605197906494,
+     "start": 12,
+     "end": 14
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.3010711371898651,
+     "start": 27,
+     "end": 28
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.35005277395248413,
+     "start": 28,
+     "end": 31
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.35874053835868835,
+     "start": 31,
+     "end": 33
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.3992246091365814,
+     "start": 33,
+     "end": 34
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.37435129284858704,
+     "start": 34,
+     "end": 35
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.4677366614341736,
+     "start": 155,
+     "end": 158
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.44528451561927795,
+     "start": 158,
+     "end": 159
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.41217905282974243,
+     "start": 159,
+     "end": 160
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.4107585847377777,
+     "start": 211,
+     "end": 212
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.4621862769126892,
+     "start": 212,
+     "end": 215
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.46441900730133057,
+     "start": 215,
+     "end": 217
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5039207935333252,
+     "start": 217,
+     "end": 218
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.48666268587112427,
+     "start": 218,
+     "end": 219
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.47777053713798523,
+     "start": 233,
+     "end": 234
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5652037262916565,
+     "start": 298,
+     "end": 301
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5207385420799255,
+     "start": 301,
+     "end": 302
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5037035346031189,
+     "start": 302,
+     "end": 303
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.39573392271995544,
+     "start": 317,
+     "end": 318
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.3602484464645386,
+     "start": 373,
+     "end": 374
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.42559146881103516,
+     "start": 374,
+     "end": 377
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.44482481479644775,
+     "start": 377,
+     "end": 379
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.4711522161960602,
+     "start": 379,
+     "end": 380
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.4534883499145508,
+     "start": 380,
+     "end": 381
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.4291706681251526,
+     "start": 395,
+     "end": 396
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.7006943821907043,
+     "start": 9,
+     "end": 14
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.521556963523229,
+     "start": 14,
+     "end": 20
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.4064212739467621,
+     "start": 0,
+     "end": 3
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.3730335533618927,
+     "start": 3,
+     "end": 7
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5216168165206909,
+     "start": 37,
+     "end": 38
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5316184759140015,
+     "start": 38,
+     "end": 41
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5199117660522461,
+     "start": 53,
+     "end": 57
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.7728030681610107,
+     "start": 20,
+     "end": 21
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.7725493311882019,
+     "start": 21,
+     "end": 22
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.7660898963610331,
+     "start": 22,
+     "end": 32
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.6210711002349854,
+     "start": 40,
+     "end": 42
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.6507948040962219,
+     "start": 42,
+     "end": 46
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.46729427576065063,
+     "start": 46,
+     "end": 51
+    }
+   ],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.9077357053756714,
+     "start": 27,
+     "end": 28
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.9119923710823059,
+     "start": 28,
+     "end": 29
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.8547464609146118,
+     "start": 48,
+     "end": 49
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.617716650168101,
+     "start": 49,
+     "end": 65
+    }
+   ],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.8572104573249817,
+     "start": 21,
+     "end": 24
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.8691824078559875,
+     "start": 24,
+     "end": 25
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.8384181261062622,
+     "start": 25,
+     "end": 26
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.817047655582428,
+     "start": 26,
+     "end": 30
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.7808141112327576,
+     "start": 30,
+     "end": 32
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.7584860324859619,
+     "start": 47,
+     "end": 50
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.5304957628250122,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.5008311867713928,
+     "start": 1,
+     "end": 3
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.6209429502487183,
+     "start": 3,
+     "end": 7
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.5576382279396057,
+     "start": 7,
+     "end": 11
+    }
+   ],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.44079386194547016,
+     "start": 9,
+     "end": 25
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "cell_type",
+     "score": 0.4108896255493164,
+     "start": 45,
+     "end": 47
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.4192844033241272,
+     "start": 276,
+     "end": 277
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.47377070784568787,
+     "start": 0,
+     "end": 4
+    }
+   ],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.8799381852149963,
+     "start": 47,
+     "end": 52
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.8885314464569092,
+     "start": 52,
+     "end": 53
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.8900014758110046,
+     "start": 53,
+     "end": 55
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.8899469375610352,
+     "start": 55,
+     "end": 57
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.8875148892402649,
+     "start": 57,
+     "end": 59
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.46364825963974,
+     "start": 42,
+     "end": 43
+    }
+   ],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.8962172865867615,
+     "start": 4,
+     "end": 6
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.9121639728546143,
+     "start": 6,
+     "end": 8
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.917534589767456,
+     "start": 8,
+     "end": 11
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.9113374948501587,
+     "start": 11,
+     "end": 14
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.8353535532951355,
+     "start": 14,
+     "end": 16
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.7138616442680359,
+     "start": 16,
+     "end": 18
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.6256192326545715,
+     "start": 18,
+     "end": 21
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.5123875141143799,
+     "start": 40,
+     "end": 41
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.49652740359306335,
+     "start": 41,
+     "end": 45
+    }
+   ],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.6652267575263977,
+     "start": 35,
+     "end": 37
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.6560342907905579,
+     "start": 37,
+     "end": 39
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.6688088774681091,
+     "start": 39,
+     "end": 42
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.6335254311561584,
+     "start": 42,
+     "end": 48
+    }
+   ],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.9015928506851196,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.8793315887451172,
+     "start": 1,
+     "end": 2
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.7932793498039246,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.785477340221405,
+     "start": 1,
+     "end": 2
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.6957520842552185,
+     "start": 6,
+     "end": 7
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.7004221379756927,
+     "start": 7,
+     "end": 28
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.5131297707557678,
+     "start": 0,
+     "end": 3
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.4898033142089844,
+     "start": 3,
+     "end": 4
+    }
+   ],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.6207000017166138,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.6098949909210205,
+     "start": 2,
+     "end": 5
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.5448473691940308,
+     "start": 26,
+     "end": 28
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.4458104074001312,
+     "start": 28,
+     "end": 29
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.4331819415092468,
+     "start": 31,
+     "end": 33
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.4380376636981964,
+     "start": 33,
+     "end": 34
+    }
+   ],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.8982847929000854,
+     "start": 61,
+     "end": 64
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.9003678560256958,
+     "start": 64,
+     "end": 66
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.4632578194141388,
+     "start": 26,
+     "end": 30
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.45885947346687317,
+     "start": 30,
+     "end": 33
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.4850529432296753,
+     "start": 33,
+     "end": 34
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.5072153806686401,
+     "start": 34,
+     "end": 38
+    }
+   ],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.5420717597007751,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.5909070372581482,
+     "start": 2,
+     "end": 4
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.5943664908409119,
+     "start": 4,
+     "end": 5
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.6242117285728455,
+     "start": 5,
+     "end": 7
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.6703900694847107,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.66227787733078,
+     "start": 1,
+     "end": 2
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.6448999643325806,
+     "start": 2,
+     "end": 3
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.43594619631767273,
+     "start": 6,
+     "end": 12
+    }
+   ],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.7016714215278625,
+     "start": 9,
+     "end": 12
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.6922886371612549,
+     "start": 12,
+     "end": 13
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.6895926594734192,
+     "start": 13,
+     "end": 15
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.6734141707420349,
+     "start": 15,
+     "end": 17
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.6494330167770386,
+     "start": 17,
+     "end": 19
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.6900984644889832,
+     "start": 19,
+     "end": 23
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.641157865524292,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.5333837866783142,
+     "start": 2,
+     "end": 3
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.46779900789260864,
+     "start": 3,
+     "end": 4
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.6010211110115051,
+     "start": 4,
+     "end": 9
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.7813323736190796,
+     "start": 9,
+     "end": 10
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.7996239066123962,
+     "start": 10,
+     "end": 13
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.8162675499916077,
+     "start": 13,
+     "end": 16
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.8675907850265503,
+     "start": 16,
+     "end": 17
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.8697267770767212,
+     "start": 17,
+     "end": 18
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.893941342830658,
+     "start": 18,
+     "end": 19
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.7831559181213379,
+     "start": 20,
+     "end": 21
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.7621423006057739,
+     "start": 21,
+     "end": 22
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.6440760840972265,
+     "start": 22,
+     "end": 43
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5015994736126491,
+     "start": 48,
+     "end": 59
+    }
+   ],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.36338555812835693,
+     "start": 34,
+     "end": 36
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.3282228708267212,
+     "start": 38,
+     "end": 40
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.3258197009563446,
+     "start": 42,
+     "end": 44
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.5637694001197815,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.4717017412185669,
+     "start": 1,
+     "end": 2
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.48213067650794983,
+     "start": 24,
+     "end": 27
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.5084035396575928,
+     "start": 27,
+     "end": 29
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.515210747718811,
+     "start": 29,
+     "end": 30
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.44776779413223267,
+     "start": 30,
+     "end": 31
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.45209214091300964,
+     "start": 31,
+     "end": 33
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.4384366273880005,
+     "start": 33,
+     "end": 35
+    }
+   ],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.43676233291625977,
+     "start": 55,
+     "end": 56
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.4242233633995056,
+     "start": 56,
+     "end": 60
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.8390066623687744,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.8358955979347229,
+     "start": 2,
+     "end": 4
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.4049077332019806,
+     "start": 0,
+     "end": 3
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.3089213967323303,
+     "start": 3,
+     "end": 4
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.3207651674747467,
+     "start": 4,
+     "end": 5
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.6635466814041138,
+     "start": 0,
+     "end": 8
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.6610561013221741,
+     "start": 8,
+     "end": 9
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.6441239714622498,
+     "start": 9,
+     "end": 13
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.6616688966751099,
+     "start": 13,
+     "end": 15
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.8973428010940552,
+     "start": 75,
+     "end": 81
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.9033500552177429,
+     "start": 81,
+     "end": 82
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.8946037292480469,
+     "start": 82,
+     "end": 86
+    }
+   ],
+   [
+    {
+     "entity_group": "cell_type",
+     "score": 0.3759317696094513,
+     "start": 4,
+     "end": 5
+    },
+    {
+     "entity_group": "cell_type",
+     "score": 0.40502479672431946,
+     "start": 5,
+     "end": 7
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.6788334250450134,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.635539174079895,
+     "start": 1,
+     "end": 2
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.8439116477966309,
+     "start": 9,
+     "end": 14
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.9216870665550232,
+     "start": 51,
+     "end": 54
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.922369658946991,
+     "start": 54,
+     "end": 56
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.9237601161003113,
+     "start": 56,
+     "end": 57
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.9221320152282715,
+     "start": 57,
+     "end": 62
+    }
+   ],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.30274146795272827,
+     "start": 10,
+     "end": 12
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.2919679880142212,
+     "start": 12,
+     "end": 13
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.2771035134792328,
+     "start": 13,
+     "end": 17
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.34756937623023987,
+     "start": 17,
+     "end": 19
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.758033275604248,
+     "start": 22,
+     "end": 25
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.7649000287055969,
+     "start": 25,
+     "end": 29
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.6112332344055176,
+     "start": 212,
+     "end": 215
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.6479301452636719,
+     "start": 215,
+     "end": 219
+    }
+   ],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.4551318883895874,
+     "start": 0,
+     "end": 4
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5890182256698608,
+     "start": 12,
+     "end": 13
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5497776865959167,
+     "start": 22,
+     "end": 23
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5101771354675293,
+     "start": 32,
+     "end": 33
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.4128006100654602,
+     "start": 0,
+     "end": 1
+    }
+   ],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.5700346827507019,
+     "start": 11,
+     "end": 12
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.47750626310058264,
+     "start": 15,
+     "end": 52
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.42251718044281006,
+     "start": 55,
+     "end": 57
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.4806683361530304,
+     "start": 21,
+     "end": 23
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.4912506341934204,
+     "start": 23,
+     "end": 28
+    }
+   ],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.7118974924087524,
+     "start": 3,
+     "end": 6
+    }
+   ],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.7758470177650452,
+     "start": 1,
+     "end": 2
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.7337846755981445,
+     "start": 2,
+     "end": 3
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.8595661520957947,
+     "start": 6,
+     "end": 7
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.8545881509780884,
+     "start": 7,
+     "end": 8
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.7830132246017456,
+     "start": 11,
+     "end": 12
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.6153099536895752,
+     "start": 12,
+     "end": 19
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.5665628910064697,
+     "start": 55,
+     "end": 60
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.8830051422119141,
+     "start": 69,
+     "end": 73
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.8883756995201111,
+     "start": 73,
+     "end": 75
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.8959928750991821,
+     "start": 75,
+     "end": 78
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.6658542156219482,
+     "start": 9,
+     "end": 10
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5108738442262014,
+     "start": 10,
+     "end": 16
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.3487236499786377,
+     "start": 19,
+     "end": 22
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.33361420035362244,
+     "start": 23,
+     "end": 25
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.2996426820755005,
+     "start": 25,
+     "end": 28
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.512121319770813,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.45900633931159973,
+     "start": 1,
+     "end": 2
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.5016165375709534,
+     "start": 21,
+     "end": 23
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.44912147521972656,
+     "start": 23,
+     "end": 24
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.6064591805140177,
+     "start": 55,
+     "end": 77
+    }
+   ],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.8641831874847412,
+     "start": 6,
+     "end": 9
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.8631758689880371,
+     "start": 9,
+     "end": 11
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5253189404805502,
+     "start": 11,
+     "end": 15
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.8127203583717346,
+     "start": 19,
+     "end": 20
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.8435473442077637,
+     "start": 20,
+     "end": 22
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.8365570902824402,
+     "start": 22,
+     "end": 24
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.4944723844528198,
+     "start": 24,
+     "end": 26
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.48435401916503906,
+     "start": 26,
+     "end": 30
+    }
+   ],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.7851113080978394,
+     "start": 3,
+     "end": 4
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.7652756571769714,
+     "start": 4,
+     "end": 6
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.5493990182876587,
+     "start": 1,
+     "end": 3
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5328485369682312,
+     "start": 3,
+     "end": 5
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.4298124611377716,
+     "start": 5,
+     "end": 6
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.37085387110710144,
+     "start": 6,
+     "end": 11
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.6665955185890198,
+     "start": 14,
+     "end": 16
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.7299585342407227,
+     "start": 16,
+     "end": 18
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.7018890380859375,
+     "start": 18,
+     "end": 19
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.6972872614860535,
+     "start": 19,
+     "end": 21
+    }
+   ],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.8412641286849976,
+     "start": 18,
+     "end": 22
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.8140577673912048,
+     "start": 22,
+     "end": 25
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.6549166440963745,
+     "start": 27,
+     "end": 31
+    }
+   ],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.8526303768157959,
+     "start": 41,
+     "end": 42
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.8637051582336426,
+     "start": 42,
+     "end": 44
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.8410149216651917,
+     "start": 44,
+     "end": 45
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.8294740915298462,
+     "start": 45,
+     "end": 47
+    }
+   ],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.48138830065727234,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5141463875770569,
+     "start": 1,
+     "end": 2
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.7037569284439087,
+     "start": 5,
+     "end": 6
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.7387570142745972,
+     "start": 6,
+     "end": 7
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.4399307072162628,
+     "start": 17,
+     "end": 18
+    }
+   ],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.6931053996086121,
+     "start": 9,
+     "end": 10
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.6910616755485535,
+     "start": 10,
+     "end": 11
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.7484273314476013,
+     "start": 14,
+     "end": 15
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.7583339214324951,
+     "start": 15,
+     "end": 16
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.7450176477432251,
+     "start": 16,
+     "end": 17
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.5705768465995789,
+     "start": 17,
+     "end": 21
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.7641603946685791,
+     "start": 24,
+     "end": 26
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.7716591954231262,
+     "start": 29,
+     "end": 31
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.7300181984901428,
+     "start": 31,
+     "end": 32
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.5852069854736328,
+     "start": 32,
+     "end": 36
+    }
+   ],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.538148820400238,
+     "start": 16,
+     "end": 18
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5470263957977295,
+     "start": 18,
+     "end": 20
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.49717530608177185,
+     "start": 20,
+     "end": 21
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.7805466055870056,
+     "start": 21,
+     "end": 25
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.7042397856712341,
+     "start": 25,
+     "end": 26
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.7268375158309937,
+     "start": 26,
+     "end": 30
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.3930797278881073,
+     "start": 32,
+     "end": 34
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.45203450322151184,
+     "start": 47,
+     "end": 49
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.483976274728775,
+     "start": 49,
+     "end": 51
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.44797423481941223,
+     "start": 51,
+     "end": 52
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.7377902269363403,
+     "start": 52,
+     "end": 56
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.6562096476554871,
+     "start": 56,
+     "end": 57
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.6162168383598328,
+     "start": 57,
+     "end": 61
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.4108656644821167,
+     "start": 63,
+     "end": 65
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5935277342796326,
+     "start": 83,
+     "end": 84
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5494698882102966,
+     "start": 87,
+     "end": 89
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "DNA",
+     "score": 0.5655969977378845,
+     "start": 3,
+     "end": 4
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5851113200187683,
+     "start": 4,
+     "end": 7
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.43269413709640503,
+     "start": 19,
+     "end": 22
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.40388384461402893,
+     "start": 22,
+     "end": 23
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5235852003097534,
+     "start": 23,
+     "end": 24
+    },
+    {
+     "entity_group": "DNA",
+     "score": 0.5015071630477905,
+     "start": 24,
+     "end": 27
+    }
+   ],
+   [
+    {
+     "entity_group": "protein",
+     "score": 0.7140833139419556,
+     "start": 15,
+     "end": 16
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.7486501932144165,
+     "start": 16,
+     "end": 20
+    },
+    {
+     "entity_group": "protein",
+     "score": 0.7213343381881714,
+     "start": 20,
+     "end": 22
+    }
+   ]
+  ],
+  "spanTexts": 200,
+  "spans": 388,
+  "maxAbsScoreDiff": 0.0000036954879760742188,
+  "textStats": {
+   "cases": 200,
+   "calls": 200,
+   "inputMismatch": 0,
+   "rows": 200,
+   "bitDiffRows": 0,
+   "batchRows": 0,
+   "batchVsSingleDiffRows": 0
+  }
+ },
+ "gpuErrors": []
+}

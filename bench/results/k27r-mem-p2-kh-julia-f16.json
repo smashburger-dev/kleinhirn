@@ -1,0 +1,91 @@
+{
+ "run_id": "k27r-mem-p2-kh-julia-f16",
+ "engine": "kleinhirn-julia",
+ "model": "julia-1",
+ "precision": "f16",
+ "bucket": null,
+ "ep": null,
+ "batchSize": null,
+ "graph": null,
+ "capture": false,
+ "backend": "webgpu",
+ "official": true,
+ "repetitions": 1,
+ "medianMs": 10.455999999940396,
+ "rangeMs": [
+  10.455999999940396,
+  10.455999999940396
+ ],
+ "p95Ms": 18.19999998807907,
+ "downloadBytes": 322970260,
+ "onnxBytes": null,
+ "runtimeBytes": null,
+ "gpuBytes": 146744728,
+ "peakMemMb": 1138,
+ "parity": [
+  {
+   "matchingPredictions": 100,
+   "maxAbsLogitError": 0.10920882225036621
+  }
+ ],
+ "loadAvg": [
+  [
+   2.99853515625,
+   2.91845703125
+  ]
+ ],
+ "repFiles": [
+  "bench/results/k27r-mem-p2-kh-julia-f16-r1.json"
+ ],
+ "page": {
+  "stage": "done",
+  "precision": "f16",
+  "info": {
+   "precision": "f16",
+   "adapter": {
+    "vendor": "apple",
+    "architecture": "metal-3",
+    "device": "",
+    "description": ""
+   },
+   "limitsMode": "minimum",
+   "timestamps": true,
+   "buckets": [
+    512,
+    1024
+   ],
+   "gpuBytes": 146744728,
+   "downloadBytes": 322970260,
+   "tokenizerBytes": 34363188,
+   "weightBytes": 288607072,
+   "loadTiming": {
+    "fetchMs": 369.10000002384186,
+    "bodyMs": 802.2000000178814,
+    "sha256Ms": 159.60000002384186,
+    "uploadMs": 33.69999998807907,
+    "embedJoinMs": 23.200000017881393,
+    "manifestMs": 2.800000011920929,
+    "tokenizerMs": 519.4000000059605,
+    "planMs": 40.19999998807907
+   },
+   "loadMs": 989.1999999880791
+  },
+  "loadMsWarm": 2048.7999999821186,
+  "result": {
+   "requests": 100,
+   "batch_size": 1,
+   "iterations": 5,
+   "load_ms": 989.1999999880791,
+   "load_and_warm_ms": 2048.7999999821186,
+   "median_ms": 1045.5999999940395,
+   "min_ms": 1041.2000000178814,
+   "max_ms": 1061.2999999821186,
+   "ms_per_request": 10.455999999940396,
+   "per_request_median_ms": 9.799999982118607,
+   "per_request_p95_ms": 18.19999998807907,
+   "matching_predictions": 100,
+   "max_abs_logit_error_vs_pytorch": 0.10920882225036621
+  },
+  "done": true
+ }
+}

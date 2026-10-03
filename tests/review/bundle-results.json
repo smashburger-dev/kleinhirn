@@ -1,0 +1,655 @@
+{
+  "node": "v26.0.0",
+  "raw": 136290,
+  "gzip9": 38126,
+  "groups": [
+    {
+      "group": "unmapped",
+      "mappedBytes": 13631,
+      "gzipMarginal": 2457
+    },
+    {
+      "group": "API + device + weights + tasks + cache + half",
+      "mappedBytes": 37226,
+      "gzipMarginal": 10520
+    },
+    {
+      "group": "GLiNER/Julia tokenizer + input",
+      "mappedBytes": 7709,
+      "gzipMarginal": 2669
+    },
+    {
+      "group": "plan builder + executor + spec",
+      "mappedBytes": 24907,
+      "gzipMarginal": 7523
+    },
+    {
+      "group": "WGSL + kernel registry",
+      "mappedBytes": 24815,
+      "gzipMarginal": 6390
+    },
+    {
+      "group": "WASM client + worker URL",
+      "mappedBytes": 1855,
+      "gzipMarginal": 543
+    },
+    {
+      "group": "HF tokenizer",
+      "mappedBytes": 26147,
+      "gzipMarginal": 9492
+    }
+  ],
+  "modules": [
+    {
+      "path": "unmapped",
+      "mappedBytes": 13631,
+      "gzipMarginal": 2457
+    },
+    {
+      "path": "../src/index.ts",
+      "mappedBytes": 11102,
+      "gzipMarginal": 2381
+    },
+    {
+      "path": "../src/plan/build.ts",
+      "mappedBytes": 11072,
+      "gzipMarginal": 3435
+    },
+    {
+      "path": "../src/encoder.ts",
+      "mappedBytes": 10050,
+      "gzipMarginal": 2302
+    },
+    {
+      "path": "../src/julia.ts",
+      "mappedBytes": 8944,
+      "gzipMarginal": 2486
+    },
+    {
+      "path": "../src/plan/executor.ts",
+      "mappedBytes": 7034,
+      "gzipMarginal": 2041
+    },
+    {
+      "path": "../src/tokenizer/hf/normalizers.ts",
+      "mappedBytes": 6465,
+      "gzipMarginal": 2010
+    },
+    {
+      "path": "src/kernels/attention.wgsl?raw",
+      "mappedBytes": 5123,
+      "gzipMarginal": 652
+    },
+    {
+      "path": "src/kernels/mbattention.wgsl?raw",
+      "mappedBytes": 4399,
+      "gzipMarginal": 440
+    },
+    {
+      "path": "../src/tokenizer/hf/index.ts",
+      "mappedBytes": 4090,
+      "gzipMarginal": 1205
+    },
+    {
+      "path": "../src/tokenizer/hf/postprocessors.ts",
+      "mappedBytes": 3835,
+      "gzipMarginal": 955
+    },
+    {
+      "path": "../src/plan/spec.ts",
+      "mappedBytes": 3731,
+      "gzipMarginal": 940
+    },
+    {
+      "path": "../src/plan/layers.ts",
+      "mappedBytes": 3070,
+      "gzipMarginal": 731
+    },
+    {
+      "path": "../src/tokenizer/hf/bpe.ts",
+      "mappedBytes": 2981,
+      "gzipMarginal": 780
+    },
+    {
+      "path": "../src/weights.ts",
+      "mappedBytes": 2784,
+      "gzipMarginal": 991
+    },
+    {
+      "path": "../src/tokenizer/hf/normalized.ts",
+      "mappedBytes": 2650,
+      "gzipMarginal": 698
+    },
+    {
+      "path": "../src/tokenizer/hf/pretokenizers.ts",
+      "mappedBytes": 2625,
+      "gzipMarginal": 792
+    },
+    {
+      "path": "src/kernels/embln.wgsl?raw",
+      "mappedBytes": 2539,
+      "gzipMarginal": 383
+    },
+    {
+      "path": "../src/tokenizer/bpe.ts",
+      "mappedBytes": 2193,
+      "gzipMarginal": 646
+    },
+    {
+      "path": "../src/tokenizer/hf/unigram.ts",
+      "mappedBytes": 2047,
+      "gzipMarginal": 553
+    },
+    {
+      "path": "src/kernels/matmul.wgsl?raw",
+      "mappedBytes": 2002,
+      "gzipMarginal": 485
+    },
+    {
+      "path": "src/kernels/layernorm.wgsl?raw",
+      "mappedBytes": 1889,
+      "gzipMarginal": 203
+    },
+    {
+      "path": "../src/wasm-client.ts",
+      "mappedBytes": 1855,
+      "gzipMarginal": 543
+    },
+    {
+      "path": "../src/tokenizer/schema.ts",
+      "mappedBytes": 1746,
+      "gzipMarginal": 710
+    },
+    {
+      "path": "src/kernels/pool.wgsl?raw",
+      "mappedBytes": 1627,
+      "gzipMarginal": 406
+    },
+    {
+      "path": "src/kernels/rope.wgsl?raw",
+      "mappedBytes": 1603,
+      "gzipMarginal": 478
+    },
+    {
+      "path": "../src/tasks.ts",
+      "mappedBytes": 1450,
+      "gzipMarginal": 420
+    },
+    {
+      "path": "src/kernels/im2col.wgsl?raw",
+      "mappedBytes": 1433,
+      "gzipMarginal": 430
+    },
+    {
+      "path": "../src/tokenizer/julia-input.ts",
+      "mappedBytes": 1402,
+      "gzipMarginal": 480
+    },
+    {
+      "path": "../src/cache.ts",
+      "mappedBytes": 1376,
+      "gzipMarginal": 369
+    },
+    {
+      "path": "../src/tokenizer/unigram.ts",
+      "mappedBytes": 1235,
+      "gzipMarginal": 402
+    },
+    {
+      "path": "../src/tokenizer/tokenizer.ts",
+      "mappedBytes": 1133,
+      "gzipMarginal": 387
+    },
+    {
+      "path": "src/kernels/geglu.wgsl?raw",
+      "mappedBytes": 1081,
+      "gzipMarginal": 223
+    },
+    {
+      "path": "../src/device.ts",
+      "mappedBytes": 1060,
+      "gzipMarginal": 399
+    },
+    {
+      "path": "src/kernels/gather.wgsl?raw",
+      "mappedBytes": 1006,
+      "gzipMarginal": 238
+    },
+    {
+      "path": "src/kernels/add.wgsl?raw",
+      "mappedBytes": 924,
+      "gzipMarginal": 255
+    },
+    {
+      "path": "src/kernels/masklogits.wgsl?raw",
+      "mappedBytes": 923,
+      "gzipMarginal": 254
+    },
+    {
+      "path": "../src/tokenizer/hf/wordpiece.ts",
+      "mappedBytes": 858,
+      "gzipMarginal": 206
+    },
+    {
+      "path": "../src/tokenizer/hf/truncation.ts",
+      "mappedBytes": 596,
+      "gzipMarginal": 204
+    },
+    {
+      "path": "../src/half.ts",
+      "mappedBytes": 460,
+      "gzipMarginal": 149
+    },
+    {
+      "path": "../src/kernels/index.ts",
+      "mappedBytes": 266,
+      "gzipMarginal": 119
+    }
+  ],
+  "attributedBytes": 136290,
+  "workerAssets": [
+    {
+      "path": "assets/wasm-worker-DXLL-ExG.js",
+      "bytes": 35771,
+      "gzip9": 9976
+    }
+  ],
+  "preAssembly": [
+    {
+      "path": "src/device.ts",
+      "renderedLength": 1436,
+      "gzipPreAssembly": 625,
+      "renderedExports": [
+        "getDevice"
+      ]
+    },
+    {
+      "path": "src/weights.ts",
+      "renderedLength": 3922,
+      "gzipPreAssembly": 1522,
+      "renderedExports": [
+        "fetchManifest",
+        "resolveManifest",
+        "fetchShardBytes",
+        "loadWeights"
+      ]
+    },
+    {
+      "path": "src/tokenizer/unigram.ts",
+      "renderedLength": 1999,
+      "gzipPreAssembly": 817,
+      "renderedExports": [
+        "buildUnigram",
+        "unigramEncode"
+      ]
+    },
+    {
+      "path": "src/tokenizer/tokenizer.ts",
+      "renderedLength": 1628,
+      "gzipPreAssembly": 740,
+      "renderedExports": [
+        "HfTokenizer"
+      ]
+    },
+    {
+      "path": "src/tokenizer/schema.ts",
+      "renderedLength": 3061,
+      "gzipPreAssembly": 1255,
+      "renderedExports": [
+        "BucketOverflowError",
+        "splitWords",
+        "prepareTasks"
+      ]
+    },
+    {
+      "path": "src/plan/layers.ts",
+      "renderedLength": 4194,
+      "gzipPreAssembly": 1259,
+      "renderedExports": [
+        "addWorkgroups",
+        "MAX_WORKGROUPS",
+        "preNormLayer",
+        "postNormLayer"
+      ]
+    },
+    {
+      "path": "src/plan/spec.ts",
+      "renderedLength": 4953,
+      "gzipPreAssembly": 1395,
+      "renderedExports": [
+        "DEBERTA_TENSORS",
+        "specFromJuliaManifest",
+        "tensorNamesFor",
+        "specFromGlinerManifest",
+        "modernbertTensors",
+        "MODERNBERT_TENSORS",
+        "DEBERTA_CONV_TENSORS"
+      ]
+    },
+    {
+      "path": "src/plan/build.ts",
+      "renderedLength": 16436,
+      "gzipPreAssembly": 4957,
+      "renderedExports": [
+        "writableBindings",
+        "buildPlan",
+        "relPosTable",
+        "ropeTable",
+        "validateSegments"
+      ]
+    },
+    {
+      "path": "src/half.ts",
+      "renderedLength": 705,
+      "gzipPreAssembly": 369,
+      "renderedExports": [
+        "halfToFloat",
+        "halfBitsToFloat32"
+      ]
+    },
+    {
+      "path": "src/kernels/add.wgsl?raw",
+      "renderedLength": 992,
+      "gzipPreAssembly": 582,
+      "renderedExports": [
+        "default"
+      ]
+    },
+    {
+      "path": "src/kernels/attention.wgsl?raw",
+      "renderedLength": 5203,
+      "gzipPreAssembly": 1922,
+      "renderedExports": [
+        "default"
+      ]
+    },
+    {
+      "path": "src/kernels/embln.wgsl?raw",
+      "renderedLength": 2611,
+      "gzipPreAssembly": 1007,
+      "renderedExports": [
+        "default"
+      ]
+    },
+    {
+      "path": "src/kernels/gather.wgsl?raw",
+      "renderedLength": 1078,
+      "gzipPreAssembly": 616,
+      "renderedExports": [
+        "default"
+      ]
+    },
+    {
+      "path": "src/kernels/geglu.wgsl?raw",
+      "renderedLength": 1153,
+      "gzipPreAssembly": 693,
+      "renderedExports": [
+        "default"
+      ]
+    },
+    {
+      "path": "src/kernels/im2col.wgsl?raw",
+      "renderedLength": 1507,
+      "gzipPreAssembly": 816,
+      "renderedExports": [
+        "default"
+      ]
+    },
+    {
+      "path": "src/kernels/layernorm.wgsl?raw",
+      "renderedLength": 1969,
+      "gzipPreAssembly": 750,
+      "renderedExports": [
+        "default"
+      ]
+    },
+    {
+      "path": "src/kernels/masklogits.wgsl?raw",
+      "renderedLength": 1005,
+      "gzipPreAssembly": 594,
+      "renderedExports": [
+        "default"
+      ]
+    },
+    {
+      "path": "src/kernels/matmul.wgsl?raw",
+      "renderedLength": 2076,
+      "gzipPreAssembly": 978,
+      "renderedExports": [
+        "default"
+      ]
+    },
+    {
+      "path": "src/kernels/mbattention.wgsl?raw",
+      "renderedLength": 4483,
+      "gzipPreAssembly": 1752,
+      "renderedExports": [
+        "default"
+      ]
+    },
+    {
+      "path": "src/kernels/pool.wgsl?raw",
+      "renderedLength": 1697,
+      "gzipPreAssembly": 822,
+      "renderedExports": [
+        "default"
+      ]
+    },
+    {
+      "path": "src/kernels/rope.wgsl?raw",
+      "renderedLength": 1673,
+      "gzipPreAssembly": 857,
+      "renderedExports": [
+        "default"
+      ]
+    },
+    {
+      "path": "src/kernels/index.ts",
+      "renderedLength": 512,
+      "gzipPreAssembly": 287,
+      "renderedExports": [
+        "KERNELS",
+        "wgsl"
+      ]
+    },
+    {
+      "path": "src/plan/executor.ts",
+      "renderedLength": 8971,
+      "gzipPreAssembly": 2852,
+      "renderedExports": [
+        "PlanExecutor"
+      ]
+    },
+    {
+      "path": "src/tokenizer/bpe.ts",
+      "renderedLength": 3038,
+      "gzipPreAssembly": 1217,
+      "renderedExports": [
+        "BpeTokenizer"
+      ]
+    },
+    {
+      "path": "src/tokenizer/julia-input.ts",
+      "renderedLength": 2021,
+      "gzipPreAssembly": 864,
+      "renderedExports": [
+        "prepareDecision"
+      ]
+    },
+    {
+      "path": "src/cache.ts",
+      "renderedLength": 2088,
+      "gzipPreAssembly": 875,
+      "renderedExports": [
+        "nextBatchSize",
+        "sortByKey",
+        "schemaMergeKey",
+        "BATCH_SIZES",
+        "batchStride",
+        "MAX_BATCH",
+        "LruCache",
+        "juliaMergeKey",
+        "dedupMerge"
+      ]
+    },
+    {
+      "path": "src/julia.ts",
+      "renderedLength": 12927,
+      "gzipPreAssembly": 3659,
+      "renderedExports": [
+        "JuliaEngine"
+      ]
+    },
+    {
+      "path": "src/wasm-client.ts",
+      "renderedLength": 2705,
+      "gzipPreAssembly": 1082,
+      "renderedExports": [
+        "WasmClient"
+      ]
+    },
+    {
+      "path": "src/tokenizer/hf/normalized.ts",
+      "renderedLength": 4117,
+      "gzipPreAssembly": 1299,
+      "renderedExports": [
+        "matchRegex",
+        "slice",
+        "prepend",
+        "fromText",
+        "replaceMatches",
+        "transform",
+        "utf8Length",
+        "matchPredicate",
+        "join",
+        "cpIndex",
+        "splitMatches"
+      ]
+    },
+    {
+      "path": "src/tokenizer/hf/bpe.ts",
+      "renderedLength": 4354,
+      "gzipPreAssembly": 1552,
+      "renderedExports": [
+        "Bpe"
+      ]
+    },
+    {
+      "path": "src/tokenizer/hf/normalizers.ts",
+      "renderedLength": 9537,
+      "gzipPreAssembly": 3266,
+      "renderedExports": [
+        "parseBertNormalizer",
+        "parseNormalizer",
+        "bertNormalize",
+        "isChineseChar",
+        "isControl",
+        "isWhitespace",
+        "oniguruma"
+      ]
+    },
+    {
+      "path": "src/tokenizer/hf/postprocessors.ts",
+      "renderedLength": 5602,
+      "gzipPreAssembly": 1614,
+      "renderedExports": [
+        "RobertaProcessing",
+        "TemplateProcessing",
+        "ByteLevelProcessing",
+        "parsePostProcessor"
+      ]
+    },
+    {
+      "path": "src/tokenizer/hf/pretokenizers.ts",
+      "renderedLength": 3857,
+      "gzipPreAssembly": 1455,
+      "renderedExports": [
+        "bertWords",
+        "isBertPunctuation",
+        "whitespaceSplit",
+        "parsePreTokenizer",
+        "metaspace",
+        "bertPreTokenize",
+        "byteLevel"
+      ]
+    },
+    {
+      "path": "src/tokenizer/hf/truncation.ts",
+      "renderedLength": 1046,
+      "gzipPreAssembly": 477,
+      "renderedExports": [
+        "SEQUENCE_TOO_SHORT",
+        "truncateLengths"
+      ]
+    },
+    {
+      "path": "src/tokenizer/hf/unigram.ts",
+      "renderedLength": 3343,
+      "gzipPreAssembly": 1210,
+      "renderedExports": [
+        "Unigram"
+      ]
+    },
+    {
+      "path": "src/tokenizer/hf/wordpiece.ts",
+      "renderedLength": 1345,
+      "gzipPreAssembly": 614,
+      "renderedExports": [
+        "WordPiece"
+      ]
+    },
+    {
+      "path": "src/tokenizer/hf/index.ts",
+      "renderedLength": 6229,
+      "gzipPreAssembly": 2176,
+      "renderedExports": [
+        "JsonTokenizer"
+      ]
+    },
+    {
+      "path": "src/tasks.ts",
+      "renderedLength": 2208,
+      "gzipPreAssembly": 871,
+      "renderedExports": [
+        "softmax",
+        "argmaxRows",
+        "aggregateSimple",
+        "l2normalize"
+      ]
+    },
+    {
+      "path": "src/encoder.ts",
+      "renderedLength": 13848,
+      "gzipPreAssembly": 4391,
+      "renderedExports": [
+        "EncoderModel"
+      ]
+    },
+    {
+      "path": "src/index.ts",
+      "renderedLength": 16162,
+      "gzipPreAssembly": 4525,
+      "renderedExports": [
+        "BucketOverflowError",
+        "groupSoftmax",
+        "EncoderModel",
+        "JsonTokenizer",
+        "Kleinhirn",
+        "loadEngine"
+      ]
+    }
+  ],
+  "warning": "Mapped bytes include source-map separator ownership; WGSL JSON literals assigned by exact match. Marginal gzip saving is recompression after removing mapped spans, NOT a working smaller bundle and NOT additive. preAssembly is before final chunk minification.",
+  "noWgslComments": {
+    "raw": 128786,
+    "gzip9": 35121
+  },
+  "noDeadUnigramScores": {
+    "raw": 136230,
+    "gzip9": 38115
+  },
+  "dist": {
+    "bytes": 136286,
+    "gzip9": 38123
+  }
+}

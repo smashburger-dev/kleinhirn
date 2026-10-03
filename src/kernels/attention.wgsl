@@ -1,6 +1,6 @@
 {{ENABLE}}// DeBERTa-v2 relative attention, one workgroup per (head, query row).
 // scores[i,j] = (q_i.k_j + c2p[i,j] + p2c[i,j]) / SCALE over key positions,
-// masked softmax (masked pairs -> -1e4, fully masked rows give a uniform
+// masked softmax (masked pairs -> -1e30, fully masked rows give a uniform
 // distribution like the fp32 reference, never NaN), then . v.
 //   c2p[i,j] = q_i . pos_key[idx[i,j]]   (content -> position)
 //   p2c[i,j] = k_j . pos_query[idx[i,j]] (position -> content)
@@ -53,9 +53,10 @@ fn main(
     return;
   }
   for (var j = lid.x; j < L; j += 64u) {
-    // Masked keys land at -1e4 regardless of the dot products; skip them.
+    // Masked keys land at -1e30 regardless of the dot products.
+    // The sentinel sits below any real score; the softmax max also starts at -1e30.
     if (mask[kbase + j] <= 0.5) {
-      scores[j] = -1e4;
+      scores[j] = -1e30;
       continue;
     }
     var s = 0.0;

@@ -1,0 +1,2215 @@
+{
+ "workorder": "docs/K28_8_WORKORDER.md, Festlegung 11",
+ "date": "2026-10-02T21:43:31.873Z",
+ "commit": "1013592",
+ "officialHeadRestored": "3bff7d66e75ad36c3c649b656f899ddea12e8d0e",
+ "cells": {
+  "sentence-transformers__all-MiniLM-L6-v2|L128": {
+   "index": 0,
+   "slug": "sentence-transformers__all-MiniLM-L6-v2",
+   "L": 128,
+   "order": [
+    "A",
+    "B",
+    "B",
+    "A",
+    "A",
+    "B"
+   ],
+   "ortConfig": {
+    "graph": "std",
+    "build": "webgpu",
+    "capture": true,
+    "validationMode": "wgpuOnly",
+    "screeningMedian": 5.260000005364418,
+    "runs": 1
+   },
+   "kleinhirn": {
+    "runs": [
+     {
+      "runId": "k28.8-official-kh-sentence-transformers__all-MiniLM-L6-v2-L128-1790976147348",
+      "median": 3.2899999916553497,
+      "p95": 4.245000004768372,
+      "loadStart": 2.14,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.0006531178951263428,
+       "minCosine": 0.9999986907320516
+      },
+      "accuracy": {
+       "cases": 195,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999988221619156,
+       "maxAbsDiff": 0.0015843510627746582
+      }
+     },
+     {
+      "runId": "k28.8-official-kh-sentence-transformers__all-MiniLM-L6-v2-L128-1790976189256",
+      "median": 3.302500009536743,
+      "p95": 4.2049999833106995,
+      "loadStart": 3.72,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.0006531178951263428,
+       "minCosine": 0.9999986907320516
+      },
+      "accuracy": {
+       "cases": 195,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999988221619156,
+       "maxAbsDiff": 0.0015843510627746582
+      }
+     },
+     {
+      "runId": "k28.8-official-kh-sentence-transformers__all-MiniLM-L6-v2-L128-1790976191974",
+      "median": 3.2750000059604645,
+      "p95": 4.185000002384186,
+      "loadStart": 3.72,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.0006531178951263428,
+       "minCosine": 0.9999986907320516
+      },
+      "accuracy": {
+       "cases": 195,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999988221619156,
+       "maxAbsDiff": 0.0015843510627746582
+      }
+     }
+    ],
+    "medianOfMedians": 3.2899999916553497,
+    "span": [
+     3.2750000059604645,
+     3.302500009536743
+    ],
+    "gpuBytes": 23756800,
+    "download": {
+     "bytes": 46705759,
+     "files": {
+      "/models/k28/sentence-transformers__all-MiniLM-L6-v2/f16/manifest.json": 14169,
+      "/models/k28/sentence-transformers__all-MiniLM-L6-v2/f16/tokenizer.json": 466547,
+      "/models/k28/sentence-transformers__all-MiniLM-L6-v2/f16/weights-0.bin": 45131052,
+      "/dist/kleinhirn.js": 1093991
+     }
+    }
+   },
+   "ort": {
+    "runs": [
+     {
+      "runId": "k28.8-official-ort-sentence-transformers__all-MiniLM-L6-v2-L128-std-webgpu-c1-1790976180578",
+      "median": 5.287500008940697,
+      "p95": 6.259999990463257,
+      "loadStart": 3.86,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.0031769275665283203,
+       "minCosine": 0.9999734929432161
+      },
+      "accuracy": {
+       "cases": 195,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999599697181349,
+       "maxAbsDiff": 0.00923091173171997
+      }
+     },
+     {
+      "runId": "k28.8-official-ort-sentence-transformers__all-MiniLM-L6-v2-L128-std-webgpu-c1-1790976185023",
+      "median": 5.292500004172325,
+      "p95": 6.270000010728836,
+      "loadStart": 3.79,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.0031769275665283203,
+       "minCosine": 0.9999734929432161
+      },
+      "accuracy": {
+       "cases": 195,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999599697181349,
+       "maxAbsDiff": 0.00923091173171997
+      }
+     },
+     {
+      "runId": "k28.8-official-ort-sentence-transformers__all-MiniLM-L6-v2-L128-std-webgpu-c1-1790976194679",
+      "median": 5.305000007152557,
+      "p95": 6.28999999165535,
+      "loadStart": 3.59,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.0031769275665283203,
+       "minCosine": 0.9999734929432161
+      },
+      "accuracy": {
+       "cases": 195,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999599697181349,
+       "maxAbsDiff": 0.00923091173171997
+      }
+     }
+    ],
+    "medianOfMedians": 5.292500004172325,
+    "span": [
+     5.287500008940697,
+     5.305000007152557
+    ],
+    "download": {
+     "bytes": 72271882,
+     "files": {
+      "graph": 45216142,
+      "tokenizer": 466247,
+      "/node_modules/.vite/deps/onnxruntime-web_webgpu.js": 509483,
+      "/node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded.asyncify.mjs": 300,
+      "/node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded.asyncify.wasm": 25750173
+     }
+    }
+   },
+   "factor": 1.608662619330107,
+   "verdict": "kleinhirn faster"
+  },
+  "cardiffnlp__twitter-roberta-base-sentiment-latest|L128": {
+   "index": 1,
+   "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+   "L": 128,
+   "order": [
+    "B",
+    "A",
+    "A",
+    "B",
+    "B",
+    "A"
+   ],
+   "ortConfig": {
+    "graph": "std",
+    "build": "jspi",
+    "capture": true,
+    "validationMode": "wgpuOnly",
+    "screeningMedian": 18.282499998807907,
+    "runs": 1
+   },
+   "kleinhirn": {
+    "runs": [
+     {
+      "runId": "k28.8-official-kh-cardiffnlp__twitter-roberta-base-sentiment-latest-L128-1790976209682",
+      "median": 13.400000005960464,
+      "p95": 14.33500000834465,
+      "loadStart": 3.36,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.005998373031616211,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.0036001205444335938
+      }
+     },
+     {
+      "runId": "k28.8-official-kh-cardiffnlp__twitter-roberta-base-sentiment-latest-L128-1790976216929",
+      "median": 13.422499999403954,
+      "p95": 14.354999989271164,
+      "loadStart": 3.17,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.005998373031616211,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.0036001205444335938
+      }
+     },
+     {
+      "runId": "k28.8-official-kh-cardiffnlp__twitter-roberta-base-sentiment-latest-L128-1790976245626",
+      "median": 13.404999986290932,
+      "p95": 14.319999992847443,
+      "loadStart": 3.01,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.005998373031616211,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.0036001205444335938
+      }
+     }
+    ],
+    "medianOfMedians": 13.404999986290932,
+    "span": [
+     13.400000005960464,
+     13.422499999403954
+    ],
+    "gpuBytes": 175435300,
+    "download": {
+     "bytes": 253975941,
+     "files": {
+      "/models/k28/cardiffnlp__twitter-roberta-base-sentiment-latest/f16/manifest.json": 26225,
+      "/models/k28/cardiffnlp__twitter-roberta-base-sentiment-latest/f16/tokenizer.json": 3558947,
+      "/models/k28/cardiffnlp__twitter-roberta-base-sentiment-latest/f16/weights-0.bin": 92177196,
+      "/models/k28/cardiffnlp__twitter-roberta-base-sentiment-latest/f16/weights-1.bin": 94510380,
+      "/models/k28/cardiffnlp__twitter-roberta-base-sentiment-latest/f16/weights-2.bin": 62609202,
+      "/dist/kleinhirn.js": 1093991
+     }
+    }
+   },
+   "ort": {
+    "runs": [
+     {
+      "runId": "k28.8-official-ort-cardiffnlp__twitter-roberta-base-sentiment-latest-L128-std-jspi-c1-1790976198918",
+      "median": 18.957500010728836,
+      "p95": 19.189999997615814,
+      "loadStart": 3.7,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.10707259178161621,
+       "argmaxAgreement": 0.9933333333333333
+      },
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.05825859308242798
+      }
+     },
+     {
+      "runId": "k28.8-official-ort-cardiffnlp__twitter-roberta-base-sentiment-latest-L128-std-jspi-c1-1790976224158",
+      "median": 18.93250000476837,
+      "p95": 19.205000013113022,
+      "loadStart": 2.91,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.10707259178161621,
+       "argmaxAgreement": 0.9933333333333333
+      },
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.05825859308242798
+      }
+     },
+     {
+      "runId": "k28.8-official-ort-cardiffnlp__twitter-roberta-base-sentiment-latest-L128-std-jspi-c1-1790976234891",
+      "median": 18.984999999403954,
+      "p95": 19.219999998807907,
+      "loadStart": 2.77,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.10707259178161621,
+       "argmaxAgreement": 0.9933333333333333
+      },
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.05825859308242798
+      }
+     }
+    ],
+    "medianOfMedians": 18.957500010728836,
+    "span": [
+     18.93250000476837,
+     18.984999999403954
+    ],
+    "download": {
+     "bytes": 269840511,
+     "files": {
+      "graph": 249478924,
+      "tokenizer": 3558647,
+      "/node_modules/.vite/deps/onnxruntime-web_jspi.js": 480130,
+      "/node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded.jspi.mjs": 300,
+      "/node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded.jspi.wasm": 16025936
+     }
+    }
+   },
+   "factor": 1.4142111175021523,
+   "verdict": "kleinhirn faster"
+  },
+  "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1|L128": {
+   "index": 2,
+   "slug": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+   "L": 128,
+   "order": [
+    "A",
+    "B",
+    "B",
+    "A",
+    "A",
+    "B"
+   ],
+   "ortConfig": {
+    "graph": "std",
+    "build": "webgpu",
+    "capture": true,
+    "validationMode": "wgpuOnly",
+    "screeningMedian": 10.060000002384186,
+    "runs": 1
+   },
+   "kleinhirn": {
+    "runs": [
+     {
+      "runId": "k28.8-official-kh-cross-encoder__mmarco-mMiniLMv2-L12-H384-v1-L128-1790976252851",
+      "median": 6.072499990463257,
+      "p95": 6.990000009536743,
+      "loadStart": 2.77,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.0108184814453125
+      },
+      "accuracy": {
+       "cases": 197,
+       "of": 200,
+       "finite": true,
+       "queries": 17,
+       "bestPassageAgreement": 1,
+       "maxAbsLogitDiff": 0.018024444580078125
+      }
+     },
+     {
+      "runId": "k28.8-official-kh-cross-encoder__mmarco-mMiniLMv2-L12-H384-v1-L128-1790976317269",
+      "median": 6.065000027418137,
+      "p95": 7.019999980926514,
+      "loadStart": 3.33,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.0108184814453125
+      },
+      "accuracy": {
+       "cases": 197,
+       "of": 200,
+       "finite": true,
+       "queries": 17,
+       "bestPassageAgreement": 1,
+       "maxAbsLogitDiff": 0.018024444580078125
+      }
+     },
+     {
+      "runId": "k28.8-official-kh-cross-encoder__mmarco-mMiniLMv2-L12-H384-v1-L128-1790976337017",
+      "median": 6.074999988079071,
+      "p95": 7.0250000059604645,
+      "loadStart": 3.62,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.0108184814453125
+      },
+      "accuracy": {
+       "cases": 197,
+       "of": 200,
+       "finite": true,
+       "queries": 17,
+       "bestPassageAgreement": 1,
+       "maxAbsLogitDiff": 0.018024444580078125
+      }
+     }
+    ],
+    "medianOfMedians": 6.072499990463257,
+    "span": [
+     6.065000027418137,
+     6.074999988079071
+    ],
+    "gpuBytes": 45347608,
+    "download": {
+     "bytes": 253487053,
+     "files": {
+      "/models/k28/cross-encoder__mmarco-mMiniLMv2-L12-H384-v1/f16/manifest.json": 27024,
+      "/models/k28/cross-encoder__mmarco-mMiniLMv2-L12-H384-v1/f16/tokenizer.json": 17082960,
+      "/models/k28/cross-encoder__mmarco-mMiniLMv2-L12-H384-v1/f16/weights-0.bin": 92160300,
+      "/models/k28/cross-encoder__mmarco-mMiniLMv2-L12-H384-v1/f16/weights-1.bin": 92160300,
+      "/models/k28/cross-encoder__mmarco-mMiniLMv2-L12-H384-v1/f16/weights-2.bin": 50962478,
+      "/dist/kleinhirn.js": 1093991
+     }
+    }
+   },
+   "ort": {
+    "runs": [
+     {
+      "runId": "k28.8-official-ort-cross-encoder__mmarco-mMiniLMv2-L12-H384-v1-L128-std-webgpu-c1-1790976272615",
+      "median": 10.052500009536743,
+      "p95": 11.040000021457672,
+      "loadStart": 3.79,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.0692896842956543
+      },
+      "accuracy": {
+       "cases": 197,
+       "of": 200,
+       "finite": true,
+       "queries": 17,
+       "bestPassageAgreement": 1,
+       "maxAbsLogitDiff": 0.055094242095947266
+      }
+     },
+     {
+      "runId": "k28.8-official-ort-cross-encoder__mmarco-mMiniLMv2-L12-H384-v1-L128-std-webgpu-c1-1790976309902",
+      "median": 10.105000019073486,
+      "p95": 11.054999977350235,
+      "loadStart": 3.44,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.0692896842956543
+      },
+      "accuracy": {
+       "cases": 197,
+       "of": 200,
+       "finite": true,
+       "queries": 17,
+       "bestPassageAgreement": 1,
+       "maxAbsLogitDiff": 0.055094242095947266
+      }
+     },
+     {
+      "runId": "k28.8-official-ort-cross-encoder__mmarco-mMiniLMv2-L12-H384-v1-L128-std-webgpu-c1-1790976341757",
+      "median": 10.092500001192093,
+      "p95": 11.049999982118607,
+      "loadStart": 3.73,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.0692896842956543
+      },
+      "accuracy": {
+       "cases": 197,
+       "of": 200,
+       "finite": true,
+       "queries": 17,
+       "bestPassageAgreement": 1,
+       "maxAbsLogitDiff": 0.055094242095947266
+      }
+     }
+    ],
+    "medianOfMedians": 10.092500001192093,
+    "span": [
+     10.052500009536743,
+     10.105000019073486
+    ],
+    "download": {
+     "bytes": 279137329,
+     "files": {
+      "graph": 235465176,
+      "tokenizer": 17082660,
+      "/node_modules/.vite/deps/onnxruntime-web_webgpu.js": 509483,
+      "/node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded.asyncify.mjs": 300,
+      "/node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded.asyncify.wasm": 25750173
+     }
+    }
+   },
+   "factor": 1.6620008261905588,
+   "verdict": "kleinhirn faster"
+  },
+  "distilbert__distilbert-base-uncased-finetuned-sst-2-english|L128": {
+   "index": 3,
+   "slug": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+   "L": 128,
+   "order": [
+    "B",
+    "A",
+    "A",
+    "B",
+    "B",
+    "A"
+   ],
+   "ortConfig": {
+    "graph": "opt",
+    "build": "jspi",
+    "capture": true,
+    "validationMode": "wgpuOnly",
+    "screeningMedian": 9.5450000166893,
+    "runs": 1
+   },
+   "kleinhirn": {
+    "runs": [
+     {
+      "runId": "k28.8-official-kh-distilbert__distilbert-base-uncased-finetuned-sst-2-english-L128-1790976385313",
+      "median": 6.987499997019768,
+      "p95": 7.895000010728836,
+      "loadStart": 3.22,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.009418368339538574,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.006060898303985596
+      }
+     },
+     {
+      "runId": "k28.8-official-kh-distilbert__distilbert-base-uncased-finetuned-sst-2-english-L128-1790976389532",
+      "median": 6.990000009536743,
+      "p95": 7.9000000059604645,
+      "loadStart": 2.96,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.009418368339538574,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.006060898303985596
+      }
+     },
+     {
+      "runId": "k28.8-official-kh-distilbert__distilbert-base-uncased-finetuned-sst-2-english-L128-1790976406154",
+      "median": 6.990000009536743,
+      "p95": 7.925000011920929,
+      "loadStart": 2.85,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.009418368339538574,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.006060898303985596
+      }
+     }
+    ],
+    "medianOfMedians": 6.990000009536743,
+    "span": [
+     6.987499997019768,
+     6.990000009536743
+    ],
+    "gpuBytes": 90376216,
+    "download": {
+     "bytes": 135730981,
+     "files": {
+      "/models/k28/distilbert__distilbert-base-uncased-finetuned-sst-2-english/f16/manifest.json": 14674,
+      "/models/k28/distilbert__distilbert-base-uncased-finetuned-sst-2-english/f16/tokenizer.json": 711696,
+      "/models/k28/distilbert__distilbert-base-uncased-finetuned-sst-2-english/f16/weights-0.bin": 94929708,
+      "/models/k28/distilbert__distilbert-base-uncased-finetuned-sst-2-english/f16/weights-1.bin": 38980912,
+      "/dist/kleinhirn.js": 1093991
+     }
+    }
+   },
+   "ort": {
+    "runs": [
+     {
+      "runId": "k28.8-official-ort-distilbert__distilbert-base-uncased-finetuned-sst-2-english-L128-opt-jspi-c1-1790976378987",
+      "median": 9.745000004768372,
+      "p95": 10.729999989271164,
+      "loadStart": 3.42,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.15130484104156494,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.04692661762237549
+      }
+     },
+     {
+      "runId": "k28.8-official-ort-distilbert__distilbert-base-uncased-finetuned-sst-2-english-L128-opt-jspi-c1-1790976393755",
+      "median": 9.759999990463257,
+      "p95": 10.735000014305115,
+      "loadStart": 2.73,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.15130484104156494,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.04692661762237549
+      }
+     },
+     {
+      "runId": "k28.8-official-ort-distilbert__distilbert-base-uncased-finetuned-sst-2-english-L128-opt-jspi-c1-1790976399934",
+      "median": 9.805000007152557,
+      "p95": 10.78999999165535,
+      "loadStart": 2.67,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.15130484104156494,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.04692661762237549
+      }
+     }
+    ],
+    "medianOfMedians": 9.759999990463257,
+    "span": [
+     9.745000004768372,
+     9.805000007152557
+    ],
+    "download": {
+     "bytes": 150912353,
+     "files": {
+      "graph": 133398017,
+      "tokenizer": 711396,
+      "/node_modules/.vite/deps/onnxruntime-web_jspi.js": 480130,
+      "/node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded.jspi.mjs": 300,
+      "/node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded.jspi.wasm": 16025936
+     }
+    }
+   },
+   "factor": 1.3962803973029025,
+   "verdict": "kleinhirn faster"
+  },
+  "protectai__deberta-v3-base-prompt-injection-v2|L128": {
+   "index": 4,
+   "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+   "L": 128,
+   "order": [
+    "A",
+    "B",
+    "B",
+    "A",
+    "A",
+    "B"
+   ],
+   "ortConfig": {
+    "graph": "opt",
+    "build": "jspi",
+    "capture": false,
+    "validationMode": "wgpuOnly",
+    "screeningMedian": 23.40250000357628,
+    "runs": 1
+   },
+   "kleinhirn": {
+    "runs": [
+     {
+      "runId": "k28.8-official-kh-protectai__deberta-v3-base-prompt-injection-v2-L128-1790976410392",
+      "median": 14.537499994039536,
+      "p95": 15.425000011920929,
+      "loadStart": 2.79,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.0042188167572021484,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.024442672729492188
+      }
+     },
+     {
+      "runId": "k28.8-official-kh-protectai__deberta-v3-base-prompt-injection-v2-L128-1790976446606",
+      "median": 14.542500019073486,
+      "p95": 15.41499999165535,
+      "loadStart": 2.24,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.0042188167572021484,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.024442672729492188
+      }
+     },
+     {
+      "runId": "k28.8-official-kh-protectai__deberta-v3-base-prompt-injection-v2-L128-1790976454461",
+      "median": 14.497500002384186,
+      "p95": 15.390000015497208,
+      "loadStart": 2.13,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.0042188167572021484,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.024442672729492188
+      }
+     }
+    ],
+    "medianOfMedians": 14.537499994039536,
+    "span": [
+     14.497500002384186,
+     14.542500019073486
+    ],
+    "gpuBytes": 196715548,
+    "download": {
+     "bytes": 396715321,
+     "files": {
+      "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f16/manifest.json": 30558,
+      "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f16/tokenizer.json": 8657044,
+      "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f16/weights-0.bin": 92160300,
+      "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f16/weights-1.bin": 92160300,
+      "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f16/weights-2.bin": 94731564,
+      "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f16/weights-3.bin": 94491948,
+      "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f16/weights-4.bin": 13389616,
+      "/dist/kleinhirn.js": 1093991
+     }
+    }
+   },
+   "ort": {
+    "runs": [
+     {
+      "runId": "k28.8-official-ort-protectai__deberta-v3-base-prompt-injection-v2-L128-opt-jspi-c0-1790976418624",
+      "median": 24.259999990463257,
+      "p95": 24.5,
+      "loadStart": 2.58,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.0369265079498291,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 0.9939393939393939,
+       "maxAbsLogitDiff": 0.159324049949646
+      }
+     },
+     {
+      "runId": "k28.8-official-ort-protectai__deberta-v3-base-prompt-injection-v2-L128-opt-jspi-c0-1790976432720",
+      "median": 24.35249999165535,
+      "p95": 24.58500000834465,
+      "loadStart": 2.5,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.0369265079498291,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 0.9939393939393939,
+       "maxAbsLogitDiff": 0.159324049949646
+      }
+     },
+     {
+      "runId": "k28.8-official-ort-protectai__deberta-v3-base-prompt-injection-v2-L128-opt-jspi-c0-1790976462329",
+      "median": 24.59000000357628,
+      "p95": 24.860000014305115,
+      "loadStart": 2.04,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.0369265079498291,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 0.9939393939393939,
+       "maxAbsLogitDiff": 0.159324049949646
+      }
+     }
+    ],
+    "medianOfMedians": 24.35249999165535,
+    "span": [
+     24.259999990463257,
+     24.59000000357628
+    ],
+    "download": {
+     "bytes": 450363458,
+     "files": {
+      "graph": 424903774,
+      "tokenizer": 8656744,
+      "/node_modules/.vite/deps/onnxruntime-web_jspi.js": 480130,
+      "/node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded.jspi.mjs": 300,
+      "/node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded.jspi.wasm": 16025936
+     }
+    }
+   },
+   "factor": 1.6751504730276887,
+   "verdict": "kleinhirn faster"
+  },
+  "ibm-granite__granite-embedding-small-english-r2|L128": {
+   "index": 5,
+   "slug": "ibm-granite__granite-embedding-small-english-r2",
+   "L": 128,
+   "order": [
+    "B",
+    "A",
+    "A",
+    "B",
+    "B",
+    "A"
+   ],
+   "ortConfig": {
+    "graph": "opt",
+    "build": "webgpu",
+    "capture": true,
+    "validationMode": "wgpuOnly",
+    "screeningMedian": 12.280000001192093,
+    "runs": 1
+   },
+   "kleinhirn": {
+    "runs": [
+     {
+      "runId": "k28.8-official-kh-ibm-granite__granite-embedding-small-english-r2-L128-1790976484561",
+      "median": 6.9849999994039536,
+      "p95": 7.969999998807907,
+      "loadStart": 2.53,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.012939453125,
+       "minCosine": 0.999999021773199
+      },
+      "accuracy": {
+       "cases": 195,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999992009491612,
+       "maxAbsDiff": 0.008317947387695312
+      }
+     },
+     {
+      "runId": "k28.8-official-kh-ibm-granite__granite-embedding-small-english-r2-L128-1790976489316",
+      "median": 6.995000004768372,
+      "p95": 7.9549999833106995,
+      "loadStart": 2.65,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.012939453125,
+       "minCosine": 0.999999021773199
+      },
+      "accuracy": {
+       "cases": 195,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999992009491612,
+       "maxAbsDiff": 0.008317947387695312
+      }
+     },
+     {
+      "runId": "k28.8-official-kh-ibm-granite__granite-embedding-small-english-r2-L128-1790976510732",
+      "median": 6.990000009536743,
+      "p95": 7.984999984502792,
+      "loadStart": 3.14,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.012939453125,
+       "minCosine": 0.999999021773199
+      },
+      "accuracy": {
+       "cases": 195,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999992009491612,
+       "maxAbsDiff": 0.008317947387695312
+      }
+     }
+    ],
+    "medianOfMedians": 6.990000009536743,
+    "span": [
+     6.9849999994039536,
+     6.995000004768372
+    ],
+    "gpuBytes": 59665168,
+    "download": {
+     "bytes": 100017392,
+     "files": {
+      "/models/k28/ibm-granite__granite-embedding-small-english-r2/f16/manifest.json": 14345,
+      "/models/k28/ibm-granite__granite-embedding-small-english-r2/f16/tokenizer.json": 3583528,
+      "/models/k28/ibm-granite__granite-embedding-small-english-r2/f16/weights-0.bin": 94144812,
+      "/models/k28/ibm-granite__granite-embedding-small-english-r2/f16/weights-1.bin": 1180716,
+      "/dist/kleinhirn.js": 1093991
+     }
+    }
+   },
+   "ort": {
+    "runs": [
+     {
+      "runId": "k28.8-official-ort-ibm-granite__granite-embedding-small-english-r2-L128-opt-webgpu-c1-1790976476203",
+      "median": 12.439999997615814,
+      "p95": 13.41499999165535,
+      "loadStart": 2.63,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.03774738311767578,
+       "minCosine": 0.999974699319769
+      },
+      "accuracy": {
+       "cases": 195,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999323551953413,
+       "maxAbsDiff": 0.03236675262451172
+      }
+     },
+     {
+      "runId": "k28.8-official-ort-ibm-granite__granite-embedding-small-english-r2-L128-opt-webgpu-c1-1790976494037",
+      "median": 12.457500010728836,
+      "p95": 13.435000002384186,
+      "loadStart": 2.67,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.03774738311767578,
+       "minCosine": 0.999974699319769
+      },
+      "accuracy": {
+       "cases": 195,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999323551953413,
+       "maxAbsDiff": 0.03236675262451172
+      }
+     },
+     {
+      "runId": "k28.8-official-ort-ibm-granite__granite-embedding-small-english-r2-L128-opt-webgpu-c1-1790976502381",
+      "median": 12.417499989271164,
+      "p95": 13.405000001192093,
+      "loadStart": 3.18,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.03774738311767578,
+       "minCosine": 0.999974699319769
+      },
+      "accuracy": {
+       "cases": 195,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999323551953413,
+       "maxAbsDiff": 0.03236675262451172
+      }
+     }
+    ],
+    "medianOfMedians": 12.439999997615814,
+    "span": [
+     12.417499989271164,
+     12.457500010728836
+    ],
+    "download": {
+     "bytes": 125730363,
+     "files": {
+      "graph": 95557642,
+      "tokenizer": 3583228,
+      "/node_modules/.vite/deps/onnxruntime-web_webgpu.js": 509483,
+      "/node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded.asyncify.mjs": 300,
+      "/node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded.asyncify.wasm": 25750173
+     }
+    }
+   },
+   "factor": 1.7796852618946228,
+   "verdict": "kleinhirn faster"
+  },
+  "sentence-transformers__all-MiniLM-L6-v2|L512": {
+   "index": 6,
+   "slug": "sentence-transformers__all-MiniLM-L6-v2",
+   "L": 512,
+   "order": [
+    "A",
+    "B",
+    "B",
+    "A",
+    "A",
+    "B"
+   ],
+   "ortConfig": {
+    "graph": "std",
+    "build": "webgpu",
+    "capture": true,
+    "validationMode": "wgpuOnly",
+    "screeningMedian": 12.48250000178814,
+    "runs": 1
+   },
+   "kleinhirn": {
+    "runs": [
+     {
+      "runId": "k28.8-official-kh-sentence-transformers__all-MiniLM-L6-v2-L512-1790976515444",
+      "median": 8.9549999833107,
+      "p95": 9.950000017881393,
+      "loadStart": 3.05,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.0005389079451560974,
+       "minCosine": 0.9999986966579212
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999986962684164,
+       "maxAbsDiff": 0.0015843510627746582
+      }
+     },
+     {
+      "runId": "k28.8-official-kh-sentence-transformers__all-MiniLM-L6-v2-L512-1790976535575",
+      "median": 8.969999998807907,
+      "p95": 9.980000019073486,
+      "loadStart": 3.11,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.0005389079451560974,
+       "minCosine": 0.9999986966579212
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999986962684164,
+       "maxAbsDiff": 0.0015843510627746582
+      }
+     },
+     {
+      "runId": "k28.8-official-kh-sentence-transformers__all-MiniLM-L6-v2-L512-1790976540294",
+      "median": 9,
+      "p95": 10,
+      "loadStart": 3.1,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.0005389079451560974,
+       "minCosine": 0.9999986966579212
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999986962684164,
+       "maxAbsDiff": 0.0015843510627746582
+      }
+     }
+    ],
+    "medianOfMedians": 8.969999998807907,
+    "span": [
+     8.9549999833107,
+     9
+    ],
+    "gpuBytes": 39390208,
+    "download": {
+     "bytes": 46705759,
+     "files": {
+      "/models/k28/sentence-transformers__all-MiniLM-L6-v2/f16/manifest.json": 14169,
+      "/models/k28/sentence-transformers__all-MiniLM-L6-v2/f16/tokenizer.json": 466547,
+      "/models/k28/sentence-transformers__all-MiniLM-L6-v2/f16/weights-0.bin": 45131052,
+      "/dist/kleinhirn.js": 1093991
+     }
+    }
+   },
+   "ort": {
+    "runs": [
+     {
+      "runId": "k28.8-official-ort-sentence-transformers__all-MiniLM-L6-v2-L512-std-webgpu-c1-1790976520163",
+      "median": 12.064999997615814,
+      "p95": 13.060000002384186,
+      "loadStart": 2.8,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.0023545026779174805,
+       "minCosine": 0.9999775908044144
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999599697181349,
+       "maxAbsDiff": 0.00923091173171997
+      }
+     },
+     {
+      "runId": "k28.8-official-ort-sentence-transformers__all-MiniLM-L6-v2-L512-std-webgpu-c1-1790976527863",
+      "median": 12.055000007152557,
+      "p95": 13.069999992847443,
+      "loadStart": 2.66,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.0023545026779174805,
+       "minCosine": 0.9999775908044144
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999599697181349,
+       "maxAbsDiff": 0.00923091173171997
+      }
+     },
+     {
+      "runId": "k28.8-official-ort-sentence-transformers__all-MiniLM-L6-v2-L512-std-webgpu-c1-1790976545028",
+      "median": 12.075000002980232,
+      "p95": 13.070000022649765,
+      "loadStart": 2.93,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.0023545026779174805,
+       "minCosine": 0.9999775908044144
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999599697181349,
+       "maxAbsDiff": 0.00923091173171997
+      }
+     }
+    ],
+    "medianOfMedians": 12.064999997615814,
+    "span": [
+     12.055000007152557,
+     12.075000002980232
+    ],
+    "download": {
+     "bytes": 72278026,
+     "files": {
+      "graph": 45222286,
+      "tokenizer": 466247,
+      "/node_modules/.vite/deps/onnxruntime-web_webgpu.js": 509483,
+      "/node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded.asyncify.mjs": 300,
+      "/node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded.asyncify.wasm": 25750173
+     }
+    }
+   },
+   "factor": 1.3450390188650196,
+   "verdict": "kleinhirn faster"
+  },
+  "cardiffnlp__twitter-roberta-base-sentiment-latest|L512": {
+   "index": 7,
+   "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+   "L": 512,
+   "order": [
+    "B",
+    "A",
+    "A",
+    "B",
+    "B",
+    "A"
+   ],
+   "ortConfig": {
+    "graph": "std",
+    "build": "webgpu",
+    "capture": true,
+    "validationMode": "wgpuOnly",
+    "screeningMedian": 59.304999992251396,
+    "runs": 1
+   },
+   "kleinhirn": {
+    "runs": [
+     {
+      "runId": "k28.8-official-kh-cardiffnlp__twitter-roberta-base-sentiment-latest-L512-1790976585560",
+      "median": 47.60999998450279,
+      "p95": 48.53999999165535,
+      "loadStart": 3,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.0055849552154541016,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.0036001205444335938
+      }
+     },
+     {
+      "runId": "k28.8-official-kh-cardiffnlp__twitter-roberta-base-sentiment-latest-L512-1790976605424",
+      "median": 47.5174999833107,
+      "p95": 48.46000000834465,
+      "loadStart": 2.55,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.0055849552154541016,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.0036001205444335938
+      }
+     },
+     {
+      "runId": "k28.8-official-kh-cardiffnlp__twitter-roberta-base-sentiment-latest-L512-1790976690928",
+      "median": 47.54500000178814,
+      "p95": 48.52499997615814,
+      "loadStart": 4,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.0055849552154541016,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.0036001205444335938
+      }
+     }
+    ],
+    "medianOfMedians": 47.54500000178814,
+    "span": [
+     47.5174999833107,
+     47.60999998450279
+    ],
+    "gpuBytes": 194902564,
+    "download": {
+     "bytes": 253975941,
+     "files": {
+      "/models/k28/cardiffnlp__twitter-roberta-base-sentiment-latest/f16/manifest.json": 26225,
+      "/models/k28/cardiffnlp__twitter-roberta-base-sentiment-latest/f16/tokenizer.json": 3558947,
+      "/models/k28/cardiffnlp__twitter-roberta-base-sentiment-latest/f16/weights-0.bin": 92177196,
+      "/models/k28/cardiffnlp__twitter-roberta-base-sentiment-latest/f16/weights-1.bin": 94510380,
+      "/models/k28/cardiffnlp__twitter-roberta-base-sentiment-latest/f16/weights-2.bin": 62609202,
+      "/dist/kleinhirn.js": 1093991
+     }
+    }
+   },
+   "ort": {
+    "runs": [
+     {
+      "runId": "k28.8-official-ort-cardiffnlp__twitter-roberta-base-sentiment-latest-L512-std-webgpu-c1-1790976552723",
+      "median": 59.672500014305115,
+      "p95": 60.01500001549721,
+      "loadStart": 2.78,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.05628609657287598,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.05825859308242798
+      }
+     },
+     {
+      "runId": "k28.8-official-ort-cardiffnlp__twitter-roberta-base-sentiment-latest-L512-std-webgpu-c1-1790976625197",
+      "median": 59.64999997615814,
+      "p95": 59.9200000166893,
+      "loadStart": 2.81,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.05628609657287598,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.05825859308242798
+      }
+     },
+     {
+      "runId": "k28.8-official-ort-cardiffnlp__twitter-roberta-base-sentiment-latest-L512-std-webgpu-c1-1790976658009",
+      "median": 59.73999999463558,
+      "p95": 60.08500000834465,
+      "loadStart": 2.5,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.05628609657287598,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.05825859308242798
+      }
+     }
+    ],
+    "medianOfMedians": 59.672500014305115,
+    "span": [
+     59.64999997615814,
+     59.73999999463558
+    ],
+    "download": {
+     "bytes": 279633208,
+     "files": {
+      "graph": 249485068,
+      "tokenizer": 3558647,
+      "/node_modules/.vite/deps/onnxruntime-web_webgpu.js": 509483,
+      "/node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded.asyncify.mjs": 300,
+      "/node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded.asyncify.wasm": 25750173
+     }
+    }
+   },
+   "factor": 1.2550741405418206,
+   "verdict": "kleinhirn faster"
+  },
+  "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1|L512": {
+   "index": 8,
+   "slug": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+   "L": 512,
+   "order": [
+    "A",
+    "B",
+    "B",
+    "A",
+    "A",
+    "B"
+   ],
+   "ortConfig": {
+    "graph": "std",
+    "build": "jspi",
+    "capture": true,
+    "validationMode": "wgpuOnly",
+    "screeningMedian": 24.014999985694885,
+    "runs": 1
+   },
+   "kleinhirn": {
+    "runs": [
+     {
+      "runId": "k28.8-official-kh-cross-encoder__mmarco-mMiniLMv2-L12-H384-v1-L512-1790976710806",
+      "median": 17.875,
+      "p95": 18.110000014305115,
+      "loadStart": 3.3,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.024435997009277344
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "queries": 20,
+       "bestPassageAgreement": 1,
+       "maxAbsLogitDiff": 0.018024444580078125
+      }
+     },
+     {
+      "runId": "k28.8-official-kh-cross-encoder__mmarco-mMiniLMv2-L12-H384-v1-L512-1790976747627",
+      "median": 17.85249999165535,
+      "p95": 18.104999989271164,
+      "loadStart": 2.74,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.024435997009277344
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "queries": 20,
+       "bestPassageAgreement": 1,
+       "maxAbsLogitDiff": 0.018024444580078125
+      }
+     },
+     {
+      "runId": "k28.8-official-kh-cross-encoder__mmarco-mMiniLMv2-L12-H384-v1-L512-1790976755887",
+      "median": 17.86250001192093,
+      "p95": 18.099999994039536,
+      "loadStart": 2.54,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.024435997009277344
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "queries": 20,
+       "bestPassageAgreement": 1,
+       "maxAbsLogitDiff": 0.018024444580078125
+      }
+     }
+    ],
+    "medianOfMedians": 17.86250001192093,
+    "span": [
+     17.85249999165535,
+     17.875
+    ],
+    "gpuBytes": 60981016,
+    "download": {
+     "bytes": 253487053,
+     "files": {
+      "/models/k28/cross-encoder__mmarco-mMiniLMv2-L12-H384-v1/f16/manifest.json": 27024,
+      "/models/k28/cross-encoder__mmarco-mMiniLMv2-L12-H384-v1/f16/tokenizer.json": 17082960,
+      "/models/k28/cross-encoder__mmarco-mMiniLMv2-L12-H384-v1/f16/weights-0.bin": 92160300,
+      "/models/k28/cross-encoder__mmarco-mMiniLMv2-L12-H384-v1/f16/weights-1.bin": 92160300,
+      "/models/k28/cross-encoder__mmarco-mMiniLMv2-L12-H384-v1/f16/weights-2.bin": 50962478,
+      "/dist/kleinhirn.js": 1093991
+     }
+    }
+   },
+   "ort": {
+    "runs": [
+     {
+      "runId": "k28.8-official-ort-cross-encoder__mmarco-mMiniLMv2-L12-H384-v1-L512-std-jspi-c1-1790976719054",
+      "median": 24.327499985694885,
+      "p95": 24.474999994039536,
+      "loadStart": 3.09,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.25054502487182617
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "queries": 20,
+       "bestPassageAgreement": 1,
+       "maxAbsLogitDiff": 0.055094242095947266
+      }
+     },
+     {
+      "runId": "k28.8-official-ort-cross-encoder__mmarco-mMiniLMv2-L12-H384-v1-L512-std-jspi-c1-1790976733346",
+      "median": 24.280000001192093,
+      "p95": 24.439999997615814,
+      "loadStart": 3.24,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.25054502487182617
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "queries": 20,
+       "bestPassageAgreement": 1,
+       "maxAbsLogitDiff": 0.055094242095947266
+      }
+     },
+     {
+      "runId": "k28.8-official-ort-cross-encoder__mmarco-mMiniLMv2-L12-H384-v1-L512-std-jspi-c1-1790976764169",
+      "median": 24.32999999821186,
+      "p95": 24.5,
+      "loadStart": 2.46,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.25054502487182617
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "queries": 20,
+       "bestPassageAgreement": 1,
+       "maxAbsLogitDiff": 0.055094242095947266
+      }
+     }
+    ],
+    "medianOfMedians": 24.327499985694885,
+    "span": [
+     24.280000001192093,
+     24.32999999821186
+    ],
+    "download": {
+     "bytes": 269356920,
+     "files": {
+      "graph": 235471320,
+      "tokenizer": 17082660,
+      "/node_modules/.vite/deps/onnxruntime-web_jspi.js": 480130,
+      "/node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded.jspi.mjs": 300,
+      "/node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded.jspi.wasm": 16025936
+     }
+    }
+   },
+   "factor": 1.361931418864067,
+   "verdict": "kleinhirn faster"
+  },
+  "distilbert__distilbert-base-uncased-finetuned-sst-2-english|L512": {
+   "index": 9,
+   "slug": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+   "L": 512,
+   "order": [
+    "B",
+    "A",
+    "A",
+    "B",
+    "B",
+    "A"
+   ],
+   "ortConfig": {
+    "graph": "opt",
+    "build": "webgpu",
+    "capture": true,
+    "validationMode": "wgpuOnly",
+    "screeningMedian": 33.28000000119209,
+    "runs": 1
+   },
+   "kleinhirn": {
+    "runs": [
+     {
+      "runId": "k28.8-official-kh-distilbert__distilbert-base-uncased-finetuned-sst-2-english-L512-1790976797343",
+      "median": 24.5450000166893,
+      "p95": 24.724999994039536,
+      "loadStart": 2.56,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.003719329833984375,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.006060898303985596
+      }
+     },
+     {
+      "runId": "k28.8-official-kh-distilbert__distilbert-base-uncased-finetuned-sst-2-english-L512-1790976808110",
+      "median": 24.544999986886978,
+      "p95": 24.734999984502792,
+      "loadStart": 2.63,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.003719329833984375,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.006060898303985596
+      }
+     },
+     {
+      "runId": "k28.8-official-kh-distilbert__distilbert-base-uncased-finetuned-sst-2-english-L512-1790976856653",
+      "median": 24.540000021457672,
+      "p95": 24.75499999523163,
+      "loadStart": 3.64,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.003719329833984375,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.006060898303985596
+      }
+     }
+    ],
+    "medianOfMedians": 24.544999986886978,
+    "span": [
+     24.540000021457672,
+     24.5450000166893
+    ],
+    "gpuBytes": 109843480,
+    "download": {
+     "bytes": 135730981,
+     "files": {
+      "/models/k28/distilbert__distilbert-base-uncased-finetuned-sst-2-english/f16/manifest.json": 14674,
+      "/models/k28/distilbert__distilbert-base-uncased-finetuned-sst-2-english/f16/tokenizer.json": 711696,
+      "/models/k28/distilbert__distilbert-base-uncased-finetuned-sst-2-english/f16/weights-0.bin": 94929708,
+      "/models/k28/distilbert__distilbert-base-uncased-finetuned-sst-2-english/f16/weights-1.bin": 38980912,
+      "/dist/kleinhirn.js": 1093991
+     }
+    }
+   },
+   "ort": {
+    "runs": [
+     {
+      "runId": "k28.8-official-ort-distilbert__distilbert-base-uncased-finetuned-sst-2-english-L512-opt-webgpu-c1-1790976778434",
+      "median": 33.339999973773956,
+      "p95": 33.53000000119209,
+      "loadStart": 3.08,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.07622075080871582,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.04692661762237549
+      }
+     },
+     {
+      "runId": "k28.8-official-ort-distilbert__distilbert-base-uncased-finetuned-sst-2-english-L512-opt-webgpu-c1-1790976818884",
+      "median": 33.34499999880791,
+      "p95": 33.53999999165535,
+      "loadStart": 3.8,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.07622075080871582,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.04692661762237549
+      }
+     },
+     {
+      "runId": "k28.8-official-ort-distilbert__distilbert-base-uncased-finetuned-sst-2-english-L512-opt-webgpu-c1-1790976837760",
+      "median": 33.38000002503395,
+      "p95": 33.63499999046326,
+      "loadStart": 3.18,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.07622075080871582,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.04692661762237549
+      }
+     }
+    ],
+    "medianOfMedians": 33.34499999880791,
+    "span": [
+     33.339999973773956,
+     33.38000002503395
+    ],
+    "download": {
+     "bytes": 161288730,
+     "files": {
+      "graph": 133987841,
+      "tokenizer": 711396,
+      "/node_modules/.vite/deps/onnxruntime-web_webgpu.js": 509483,
+      "/node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded.asyncify.mjs": 300,
+      "/node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded.asyncify.wasm": 25750173
+     }
+    }
+   },
+   "factor": 1.3585251585505105,
+   "verdict": "kleinhirn faster"
+  },
+  "protectai__deberta-v3-base-prompt-injection-v2|L512": {
+   "index": 10,
+   "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+   "L": 512,
+   "order": [
+    "A",
+    "B",
+    "B",
+    "A",
+    "A",
+    "B"
+   ],
+   "ortConfig": {
+    "graph": "opt",
+    "build": "jspi",
+    "capture": false,
+    "validationMode": "wgpuOnly",
+    "screeningMedian": 94.94249999523163,
+    "runs": 1
+   },
+   "kleinhirn": {
+    "runs": [
+     {
+      "runId": "k28.8-official-kh-protectai__deberta-v3-base-prompt-injection-v2-L512-1790976867407",
+      "median": 57.309999987483025,
+      "p95": 57.56999999284744,
+      "loadStart": 3.52,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.0031332969665527344,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.024442672729492188
+      }
+     },
+     {
+      "runId": "k28.8-official-kh-protectai__deberta-v3-base-prompt-injection-v2-L512-1790976996934",
+      "median": 57.32500000298023,
+      "p95": 57.564999997615814,
+      "loadStart": 2.77,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.0031332969665527344,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.024442672729492188
+      }
+     },
+     {
+      "runId": "k28.8-official-kh-protectai__deberta-v3-base-prompt-injection-v2-L512-1790977020458",
+      "median": 57.28500001132488,
+      "p95": 57.54499998688698,
+      "loadStart": 2.9,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.0031332969665527344,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.024442672729492188
+      }
+     }
+    ],
+    "medianOfMedians": 57.309999987483025,
+    "span": [
+     57.28500001132488,
+     57.32500000298023
+    ],
+    "gpuBytes": 239147548,
+    "download": {
+     "bytes": 396715321,
+     "files": {
+      "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f16/manifest.json": 30558,
+      "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f16/tokenizer.json": 8657044,
+      "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f16/weights-0.bin": 92160300,
+      "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f16/weights-1.bin": 92160300,
+      "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f16/weights-2.bin": 94731564,
+      "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f16/weights-3.bin": 94491948,
+      "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f16/weights-4.bin": 13389616,
+      "/dist/kleinhirn.js": 1093991
+     }
+    }
+   },
+   "ort": {
+    "runs": [
+     {
+      "runId": "k28.8-official-ort-protectai__deberta-v3-base-prompt-injection-v2-L512-opt-jspi-c0-1790976890844",
+      "median": 95.27250000834465,
+      "p95": 95.6550000011921,
+      "loadStart": 3.56,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.04753303527832031,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 0.995,
+       "maxAbsLogitDiff": 0.159324049949646
+      }
+     },
+     {
+      "runId": "k28.8-official-ort-protectai__deberta-v3-base-prompt-injection-v2-L512-opt-jspi-c0-1790976943763",
+      "median": 95.5300000011921,
+      "p95": 95.88499999046326,
+      "loadStart": 3.27,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.04753303527832031,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 0.995,
+       "maxAbsLogitDiff": 0.159324049949646
+      }
+     },
+     {
+      "runId": "k28.8-official-ort-protectai__deberta-v3-base-prompt-injection-v2-L512-opt-jspi-c0-1790977134020",
+      "median": 95.66249999403954,
+      "p95": 95.9699999988079,
+      "loadStart": 3.75,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.04753303527832031,
+       "argmaxAgreement": 1
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 0.995,
+       "maxAbsLogitDiff": 0.159324049949646
+      }
+     }
+    ],
+    "medianOfMedians": 95.5300000011921,
+    "span": [
+     95.27250000834465,
+     95.66249999403954
+    ],
+    "download": {
+     "bytes": 1016594546,
+     "files": {
+      "graph": 991134862,
+      "tokenizer": 8656744,
+      "/node_modules/.vite/deps/onnxruntime-web_jspi.js": 480130,
+      "/node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded.jspi.mjs": 300,
+      "/node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded.jspi.wasm": 16025936
+     }
+    }
+   },
+   "factor": 1.6668993198753557,
+   "verdict": "kleinhirn faster"
+  },
+  "ibm-granite__granite-embedding-small-english-r2|L512": {
+   "index": 11,
+   "slug": "ibm-granite__granite-embedding-small-english-r2",
+   "L": 512,
+   "order": [
+    "B",
+    "A",
+    "A",
+    "B",
+    "B",
+    "A"
+   ],
+   "ortConfig": {
+    "graph": "opt",
+    "build": "jspi",
+    "capture": true,
+    "validationMode": "wgpuOnly",
+    "screeningMedian": 35.52750000357628,
+    "runs": 1
+   },
+   "kleinhirn": {
+    "runs": [
+     {
+      "runId": "k28.8-official-kh-ibm-granite__granite-embedding-small-english-r2-L512-1790977207697",
+      "median": 21.359999984502792,
+      "p95": 21.525000005960464,
+      "loadStart": 2.64,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.011030197143554688,
+       "minCosine": 0.9999990854635094
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999992009491612,
+       "maxAbsDiff": 0.008317947387695312
+      }
+     },
+     {
+      "runId": "k28.8-official-kh-ibm-granite__granite-embedding-small-english-r2-L512-1790977217008",
+      "median": 21.305000007152557,
+      "p95": 21.5,
+      "loadStart": 2.47,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.011030197143554688,
+       "minCosine": 0.9999990854635094
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999992009491612,
+       "maxAbsDiff": 0.008317947387695312
+      }
+     },
+     {
+      "runId": "k28.8-official-kh-ibm-granite__granite-embedding-small-english-r2-L512-1790977401980",
+      "median": 21.349999994039536,
+      "p95": 21.530000001192093,
+      "loadStart": 3.3,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.011030197143554688,
+       "minCosine": 0.9999990854635094
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999992009491612,
+       "maxAbsDiff": 0.008317947387695312
+      }
+     }
+    ],
+    "medianOfMedians": 21.349999994039536,
+    "span": [
+     21.305000007152557,
+     21.359999984502792
+    ],
+    "gpuBytes": 78147856,
+    "download": {
+     "bytes": 100017392,
+     "files": {
+      "/models/k28/ibm-granite__granite-embedding-small-english-r2/f16/manifest.json": 14345,
+      "/models/k28/ibm-granite__granite-embedding-small-english-r2/f16/tokenizer.json": 3583528,
+      "/models/k28/ibm-granite__granite-embedding-small-english-r2/f16/weights-0.bin": 94144812,
+      "/models/k28/ibm-granite__granite-embedding-small-english-r2/f16/weights-1.bin": 1180716,
+      "/dist/kleinhirn.js": 1093991
+     }
+    }
+   },
+   "ort": {
+    "runs": [
+     {
+      "runId": "k28.8-official-ort-ibm-granite__granite-embedding-small-english-r2-L512-opt-jspi-c1-1790977187303",
+      "median": 35.81750001013279,
+      "p95": 36.729999989271164,
+      "loadStart": 2.8,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.03289604187011719,
+       "minCosine": 0.9999697488338526
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999323551953413,
+       "maxAbsDiff": 0.03236675262451172
+      }
+     },
+     {
+      "runId": "k28.8-official-ort-ibm-granite__granite-embedding-small-english-r2-L512-opt-jspi-c1-1790977226275",
+      "median": 35.76500001549721,
+      "p95": 36.735000014305115,
+      "loadStart": 2.48,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.03289604187011719,
+       "minCosine": 0.9999697488338526
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999323551953413,
+       "maxAbsDiff": 0.03236675262451172
+      }
+     },
+     {
+      "runId": "k28.8-official-ort-ibm-granite__granite-embedding-small-english-r2-L512-opt-jspi-c1-1790977381553",
+      "median": 35.810000002384186,
+      "p95": 36.74000000953674,
+      "loadStart": 3.48,
+      "timerStepMs": 0.004999995231628418,
+      "crossOriginIsolated": true,
+      "vsCpuF32": {
+       "rows": 300,
+       "maxAbsDiff": 0.03289604187011719,
+       "minCosine": 0.9999697488338526
+      },
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999323551953413,
+       "maxAbsDiff": 0.03236675262451172
+      }
+     }
+    ],
+    "medianOfMedians": 35.810000002384186,
+    "span": [
+     35.76500001549721,
+     35.81750001013279
+    ],
+    "download": {
+     "bytes": 116386194,
+     "files": {
+      "graph": 96000026,
+      "tokenizer": 3583228,
+      "/node_modules/.vite/deps/onnxruntime-web_jspi.js": 480130,
+      "/node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded.jspi.mjs": 300,
+      "/node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded.jspi.wasm": 16025936
+     }
+    }
+   },
+   "factor": 1.6772833729452727,
+   "verdict": "kleinhirn faster"
+  }
+ },
+ "gate2": true,
+ "verdicts": {
+  "sentence-transformers__all-MiniLM-L6-v2|L128": "kleinhirn faster",
+  "cardiffnlp__twitter-roberta-base-sentiment-latest|L128": "kleinhirn faster",
+  "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1|L128": "kleinhirn faster",
+  "distilbert__distilbert-base-uncased-finetuned-sst-2-english|L128": "kleinhirn faster",
+  "protectai__deberta-v3-base-prompt-injection-v2|L128": "kleinhirn faster",
+  "ibm-granite__granite-embedding-small-english-r2|L128": "kleinhirn faster",
+  "sentence-transformers__all-MiniLM-L6-v2|L512": "kleinhirn faster",
+  "cardiffnlp__twitter-roberta-base-sentiment-latest|L512": "kleinhirn faster",
+  "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1|L512": "kleinhirn faster",
+  "distilbert__distilbert-base-uncased-finetuned-sst-2-english|L512": "kleinhirn faster",
+  "protectai__deberta-v3-base-prompt-injection-v2|L512": "kleinhirn faster",
+  "ibm-granite__granite-embedding-small-english-r2|L512": "kleinhirn faster"
+ }
+}

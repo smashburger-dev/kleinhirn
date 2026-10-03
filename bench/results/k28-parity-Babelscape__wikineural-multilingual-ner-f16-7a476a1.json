@@ -1,0 +1,71 @@
+{
+ "date": "2026-10-01",
+ "run_id": "k28-parity-Babelscape__wikineural-multilingual-ner-f16-7a476a1-1790837021967",
+ "commit": "7a476a1",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "5.12",
+ "loadAvgEnd": "5.18 5.71 5.58",
+ "stage": "done",
+ "model": "Babelscape__wikineural-multilingual-ner",
+ "precision": "f16",
+ "task": "token-classification",
+ "info": {
+  "precision": "f16",
+  "buildId": "mup3g5ui",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "bert",
+  "task": "token-classification",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 183723028,
+  "downloadBytes": 354557899,
+  "loadTiming": {
+   "fetchMs": 554.6999999955297,
+   "bodyMs": 1573.8999999985099,
+   "sha256Ms": 189.89999999850988,
+   "uploadMs": 54.600000001490116,
+   "embedJoinMs": 27.399999998509884,
+   "manifestMs": 2.9000000059604645,
+   "planMs": 5.899999998509884
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "argmaxPerTokenAgreement": 0.9998517420311341,
+  "argmaxPerTokenDisagreements": [
+   554
+  ],
+  "tokens": 6745,
+  "maxAbsLogitDiff": 0.017566204071044922,
+  "meanAbsLogitDiff": 0.0009947705215738
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0,
+  "groups": 50
+ },
+ "gpuErrors": []
+}

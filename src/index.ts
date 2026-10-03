@@ -2,32 +2,48 @@
 // runPrepared used by "nur Modell" benchmarking and parity checks.
 // Exactly one GPU call is in flight at a time; further calls queue.
 
-import { getDevice, type KhDevice } from './device.ts';
+import { getDevice, scopedCall, scopedSync, type KhDevice } from './device.ts';
 import { fetchManifest, loadWeights, type LoadedWeights } from './weights.ts';
 import { HfTokenizer } from './tokenizer/tokenizer.ts';
 import { BucketOverflowError, prepareTasks, type SchemaInput } from './tokenizer/schema.ts';
-import { EncoderPlan, type EncoderSpec, type ProfileGranularity } from './graph/deberta.ts';
+import { buildPlan } from './plan/build.ts';
+import { assertPlan, fitBatchPlan } from './plan/check.ts';
+import type { Plan } from './plan/ir.ts';
+import { PlanExecutor, type ProfileGranularity } from './plan/executor.ts';
+import { specFromGlinerManifest, type EncoderSpec } from './plan/spec.ts';
 import { JuliaEngine } from './julia.ts';
+import { assertFinite, tokenRowOffset } from './tasks.ts';
 import { WasmClient } from './wasm-client.ts';
+import { EncoderModel } from './encoder.ts';
 import {
   LruCache, MAX_BATCH, batchStride, dedupMerge, nextBatchSize,
   schemaMergeKey, sortByKey,
 } from './cache.ts';
 
 export { BucketOverflowError };
+export { EncoderModel };
+export type {
+  EncoderInput, EncoderLoadOptions, EncoderOutput, RerankResult, RunOptions, TextClassification,
+  TokenSpan, ZeroShotResult,
+} from './encoder.ts';
+export { JsonTokenizer } from './tokenizer/hf/index.ts';
 
 // Entry point honouring the backend option / fallback chain. Returns
 // Kleinhirn (DeBERTa) or JuliaEngine (modernbert-julia arch) for the GPU
 // paths and a worker-hosted WasmClient otherwise; all expose the run/info/
-// dispose surface.
+// dispose surface. Manifests of format kleinhirn-weights-2 give an
+// EncoderModel (WebGPU only).
 export async function loadEngine(
   options: LoadOptions,
-): Promise<Kleinhirn | JuliaEngine | WasmClient> {
+): Promise<Kleinhirn | JuliaEngine | WasmClient | EncoderModel> {
   const backend = options.backend ?? 'auto';
   if (backend === 'wasm') {
     const mf = await fetchManifest(options.manifestUrl);
     if (isJuliaManifest(mf)) {
       throw new Error('julia-1 needs WebGPU; the wasm fallback covers DeBERTa only');
+    }
+    if (isEncoderManifest(mf)) {
+      throw new Error('kleinhirn-weights-2 models need WebGPU; the wasm backend does not run them yet');
     }
     return WasmClient.load(options);
   }
@@ -36,6 +52,12 @@ export async function loadEngine(
     const manifest = await fetchManifest(options.manifestUrl);
     if (isJuliaManifest(manifest)) {
       return JuliaEngine.load(options, manifest);
+    }
+    if (isEncoderManifest(manifest)) {
+      return EncoderModel.load({
+        manifestUrl: options.manifestUrl, precision: options.precision, limits: options.limits,
+        buckets: options.buckets?.map((b) => (typeof b === 'number' ? b : b.length)),
+      });
     }
     try {
       return await Kleinhirn.load(options);
@@ -47,12 +69,19 @@ export async function loadEngine(
     if (isJuliaManifest(mf)) {
       throw new Error('julia-1 needs WebGPU; the wasm fallback covers DeBERTa only');
     }
+    if (isEncoderManifest(mf)) {
+      throw new Error('kleinhirn-weights-2 models need WebGPU; the wasm backend does not run them yet');
+    }
   }
   return WasmClient.load(options);
 }
 
 function isJuliaManifest(mf: { encoder?: Record<string, unknown> }): boolean {
   return mf.encoder?.arch === 'modernbert-julia';
+}
+
+function isEncoderManifest(mf: { format?: string }): boolean {
+  return mf.format === 'kleinhirn-weights-2';
 }
 
 declare const __KH_BUILD_ID__: string;
@@ -106,16 +135,16 @@ const DEFAULT_MARKERS = 16;
 const MAX_BATCH_PLANS = 8;
 
 export class Kleinhirn {
-  private plans = new Map<number, EncoderPlan>();
-  private batchPlans = new Map<string, EncoderPlan>();
+  private plans = new Map<number, PlanExecutor>();
+  private batchPlans = new Map<string, PlanExecutor>();
+  // `${stride}:${markers}:${asked batch}` -> the batch size that fits the device (1: none, use the bucket plan)
+  private batchFit = new Map<string, number>();
   private queue: Promise<unknown> = Promise.resolve();
   private downloadBytes = 0;
   private tokenizerBytes = 0;
-  private gpuBytes = 0;
+  private weightGpuBytes = 0;
   private loadTiming: Record<string, number> = {};
   private cache = new LruCache<PreparedResult>(0);
-  private embLN!: { weight: GPUBuffer; bias: GPUBuffer };
-  private head!: { fc1w: GPUBuffer; fc1b: GPUBuffer; fc2w: GPUBuffer; fc2b: GPUBuffer };
   private headHidden = 768;
 
   private constructor(
@@ -159,42 +188,37 @@ export class Kleinhirn {
       kh, weights, tokenizer, spec, weights.manifest.head.temperature, precision);
     engine.downloadBytes = weights.downloadBytes + tokBuf.byteLength;
     engine.tokenizerBytes = tokBuf.byteLength;
-    engine.gpuBytes = weights.gpuBytes;
+    engine.weightGpuBytes = weights.gpuBytes;
     engine.loadTiming = {
       ...weights.timing, manifestMs, tokenizerMs: tokenizerMs, planMs: 0 };
-    const t = weights.tensors;
-    const embLN = {
-      weight: t.get('embeddings.LayerNorm.weight')!,
-      bias: t.get('embeddings.LayerNorm.bias')!,
-    };
-    const head = {
-      fc1w: t.get('head.fc1.weight')!, fc1b: t.get('head.fc1.bias')!,
-      fc2w: t.get('head.fc2.weight')!, fc2b: t.get('head.fc2.bias')!,
-    };
-    const headHidden = Number(weights.manifest.head.hiddenSize) || 768;
-    engine.embLN = embLN;
-    engine.head = head;
-    engine.headHidden = headHidden;
+    engine.headHidden = Number(weights.manifest.head.hiddenSize) || 768;
     engine.cache = new LruCache(options.cacheSize ?? 256);
     const tPlan = performance.now();
-    for (const bucket of options.buckets ?? [128]) {
-      const spec2 = typeof bucket === 'number'
-        ? { length: bucket, markers: DEFAULT_MARKERS }
-        : { length: bucket.length, markers: bucket.markers ?? DEFAULT_MARKERS };
-      const plan = new EncoderPlan(
-        kh.device, spec, t, embLN, head, engine.temperature, spec2.length,
-        precision === 'f16', spec2.markers, headHidden);
-      engine.gpuBytes += plan.gpuBytes;
-      engine.plans.set(spec2.length, plan);
-    }
+    await scopedSync(kh, () => {
+      for (const bucket of options.buckets ?? [128]) {
+        const spec2 = typeof bucket === 'number'
+          ? { length: bucket, markers: DEFAULT_MARKERS }
+          : { length: bucket.length, markers: bucket.markers ?? DEFAULT_MARKERS };
+        const bucketPlan = engine.planFor(spec2.length, spec2.markers, 1);
+        assertPlan(bucketPlan, kh.device.limits, (name) => weights.tensors.get(name)?.size);
+        engine.plans.set(spec2.length, new PlanExecutor(kh.device, bucketPlan, weights.tensors));
+      }
+    });
     engine.loadTiming.planMs = performance.now() - tPlan;
     return engine;
+  }
+
+  private planFor(length: number, markers: number, batch: number): Plan {
+    const { spec, head } = specFromGlinerManifest(
+      this.spec, { temperature: this.temperature, hiddenSize: this.headHidden }, markers);
+    return buildPlan(spec, head, {
+      length, batch, markers, f16: this.precision === 'f16' });
   }
 
   // Smallest length bucket that fits seqLen and routes at least `markers`
   // label markers. Wide requests (>16 labels) need a bucket declared with
   // a matching markers budget; a plain length match is not enough.
-  private pickBucket(seqLen: number, markers = 1): EncoderPlan {
+  private pickBucket(seqLen: number, markers = 1): PlanExecutor {
     const fits = [...this.plans.values()]
       .filter((p) => seqLen <= p.length && markers <= p.markers)
       .sort((a, b) => a.length - b.length || a.markers - b.markers);
@@ -206,7 +230,7 @@ export class Kleinhirn {
   }
 
   private embeddingRows(
-    input: SchemaInput, plan: EncoderPlan,
+    input: SchemaInput, plan: PlanExecutor,
   ): Float32Array<ArrayBuffer> | Uint16Array<ArrayBuffer> {
     const L = plan.length;
     const hidden = this.spec.hiddenSize;
@@ -214,7 +238,7 @@ export class Kleinhirn {
       const rows = new Float32Array(L * hidden);
       const emb = this.weights.embeddings;
       for (let i = 0; i < input.seqLen; i += 1) {
-        const off = input.inputIds[i] * hidden;
+        const off = tokenRowOffset(input.inputIds[i], hidden, emb.length);
         rows.set(emb.subarray(off, off + hidden), i * hidden);
       }
       return rows;
@@ -222,7 +246,7 @@ export class Kleinhirn {
     const rows = new Uint16Array(L * hidden);
     const emb = this.weights.embeddings;
     for (let i = 0; i < input.seqLen; i += 1) {
-      const off = input.inputIds[i] * hidden;
+      const off = tokenRowOffset(input.inputIds[i], hidden, emb.length);
       rows.set(emb.subarray(off, off + hidden), i * hidden);
     }
     return rows;
@@ -258,65 +282,59 @@ export class Kleinhirn {
       (n, v) => n + (v > 0.5 ? 1 : 0), 0);
     const plan = bucket === undefined
       ? this.pickBucket(input.seqLen, nMarkers)
-      : this.plans.get(bucket) as EncoderPlan;
+      : this.plans.get(bucket) as PlanExecutor;
     if (!plan) throw new Error(`bucket ${bucket} not loaded`);
     if (input.seqLen > plan.length || nMarkers > plan.markers) {
       throw new BucketOverflowError(
         `seqLen ${input.seqLen}/${nMarkers} markers exceeds bucket ${plan.length}/${plan.markers}`);
     }
+    if (capture) plan.assertCapturable();
     const key = schemaMergeKey(input);
     const hit = capture ? undefined : this.cache.get(key);
-    if (hit) return { logits: hit.logits, probabilities: hit.probabilities };
-    return this.enqueue(async () => {
+    if (hit) return copyResult(hit);
+    return this.enqueue(() => scopedCall(this.kh, () => {
       plan.upload({
         embeddings: this.embeddingRows(input, plan),
         mask: this.maskOf(input, plan.length),
         packedMarkers: this.packedMarkers(input, plan.markers),
       });
-      plan.submit(capture, undefined, input.seqLen);
+      plan.submit(capture, { seqLen: input.seqLen });
+    }, async () => {
       const logits = await plan.readLogits();
+      assertFinite(logits, 'logits');
       const probabilities = groupSoftmax(
         logits, input.markerGroups, input.markerMask);
-      if (!capture) this.cache.set(key, { logits, probabilities });
+      if (!capture) this.cache.set(key, copyResult({ logits, probabilities }));
       const captureData = capture ? await plan.readCapture() : undefined;
       return { logits, probabilities, captureData };
-    });
+    }));
   }
 
   // Lazily built batch plan for row stride at batch size B; stride is the
-  // row block each sequence occupies, not a weight bucket. The widest
-  // buffer is checked against the binding limit up front:
-  // B*stride*max(3H, I) and B*K*max(H, headHidden) elements must stay
-  // under it. Plans are capped: distinct strides would otherwise grow
-  // GPU memory without bound.
+  // row block each sequence occupies, not a weight bucket. It is the plan of
+  // the largest size up to B that fits the device limits (checkPlan), or
+  // undefined when none does and the rows run on the bucket plan. Plans are
+  // capped: distinct strides would otherwise grow GPU memory without bound.
   private batchPlan(
     stride: number, markers: number, batch: number,
-  ): EncoderPlan {
-    const key = `${stride}:${markers}:${batch}`;
-    let p = this.batchPlans.get(key);
-    if (p) return p;
-    const elt = this.precision === 'f16' ? 2 : 4;
-    const H = this.spec.hiddenSize;
-    const I = this.spec.intermediateSize;
-    const limit = this.kh.device.limits.maxStorageBufferBindingSize;
-    const worst = Math.max(
-      batch * stride * Math.max(3 * H, I),
-      batch * markers * Math.max(H, this.headHidden)) * elt;
-    if (worst > limit) {
-      throw new BucketOverflowError(
-        `batch ${batch} x stride ${stride} needs ${worst} B > ${limit} B binding limit`);
-    }
+  ): PlanExecutor | undefined {
+    const asked = `${stride}:${markers}:${batch}`;
+    const memo = this.batchFit.get(asked);
+    if (memo === 1) return undefined;
+    const known = this.batchPlans.get(`${stride}:${markers}:${memo ?? batch}`);
+    if (known) return known;
+    const plan = memo === undefined
+      ? fitBatchPlan((b) => this.planFor(stride, markers, b), this.kh.device.limits, batch)
+      : this.planFor(stride, markers, memo);
+    this.batchFit.set(asked, plan ? plan.batch : 1);
+    if (!plan) return undefined;
     if (this.batchPlans.size >= MAX_BATCH_PLANS) {
       const oldest = this.batchPlans.keys().next().value as string;
       this.batchPlans.get(oldest)?.destroy();
       this.batchPlans.delete(oldest);
     }
-    p = new EncoderPlan(
-      this.kh.device, this.spec, this.weights.tensors, this.embLN, this.head,
-      this.temperature, stride, this.precision === 'f16',
-      markers, this.headHidden, batch);
-    this.gpuBytes += p.gpuBytes;
-    this.batchPlans.set(key, p);
+    const p = new PlanExecutor(this.kh.device, plan, this.weights.tensors);
+    this.batchPlans.set(`${stride}:${markers}:${plan.batch}`, p);
     return p;
   }
 
@@ -331,7 +349,7 @@ export class Kleinhirn {
   }
 
   private batchEmbeddingRows(
-    inputs: SchemaInput[], plan: EncoderPlan,
+    inputs: SchemaInput[], plan: PlanExecutor,
   ): Float32Array<ArrayBuffer> | Uint16Array<ArrayBuffer> {
     const hidden = this.spec.hiddenSize;
     const emb = this.weights.embeddings;
@@ -341,7 +359,7 @@ export class Kleinhirn {
     for (const [b, input] of inputs.entries()) {
       const base = b * plan.length * hidden;
       for (let i = 0; i < input.seqLen; i += 1) {
-        const off = input.inputIds[i] * hidden;
+        const off = tokenRowOffset(input.inputIds[i], hidden, emb.length);
         out.set(emb.subarray(off, off + hidden), base + i * hidden);
       }
     }
@@ -349,7 +367,7 @@ export class Kleinhirn {
   }
 
   private batchMask(
-    inputs: SchemaInput[], plan: EncoderPlan,
+    inputs: SchemaInput[], plan: PlanExecutor,
   ): Float32Array<ArrayBuffer> {
     const mask = new Float32Array(plan.length * plan.batch);
     for (const [b, input] of inputs.entries()) {
@@ -359,7 +377,7 @@ export class Kleinhirn {
   }
 
   private batchPackedMarkers(
-    inputs: SchemaInput[], plan: EncoderPlan,
+    inputs: SchemaInput[], plan: PlanExecutor,
   ): Uint32Array<ArrayBuffer> {
     const packed = new Uint32Array(inputs.length * 3 * plan.markers);
     for (const [b, input] of inputs.entries()) {
@@ -368,10 +386,15 @@ export class Kleinhirn {
     return packed;
   }
 
-  // One GPU batch pass over `inputs` (1..MAX_BATCH rows after padding).
-  // The bucket covers the widest marker count; the batch plan's row
-  // stride follows the chunk's longest sequence (quantized by
-  // batchStride), so short sequences do not pay for the full bucket.
+  // One GPU batch chunk over `inputs` (1..MAX_BATCH rows). The bucket covers
+  // the widest marker count; the batch plan's row stride follows the chunk's
+  // longest sequence (quantized by batchStride), so short sequences do not
+  // pay for the full bucket. Choosing, building and evicting the batch plan
+  // happen inside the queued function, next to upload, submit and readback.
+  // The plan that fits the device may be smaller than the chunk (or the
+  // bucket plan, B1): the rows then run in pieces of that plan's batch size,
+  // one after the other in the same queued function (a nested enqueue would
+  // wait on itself).
   private async runBatchChunk(
     inputs: SchemaInput[], bucket?: number,
   ): Promise<PreparedResult[]> {
@@ -380,7 +403,7 @@ export class Kleinhirn {
       (i) => i.markerMask.reduce((n, v) => n + (v > 0.5 ? 1 : 0), 0)));
     const plan = bucket === undefined
       ? this.pickBucket(maxSeq, maxMarkers)
-      : this.plans.get(bucket) as EncoderPlan;
+      : this.plans.get(bucket) as PlanExecutor;
     if (!plan) throw new Error(`bucket ${bucket} not loaded`);
     if (maxSeq > plan.length || maxMarkers > plan.markers) {
       throw new BucketOverflowError(
@@ -389,44 +412,52 @@ export class Kleinhirn {
     const n = nextBatchSize(inputs.length);
     // B=1 runs on the bucket plan like the single path and dispatches
     // only the real rows; B>1 packs at the quantized stride.
-    const stride = n === 1
-      ? maxSeq
-      : Math.min(plan.length, batchStride(maxSeq));
-    let bPlan: EncoderPlan;
-    try {
-      bPlan = n === 1 ? plan : this.batchPlan(stride, plan.markers, n);
-    } catch (e) {
-      // A batch this size exceeds the binding limit (e.g. base f32 L1024
-      // B16); halving the chunk fits, so retry instead of failing.
-      if (!(e instanceof BucketOverflowError) || inputs.length < 2) throw e;
-      const mid = Math.ceil(inputs.length / 2);
-      const a = await this.runBatchChunk(inputs.slice(0, mid), bucket);
-      const b = await this.runBatchChunk(inputs.slice(mid), bucket);
-      return [...a, ...b];
-    }
+    const stride = Math.min(plan.length, batchStride(maxSeq));
+    return this.enqueue(async () => {
+      const out: PreparedResult[] = [];
+      let bPlan: PlanExecutor | undefined;
+      while (out.length < inputs.length) {
+        const piece = await scopedCall(this.kh, () => {
+          bPlan ??= (n === 1 ? undefined : this.batchPlan(stride, plan.markers, n)) ?? plan;
+          const rows = inputs.slice(out.length, out.length + bPlan.batch);
+          this.submitPiece(rows, bPlan);
+          return { rows, plan: bPlan };
+        }, (p) => this.readPiece(p.rows, p.plan));
+        out.push(...piece);
+      }
+      return out;
+    });
+  }
+
+  // Upload and submit of one piece (the synchronous part of a scoped call).
+  private submitPiece(inputs: SchemaInput[], bPlan: PlanExecutor): void {
     const padded = inputs.length === bPlan.batch
       ? inputs
       : [...inputs, ...Array.from(
         { length: bPlan.batch - inputs.length }, () => this.padInput())];
-    return this.enqueue(async () => {
-      bPlan.upload({
-        embeddings: this.batchEmbeddingRows(padded, bPlan),
-        mask: this.batchMask(padded, bPlan),
-        packedMarkers: this.batchPackedMarkers(padded, bPlan),
-      });
-      bPlan.submit(false, undefined, stride * bPlan.batch);
-      const all = await bPlan.readLogits();
-      return inputs.map((input, i) => {
-        const logits = all.slice(
-          i * bPlan.markers, (i + 1) * bPlan.markers);
-        const res = {
-          logits,
-          probabilities: groupSoftmax(
-            logits, input.markerGroups, input.markerMask),
-        };
-        this.cache.set(schemaMergeKey(input), res);
-        return res;
-      });
+    const rows = bPlan.batch === 1
+      ? Math.max(...inputs.map((i) => i.seqLen)) : bPlan.length * bPlan.batch;
+    bPlan.upload({
+      embeddings: this.batchEmbeddingRows(padded, bPlan),
+      mask: this.batchMask(padded, bPlan),
+      packedMarkers: this.batchPackedMarkers(padded, bPlan),
+    });
+    bPlan.submit(false, { seqLen: rows });
+  }
+
+  private async readPiece(inputs: SchemaInput[], bPlan: PlanExecutor): Promise<PreparedResult[]> {
+    const all = await bPlan.readLogits();
+    return inputs.map((input, i) => {
+      const logits = all.slice(
+        i * bPlan.markers, (i + 1) * bPlan.markers);
+      assertFinite(logits, 'logits');
+      const res = {
+        logits,
+        probabilities: groupSoftmax(
+          logits, input.markerGroups, input.markerMask),
+      };
+      this.cache.set(schemaMergeKey(input), copyResult(res));
+      return res;
     });
   }
 
@@ -442,7 +473,7 @@ export class Kleinhirn {
     for (const [i, input] of inputs.entries()) {
       const hit = this.cache.get(schemaMergeKey(input));
       if (hit) {
-        results[i] = { logits: hit.logits, probabilities: hit.probabilities };
+        results[i] = copyResult(hit);
       } else {
         pending.push(input);
         pendingIdx.push(i);
@@ -456,8 +487,12 @@ export class Kleinhirn {
         sorted.unique.slice(start, start + MAX_BATCH), bucket);
       uniqueResults.push(...chunkResults);
     }
+    // The first row of a slot gets the computed arrays, duplicates their own copies.
+    const handedOut = new Set<number>();
     for (const [i] of pending.entries()) {
-      results[pendingIdx[i]] = uniqueResults[sorted.slot[i]];
+      const r = uniqueResults[sorted.slot[i]] as PreparedResult;
+      results[pendingIdx[i]] = handedOut.has(sorted.slot[i]) ? copyResult(r) : r;
+      handedOut.add(sorted.slot[i]);
     }
     return results as PreparedResult[];
   }
@@ -566,6 +601,15 @@ export class Kleinhirn {
     }, options.granularity ?? 'pass', input.seqLen));
   }
 
+  // Weights plus every live plan (a capture buffer counts once it exists);
+  // an evicted batch plan is gone from the map and from the sum.
+  private liveGpuBytes(): number {
+    let n = this.weightGpuBytes;
+    for (const p of this.plans.values()) n += p.gpuBytes;
+    for (const p of this.batchPlans.values()) n += p.gpuBytes;
+    return n;
+  }
+
   info(): Record<string, unknown> {
     return {
       precision: this.precision,
@@ -574,7 +618,7 @@ export class Kleinhirn {
       limitsMode: this.kh.limitsMode,
       timestamps: this.kh.hasTimestamps,
       buckets: [...this.plans.keys()].sort((a, b) => a - b),
-      gpuBytes: this.gpuBytes,
+      gpuBytes: this.liveGpuBytes(),
       downloadBytes: this.downloadBytes,
       tokenizerBytes: this.tokenizerBytes,
       weightBytes: this.downloadBytes - this.tokenizerBytes,
@@ -585,6 +629,12 @@ export class Kleinhirn {
   dispose(): void {
     this.kh.device.destroy();
   }
+}
+
+// Cache entries and caller results never share arrays: a caller that edits
+// its logits cannot change what a later identical call returns.
+function copyResult(r: PreparedResult): PreparedResult {
+  return { logits: r.logits.slice(), probabilities: r.probabilities.slice() };
 }
 
 // Softmax per marker group over valid markers; invalid markers get 0.

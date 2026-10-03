@@ -1,0 +1,71 @@
+{
+ "run_id": "k27r-official-upstream-julia-batch4-graph-opt-f16",
+ "engine": "julia-upstream",
+ "model": "julia-1",
+ "precision": "f16",
+ "bucket": null,
+ "ep": null,
+ "batchSize": 4,
+ "graph": "opt-f16",
+ "capture": false,
+ "backend": "webgpu",
+ "official": true,
+ "repetitions": 3,
+ "medianMs": 16.64800000011921,
+ "rangeMs": [
+  16.628000000119208,
+  16.656999999880792
+ ],
+ "p95Ms": null,
+ "downloadBytes": null,
+ "onnxBytes": null,
+ "runtimeBytes": null,
+ "gpuBytes": null,
+ "peakMemMb": 0,
+ "parity": [
+  {
+   "matchingPredictions": 100,
+   "maxAbsLogitError": 1.019991159439087
+  },
+  {
+   "matchingPredictions": 100,
+   "maxAbsLogitError": 1.019991159439087
+  },
+  {
+   "matchingPredictions": 100,
+   "maxAbsLogitError": 1.019991159439087
+  }
+ ],
+ "loadAvg": [
+  [
+   3.580078125,
+   4.32568359375
+  ],
+  [
+   3.48779296875,
+   3.24609375
+  ],
+  [
+   3.75830078125,
+   3.5712890625
+  ]
+ ],
+ "repFiles": [
+  "bench/results/k27r-official-upstream-julia-batch4-graph-opt-f16-r1.json",
+  "bench/results/k27r-official-upstream-julia-batch4-graph-opt-f16-r2.json",
+  "bench/results/k27r-official-upstream-julia-batch4-graph-opt-f16-r3.json"
+ ],
+ "page": {
+  "model": "model_opt_f16.onnx",
+  "requests": 100,
+  "batch_size": 4,
+  "iterations": 5,
+  "load_and_warm_ms": 2584.0999999940395,
+  "median_ms": 1664.800000011921,
+  "min_ms": 1657.5,
+  "max_ms": 1668.2000000178814,
+  "ms_per_request": 16.64800000011921,
+  "matching_predictions": 100,
+  "max_abs_logit_error_vs_pytorch": 1.019991159439087
+ }
+}

@@ -1,0 +1,68 @@
+{
+ "date": "2026-09-30",
+ "run_id": "k28-parity-distilbert__distilbert-base-uncased-finetuned-sst-2-english-f16-9bcdc04-1790796634379",
+ "commit": "9bcdc04",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "9.41",
+ "loadAvgEnd": "10.54 8.68 10.54",
+ "stage": "done",
+ "model": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+ "precision": "f16",
+ "task": "sequence-classification",
+ "info": {
+  "precision": "f16",
+  "buildId": "muohq4et",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "distilbert",
+  "task": "sequence-classification",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 99822124,
+  "downloadBytes": 133920243,
+  "loadTiming": {
+   "fetchMs": 281.70000000018626,
+   "bodyMs": 342.29999999981374,
+   "sha256Ms": 76.90000000037253,
+   "uploadMs": 27.100000000093132,
+   "embedJoinMs": 5,
+   "manifestMs": 3.1999999997206032,
+   "planMs": 2.3000000002793968
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.004473984241485596,
+  "meanAbsLogitDiff": 0.0007832016050815582,
+  "disagreements": []
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0,
+  "groups": 50
+ },
+ "gpuErrors": []
+}

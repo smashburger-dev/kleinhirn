@@ -1,0 +1,68 @@
+{
+ "date": "2026-10-01",
+ "run_id": "k28-parity-daekeun-ml__koelectra-small-v3-nsmc-f16-adc3767-1790841400254",
+ "commit": "adc3767",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "9.11",
+ "loadAvgEnd": "8.70 6.12 5.25",
+ "stage": "done",
+ "model": "daekeun-ml__koelectra-small-v3-nsmc",
+ "precision": "f16",
+ "task": "sequence-classification",
+ "info": {
+  "precision": "f16",
+  "buildId": "mup78zdr",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "electra",
+  "task": "sequence-classification",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 23552044,
+  "downloadBytes": 28263144,
+  "loadTiming": {
+   "fetchMs": 82.5,
+   "bodyMs": 64.5,
+   "sha256Ms": 16.600000001490116,
+   "uploadMs": 3.4000000059604645,
+   "embedJoinMs": 1.0999999940395355,
+   "manifestMs": 3.399999998509884,
+   "planMs": 3.100000001490116
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.017939090728759766,
+  "meanAbsLogitDiff": 0.0029629746288992466,
+  "disagreements": []
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0,
+  "groups": 50
+ },
+ "gpuErrors": []
+}

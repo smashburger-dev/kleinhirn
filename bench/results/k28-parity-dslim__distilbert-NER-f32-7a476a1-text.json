@@ -1,0 +1,3593 @@
+{
+ "date": "2026-10-01",
+ "run_id": "k28-parity-dslim__distilbert-NER-f32-7a476a1-text-1790837683836",
+ "commit": "7a476a1",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "5.14",
+ "loadAvgEnd": "4.97 5.27 5.39",
+ "stage": "done",
+ "model": "dslim__distilbert-NER",
+ "precision": "f32",
+ "task": "token-classification",
+ "info": {
+  "precision": "f32",
+  "buildId": "mup3g5ui",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "distilbert",
+  "task": "token-classification",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 197332004,
+  "downloadBytes": 260801369,
+  "loadTiming": {
+   "fetchMs": 409,
+   "bodyMs": 870.1000000014901,
+   "sha256Ms": 144.5,
+   "uploadMs": 25.899999998509884,
+   "embedJoinMs": 8.700000002980232,
+   "manifestMs": 2.5,
+   "planMs": 2.2999999970197678
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "spanExactAgreement": 1,
+  "spansGot": [
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.9528213739395142,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9366798996925354,
+     "start": 1,
+     "end": 3
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9673604369163513,
+     "start": 3,
+     "end": 6
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.993661642074585,
+     "start": 6,
+     "end": 8
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9833498001098633,
+     "start": 8,
+     "end": 12
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8906716704368591,
+     "start": 12,
+     "end": 17
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.9380049109458923,
+     "start": 22,
+     "end": 24
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.958260178565979,
+     "start": 24,
+     "end": 26
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.9195724725723267,
+     "start": 26,
+     "end": 29
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9858464598655701,
+     "start": 35,
+     "end": 39
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.49143874645233154,
+     "start": 25,
+     "end": 29
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.5852513313293457,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5253044962882996,
+     "start": 2,
+     "end": 4
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7789236903190613,
+     "start": 4,
+     "end": 7
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7453173995018005,
+     "start": 7,
+     "end": 11
+    }
+   ],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.44541609287261963,
+     "start": 0,
+     "end": 3
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.4463063180446625,
+     "start": 3,
+     "end": 6
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.8300309777259827,
+     "start": 16,
+     "end": 17
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.6261258721351624,
+     "start": 17,
+     "end": 18
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.7691288590431213,
+     "start": 18,
+     "end": 21
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.247612863779068,
+     "start": 30,
+     "end": 33
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.48319509625434875,
+     "start": 37,
+     "end": 38
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.4064648747444153,
+     "start": 38,
+     "end": 40
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.45606106519699097,
+     "start": 40,
+     "end": 44
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5439295172691345,
+     "start": 46,
+     "end": 50
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5876306891441345,
+     "start": 66,
+     "end": 67
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9076626896858215,
+     "start": 67,
+     "end": 70
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.624033510684967,
+     "start": 70,
+     "end": 72
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.660679280757904,
+     "start": 4,
+     "end": 8
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8761999845504761,
+     "start": 25,
+     "end": 44
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.3089023530483246,
+     "start": 60,
+     "end": 66
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6307855447133383,
+     "start": 90,
+     "end": 99
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5548877120018005,
+     "start": 100,
+     "end": 101
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5361301898956299,
+     "start": 101,
+     "end": 104
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6520739793777466,
+     "start": 104,
+     "end": 107
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.956231951713562,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9349907636642456,
+     "start": 1,
+     "end": 3
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9197715520858765,
+     "start": 3,
+     "end": 4
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.715209444363912,
+     "start": 13,
+     "end": 19
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.41075336933135986,
+     "start": 31,
+     "end": 33
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8263292908668518,
+     "start": 46,
+     "end": 55
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.7012136697769165,
+     "start": 0,
+     "end": 10
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.3686748445034027,
+     "start": 15,
+     "end": 16
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8644063472747803,
+     "start": 19,
+     "end": 28
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.879773477713267,
+     "start": 33,
+     "end": 41
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7021371722221375,
+     "start": 56,
+     "end": 82
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.3801918923854828,
+     "start": 87,
+     "end": 90
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.43228045105934143,
+     "start": 97,
+     "end": 101
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.9477645754814148,
+     "start": 27,
+     "end": 31
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.5732013583183289,
+     "start": 4,
+     "end": 15
+    },
+    {
+     "entity_group": "LOC",
+     "score": 0.7358576059341431,
+     "start": 25,
+     "end": 28
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6961948275566101,
+     "start": 29,
+     "end": 35
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9657073616981506,
+     "start": 58,
+     "end": 61
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9535148739814758,
+     "start": 61,
+     "end": 62
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9329211711883545,
+     "start": 62,
+     "end": 63
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9598460793495178,
+     "start": 63,
+     "end": 65
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5963707764943441,
+     "start": 104,
+     "end": 110
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.943734884262085,
+     "start": 141,
+     "end": 148
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.27000337839126587,
+     "start": 10,
+     "end": 13
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.31132972240448,
+     "start": 13,
+     "end": 16
+    },
+    {
+     "entity_group": "MISC",
+     "score": 0.3276756703853607,
+     "start": 16,
+     "end": 17
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7579723993937174,
+     "start": 93,
+     "end": 100
+    }
+   ],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.47479620575904846,
+     "start": 0,
+     "end": 3
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6840677440166474,
+     "start": 5,
+     "end": 21
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.42173144221305847,
+     "start": 33,
+     "end": 37
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.4649660885334015,
+     "start": 37,
+     "end": 39
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7225838899612427,
+     "start": 39,
+     "end": 40
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6430860161781311,
+     "start": 40,
+     "end": 41
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7414555251598358,
+     "start": 41,
+     "end": 55
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.635701366446235,
+     "start": 58,
+     "end": 79
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6705440580844879,
+     "start": 85,
+     "end": 90
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.500146210193634,
+     "start": 10,
+     "end": 11
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.541623592376709,
+     "start": 11,
+     "end": 13
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.9950586557388306,
+     "start": 27,
+     "end": 29
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.9843844771385193,
+     "start": 29,
+     "end": 31
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.914629476411002,
+     "start": 47,
+     "end": 61
+    }
+   ],
+   [
+    {
+     "entity_group": "MISC",
+     "score": 0.6334231495857239,
+     "start": 11,
+     "end": 13
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.6946369409561157,
+     "start": 18,
+     "end": 19
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.5975356698036194,
+     "start": 19,
+     "end": 20
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.551647424697876,
+     "start": 20,
+     "end": 22
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8332900524139404,
+     "start": 23,
+     "end": 36
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.47908833622932434,
+     "start": 72,
+     "end": 76
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "MISC",
+     "score": 0.3885062634944916,
+     "start": 92,
+     "end": 95
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7304462393124899,
+     "start": 199,
+     "end": 206
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5427875876426697,
+     "start": 306,
+     "end": 317
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.9822493195533752,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9868876934051514,
+     "start": 2,
+     "end": 4
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9725006222724915,
+     "start": 4,
+     "end": 5
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9844108819961548,
+     "start": 5,
+     "end": 8
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9815353751182556,
+     "start": 8,
+     "end": 11
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8105784058570862,
+     "start": 32,
+     "end": 48
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.5235875844955444,
+     "start": 51,
+     "end": 53
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.4952741265296936,
+     "start": 53,
+     "end": 55
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5202114582061768,
+     "start": 55,
+     "end": 56
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5707449316978455,
+     "start": 56,
+     "end": 58
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.566460371017456,
+     "start": 58,
+     "end": 59
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5274242162704468,
+     "start": 77,
+     "end": 78
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.4572560489177704,
+     "start": 78,
+     "end": 80
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.493252158164978,
+     "start": 80,
+     "end": 82
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7641797065734863,
+     "start": 82,
+     "end": 83
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.939776873588562,
+     "start": 0,
+     "end": 11
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7312568094995286,
+     "start": 57,
+     "end": 77
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8787782788276672,
+     "start": 86,
+     "end": 102
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.8258604407310486,
+     "start": 0,
+     "end": 5
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6155529618263245,
+     "start": 39,
+     "end": 43
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.4545561373233795,
+     "start": 45,
+     "end": 48
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5720210671424866,
+     "start": 62,
+     "end": 70
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8995321840047836,
+     "start": 80,
+     "end": 91
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.9268217086791992,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9310803413391113,
+     "start": 2,
+     "end": 6
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9368928074836731,
+     "start": 6,
+     "end": 9
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8707121014595032,
+     "start": 9,
+     "end": 11
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8154066801071167,
+     "start": 11,
+     "end": 14
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.4729330539703369,
+     "start": 18,
+     "end": 27
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9037471347384982,
+     "start": 30,
+     "end": 53
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "MISC",
+     "score": 0.5122060775756836,
+     "start": 28,
+     "end": 35
+    },
+    {
+     "entity_group": "MISC",
+     "score": 0.4962281882762909,
+     "start": 38,
+     "end": 41
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5486835986375809,
+     "start": 41,
+     "end": 47
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.3692079931497574,
+     "start": 14,
+     "end": 20
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8315488547086716,
+     "start": 38,
+     "end": 49
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8641362667083741,
+     "start": 68,
+     "end": 83
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.6965858638286591,
+     "start": 22,
+     "end": 39
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.49177756905555725,
+     "start": 46,
+     "end": 47
+    },
+    {
+     "entity_group": "MISC",
+     "score": 0.4344514012336731,
+     "start": 71,
+     "end": 74
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.48672768473625183,
+     "start": 96,
+     "end": 97
+    },
+    {
+     "entity_group": "MISC",
+     "score": 0.4032912850379944,
+     "start": 97,
+     "end": 99
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.3669681251049042,
+     "start": 99,
+     "end": 103
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.37950584292411804,
+     "start": 117,
+     "end": 122
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.9424989223480225,
+     "start": 27,
+     "end": 29
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9074532389640808,
+     "start": 29,
+     "end": 32
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.972945511341095,
+     "start": 32,
+     "end": 36
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9769203066825867,
+     "start": 36,
+     "end": 39
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9608233571052551,
+     "start": 39,
+     "end": 42
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8580412864685059,
+     "start": 42,
+     "end": 45
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7832133769989014,
+     "start": 45,
+     "end": 46
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.7080652475357055,
+     "start": 4,
+     "end": 16
+    },
+    {
+     "entity_group": "MISC",
+     "score": 0.5091651678085327,
+     "start": 31,
+     "end": 34
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.4091182053089142,
+     "start": 34,
+     "end": 37
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.45047860344250995,
+     "start": 44,
+     "end": 52
+    },
+    {
+     "entity_group": "MISC",
+     "score": 0.47632258137067157,
+     "start": 66,
+     "end": 73
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.5896196067333221,
+     "start": 98,
+     "end": 103
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.5495870858430862,
+     "start": 107,
+     "end": 112
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.970614492893219,
+     "start": 8,
+     "end": 9
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9449009299278259,
+     "start": 9,
+     "end": 11
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9487982392311096,
+     "start": 11,
+     "end": 13
+    }
+   ],
+   [
+    {
+     "entity_group": "MISC",
+     "score": 0.9421583414077759,
+     "start": 9,
+     "end": 11
+    },
+    {
+     "entity_group": "MISC",
+     "score": 0.9568240642547607,
+     "start": 11,
+     "end": 15
+    },
+    {
+     "entity_group": "MISC",
+     "score": 0.939003050327301,
+     "start": 15,
+     "end": 17
+    },
+    {
+     "entity_group": "MISC",
+     "score": 0.9434290528297424,
+     "start": 17,
+     "end": 18
+    },
+    {
+     "entity_group": "MISC",
+     "score": 0.84797203540802,
+     "start": 18,
+     "end": 20
+    },
+    {
+     "entity_group": "MISC",
+     "score": 0.9682132601737976,
+     "start": 20,
+     "end": 21
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "PER",
+     "score": 0.41934269666671753,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.5428899526596069,
+     "start": 5,
+     "end": 10
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.3914148211479187,
+     "start": 10,
+     "end": 12
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.49970346689224243,
+     "start": 2,
+     "end": 5
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.627896785736084,
+     "start": 7,
+     "end": 11
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5517349243164062,
+     "start": 11,
+     "end": 13
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.9651459455490112,
+     "start": 13,
+     "end": 18
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.6393075031893594,
+     "start": 18,
+     "end": 32
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.7342377305030823,
+     "start": 34,
+     "end": 42
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.7122834920883179,
+     "start": 42,
+     "end": 43
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.9094335436820984,
+     "start": 43,
+     "end": 46
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.9651628732681274,
+     "start": 46,
+     "end": 49
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.907051682472229,
+     "start": 49,
+     "end": 50
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.4401731491088867,
+     "start": 51,
+     "end": 52
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.637661337852478,
+     "start": 52,
+     "end": 57
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9666067361831665,
+     "start": 59,
+     "end": 62
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9676153063774109,
+     "start": 62,
+     "end": 64
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9621680378913879,
+     "start": 64,
+     "end": 67
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9626796245574951,
+     "start": 67,
+     "end": 70
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7727978030840555,
+     "start": 78,
+     "end": 93
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.8359691500663757,
+     "start": 37,
+     "end": 51
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "PER",
+     "score": 0.7645852565765381,
+     "start": 8,
+     "end": 9
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.8005596399307251,
+     "start": 9,
+     "end": 10
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5227550864219666,
+     "start": 10,
+     "end": 13
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7964838743209839,
+     "start": 13,
+     "end": 15
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9683049321174622,
+     "start": 35,
+     "end": 36
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9898920059204102,
+     "start": 36,
+     "end": 40
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9886938333511353,
+     "start": 40,
+     "end": 44
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9910682439804077,
+     "start": 44,
+     "end": 47
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.960495688021183,
+     "start": 47,
+     "end": 64
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.7570257186889648,
+     "start": 5,
+     "end": 12
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.40452343225479126,
+     "start": 19,
+     "end": 22
+    },
+    {
+     "entity_group": "MISC",
+     "score": 0.5940856337547302,
+     "start": 23,
+     "end": 28
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6823958158493042,
+     "start": 28,
+     "end": 29
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.939967155456543,
+     "start": 53,
+     "end": 57
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9342588186264038,
+     "start": 57,
+     "end": 61
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8849747180938721,
+     "start": 61,
+     "end": 62
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.3638187050819397,
+     "start": 109,
+     "end": 111
+    },
+    {
+     "entity_group": "MISC",
+     "score": 0.4669575095176697,
+     "start": 111,
+     "end": 114
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.41713449358940125,
+     "start": 114,
+     "end": 115
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.8155251026153565,
+     "start": 21,
+     "end": 31
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6958296298980713,
+     "start": 33,
+     "end": 34
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7797257304191589,
+     "start": 34,
+     "end": 37
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8179011940956116,
+     "start": 37,
+     "end": 41
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6746083498001099,
+     "start": 41,
+     "end": 42
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6144208709398905,
+     "start": 125,
+     "end": 131
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.6158702373504639,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6247989535331726,
+     "start": 4,
+     "end": 5
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.568439781665802,
+     "start": 5,
+     "end": 6
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6449751853942871,
+     "start": 6,
+     "end": 7
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.741455927491188,
+     "start": 25,
+     "end": 36
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5413021445274353,
+     "start": 45,
+     "end": 47
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6053685963153839,
+     "start": 51,
+     "end": 65
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.3891253074010213,
+     "start": 82,
+     "end": 94
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8137675275405248,
+     "start": 110,
+     "end": 131
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.5717653036117554,
+     "start": 53,
+     "end": 55
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7151848574479421,
+     "start": 84,
+     "end": 106
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.28878775238990784,
+     "start": 115,
+     "end": 116
+    },
+    {
+     "entity_group": "MISC",
+     "score": 0.3202570974826813,
+     "start": 117,
+     "end": 120
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.41831278800964355,
+     "start": 121,
+     "end": 124
+    },
+    {
+     "entity_group": "LOC",
+     "score": 0.3408106863498688,
+     "start": 124,
+     "end": 128
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.49616262316703796,
+     "start": 200,
+     "end": 201
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5204342007637024,
+     "start": 201,
+     "end": 204
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6488182544708252,
+     "start": 214,
+     "end": 224
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5338776111602783,
+     "start": 251,
+     "end": 253
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5909562110900879,
+     "start": 253,
+     "end": 255
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9197373151779175,
+     "start": 255,
+     "end": 268
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7499977946281433,
+     "start": 295,
+     "end": 297
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7824409604072571,
+     "start": 297,
+     "end": 299
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9133145362138748,
+     "start": 299,
+     "end": 308
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5642387568950653,
+     "start": 315,
+     "end": 322
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.337767094373703,
+     "start": 350,
+     "end": 352
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5131254196166992,
+     "start": 352,
+     "end": 354
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6580927670001984,
+     "start": 354,
+     "end": 363
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.32617804408073425,
+     "start": 411,
+     "end": 413
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.3850780129432678,
+     "start": 413,
+     "end": 415
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.3410566449165344,
+     "start": 415,
+     "end": 417
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6665908892949423,
+     "start": 459,
+     "end": 464
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5917656570672989,
+     "start": 466,
+     "end": 474
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.41949430108070374,
+     "start": 477,
+     "end": 479
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6491573452949524,
+     "start": 479,
+     "end": 482
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7998544573783875,
+     "start": 482,
+     "end": 483
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6576365828514099,
+     "start": 484,
+     "end": 485
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.47676751017570496,
+     "start": 485,
+     "end": 488
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.4648130536079407,
+     "start": 488,
+     "end": 490
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5029789706071218,
+     "start": 553,
+     "end": 558
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6777423471212387,
+     "start": 565,
+     "end": 575
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.740208109219869,
+     "start": 601,
+     "end": 611
+    },
+    {
+     "entity_group": "MISC",
+     "score": 0.490207701921463,
+     "start": 694,
+     "end": 698
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.4922390282154083,
+     "start": 718,
+     "end": 725
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9682736098766327,
+     "start": 745,
+     "end": 750
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.970687997341156,
+     "start": 755,
+     "end": 770
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.6153404712677002,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8153190016746521,
+     "start": 2,
+     "end": 4
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8044877350330353,
+     "start": 9,
+     "end": 18
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7251831690470377,
+     "start": 38,
+     "end": 46
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.43225598335266113,
+     "start": 52,
+     "end": 55
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.26602333784103394,
+     "start": 55,
+     "end": 57
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.9390110373497009,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9671260118484497,
+     "start": 2,
+     "end": 4
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8981792330741882,
+     "start": 4,
+     "end": 7
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6221529766917229,
+     "start": 17,
+     "end": 25
+    }
+   ],
+   [
+    {
+     "entity_group": "PER",
+     "score": 0.3336365520954132,
+     "start": 29,
+     "end": 32
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.3742901682853699,
+     "start": 32,
+     "end": 34
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6727049847443899,
+     "start": 81,
+     "end": 91
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.40226907283067703,
+     "start": 103,
+     "end": 110
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7412967681884766,
+     "start": 117,
+     "end": 122
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "PER",
+     "score": 0.3936852216720581,
+     "start": 22,
+     "end": 24
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.8431697289148966,
+     "start": 34,
+     "end": 44
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6495666801929474,
+     "start": 64,
+     "end": 73
+    }
+   ],
+   [
+    {
+     "entity_group": "LOC",
+     "score": 0.7603614926338196,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "LOC",
+     "score": 0.6571004390716553,
+     "start": 4,
+     "end": 6
+    },
+    {
+     "entity_group": "LOC",
+     "score": 0.5754724740982056,
+     "start": 8,
+     "end": 10
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6110879182815552,
+     "start": 12,
+     "end": 14
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.9861295223236084,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9870955944061279,
+     "start": 2,
+     "end": 5
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9925376772880554,
+     "start": 5,
+     "end": 7
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9933611750602722,
+     "start": 7,
+     "end": 9
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.4729480445384979,
+     "start": 9,
+     "end": 10
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9417737722396851,
+     "start": 10,
+     "end": 13
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9026355743408203,
+     "start": 13,
+     "end": 15
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8180549144744873,
+     "start": 15,
+     "end": 17
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8227020502090454,
+     "start": 26,
+     "end": 31
+    },
+    {
+     "entity_group": "MISC",
+     "score": 0.5945979356765747,
+     "start": 37,
+     "end": 45
+    },
+    {
+     "entity_group": "MISC",
+     "score": 0.47359564900398254,
+     "start": 64,
+     "end": 68
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.34647291898727417,
+     "start": 68,
+     "end": 70
+    },
+    {
+     "entity_group": "MISC",
+     "score": 0.5389817953109741,
+     "start": 81,
+     "end": 85
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.8998758345842361,
+     "start": 0,
+     "end": 23
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8460452216012138,
+     "start": 39,
+     "end": 58
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.4999952018260956,
+     "start": 64,
+     "end": 67
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5274907052516937,
+     "start": 67,
+     "end": 70
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.7825356721878052,
+     "start": 28,
+     "end": 29
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9200463891029358,
+     "start": 29,
+     "end": 33
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9403502941131592,
+     "start": 33,
+     "end": 37
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9229980707168579,
+     "start": 37,
+     "end": 40
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8056029081344604,
+     "start": 40,
+     "end": 41
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.880575031042099,
+     "start": 28,
+     "end": 33
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5566496849060059,
+     "start": 42,
+     "end": 51
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.6287518739700317,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8199172616004944,
+     "start": 1,
+     "end": 4
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8942848443984985,
+     "start": 4,
+     "end": 5
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.872052013874054,
+     "start": 5,
+     "end": 6
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9808351993560791,
+     "start": 6,
+     "end": 7
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7475702365239462,
+     "start": 7,
+     "end": 13
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.9232351779937744,
+     "start": 34,
+     "end": 36
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.9790691137313843,
+     "start": 36,
+     "end": 38
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.9468303918838501,
+     "start": 38,
+     "end": 46
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "PER",
+     "score": 0.3404287099838257,
+     "start": 2,
+     "end": 3
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.5611492395401001,
+     "start": 3,
+     "end": 4
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.3330562114715576,
+     "start": 4,
+     "end": 6
+    }
+   ],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.45548951625823975,
+     "start": 31,
+     "end": 32
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.45900654792785645,
+     "start": 36,
+     "end": 44
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.8652392228444418,
+     "start": 0,
+     "end": 10
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8237021565437317,
+     "start": 17,
+     "end": 25
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6808522343635559,
+     "start": 28,
+     "end": 32
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.2949516773223877,
+     "start": 34,
+     "end": 38
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.23468346893787384,
+     "start": 38,
+     "end": 41
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.4959663152694702,
+     "start": 47,
+     "end": 50
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.757106078522546,
+     "start": 62,
+     "end": 79
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9093101382255554,
+     "start": 99,
+     "end": 107
+    }
+   ],
+   [
+    {
+     "entity_group": "PER",
+     "score": 0.6361095309257507,
+     "start": 9,
+     "end": 12
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.7885135412216187,
+     "start": 12,
+     "end": 14
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.949209988117218,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9549474716186523,
+     "start": 1,
+     "end": 3
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9584696888923645,
+     "start": 3,
+     "end": 6
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9569608569145203,
+     "start": 6,
+     "end": 9
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9226237535476685,
+     "start": 9,
+     "end": 11
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.4831231435139974,
+     "start": 14,
+     "end": 22
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7941163532874164,
+     "start": 27,
+     "end": 74
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8395454287528992,
+     "start": 79,
+     "end": 81
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.9770816564559937,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9525187015533447,
+     "start": 2,
+     "end": 5
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9718826753752572,
+     "start": 5,
+     "end": 25
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.5922905802726746,
+     "start": 5,
+     "end": 6
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.9669791460037231,
+     "start": 0,
+     "end": 7
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9705716967582703,
+     "start": 7,
+     "end": 10
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9730526804924011,
+     "start": 10,
+     "end": 12
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9871522188186646,
+     "start": 12,
+     "end": 15
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9798033833503723,
+     "start": 15,
+     "end": 18
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.936703085899353,
+     "start": 18,
+     "end": 20
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9696468114852905,
+     "start": 20,
+     "end": 23
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.529035230477651,
+     "start": 26,
+     "end": 34
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7885604500770569,
+     "start": 43,
+     "end": 54
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7712299704551697,
+     "start": 57,
+     "end": 65
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "MISC",
+     "score": 0.4513428211212158,
+     "start": 27,
+     "end": 29
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.46977636218070984,
+     "start": 29,
+     "end": 30
+    },
+    {
+     "entity_group": "MISC",
+     "score": 0.5505309104919434,
+     "start": 30,
+     "end": 33
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6488881707191467,
+     "start": 33,
+     "end": 34
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9372197836637497,
+     "start": 56,
+     "end": 67
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.4009045660495758,
+     "start": 82,
+     "end": 86
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.48535338044166565,
+     "start": 0,
+     "end": 3
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5086370706558228,
+     "start": 3,
+     "end": 5
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6538500785827637,
+     "start": 5,
+     "end": 8
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5084094405174255,
+     "start": 8,
+     "end": 9
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.47976773977279663,
+     "start": 48,
+     "end": 58
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5827794472376505,
+     "start": 71,
+     "end": 80
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.3257386088371277,
+     "start": 85,
+     "end": 87
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.34767451882362366,
+     "start": 87,
+     "end": 88
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7351258546113968,
+     "start": 469,
+     "end": 477
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7520283907651901,
+     "start": 504,
+     "end": 513
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.996708333492279,
+     "start": 3,
+     "end": 5
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9929099082946777,
+     "start": 5,
+     "end": 8
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9936075409253439,
+     "start": 8,
+     "end": 14
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.5621593594551086,
+     "start": 10,
+     "end": 12
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5580165982246399,
+     "start": 12,
+     "end": 14
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7657758593559265,
+     "start": 36,
+     "end": 40
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7567470669746399,
+     "start": 53,
+     "end": 54
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.900970995426178,
+     "start": 54,
+     "end": 57
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7688462138175964,
+     "start": 57,
+     "end": 59
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.9427464604377747,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9049793481826782,
+     "start": 1,
+     "end": 3
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9407864809036255,
+     "start": 3,
+     "end": 6
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9833108559250832,
+     "start": 6,
+     "end": 24
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9797719419002533,
+     "start": 34,
+     "end": 37
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6716111302375793,
+     "start": 42,
+     "end": 43
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6088499426841736,
+     "start": 43,
+     "end": 44
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8880160450935364,
+     "start": 44,
+     "end": 48
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9333962798118591,
+     "start": 55,
+     "end": 61
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.45598289370536804,
+     "start": 64,
+     "end": 67
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7014757394790649,
+     "start": 70,
+     "end": 71
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.8752009206347995,
+     "start": 0,
+     "end": 21
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5797755718231201,
+     "start": 53,
+     "end": 54
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6689746181170145,
+     "start": 54,
+     "end": 71
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.5010019183158875,
+     "start": 22,
+     "end": 35
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8173155387242635,
+     "start": 40,
+     "end": 45
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.4331855773925781,
+     "start": 52,
+     "end": 55
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.7742156585057577,
+     "start": 35,
+     "end": 48
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6429530501365661,
+     "start": 59,
+     "end": 74
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.4472337305545807,
+     "start": 120,
+     "end": 134
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.8794148564338684,
+     "start": 22,
+     "end": 34
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.26690080761909485,
+     "start": 66,
+     "end": 68
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.27187466621398926,
+     "start": 82,
+     "end": 83
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.20984283089637756,
+     "start": 85,
+     "end": 89
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "PER",
+     "score": 0.48974141478538513,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.4369398057460785,
+     "start": 1,
+     "end": 2
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.459254652261734,
+     "start": 2,
+     "end": 3
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.7252383828163147,
+     "start": 3,
+     "end": 5
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8963313698768616,
+     "start": 10,
+     "end": 16
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.8273980021476746,
+     "start": 27,
+     "end": 28
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.35253140330314636,
+     "start": 62,
+     "end": 64
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.41829603910446167,
+     "start": 64,
+     "end": 65
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7198544144630432,
+     "start": 80,
+     "end": 86
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7115494385361671,
+     "start": 104,
+     "end": 109
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "PER",
+     "score": 0.6675372123718262,
+     "start": 9,
+     "end": 10
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.627256453037262,
+     "start": 10,
+     "end": 12
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.533490002155304,
+     "start": 15,
+     "end": 17
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.847820520401001,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8219030499458313,
+     "start": 1,
+     "end": 2
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7838886380195618,
+     "start": 2,
+     "end": 3
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9220806956291199,
+     "start": 3,
+     "end": 5
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9434886574745178,
+     "start": 5,
+     "end": 9
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8494494557380676,
+     "start": 10,
+     "end": 16
+    },
+    {
+     "entity_group": "MISC",
+     "score": 0.5997010469436646,
+     "start": 17,
+     "end": 19
+    },
+    {
+     "entity_group": "MISC",
+     "score": 0.5480005939801534,
+     "start": 28,
+     "end": 37
+    },
+    {
+     "entity_group": "MISC",
+     "score": 0.5452262163162231,
+     "start": 42,
+     "end": 48
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "PER",
+     "score": 0.4193255305290222,
+     "start": 55,
+     "end": 56
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "MISC",
+     "score": 0.623279352982839,
+     "start": 43,
+     "end": 51
+    },
+    {
+     "entity_group": "MISC",
+     "score": 0.45862096548080444,
+     "start": 61,
+     "end": 68
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "PER",
+     "score": 0.7509229183197021,
+     "start": 0,
+     "end": 3
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.9590591788291931,
+     "start": 0,
+     "end": 3
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8549006581306458,
+     "start": 3,
+     "end": 4
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9384485483169556,
+     "start": 4,
+     "end": 7
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9591171145439148,
+     "start": 7,
+     "end": 10
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9713751673698425,
+     "start": 11,
+     "end": 13
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9195688962936401,
+     "start": 13,
+     "end": 16
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.927993893623352,
+     "start": 16,
+     "end": 17
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8257074703772863,
+     "start": 19,
+     "end": 34
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6520726084709167,
+     "start": 34,
+     "end": 37
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7928982377052307,
+     "start": 39,
+     "end": 43
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5875211358070374,
+     "start": 48,
+     "end": 49
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8545093735059103,
+     "start": 53,
+     "end": 59
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.44038504362106323,
+     "start": 63,
+     "end": 66
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.832302039861679,
+     "start": 0,
+     "end": 26
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8074149489402771,
+     "start": 44,
+     "end": 50
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7579877004027367,
+     "start": 53,
+     "end": 60
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.520887424548467,
+     "start": 62,
+     "end": 67
+    }
+   ],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.6761200129985809,
+     "start": 26,
+     "end": 35
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6593711972236633,
+     "start": 39,
+     "end": 48
+    }
+   ],
+   [
+    {
+     "entity_group": "PER",
+     "score": 0.4507372975349426,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.44629529118537903,
+     "start": 48,
+     "end": 51
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7201783955097198,
+     "start": 51,
+     "end": 59
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5909304842352867,
+     "start": 61,
+     "end": 67
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.6445881128311157,
+     "start": 5,
+     "end": 11
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.8600863516330719,
+     "start": 47,
+     "end": 53
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7629194855690002,
+     "start": 75,
+     "end": 76
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9091135263442993,
+     "start": 76,
+     "end": 78
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8372074365615845,
+     "start": 78,
+     "end": 81
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7333083748817444,
+     "start": 81,
+     "end": 83
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.5672019124031067,
+     "start": 5,
+     "end": 8
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.4821757674217224,
+     "start": 17,
+     "end": 19
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.538464367389679,
+     "start": 19,
+     "end": 22
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9763374924659729,
+     "start": 22,
+     "end": 33
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.664421796798706,
+     "start": 42,
+     "end": 43
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7038395404815674,
+     "start": 43,
+     "end": 47
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7822225093841553,
+     "start": 47,
+     "end": 51
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7119207978248596,
+     "start": 51,
+     "end": 54
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6919560432434082,
+     "start": 75,
+     "end": 79
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7643293291330338,
+     "start": 79,
+     "end": 86
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.6519872844219208,
+     "start": 4,
+     "end": 7
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9152624885241191,
+     "start": 22,
+     "end": 65
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.4467473328113556,
+     "start": 66,
+     "end": 67
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7239683270454407,
+     "start": 67,
+     "end": 70
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8694383502006531,
+     "start": 70,
+     "end": 73
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6766331791877747,
+     "start": 73,
+     "end": 74
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5370437105496725,
+     "start": 99,
+     "end": 105
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8422147393226623,
+     "start": 115,
+     "end": 126
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5681483199199041,
+     "start": 129,
+     "end": 140
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "MISC",
+     "score": 0.7728136777877808,
+     "start": 52,
+     "end": 57
+    },
+    {
+     "entity_group": "MISC",
+     "score": 0.8790055513381958,
+     "start": 68,
+     "end": 71
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "PER",
+     "score": 0.5467713475227356,
+     "start": 7,
+     "end": 9
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.9548293352127075,
+     "start": 19,
+     "end": 27
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.5644999444484711,
+     "start": 38,
+     "end": 48
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.6338603496551514,
+     "start": 60,
+     "end": 66
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.5050867795944214,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8136807680130005,
+     "start": 1,
+     "end": 4
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9446310997009277,
+     "start": 4,
+     "end": 5
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6021620631217957,
+     "start": 5,
+     "end": 6
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9904766082763672,
+     "start": 6,
+     "end": 7
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9639042615890503,
+     "start": 7,
+     "end": 9
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.3993457853794098,
+     "start": 29,
+     "end": 31
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.6201770901679993,
+     "start": 51,
+     "end": 53
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.4786396324634552,
+     "start": 53,
+     "end": 56
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.5135979294776917,
+     "start": 4,
+     "end": 12
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8737368285655975,
+     "start": 53,
+     "end": 62
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.8650762438774109,
+     "start": 81,
+     "end": 84
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.9851541519165039,
+     "start": 84,
+     "end": 86
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.950342059135437,
+     "start": 86,
+     "end": 89
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7395930290222168,
+     "start": 101,
+     "end": 111
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.4344996511936188,
+     "start": 138,
+     "end": 145
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.4722197353839874,
+     "start": 145,
+     "end": 149
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6517655849456787,
+     "start": 150,
+     "end": 152
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.4983192980289459,
+     "start": 152,
+     "end": 156
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.4724668562412262,
+     "start": 156,
+     "end": 158
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.6271190047264099,
+     "start": 0,
+     "end": 3
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7321027318636576,
+     "start": 5,
+     "end": 13
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6345055624842644,
+     "start": 19,
+     "end": 29
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5806843042373657,
+     "start": 42,
+     "end": 45
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6952123045921326,
+     "start": 45,
+     "end": 48
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8167092651128769,
+     "start": 48,
+     "end": 59
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7712390224138895,
+     "start": 98,
+     "end": 107
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5014123469591141,
+     "start": 125,
+     "end": 141
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8267126306891441,
+     "start": 147,
+     "end": 162
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9595970511436462,
+     "start": 169,
+     "end": 170
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9489316344261169,
+     "start": 170,
+     "end": 172
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9879608750343323,
+     "start": 172,
+     "end": 176
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6407270431518555,
+     "start": 176,
+     "end": 177
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7907176613807678,
+     "start": 177,
+     "end": 179
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7652492523193359,
+     "start": 179,
+     "end": 183
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.48265668749809265,
+     "start": 183,
+     "end": 184
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.4512082089980443,
+     "start": 205,
+     "end": 219
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.5966252684593201,
+     "start": 0,
+     "end": 3
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6164183020591736,
+     "start": 3,
+     "end": 6
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.2948366701602936,
+     "start": 22,
+     "end": 25
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.4629534383614858,
+     "start": 28,
+     "end": 35
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.3831227719783783,
+     "start": 41,
+     "end": 42
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.40230053663253784,
+     "start": 43,
+     "end": 44
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.3738536685705185,
+     "start": 60,
+     "end": 64
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.6905212998390198,
+     "start": 0,
+     "end": 3
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7126757105191549,
+     "start": 5,
+     "end": 11
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.32431894540786743,
+     "start": 29,
+     "end": 33
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.27992013096809387,
+     "start": 33,
+     "end": 43
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7301743924617767,
+     "start": 53,
+     "end": 60
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5692483186721802,
+     "start": 60,
+     "end": 64
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6834909677505493,
+     "start": 64,
+     "end": 78
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "PER",
+     "score": 0.7260206341743469,
+     "start": 25,
+     "end": 27
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.8902595639228821,
+     "start": 27,
+     "end": 30
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.9721648693084717,
+     "start": 30,
+     "end": 34
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7887316544850668,
+     "start": 220,
+     "end": 228
+    },
+    {
+     "entity_group": "MISC",
+     "score": 0.4868950918316841,
+     "start": 313,
+     "end": 325
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.862101674079895,
+     "start": 40,
+     "end": 44
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.46049749851226807,
+     "start": 0,
+     "end": 6
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7320563942193985,
+     "start": 6,
+     "end": 16
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5822440087795258,
+     "start": 51,
+     "end": 57
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.8584170341491699,
+     "start": 30,
+     "end": 36
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.7760823965072632,
+     "start": 42,
+     "end": 47
+    }
+   ],
+   [
+    {
+     "entity_group": "ORG",
+     "score": 0.48209551970163983,
+     "start": 21,
+     "end": 28
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "PER",
+     "score": 0.570709764957428,
+     "start": 5,
+     "end": 7
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.6929402351379395,
+     "start": 7,
+     "end": 10
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.7983607053756714,
+     "start": 10,
+     "end": 12
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.4403468072414398,
+     "start": 15,
+     "end": 18
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.5578522682189941,
+     "start": 18,
+     "end": 20
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.6730504631996155,
+     "start": 20,
+     "end": 22
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8442225390010409,
+     "start": 22,
+     "end": 44
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.9295464754104614,
+     "start": 54,
+     "end": 60
+    },
+    {
+     "entity_group": "ORG",
+     "score": 0.8728695064783096,
+     "start": 65,
+     "end": 78
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "PER",
+     "score": 0.46946484843889874,
+     "start": 15,
+     "end": 22
+    },
+    {
+     "entity_group": "PER",
+     "score": 0.5029352406660715,
+     "start": 25,
+     "end": 32
+    }
+   ]
+  ],
+  "spanTexts": 200,
+  "spans": 538,
+  "maxAbsScoreDiff": 0.000009000301361083984,
+  "textStats": {
+   "cases": 200,
+   "calls": 200,
+   "inputMismatch": 0,
+   "rows": 200,
+   "bitDiffRows": 0,
+   "batchRows": 0,
+   "batchVsSingleDiffRows": 0
+  }
+ },
+ "gpuErrors": []
+}

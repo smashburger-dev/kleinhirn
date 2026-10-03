@@ -1,0 +1,69 @@
+{
+ "date": "2026-10-01",
+ "run_id": "k28-parity-hotchpotch__japanese-reranker-cross-encoder-small-v1-f32-7ac9f32-1790847772534",
+ "commit": "7ac9f32",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "4.30",
+ "loadAvgEnd": "3.96 4.05 4.57",
+ "stage": "done",
+ "model": "hotchpotch__japanese-reranker-cross-encoder-small-v1",
+ "precision": "f32",
+ "task": "reranking",
+ "info": {
+  "precision": "f32",
+  "buildId": "mupcftiu",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "xlm-roberta",
+  "task": "reranking",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 99352108,
+  "downloadBytes": 470583671,
+  "loadTiming": {
+   "fetchMs": 786.6000000014901,
+   "bodyMs": 3289.4000000059605,
+   "sha256Ms": 258.9999999925494,
+   "uploadMs": 52.899999998509884,
+   "embedJoinMs": 47.20000000298023,
+   "manifestMs": 8.700000002980232,
+   "planMs": 5.600000001490116
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "maxAbsLogitDiff": 3.427267074584961e-7,
+  "meanAbsLogitDiff": 1.668231561779976e-8,
+  "bestPassageAgreement": 1,
+  "bestPassageDisagreements": [],
+  "queries": 20
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0,
+  "groups": 50
+ },
+ "gpuErrors": []
+}

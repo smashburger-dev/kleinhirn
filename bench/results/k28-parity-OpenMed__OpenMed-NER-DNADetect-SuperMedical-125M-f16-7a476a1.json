@@ -1,0 +1,69 @@
+{
+ "date": "2026-10-01",
+ "run_id": "k28-parity-OpenMed__OpenMed-NER-DNADetect-SuperMedical-125M-f16-7a476a1-1790837269927",
+ "commit": "7a476a1",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "4.79",
+ "loadAvgEnd": "4.50 5.43 5.53",
+ "stage": "done",
+ "model": "OpenMed__OpenMed-NER-DNADetect-SuperMedical-125M",
+ "precision": "f16",
+ "task": "token-classification",
+ "info": {
+  "precision": "f16",
+  "buildId": "mup3g5ui",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "roberta",
+  "task": "token-classification",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 183732760,
+  "downloadBytes": 248145148,
+  "loadTiming": {
+   "fetchMs": 421.40000000596046,
+   "bodyMs": 900,
+   "sha256Ms": 139.60000000149012,
+   "uploadMs": 40.69999999552965,
+   "embedJoinMs": 8.100000001490116,
+   "manifestMs": 3.5999999940395355,
+   "planMs": 5.300000004470348
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "argmaxPerTokenAgreement": 1,
+  "argmaxPerTokenDisagreements": [],
+  "tokens": 6797,
+  "maxAbsLogitDiff": 0.0074405670166015625,
+  "meanAbsLogitDiff": 0.00042800957217409123
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0,
+  "groups": 50
+ },
+ "gpuErrors": []
+}

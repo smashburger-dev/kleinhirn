@@ -1,0 +1,68 @@
+{
+ "date": "2026-09-30",
+ "run_id": "k28-parity-OpenMed__OpenMed-NER-BloodCancerDetect-TinyMed-65M-f16-76c62d6-1790791709497",
+ "commit": "76c62d6",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "4.58",
+ "loadAvgEnd": "4.30 4.26 4.15",
+ "stage": "done",
+ "model": "OpenMed__OpenMed-NER-BloodCancerDetect-TinyMed-65M",
+ "precision": "f16",
+ "task": "token-classification",
+ "info": {
+  "precision": "f16",
+  "buildId": "muof1oqi",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "distilbert",
+  "task": "token-classification",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 98643976,
+  "downloadBytes": 130396314,
+  "loadTiming": {
+   "fetchMs": 239.70000000298023,
+   "bodyMs": 279.8999999985099,
+   "sha256Ms": 72.90000000223517,
+   "uploadMs": 27.5,
+   "embedJoinMs": 6,
+   "manifestMs": 2.899999998509884,
+   "planMs": 2.100000001490116
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "argmaxPerTokenAgreement": 1,
+  "tokens": 7886,
+  "maxAbsLogitDiff": 0.003036201000213623,
+  "meanAbsLogitDiff": 0.00034857460219123583
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0,
+  "groups": 50
+ },
+ "gpuErrors": []
+}

@@ -1,7 +1,7 @@
 {{ENABLE}}// RoPE (rotate-half convention) applied in place to the q and k
 // sections of the qkv buffer. One workgroup of 32 threads per (position,
 // head, section): thread d handles the pair (d, d + D/2), so no shared
-// state is needed. cossin holds per-position tables [L, 2 * D]: cos at
+// state is needed (threads d >= D / 2 return, so head widths below 64 work). cossin holds per-position tables [L, 2 * D]: cos at
 // i * 2 * D + d and sin at i * 2 * D + D + d.
 // out[d]      = x[d] * cos_d - x[d + half] * sin_d
 // out[d + half] = x[d + half] * cos_d + x[d] * sin_d
@@ -30,6 +30,7 @@ fn main(
   let base = i * 3u * hd + (seg * H + h) * D;
   let half = D / 2u;
   let d = lid.x;
+  if (d >= half) { return; }
   let a = f32(qkv[base + d]);
   let b = f32(qkv[base + d + half]);
   let c = cossin[il * 2u * D + d];

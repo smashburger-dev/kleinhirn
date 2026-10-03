@@ -1,0 +1,68 @@
+{
+ "date": "2026-09-30",
+ "run_id": "k28-parity-dslim__bert-base-NER-f32-9bcdc04-1790799363856",
+ "commit": "9bcdc04",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "25.03",
+ "loadAvgEnd": "26.12 10.00 6.58",
+ "stage": "done",
+ "model": "dslim__bert-base-NER",
+ "precision": "f32",
+ "task": "token-classification",
+ "info": {
+  "precision": "f32",
+  "buildId": "muohq4et",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "bert",
+  "task": "token-classification",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 367440932,
+  "downloadBytes": 430924701,
+  "loadTiming": {
+   "fetchMs": 761.1000000005588,
+   "bodyMs": 2639.2999999998137,
+   "sha256Ms": 298.20000000018626,
+   "uploadMs": 125.79999999981374,
+   "embedJoinMs": 18,
+   "manifestMs": 3.8999999994412065,
+   "planMs": 3
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "argmaxPerTokenAgreement": 1,
+  "tokens": 7886,
+  "maxAbsLogitDiff": 0.00001621246337890625,
+  "meanAbsLogitDiff": 9.825953176941032e-7
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0,
+  "groups": 50
+ },
+ "gpuErrors": []
+}

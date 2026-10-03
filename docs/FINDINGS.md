@@ -898,3 +898,124 @@ by hand (Mac Safari, Develop, iPhone, the page, Timelines, Memory;
 Web Inspector does not open under safaridriver), the age of the storage
 marker after days, and repetitions by hand, since there is one run per
 browser and one WebDriver run of the wasm stage.
+
+## 14. General encoder engine and the comparison per family (K28)
+
+Question: can one engine load the common encoder checkpoints from
+Hugging Face directly, give the same answers as PyTorch, and be faster
+than ORT Web in its best setting for every family?
+
+The engine builds its plan from `config.json` (`src/plan/`); the
+converter (`tools/k28_convert.ts`, core in `src/convert/`) turns
+safetensors into f32 and f16 manifests; tokenizers come from
+`tokenizer.json` (`src/tokenizer/hf/`, 0 differences against HF
+tokenizers 0.22.2 on 206,730 cases). Model list: per family and task the
+three most downloaded models up to 200M parameters, pinned
+(`data/k28/models.json`, 89 checkpoints).
+
+Parity (goldens from PyTorch fp32): 88 of 89 pass. f32 decisions 100 %
+(embeddings cosine at least 0.9999); f16 at least 99.5 % of the
+decisions that f16 rounding cannot flip, with the deviation bounded by
+an independent f16 simulation of the manifest (embeddings cosine at
+least 0.999). `deepvk/USER2-base` passes f32 and misses f16 because of
+its very large activations, as the simulation predicts; the engine picks
+f32 there.
+
+Speed against ORT Web 1.29.0, one model per family (the most
+downloaded), f16, inputs of exactly 128 and 512 tokens (so kleinhirn's
+skipping of padding rows does not count), 20 warmup and 300 measured
+calls per run, interleaved A B B A A B (B A A B B A in every second
+cell), three repetitions, fresh browser per run, start load below 4,
+cross-origin isolated page (timer step 5 us). ORT ran the fastest of up
+to 12 settings per model and length found in a screening: plain export
+or optimizer variants, three builds (default, `webgpu`, `jspi`), graph
+capture on and off (`data/k28/k28.8-best.json`). Script
+`node bench/run-k28-8.mjs --official`, result
+`bench/results/k28.8-official-summary.json`.
+
+| Model | L | kleinhirn ms | ORT ms | ORT / kleinhirn |
+|---|---|---|---|---|
+| all-MiniLM-L6-v2 | 128 | 3.29 | 5.29 | 1.61 |
+| twitter-roberta-base-sentiment-latest | 128 | 13.40 | 18.96 | 1.41 |
+| mmarco-mMiniLMv2-L12-H384-v1 | 128 | 6.07 | 10.09 | 1.66 |
+| distilbert-base-uncased-finetuned-sst-2 | 128 | 6.99 | 9.76 | 1.40 |
+| deberta-v3-base-prompt-injection-v2 | 128 | 14.54 | 24.35 | 1.68 |
+| granite-embedding-small-english-r2 | 128 | 6.99 | 12.44 | 1.78 |
+| all-MiniLM-L6-v2 | 512 | 8.97 | 12.06 | 1.34 |
+| twitter-roberta-base-sentiment-latest | 512 | 47.55 | 59.67 | 1.25 |
+| mmarco-mMiniLMv2-L12-H384-v1 | 512 | 17.86 | 24.33 | 1.36 |
+| distilbert-base-uncased-finetuned-sst-2 | 512 | 24.54 | 33.34 | 1.36 |
+| deberta-v3-base-prompt-injection-v2 | 512 | 57.31 | 95.53 | 1.67 |
+| granite-embedding-small-english-r2 | 512 | 21.35 | 35.81 | 1.68 |
+
+Median of the three repetition medians. In every cell all three
+kleinhirn medians lie below all three ORT medians.
+
+Accuracy on the same inputs: both sides in f16 against ORT f32 on the
+CPU; the largest deviation of ORT f16 is 2.9 (granite, L128) to 20.5
+(DistilBERT, L512) times that of kleinhirn f16; ORT f16 picks another
+class than ORT f32 in 2 of 300 RoBERTa inputs at L128, kleinhirn in
+none. Download (weights, tokenizer, runtime): kleinhirn 46.7 to 396.7
+MB, ORT 72.3 to 1,016.6 MB.
+
+Before the kernel rewrite of section 15, ORT was faster in all twelve
+cells (1.3x to 2.3x at L128, 2.6x to 4.6x at L512).
+
+## 15. Kernel rewrite after looking inside ORT (K27)
+
+Question: why was ORT faster at full length, and can kleinhirn catch up
+without leaving its rules (WebGPU minimum limits, no subgroups, f32
+accumulation, parity)?
+
+Diagnosis (`bench/k28-ort-trace.html` records every WGSL shader ORT
+creates and its dispatches; `bench/k28-kh-profile.html` times
+kleinhirn per dispatch): ORT requests more than the minimum limits
+(1,024 invocations, 32 KiB workgroup memory) and the `subgroups`
+feature, but its MatMul calls no subgroup function. Its MatMul has every
+thread compute a 4x4 block from vec4 tiles of 2 KiB, which fits the
+minimum limits, and accumulates in f16. kleinhirn's matmul computed one
+output per thread (78 % of the GPU time of RoBERTa at L128), and its
+attention re-read all keys and values for every query row.
+
+Changes (`src/kernels/`):
+- Register-blocked matmul in three tile sizes (32x64, 16x32, 8x32), each
+  thread a block of 4, 2 or 1 rows by 4 columns, vec4 tiles in the
+  storage type, f32 accumulation in the same k order as before. All three give the same
+  bits as the old kernel; each call takes the largest tile that still
+  starts enough workgroups for its row count.
+- Attention as three matmul-shaped kernels: scores, softmax and context
+  (f32 scores and probabilities). DeBERTa's relative terms are matmuls
+  over the relative positions the bucket can reach. Tiles outside the
+  valid tokens of a sequence are skipped (first and last valid token per
+  sequence, written at upload).
+- Rejected after measurement: split-K, weights stored transposed, 64x64
+  tiles, and one thread per query row for attention (too few threads at
+  128 tokens).
+
+Checks: twelve canary models in f32 and f16 keep the decisions of the
+gate in section 14; GLiNER2.5-small, Julia 1 and the batch path keep
+their gates; the kernel choice by row count does not change a single
+output bit. Playwright WebKit and Firefox give the same decisions as
+Chromium on four families.
+
+GLiNER2.5-small and Julia 1 on their real inputs (the 1,000-text corpus,
+median 45 of 128 tokens; Julia's 100 parity requests), against the same
+ORT setups as section 11, interleaved, three repetitions
+(`node bench/run-official.mjs --prefix k27r-official`, commit cb71acf):
+
+| Pair | kleinhirn ms | ORT ms | ORT / kleinhirn | before (section 11) |
+|---|---|---|---|---|
+| GLiNER2.5-small f16 vs fused graph with capture | 4.40 | 12.20 | 2.77 | 1.9 |
+| GLiNER2.5-small f32 vs fused graph with capture | 5.40 | 14.80 | 2.74 | 2.2 |
+| Julia 1 f16, equal boundaries, vs upstream batch 1 on the fused fp16 graph | 10.42 | 25.45 | 2.44 | 0.89 |
+| Julia 1 f32, equal boundaries, vs upstream batch 1 on the fused graph | 13.97 | 29.18 | 2.09 | 1.02 |
+| Julia 1 batch API B1 vs upstream batch 4 on the fused fp16 graph | 9.40 | 16.65 | 1.77 | 0.76 |
+
+Parity in the same runs: GLiNER2.5-small f16 argmax 99.90 % (ORT
+99.59 %), f32 100 % on both sides; Julia 1 100/100 choices on both
+sides, largest f16 logit error 0.109 (ORT 1.02).
+
+Peak memory (`--mem-pass`, three browser launches per path, median): GLiNER2.5-small f16 941 MiB
+(850 before), f32 1,209 MiB (1,151), Julia 1 f16 1,138 MiB (1,001). Against ORT's peaks from section 11
+(GLiNER2.5-small fused f16 1,442 MiB, f32 2,321 MiB; Julia upstream batch 1 f16 1,599 MiB) that is
+52 to 71 %. GPU buffers at L128: GLiNER2.5-small f16 53.7 MiB, Julia 1 f16 139.9 MiB.

@@ -1,0 +1,71 @@
+{
+ "date": "2026-10-01",
+ "run_id": "k28-parity-OpenMed__OpenMed-NER-ChemicalDetect-ModernMed-149M-f16-68d607f-1790845367663",
+ "commit": "68d607f",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "7.43",
+ "loadAvgEnd": "6.67 4.76 4.42",
+ "stage": "done",
+ "model": "OpenMed__OpenMed-NER-ChemicalDetect-ModernMed-149M",
+ "precision": "f16",
+ "task": "token-classification",
+ "info": {
+  "precision": "f16",
+  "buildId": "mup8wrdo",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "modernbert",
+  "task": "token-classification",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 238744080,
+  "downloadBytes": 299231865,
+  "loadTiming": {
+   "fetchMs": 531.1999999955297,
+   "bodyMs": 1384.7000000104308,
+   "sha256Ms": 188.79999999701977,
+   "uploadMs": 74.30000000447035,
+   "embedJoinMs": 18.600000001490116,
+   "manifestMs": 2.9000000059604645,
+   "planMs": 8.5
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "argmaxPerTokenAgreement": 0.9998425196850393,
+  "argmaxPerTokenDisagreements": [
+   5110
+  ],
+  "tokens": 6350,
+  "maxAbsLogitDiff": 0.09685921669006348,
+  "meanAbsLogitDiff": 0.001229731369423839
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0,
+  "groups": 50
+ },
+ "gpuErrors": []
+}

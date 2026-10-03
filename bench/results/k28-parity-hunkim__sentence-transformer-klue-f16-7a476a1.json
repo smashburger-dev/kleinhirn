@@ -1,0 +1,69 @@
+{
+ "date": "2026-10-01",
+ "run_id": "k28-parity-hunkim__sentence-transformer-klue-f16-7a476a1-1790835810994",
+ "commit": "7a476a1",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "4.05",
+ "loadAvgEnd": "4.52 4.66 5.26",
+ "stage": "done",
+ "model": "hunkim__sentence-transformer-klue",
+ "precision": "f16",
+ "task": "embeddings",
+ "info": {
+  "precision": "f16",
+  "buildId": "mup3g5ui",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "roberta",
+  "task": "embeddings",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 183693824,
+  "downloadBytes": 220073091,
+  "loadTiming": {
+   "fetchMs": 341.79999999701977,
+   "bodyMs": 652.1000000014901,
+   "sha256Ms": 111.79999999701977,
+   "uploadMs": 34.600000001490116,
+   "embedJoinMs": 4,
+   "manifestMs": 2.7000000029802322,
+   "planMs": 2.399999998509884
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "minCosineFinal": 0.9999974909528965,
+  "meanCosineFinal": 0.9999986319748568,
+  "maxAbsDiffFinal": 0.0032267868518829346,
+  "minCosinePooled": 0.9999974909528965,
+  "meanCosinePooled": 0.9999986319748568
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0,
+  "groups": 50
+ },
+ "gpuErrors": []
+}

@@ -54,9 +54,10 @@ fn main(
       let dist = select(il - j, j - il, j > il);
       outside = outside || dist > WINDOW;
     }
-    // Masked keys land at -1e4 regardless of the dot product; skip them.
+    // Masked keys land at -1e30 regardless of the dot product.
+    // The sentinel sits below any real score; the softmax max also starts at -1e30.
     if (outside) {
-      scores[j] = -1e4;
+      scores[j] = -1e30;
       continue;
     }
     var s = 0.0;

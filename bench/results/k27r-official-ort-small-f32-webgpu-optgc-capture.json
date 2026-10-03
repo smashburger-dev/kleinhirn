@@ -1,0 +1,111 @@
+{
+ "run_id": "k27r-official-ort-small-f32-webgpu-optgc-capture",
+ "engine": "ort-web",
+ "model": "small-upstream",
+ "precision": "f32",
+ "bucket": null,
+ "ep": "webgpu",
+ "batchSize": null,
+ "graph": "optgc",
+ "capture": true,
+ "backend": "webgpu",
+ "official": true,
+ "repetitions": 3,
+ "medianMs": 14.800000011920929,
+ "rangeMs": [
+  14.799999982118607,
+  14.800000011920929
+ ],
+ "p95Ms": 15.800000011920929,
+ "downloadBytes": 347749933,
+ "onnxBytes": 320907971,
+ "runtimeBytes": 26841962,
+ "gpuBytes": null,
+ "peakMemMb": 0,
+ "parity": [
+  {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.00002300739288330078,
+   "meanAbsLogitDiff": 0.000002482126867167713,
+   "maxAbsProbDiff": 0.000006835146539208026,
+   "disagreements": []
+  },
+  {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.00002300739288330078,
+   "meanAbsLogitDiff": 0.000002482126867167713,
+   "maxAbsProbDiff": 0.000006835146539208026,
+   "disagreements": []
+  },
+  {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.00002300739288330078,
+   "meanAbsLogitDiff": 0.000002482126867167713,
+   "maxAbsProbDiff": 0.000006835146539208026,
+   "disagreements": []
+  }
+ ],
+ "loadAvg": [
+  [
+   3.5400390625,
+   3.32373046875
+  ],
+  [
+   3.78125,
+   3.64306640625
+  ],
+  [
+   3.33349609375,
+   3.880859375
+  ]
+ ],
+ "repFiles": [
+  "bench/results/k27r-official-ort-small-f32-webgpu-optgc-capture-r1.json",
+  "bench/results/k27r-official-ort-small-f32-webgpu-optgc-capture-r2.json",
+  "bench/results/k27r-official-ort-small-f32-webgpu-optgc-capture-r3.json"
+ ],
+ "page": {
+  "stage": "done",
+  "model": "small-upstream",
+  "precision": "f32",
+  "ep": "webgpu",
+  "graph": "optgc",
+  "capture": true,
+  "adapterInfo": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "onnxBytes": 320907971,
+  "loadMs": 682.5,
+  "downloadBytes": 347749933,
+  "warmupMs": [
+   116.90000000596046,
+   1,
+   0.5,
+   0.29999998211860657
+  ],
+  "latency": {
+   "n": 968,
+   "medianMs": 14.800000011920929,
+   "p95Ms": 15.800000011920929,
+   "minMs": 14.399999976158142,
+   "maxMs": 314.69999998807907,
+   "meanMs": 15.44256198510897
+  },
+  "parity": {
+   "n": 968,
+   "argmaxAgreement": 1,
+   "maxAbsLogitDiff": 0.00002300739288330078,
+   "meanAbsLogitDiff": 0.000002482126867167713,
+   "maxAbsProbDiff": 0.000006835146539208026,
+   "disagreements": []
+  },
+  "n": 968,
+  "done": true
+ }
+}

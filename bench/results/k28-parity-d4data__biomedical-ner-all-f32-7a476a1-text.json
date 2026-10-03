@@ -1,0 +1,5161 @@
+{
+ "date": "2026-10-01",
+ "run_id": "k28-parity-d4data__biomedical-ner-all-f32-7a476a1-text-1790837625622",
+ "commit": "7a476a1",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "5.38",
+ "loadAvgEnd": "5.19 5.36 5.43",
+ "stage": "done",
+ "model": "d4data__biomedical-ner-all",
+ "precision": "f32",
+ "task": "token-classification",
+ "info": {
+  "precision": "f32",
+  "buildId": "mup3g5ui",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "distilbert",
+  "task": "token-classification",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 197946704,
+  "downloadBytes": 265721621,
+  "loadTiming": {
+   "fetchMs": 425.59999999403954,
+   "bodyMs": 922.6000000014901,
+   "sha256Ms": 149.80000000447035,
+   "uploadMs": 25,
+   "embedJoinMs": 9.900000005960464,
+   "manifestMs": 2.6999999955296516,
+   "planMs": 3.899999998509884
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "spanExactAgreement": 1,
+  "spansGot": [
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.6923075914382935,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9196179807186127,
+     "start": 2,
+     "end": 12
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.46567127108573914,
+     "start": 12,
+     "end": 13
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9826945662498474,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.712673008441925,
+     "start": 2,
+     "end": 7
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.5198427438735962,
+     "start": 35,
+     "end": 40
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.38778483867645264,
+     "start": 40,
+     "end": 41
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9985660314559937,
+     "start": 41,
+     "end": 46
+    }
+   ],
+   [
+    {
+     "entity_group": "Therapeutic_procedure",
+     "score": 0.9405900835990906,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "Coreference",
+     "score": 0.6804324388504028,
+     "start": 2,
+     "end": 8
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5856397747993469,
+     "start": 9,
+     "end": 12
+    },
+    {
+     "entity_group": "Therapeutic_procedure",
+     "score": 0.9469678401947021,
+     "start": 39,
+     "end": 41
+    },
+    {
+     "entity_group": "Coreference",
+     "score": 0.6874749064445496,
+     "start": 41,
+     "end": 47
+    },
+    {
+     "entity_group": "Coreference",
+     "score": 0.6396270990371704,
+     "start": 59,
+     "end": 64
+    }
+   ],
+   [
+    {
+     "entity_group": "Sign_symptom",
+     "score": 0.9645677804946899,
+     "start": 0,
+     "end": 8
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.6142577528953552,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9725119471549988,
+     "start": 2,
+     "end": 7
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9960274696350098,
+     "start": 9,
+     "end": 14
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9961580038070679,
+     "start": 38,
+     "end": 43
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.7489736676216125,
+     "start": 56,
+     "end": 59
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9997460842132568,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8946508169174194,
+     "start": 1,
+     "end": 2
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9987798929214478,
+     "start": 2,
+     "end": 7
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9483319520950317,
+     "start": 9,
+     "end": 20
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9995324611663818,
+     "start": 25,
+     "end": 27
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9696988165378571,
+     "start": 29,
+     "end": 40
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9571958978970846,
+     "start": 55,
+     "end": 60
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9995436072349548,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8227052092552185,
+     "start": 1,
+     "end": 2
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9998775124549866,
+     "start": 2,
+     "end": 7
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9999323487281799,
+     "start": 19,
+     "end": 22
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9997564554214478,
+     "start": 46,
+     "end": 49
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9999263286590576,
+     "start": 54,
+     "end": 57
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9849353432655334,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.7641320824623108,
+     "start": 1,
+     "end": 2
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9950965046882629,
+     "start": 2,
+     "end": 7
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9917669892311096,
+     "start": 9,
+     "end": 17
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8405701518058777,
+     "start": 24,
+     "end": 41
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.7936987280845642,
+     "start": 69,
+     "end": 71
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9509713053703308,
+     "start": 71,
+     "end": 74
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9955978393554688,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.808739960193634,
+     "start": 5,
+     "end": 7
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9558007121086121,
+     "start": 8,
+     "end": 13
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6965264081954956,
+     "start": 53,
+     "end": 55
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9904287755489349,
+     "start": 0,
+     "end": 5
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9922126616750445,
+     "start": 5,
+     "end": 22
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.998802125453949,
+     "start": 0,
+     "end": 11
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.6996419429779053,
+     "start": 14,
+     "end": 15
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.4728657901287079,
+     "start": 1,
+     "end": 2
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9976028800010681,
+     "start": 2,
+     "end": 7
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9998831152915955,
+     "start": 21,
+     "end": 24
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8957053422927856,
+     "start": 24,
+     "end": 25
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.6063539385795593,
+     "start": 25,
+     "end": 30
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6330954432487488,
+     "start": 60,
+     "end": 61
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9438760876655579,
+     "start": 61,
+     "end": 62
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9764065742492676,
+     "start": 65,
+     "end": 70
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.7503387928009033,
+     "start": 99,
+     "end": 100
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.44256269931793213,
+     "start": 101,
+     "end": 102
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.94780566294988,
+     "start": 4,
+     "end": 12
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.4436742812395096,
+     "start": 19,
+     "end": 23
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.3003774881362915,
+     "start": 90,
+     "end": 92
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8996814489364624,
+     "start": 0,
+     "end": 3
+    }
+   ],
+   [
+    {
+     "entity_group": "Lab_value",
+     "score": 0.3967393934726715,
+     "start": 43,
+     "end": 46
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.45842406153678894,
+     "start": 101,
+     "end": 102
+    }
+   ],
+   [
+    {
+     "entity_group": "Biological_structure",
+     "score": 0.41987937688827515,
+     "start": 27,
+     "end": 31
+    },
+    {
+     "entity_group": "Coreference",
+     "score": 0.23569895327091217,
+     "start": 31,
+     "end": 32
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9902772903442383,
+     "start": 37,
+     "end": 41
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8152326941490173,
+     "start": 77,
+     "end": 81
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.8457393050193787,
+     "start": 148,
+     "end": 149
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.692695140838623,
+     "start": 0,
+     "end": 5
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9994356433550516,
+     "start": 8,
+     "end": 11
+    }
+   ],
+   [
+    {
+     "entity_group": "Lab_value",
+     "score": 0.999427080154419,
+     "start": 0,
+     "end": 6
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8058588624000549,
+     "start": 24,
+     "end": 42
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9963485598564148,
+     "start": 61,
+     "end": 67
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7841501832008362,
+     "start": 77,
+     "end": 82
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9887059926986694,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6049054861068726,
+     "start": 3,
+     "end": 4
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9893712401390076,
+     "start": 6,
+     "end": 12
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9486696422100067,
+     "start": 0,
+     "end": 10
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.5396863222122192,
+     "start": 0,
+     "end": 6
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.834444522857666,
+     "start": 6,
+     "end": 15
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.7610389143228531,
+     "start": 5,
+     "end": 21
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.3745424747467041,
+     "start": 26,
+     "end": 28
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.29660484194755554,
+     "start": 28,
+     "end": 32
+    },
+    {
+     "entity_group": "Coreference",
+     "score": 0.16888011991977692,
+     "start": 35,
+     "end": 37
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.2101375013589859,
+     "start": 37,
+     "end": 39
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.15653224289417267,
+     "start": 39,
+     "end": 41
+    },
+    {
+     "entity_group": "Sign_symptom",
+     "score": 0.1199444830417633,
+     "start": 41,
+     "end": 43
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.20580454170703888,
+     "start": 46,
+     "end": 53
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.19100338220596313,
+     "start": 61,
+     "end": 64
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.1417188048362732,
+     "start": 64,
+     "end": 66
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9997670650482178,
+     "start": 10,
+     "end": 15
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9988570213317871,
+     "start": 16,
+     "end": 21
+    }
+   ],
+   [
+    {
+     "entity_group": "Lab_value",
+     "score": 0.8574684858322144,
+     "start": 18,
+     "end": 22
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9703628540039062,
+     "start": 37,
+     "end": 43
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9936919212341309,
+     "start": 46,
+     "end": 48
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9427200555801392,
+     "start": 48,
+     "end": 49
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6989720066388448,
+     "start": 54,
+     "end": 59
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.6324856281280518,
+     "start": 59,
+     "end": 60
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.4146045446395874,
+     "start": 60,
+     "end": 61
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9450090527534485,
+     "start": 0,
+     "end": 4
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8871186971664429,
+     "start": 10,
+     "end": 13
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9532444477081299,
+     "start": 0,
+     "end": 6
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.42135289311408997,
+     "start": 12,
+     "end": 16
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9951323866844177,
+     "start": 356,
+     "end": 363
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9793737133344015,
+     "start": 0,
+     "end": 9
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9565494656562805,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9997236728668213,
+     "start": 2,
+     "end": 7
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9731546839078268,
+     "start": 35,
+     "end": 50
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.7285479307174683,
+     "start": 0,
+     "end": 4
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5405457019805908,
+     "start": 18,
+     "end": 19
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9781119227409363,
+     "start": 24,
+     "end": 30
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.714019238948822,
+     "start": 75,
+     "end": 85
+    },
+    {
+     "entity_group": "Coreference",
+     "score": 0.9019966125488281,
+     "start": 106,
+     "end": 111
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5551286935806274,
+     "start": 134,
+     "end": 142
+    },
+    {
+     "entity_group": "Coreference",
+     "score": 0.8834527730941772,
+     "start": 165,
+     "end": 170
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9957287311553955,
+     "start": 174,
+     "end": 177
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8845182061195374,
+     "start": 4,
+     "end": 7
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.2023063451051712,
+     "start": 7,
+     "end": 9
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.5792456865310669,
+     "start": 9,
+     "end": 11
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9852734208106995,
+     "start": 16,
+     "end": 17
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.762566328048706,
+     "start": 17,
+     "end": 18
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.8649059534072876,
+     "start": 19,
+     "end": 20
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7550140023231506,
+     "start": 20,
+     "end": 21
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7786399722099304,
+     "start": 26,
+     "end": 27
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6252153515815735,
+     "start": 28,
+     "end": 29
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9879475831985474,
+     "start": 2,
+     "end": 7
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.4020804762840271,
+     "start": 9,
+     "end": 12
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.999932050704956,
+     "start": 30,
+     "end": 33
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9427068829536438,
+     "start": 34,
+     "end": 37
+    },
+    {
+     "entity_group": "Sign_symptom",
+     "score": 0.4963493347167969,
+     "start": 38,
+     "end": 42
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9947220087051392,
+     "start": 0,
+     "end": 5
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.3706343173980713,
+     "start": 6,
+     "end": 9
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6175922155380249,
+     "start": 49,
+     "end": 52
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7420458197593689,
+     "start": 62,
+     "end": 68
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9577726721763611,
+     "start": 0,
+     "end": 4
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.6094275514284769,
+     "start": 0,
+     "end": 7
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9815179705619812,
+     "start": 13,
+     "end": 17
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.739604115486145,
+     "start": 31,
+     "end": 32
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.6907905340194702,
+     "start": 35,
+     "end": 39
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9268820881843567,
+     "start": 42,
+     "end": 43
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9821406006813049,
+     "start": 50,
+     "end": 54
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8645846247673035,
+     "start": 58,
+     "end": 60
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9290894269943237,
+     "start": 73,
+     "end": 77
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.49644845724105835,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.4282030463218689,
+     "start": 2,
+     "end": 5
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.20976290851831436,
+     "start": 5,
+     "end": 11
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.20227797329425812,
+     "start": 11,
+     "end": 14
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6683305501937866,
+     "start": 18,
+     "end": 25
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8219107687473297,
+     "start": 32,
+     "end": 53
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9992603063583374,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9659416973590851,
+     "start": 2,
+     "end": 7
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.3101779818534851,
+     "start": 8,
+     "end": 9
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9898926913738251,
+     "start": 10,
+     "end": 25
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8812970519065857,
+     "start": 82,
+     "end": 84
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9650711417198181,
+     "start": 86,
+     "end": 90
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9333975911140442,
+     "start": 2,
+     "end": 7
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.999017596244812,
+     "start": 9,
+     "end": 17
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9567257761955261,
+     "start": 28,
+     "end": 35
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8456932902336121,
+     "start": 40,
+     "end": 41
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9938459992408752,
+     "start": 50,
+     "end": 67
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9101169109344482,
+     "start": 70,
+     "end": 72
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9993628859519958,
+     "start": 96,
+     "end": 98
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.7106874585151672,
+     "start": 2,
+     "end": 7
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9990911483764648,
+     "start": 9,
+     "end": 16
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.7851977944374084,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9889917969703674,
+     "start": 2,
+     "end": 7
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9995509386062622,
+     "start": 24,
+     "end": 27
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6686673760414124,
+     "start": 62,
+     "end": 63
+    }
+   ],
+   [
+    {
+     "entity_group": "Coreference",
+     "score": 0.7993499040603638,
+     "start": 24,
+     "end": 28
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.4970543682575226,
+     "start": 13,
+     "end": 15
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.5147528499364853,
+     "start": 15,
+     "end": 21
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9003884196281433,
+     "start": 22,
+     "end": 25
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8861990571022034,
+     "start": 29,
+     "end": 32
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7175576686859131,
+     "start": 40,
+     "end": 41
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9102965146303177,
+     "start": 48,
+     "end": 57
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5486851930618286,
+     "start": 58,
+     "end": 59
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.8125637769699097,
+     "start": 59,
+     "end": 60
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9779048562049866,
+     "start": 63,
+     "end": 65
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5975931286811829,
+     "start": 65,
+     "end": 66
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.8192681074142456,
+     "start": 71,
+     "end": 74
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.6097091883420944,
+     "start": 80,
+     "end": 83
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.4344477355480194,
+     "start": 89,
+     "end": 92
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9154549837112427,
+     "start": 96,
+     "end": 101
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9085728128751119,
+     "start": 109,
+     "end": 122
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.663601279258728,
+     "start": 124,
+     "end": 127
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.2668320834636688,
+     "start": 146,
+     "end": 149
+    },
+    {
+     "entity_group": "Sign_symptom",
+     "score": 0.2996921241283417,
+     "start": 153,
+     "end": 155
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.6741440370678902,
+     "start": 155,
+     "end": 166
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.41024768352508545,
+     "start": 166,
+     "end": 167
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9899710416793823,
+     "start": 0,
+     "end": 3
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.4350936710834503,
+     "start": 35,
+     "end": 37
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9947284758090973,
+     "start": 49,
+     "end": 60
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6366439014673233,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6986570358276367,
+     "start": 4,
+     "end": 6
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5708670616149902,
+     "start": 6,
+     "end": 10
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9854291081428528,
+     "start": 16,
+     "end": 17
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6709586381912231,
+     "start": 17,
+     "end": 18
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9756413698196411,
+     "start": 18,
+     "end": 19
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9110623598098755,
+     "start": 19,
+     "end": 24
+    }
+   ],
+   [
+    {
+     "entity_group": "Coreference",
+     "score": 0.5084071308374405,
+     "start": 4,
+     "end": 10
+    },
+    {
+     "entity_group": "Coreference",
+     "score": 0.4665079116821289,
+     "start": 31,
+     "end": 37
+    },
+    {
+     "entity_group": "Sign_symptom",
+     "score": 0.3677522540092468,
+     "start": 98,
+     "end": 102
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.47748640179634094,
+     "start": 107,
+     "end": 111
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.3018307760357857,
+     "start": 0,
+     "end": 4
+    },
+    {
+     "entity_group": "Coreference",
+     "score": 0.3115020990371704,
+     "start": 4,
+     "end": 5
+    },
+    {
+     "entity_group": "Sign_symptom",
+     "score": 0.5466449856758118,
+     "start": 8,
+     "end": 10
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.3031746670603752,
+     "start": 10,
+     "end": 13
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9550016522407532,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.5652516484260559,
+     "start": 1,
+     "end": 2
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.987618088722229,
+     "start": 2,
+     "end": 7
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.41480186581611633,
+     "start": 9,
+     "end": 11
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.999718964099884,
+     "start": 39,
+     "end": 47
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9993454217910767,
+     "start": 79,
+     "end": 87
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9255516976118088,
+     "start": 0,
+     "end": 8
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9982123374938965,
+     "start": 11,
+     "end": 13
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.560332179069519,
+     "start": 13,
+     "end": 15
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9539600610733032,
+     "start": 0,
+     "end": 3
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.999609132607778,
+     "start": 6,
+     "end": 23
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9957830905914307,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9194773634274801,
+     "start": 2,
+     "end": 12
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.6019925475120544,
+     "start": 2,
+     "end": 7
+    },
+    {
+     "entity_group": "Coreference",
+     "score": 0.38258039951324463,
+     "start": 20,
+     "end": 22
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9195170998573303,
+     "start": 34,
+     "end": 42
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6431086659431458,
+     "start": 51,
+     "end": 56
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8965340852737427,
+     "start": 59,
+     "end": 64
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7916293740272522,
+     "start": 75,
+     "end": 85
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7232384383678436,
+     "start": 86,
+     "end": 93
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.4750916361808777,
+     "start": 0,
+     "end": 4
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9899458885192871,
+     "start": 53,
+     "end": 58
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.6969230771064758,
+     "start": 61,
+     "end": 63
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6872411966323853,
+     "start": 63,
+     "end": 67
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8187587261199951,
+     "start": 2,
+     "end": 7
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9999016523361206,
+     "start": 20,
+     "end": 23
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9858483672142029,
+     "start": 46,
+     "end": 47
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.6720418035984039,
+     "start": 48,
+     "end": 52
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.7302645444869995,
+     "start": 9,
+     "end": 12
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9920047521591187,
+     "start": 14,
+     "end": 16
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9111587405204773,
+     "start": 16,
+     "end": 29
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.7081583142280579,
+     "start": 73,
+     "end": 74
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.8860844969749451,
+     "start": 75,
+     "end": 76
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9790715575218201,
+     "start": 83,
+     "end": 86
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.53944331407547,
+     "start": 86,
+     "end": 87
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.903856907572065,
+     "start": 92,
+     "end": 114
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.7417511940002441,
+     "start": 0,
+     "end": 10
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8244073688983917,
+     "start": 9,
+     "end": 15
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9187386631965637,
+     "start": 33,
+     "end": 35
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5280168503522873,
+     "start": 37,
+     "end": 46
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7790452837944031,
+     "start": 57,
+     "end": 60
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6883154511451721,
+     "start": 65,
+     "end": 68
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.49620094895362854,
+     "start": 76,
+     "end": 79
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.1824064999818802,
+     "start": 79,
+     "end": 82
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.35421091318130493,
+     "start": 84,
+     "end": 87
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.47046753764152527,
+     "start": 88,
+     "end": 92
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.14626628160476685,
+     "start": 131,
+     "end": 132
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9843692183494568,
+     "start": 0,
+     "end": 3
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.4484080374240875,
+     "start": 3,
+     "end": 4
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5370326042175293,
+     "start": 4,
+     "end": 9
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6325675845146179,
+     "start": 9,
+     "end": 15
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.44475534558296204,
+     "start": 4,
+     "end": 5
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.39038771390914917,
+     "start": 82,
+     "end": 90
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.49953487515449524,
+     "start": 108,
+     "end": 111
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.3036225289106369,
+     "start": 120,
+     "end": 131
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.16404011845588684,
+     "start": 131,
+     "end": 132
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.47730445861816406,
+     "start": 48,
+     "end": 51
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9969909191131592,
+     "start": 94,
+     "end": 106
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9611306190490723,
+     "start": 278,
+     "end": 285
+    },
+    {
+     "entity_group": "Sign_symptom",
+     "score": 0.8215041756629944,
+     "start": 388,
+     "end": 400
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9816842675209045,
+     "start": 0,
+     "end": 3
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9393382469813029,
+     "start": 6,
+     "end": 19
+    }
+   ],
+   [
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9549474716186523,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9977004677057266,
+     "start": 9,
+     "end": 25
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9975036978721619,
+     "start": 30,
+     "end": 58
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8884212225675583,
+     "start": 0,
+     "end": 11
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8322716355323792,
+     "start": 17,
+     "end": 20
+    }
+   ],
+   [
+    {
+     "entity_group": "Coreference",
+     "score": 0.4561496376991272,
+     "start": 6,
+     "end": 8
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.5682619512081146,
+     "start": 9,
+     "end": 22
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9587014317512512,
+     "start": 60,
+     "end": 63
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6040638089179993,
+     "start": 66,
+     "end": 70
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8181502819061279,
+     "start": 71,
+     "end": 77
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9275640249252319,
+     "start": 117,
+     "end": 122
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9726442098617554,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9225442409515381,
+     "start": 5,
+     "end": 7
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8060470223426819,
+     "start": 8,
+     "end": 13
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9759755730628967,
+     "start": 27,
+     "end": 29
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8979034423828125,
+     "start": 33,
+     "end": 38
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9997681379318237,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.880951464176178,
+     "start": 1,
+     "end": 2
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9995419979095459,
+     "start": 2,
+     "end": 7
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9636381044983864,
+     "start": 27,
+     "end": 48
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9682080745697021,
+     "start": 51,
+     "end": 52
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.8681920766830444,
+     "start": 61,
+     "end": 62
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9866943955421448,
+     "start": 68,
+     "end": 70
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8398253321647644,
+     "start": 87,
+     "end": 92
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.746054470539093,
+     "start": 124,
+     "end": 126
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9732354879379272,
+     "start": 141,
+     "end": 146
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9462705850601196,
+     "start": 4,
+     "end": 7
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9714224219322205,
+     "start": 8,
+     "end": 22
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.4846125543117523,
+     "start": 23,
+     "end": 25
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5934821863969167,
+     "start": 60,
+     "end": 66
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9158028364181519,
+     "start": 70,
+     "end": 73
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.781899631023407,
+     "start": 80,
+     "end": 81
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.496856689453125,
+     "start": 124,
+     "end": 125
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.7853603363037109,
+     "start": 129,
+     "end": 132
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8043832182884216,
+     "start": 139,
+     "end": 141
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9785332083702087,
+     "start": 155,
+     "end": 158
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6722104549407959,
+     "start": 178,
+     "end": 185
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.996516227722168,
+     "start": 193,
+     "end": 201
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.6732906699180603,
+     "start": 203,
+     "end": 206
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9825471043586731,
+     "start": 223,
+     "end": 226
+    },
+    {
+     "entity_group": "Coreference",
+     "score": 0.4306919276714325,
+     "start": 226,
+     "end": 229
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9287547469139099,
+     "start": 233,
+     "end": 235
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.619514524936676,
+     "start": 288,
+     "end": 293
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9191367626190186,
+     "start": 298,
+     "end": 301
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.990940511226654,
+     "start": 307,
+     "end": 310
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.980155885219574,
+     "start": 317,
+     "end": 319
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8871161341667175,
+     "start": 385,
+     "end": 388
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9693259596824646,
+     "start": 395,
+     "end": 397
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.771672248840332,
+     "start": 10,
+     "end": 17
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9915769696235657,
+     "start": 2,
+     "end": 7
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9837347865104675,
+     "start": 9,
+     "end": 13
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8426624536514282,
+     "start": 29,
+     "end": 31
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.5799614787101746,
+     "start": 38,
+     "end": 44
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.7997075915336609,
+     "start": 51,
+     "end": 53
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.45777377486228943,
+     "start": 58,
+     "end": 62
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9899618625640869,
+     "start": 68,
+     "end": 70
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9976682662963867,
+     "start": 101,
+     "end": 106
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.5258776545524597,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9920942783355713,
+     "start": 2,
+     "end": 7
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8215358257293701,
+     "start": 9,
+     "end": 14
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9315316081047058,
+     "start": 23,
+     "end": 27
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8826136390368143,
+     "start": 16,
+     "end": 26
+    }
+   ],
+   [
+    {
+     "entity_group": "Date",
+     "score": 0.8836772044499716,
+     "start": 21,
+     "end": 31
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9966593384742737,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9622403681278229,
+     "start": 2,
+     "end": 7
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9806549151738485,
+     "start": 10,
+     "end": 19
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7567627429962158,
+     "start": 21,
+     "end": 25
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9520848989486694,
+     "start": 44,
+     "end": 45
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9717094302177429,
+     "start": 47,
+     "end": 49
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6134743094444275,
+     "start": 10,
+     "end": 14
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9643492817878723,
+     "start": 0,
+     "end": 22
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8629173437754313,
+     "start": 0,
+     "end": 14
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8620072603225708,
+     "start": 15,
+     "end": 16
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9792258739471436,
+     "start": 21,
+     "end": 24
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.2817859351634979,
+     "start": 40,
+     "end": 42
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.39764365553855896,
+     "start": 49,
+     "end": 51
+    }
+   ],
+   [
+    {
+     "entity_group": "Disease_disorder",
+     "score": 0.4382321834564209,
+     "start": 0,
+     "end": 2
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.6040651202201843,
+     "start": 0,
+     "end": 3
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.5449427366256714,
+     "start": 6,
+     "end": 9
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.6877540349960327,
+     "start": 10,
+     "end": 12
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9995599389076233,
+     "start": 20,
+     "end": 21
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8299742341041565,
+     "start": 22,
+     "end": 26
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9954067667325338,
+     "start": 63,
+     "end": 75
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5725314021110535,
+     "start": 82,
+     "end": 86
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.33024927973747253,
+     "start": 87,
+     "end": 91
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.5789449214935303,
+     "start": 91,
+     "end": 92
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.7689881324768066,
+     "start": 93,
+     "end": 98
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9990454912185669,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9891149004300436,
+     "start": 4,
+     "end": 12
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6455118656158447,
+     "start": 0,
+     "end": 6
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6379040082295736,
+     "start": 13,
+     "end": 21
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.836089144150416,
+     "start": 26,
+     "end": 45
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.6425672272841135,
+     "start": 0,
+     "end": 7
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9168474674224854,
+     "start": 12,
+     "end": 13
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.59242182970047,
+     "start": 25,
+     "end": 26
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9996156692504883,
+     "start": 0,
+     "end": 8
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9977824687957764,
+     "start": 9,
+     "end": 14
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9995278716087341,
+     "start": 15,
+     "end": 22
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9673637747764587,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8242111802101135,
+     "start": 1,
+     "end": 2
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.999387800693512,
+     "start": 2,
+     "end": 7
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8287310004234314,
+     "start": 27,
+     "end": 29
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.35180041193962097,
+     "start": 33,
+     "end": 37
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.7879692912101746,
+     "start": 37,
+     "end": 38
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.6578816771507263,
+     "start": 4,
+     "end": 10
+    },
+    {
+     "entity_group": "Coreference",
+     "score": 0.4739968180656433,
+     "start": 21,
+     "end": 24
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7417522072792053,
+     "start": 34,
+     "end": 38
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7205703258514404,
+     "start": 47,
+     "end": 50
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5228523313999176,
+     "start": 71,
+     "end": 79
+    }
+   ],
+   [
+    {
+     "entity_group": "Therapeutic_procedure",
+     "score": 0.8388310670852661,
+     "start": 0,
+     "end": 6
+    },
+    {
+     "entity_group": "Therapeutic_procedure",
+     "score": 0.7745382264256477,
+     "start": 7,
+     "end": 16
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7779237031936646,
+     "start": 2,
+     "end": 7
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5318856835365295,
+     "start": 27,
+     "end": 30
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.20316338539123535,
+     "start": 35,
+     "end": 37
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.6605949461460113,
+     "start": 54,
+     "end": 70
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.4644131064414978,
+     "start": 0,
+     "end": 4
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.45816636085510254,
+     "start": 34,
+     "end": 38
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9446424603462219,
+     "start": 0,
+     "end": 16
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9642194509506226,
+     "start": 5,
+     "end": 7
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.5089738368988037,
+     "start": 7,
+     "end": 11
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8600909411907196,
+     "start": 12,
+     "end": 18
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.792064905166626,
+     "start": 20,
+     "end": 26
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9908164441585541,
+     "start": 30,
+     "end": 38
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.968521773815155,
+     "start": 45,
+     "end": 51
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.7840288877487183,
+     "start": 0,
+     "end": 7
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.7830240949988365,
+     "start": 12,
+     "end": 23
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.6313127875328064,
+     "start": 24,
+     "end": 26
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.7515952587127686,
+     "start": 26,
+     "end": 28
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5467182397842407,
+     "start": 0,
+     "end": 5
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.5667659044265747,
+     "start": 5,
+     "end": 9
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.28951168060302734,
+     "start": 10,
+     "end": 11
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8957851678133011,
+     "start": 14,
+     "end": 40
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9772371649742126,
+     "start": 0,
+     "end": 9
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.38130247592926025,
+     "start": 82,
+     "end": 86
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.7961359977722168,
+     "start": 0,
+     "end": 28
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9230582118034363,
+     "start": 48,
+     "end": 56
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.724219799041748,
+     "start": 65,
+     "end": 73
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7492691874504089,
+     "start": 96,
+     "end": 102
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5334576964378357,
+     "start": 103,
+     "end": 105
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6869961023330688,
+     "start": 145,
+     "end": 148
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.4817117154598236,
+     "start": 153,
+     "end": 154
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.6854605674743652,
+     "start": 289,
+     "end": 291
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8846047520637512,
+     "start": 291,
+     "end": 293
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9844197630882263,
+     "start": 377,
+     "end": 378
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.6335123777389526,
+     "start": 378,
+     "end": 381
+    }
+   ],
+   [
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9972121119499207,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5232129891713461,
+     "start": 3,
+     "end": 13
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9534083604812622,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.729915976524353,
+     "start": 2,
+     "end": 7
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.8760831952095032,
+     "start": 10,
+     "end": 11
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9969796240329742,
+     "start": 0,
+     "end": 6
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.6232115030288696,
+     "start": 9,
+     "end": 16
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6405287384986877,
+     "start": 0,
+     "end": 10
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9829291701316833,
+     "start": 10,
+     "end": 14
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9788525700569153,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8527002334594727,
+     "start": 1,
+     "end": 2
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9946115612983704,
+     "start": 2,
+     "end": 7
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9973803162574768,
+     "start": 9,
+     "end": 17
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6747202575206757,
+     "start": 24,
+     "end": 41
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.8266536593437195,
+     "start": 67,
+     "end": 69
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8725444078445435,
+     "start": 69,
+     "end": 72
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6725962162017822,
+     "start": 0,
+     "end": 3
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.3472452163696289,
+     "start": 8,
+     "end": 10
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7511968016624451,
+     "start": 26,
+     "end": 29
+    },
+    {
+     "entity_group": "Disease_disorder",
+     "score": 0.2004363089799881,
+     "start": 34,
+     "end": 36
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6653606742620468,
+     "start": 42,
+     "end": 44
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5232315063476562,
+     "start": 44,
+     "end": 49
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7357954978942871,
+     "start": 50,
+     "end": 52
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5557973325252533,
+     "start": 55,
+     "end": 71
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.16470666229724884,
+     "start": 71,
+     "end": 72
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8488360345363617,
+     "start": 4,
+     "end": 21
+    },
+    {
+     "entity_group": "Therapeutic_procedure",
+     "score": 0.3069024384021759,
+     "start": 55,
+     "end": 57
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.39635908603668213,
+     "start": 63,
+     "end": 67
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8182671070098877,
+     "start": 78,
+     "end": 80
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8410216768582662,
+     "start": 84,
+     "end": 93
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9388853311538696,
+     "start": 0,
+     "end": 2
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6746056228876114,
+     "start": 6,
+     "end": 13
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5196482539176941,
+     "start": 42,
+     "end": 45
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5903072953224182,
+     "start": 5,
+     "end": 13
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8678272763888041,
+     "start": 14,
+     "end": 25
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.39348262548446655,
+     "start": 37,
+     "end": 40
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5603559017181396,
+     "start": 64,
+     "end": 66
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.712866485118866,
+     "start": 94,
+     "end": 96
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8629626035690308,
+     "start": 101,
+     "end": 109
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.22649632394313812,
+     "start": 122,
+     "end": 125
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7843373417854309,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9262150327364603,
+     "start": 8,
+     "end": 14
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8645933270454407,
+     "start": 19,
+     "end": 23
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9989866018295288,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9014942646026611,
+     "start": 15,
+     "end": 17
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5215522050857544,
+     "start": 18,
+     "end": 21
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5953847169876099,
+     "start": 23,
+     "end": 25
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.983948290348053,
+     "start": 29,
+     "end": 30
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9749568700790405,
+     "start": 38,
+     "end": 45
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.47586897015571594,
+     "start": 51,
+     "end": 54
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9551984667778015,
+     "start": 59,
+     "end": 62
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9945870637893677,
+     "start": 71,
+     "end": 76
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6511126160621643,
+     "start": 77,
+     "end": 83
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.929980456829071,
+     "start": 87,
+     "end": 90
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8523706197738647,
+     "start": 97,
+     "end": 102
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6682926416397095,
+     "start": 111,
+     "end": 113
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9411940574645996,
+     "start": 125,
+     "end": 129
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.6113501191139221,
+     "start": 132,
+     "end": 134
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.7746201455593109,
+     "start": 152,
+     "end": 156
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9561201333999634,
+     "start": 159,
+     "end": 162
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9439259171485901,
+     "start": 163,
+     "end": 180
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9986051321029663,
+     "start": 184,
+     "end": 187
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9674140214920044,
+     "start": 194,
+     "end": 200
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9659193754196167,
+     "start": 0,
+     "end": 1
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.990616500377655,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7590709328651428,
+     "start": 4,
+     "end": 6
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.6203054785728455,
+     "start": 7,
+     "end": 12
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9477737545967102,
+     "start": 26,
+     "end": 28
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6819181442260742,
+     "start": 32,
+     "end": 37
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.7646720707416534,
+     "start": 0,
+     "end": 4
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9291232228279114,
+     "start": 7,
+     "end": 12
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.6110285520553589,
+     "start": 12,
+     "end": 13
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.7693865299224854,
+     "start": 13,
+     "end": 18
+    }
+   ],
+   [
+    {
+     "entity_group": "Coreference",
+     "score": 0.48913514614105225,
+     "start": 7,
+     "end": 11
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.999845564365387,
+     "start": 16,
+     "end": 18
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8950280547142029,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9374210238456726,
+     "start": 9,
+     "end": 25
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.307677686214447,
+     "start": 18,
+     "end": 20
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7005536496639252,
+     "start": 20,
+     "end": 32
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.4228771924972534,
+     "start": 56,
+     "end": 58
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.6120829284191132,
+     "start": 61,
+     "end": 65
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.914349377155304,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7370245456695557,
+     "start": 1,
+     "end": 2
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8943025469779968,
+     "start": 2,
+     "end": 5
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.4633302539587021,
+     "start": 5,
+     "end": 9
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.4039984345436096,
+     "start": 12,
+     "end": 13
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5162285566329956,
+     "start": 39,
+     "end": 42
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.719044640660286,
+     "start": 0,
+     "end": 4
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.6859474778175354,
+     "start": 5,
+     "end": 7
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9997050166130066,
+     "start": 12,
+     "end": 18
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.998578667640686,
+     "start": 22,
+     "end": 24
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9807831048965454,
+     "start": 28,
+     "end": 34
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9945224523544312,
+     "start": 49,
+     "end": 52
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8572855591773987,
+     "start": 54,
+     "end": 59
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.7303583025932312,
+     "start": 64,
+     "end": 65
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.6638978719711304,
+     "start": 74,
+     "end": 75
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8020942211151123,
+     "start": 86,
+     "end": 94
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8852166533470154,
+     "start": 111,
+     "end": 119
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9315366744995117,
+     "start": 0,
+     "end": 2
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6113226115703583,
+     "start": 0,
+     "end": 3
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8425176441669464,
+     "start": 6,
+     "end": 14
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6942336559295654,
+     "start": 16,
+     "end": 21
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9881510138511658,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9991554021835327,
+     "start": 2,
+     "end": 7
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9999085664749146,
+     "start": 26,
+     "end": 29
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8740708827972412,
+     "start": 0,
+     "end": 3
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6310885846614838,
+     "start": 4,
+     "end": 10
+    }
+   ],
+   [
+    {
+     "entity_group": "Other_event",
+     "score": 0.346638560295105,
+     "start": 10,
+     "end": 16
+    },
+    {
+     "entity_group": "Other_event",
+     "score": 0.3632580637931824,
+     "start": 17,
+     "end": 19
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8314893245697021,
+     "start": 28,
+     "end": 37
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5047335624694824,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.970125138759613,
+     "start": 2,
+     "end": 7
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9768795371055603,
+     "start": 31,
+     "end": 33
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9376316070556641,
+     "start": 33,
+     "end": 37
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9970975518226624,
+     "start": 39,
+     "end": 43
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.463077574968338,
+     "start": 55,
+     "end": 57
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.988095223903656,
+     "start": 60,
+     "end": 64
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.710242509841919,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8597494959831238,
+     "start": 2,
+     "end": 7
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9795181155204773,
+     "start": 9,
+     "end": 15
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9989268183708191,
+     "start": 23,
+     "end": 29
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9352670907974243,
+     "start": 33,
+     "end": 34
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9996247887611389,
+     "start": 40,
+     "end": 44
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9878982901573181,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9998682936032613,
+     "start": 4,
+     "end": 18
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5013834238052368,
+     "start": 0,
+     "end": 3
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7069180011749268,
+     "start": 6,
+     "end": 11
+    },
+    {
+     "entity_group": "Sign_symptom",
+     "score": 0.7498085498809814,
+     "start": 12,
+     "end": 16
+    },
+    {
+     "entity_group": "Sign_symptom",
+     "score": 0.8186913728713989,
+     "start": 17,
+     "end": 26
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9658982157707214,
+     "start": 0,
+     "end": 1
+    }
+   ],
+   [
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9802491664886475,
+     "start": 18,
+     "end": 20
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6970899701118469,
+     "start": 21,
+     "end": 24
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5669379234313965,
+     "start": 28,
+     "end": 31
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.1831888109445572,
+     "start": 8,
+     "end": 10
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6850897967815399,
+     "start": 55,
+     "end": 60
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9928145408630371,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9988681674003601,
+     "start": 2,
+     "end": 7
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9631430506706238,
+     "start": 9,
+     "end": 13
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9991118907928467,
+     "start": 23,
+     "end": 28
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.7723490595817566,
+     "start": 29,
+     "end": 34
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8926781415939331,
+     "start": 0,
+     "end": 2
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9430572986602783,
+     "start": 0,
+     "end": 5
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7560267448425293,
+     "start": 9,
+     "end": 10
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9229055047035217,
+     "start": 10,
+     "end": 11
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9714590112368265,
+     "start": 14,
+     "end": 22
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9390262365341187,
+     "start": 40,
+     "end": 41
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9575672547022501,
+     "start": 44,
+     "end": 52
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9922959804534912,
+     "start": 10,
+     "end": 16
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9877639412879944,
+     "start": 5,
+     "end": 7
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8048789203166962,
+     "start": 7,
+     "end": 11
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9633579850196838,
+     "start": 12,
+     "end": 18
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8866327404975891,
+     "start": 19,
+     "end": 25
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9823445677757263,
+     "start": 26,
+     "end": 31
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8189745545387268,
+     "start": 32,
+     "end": 34
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7652634779612223,
+     "start": 0,
+     "end": 3
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7517926096916199,
+     "start": 4,
+     "end": 10
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9854061007499695,
+     "start": 31,
+     "end": 32
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9007179141044617,
+     "start": 33,
+     "end": 44
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6515635997056961,
+     "start": 63,
+     "end": 65
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7021614611148834,
+     "start": 65,
+     "end": 71
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.3945786952972412,
+     "start": 73,
+     "end": 74
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9223551750183105,
+     "start": 0,
+     "end": 6
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.6935228258371353,
+     "start": 6,
+     "end": 21
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.370118111371994,
+     "start": 0,
+     "end": 8
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7408584356307983,
+     "start": 9,
+     "end": 15
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9694104194641113,
+     "start": 61,
+     "end": 69
+    }
+   ],
+   [
+    {
+     "entity_group": "Coreference",
+     "score": 0.6025373935699463,
+     "start": 4,
+     "end": 6
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5223419666290283,
+     "start": 22,
+     "end": 26
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.5535597205162048,
+     "start": 39,
+     "end": 41
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5329746007919312,
+     "start": 86,
+     "end": 90
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.27083009481430054,
+     "start": 122,
+     "end": 125
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.983857776437487,
+     "start": 0,
+     "end": 25
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9969634016354879,
+     "start": 0,
+     "end": 18
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8719536066055298,
+     "start": 34,
+     "end": 41
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9830459356307983,
+     "start": 52,
+     "end": 57
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9919424057006836,
+     "start": 63,
+     "end": 65
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9578447937965393,
+     "start": 77,
+     "end": 79
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.3548668920993805,
+     "start": 99,
+     "end": 102
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.4971019923686981,
+     "start": 106,
+     "end": 119
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.39850765466690063,
+     "start": 119,
+     "end": 120
+    }
+   ],
+   [
+    {
+     "entity_group": "Disease_disorder",
+     "score": 0.43943852186203003,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "Disease_disorder",
+     "score": 0.6611615419387817,
+     "start": 1,
+     "end": 2
+    }
+   ],
+   [
+    {
+     "entity_group": "Therapeutic_procedure",
+     "score": 0.7483927011489868,
+     "start": 0,
+     "end": 6
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6425325572490692,
+     "start": 6,
+     "end": 13
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9491173028945923,
+     "start": 19,
+     "end": 27
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9757925271987915,
+     "start": 38,
+     "end": 48
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9819276332855225,
+     "start": 60,
+     "end": 66
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.5660251975059509,
+     "start": 0,
+     "end": 3
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.7626008689403534,
+     "start": 6,
+     "end": 9
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.6914774179458618,
+     "start": 10,
+     "end": 12
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.7195804715156555,
+     "start": 20,
+     "end": 29
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.482098713517189,
+     "start": 29,
+     "end": 33
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9608998000621796,
+     "start": 36,
+     "end": 41
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9897079269091288,
+     "start": 72,
+     "end": 84
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.7626191079616547,
+     "start": 96,
+     "end": 101
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9505947232246399,
+     "start": 102,
+     "end": 107
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9638606309890747,
+     "start": 2,
+     "end": 7
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7533332705497742,
+     "start": 33,
+     "end": 35
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6475368738174438,
+     "start": 39,
+     "end": 42
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9857744773228964,
+     "start": 51,
+     "end": 62
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9525347948074341,
+     "start": 68,
+     "end": 73
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9988447427749634,
+     "start": 74,
+     "end": 79
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.5214506387710571,
+     "start": 80,
+     "end": 82
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.8299704194068909,
+     "start": 104,
+     "end": 105
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7969261407852173,
+     "start": 0,
+     "end": 3
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.7799624800682068,
+     "start": 4,
+     "end": 7
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9997345209121704,
+     "start": 8,
+     "end": 9
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5948153734207153,
+     "start": 10,
+     "end": 12
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.48855698108673096,
+     "start": 42,
+     "end": 44
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.4519234001636505,
+     "start": 44,
+     "end": 47
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.22141948342323303,
+     "start": 58,
+     "end": 61
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9726679921150208,
+     "start": 76,
+     "end": 80
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8835960924625397,
+     "start": 81,
+     "end": 88
+    },
+    {
+     "entity_group": "Sign_symptom",
+     "score": 0.9975839853286743,
+     "start": 138,
+     "end": 145
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.4195394814014435,
+     "start": 5,
+     "end": 7
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.7179151177406311,
+     "start": 22,
+     "end": 29
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6452187498410543,
+     "start": 34,
+     "end": 40
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5689841508865356,
+     "start": 43,
+     "end": 46
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6370074152946472,
+     "start": 66,
+     "end": 68
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6807815432548523,
+     "start": 70,
+     "end": 82
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7919071316719055,
+     "start": 89,
+     "end": 92
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.21909625828266144,
+     "start": 125,
+     "end": 128
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.25816619396209717,
+     "start": 130,
+     "end": 133
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7968392372131348,
+     "start": 147,
+     "end": 150
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6149520874023438,
+     "start": 167,
+     "end": 168
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.3011060655117035,
+     "start": 200,
+     "end": 203
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7573342323303223,
+     "start": 212,
+     "end": 219
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.40793731808662415,
+     "start": 227,
+     "end": 229
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.4331829249858856,
+     "start": 231,
+     "end": 232
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9997064633802935,
+     "start": 0,
+     "end": 34
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9982175230979919,
+     "start": 0,
+     "end": 6
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9961249828338623,
+     "start": 7,
+     "end": 11
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.6637056767940521,
+     "start": 28,
+     "end": 35
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9618637561798096,
+     "start": 0,
+     "end": 3
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.6433385610580444,
+     "start": 5,
+     "end": 10
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.3600436747074127,
+     "start": 12,
+     "end": 14
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6462618708610535,
+     "start": 22,
+     "end": 24
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7779355645179749,
+     "start": 25,
+     "end": 28
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.4266110807657242,
+     "start": 30,
+     "end": 35
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.43613237142562866,
+     "start": 46,
+     "end": 49
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7033060193061829,
+     "start": 53,
+     "end": 56
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.27586114406585693,
+     "start": 56,
+     "end": 58
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5772096142172813,
+     "start": 60,
+     "end": 70
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8068774938583374,
+     "start": 0,
+     "end": 4
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5882992744445801,
+     "start": 12,
+     "end": 13
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.8325968384742737,
+     "start": 17,
+     "end": 18
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.536047101020813,
+     "start": 22,
+     "end": 23
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9799706935882568,
+     "start": 27,
+     "end": 28
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.982772707939148,
+     "start": 37,
+     "end": 38
+    }
+   ],
+   [
+    {
+     "entity_group": "Biological_structure",
+     "score": 0.9032682180404663,
+     "start": 9,
+     "end": 12
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8865658640861511,
+     "start": 16,
+     "end": 17
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7800927857557932,
+     "start": 17,
+     "end": 26
+    }
+   ],
+   [
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9437905550003052,
+     "start": 9,
+     "end": 14
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9988468289375305,
+     "start": 0,
+     "end": 6
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9275663495063782,
+     "start": 0,
+     "end": 2
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9004197120666504,
+     "start": 0,
+     "end": 6
+    }
+   ],
+   [
+    {
+     "entity_group": "Lab_value",
+     "score": 0.4247742295265198,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6188323497772217,
+     "start": 3,
+     "end": 4
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9937262336413065,
+     "start": 4,
+     "end": 13
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.8317881226539612,
+     "start": 14,
+     "end": 15
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.45370912551879883,
+     "start": 18,
+     "end": 19
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7834266622861227,
+     "start": 20,
+     "end": 25
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.4334062337875366,
+     "start": 27,
+     "end": 28
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.6673358082771301,
+     "start": 49,
+     "end": 50
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.5212914943695068,
+     "start": 51,
+     "end": 52
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.3631674647331238,
+     "start": 58,
+     "end": 61
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7484495639801025,
+     "start": 0,
+     "end": 6
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9912739992141724,
+     "start": 30,
+     "end": 31
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.3247581422328949,
+     "start": 33,
+     "end": 37
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9825169444084167,
+     "start": 42,
+     "end": 43
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6543983221054077,
+     "start": 46,
+     "end": 51
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.5915526151657104,
+     "start": 76,
+     "end": 77
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7786071641104562,
+     "start": 0,
+     "end": 20
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7882277965545654,
+     "start": 21,
+     "end": 26
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7664734636034284,
+     "start": 30,
+     "end": 47
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.998552680015564,
+     "start": 2,
+     "end": 7
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.791596531867981,
+     "start": 32,
+     "end": 37
+    }
+   ],
+   [
+    {
+     "entity_group": "Lab_value",
+     "score": 0.36411920189857483,
+     "start": 14,
+     "end": 15
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5089007019996643,
+     "start": 19,
+     "end": 20
+    },
+    {
+     "entity_group": "Therapeutic_procedure",
+     "score": 0.4575609266757965,
+     "start": 20,
+     "end": 22
+    },
+    {
+     "entity_group": "Coreference",
+     "score": 0.48076266050338745,
+     "start": 22,
+     "end": 25
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8479823470115662,
+     "start": 0,
+     "end": 5
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8556007146835327,
+     "start": 6,
+     "end": 11
+    }
+   ],
+   [
+    {
+     "entity_group": "Lab_value",
+     "score": 0.561258852481842,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9754946827888489,
+     "start": 5,
+     "end": 6
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.42011746764183044,
+     "start": 6,
+     "end": 9
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.7775313854217529,
+     "start": 52,
+     "end": 53
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.4578775465488434,
+     "start": 84,
+     "end": 85
+    }
+   ],
+   [
+    {
+     "entity_group": "Disease_disorder",
+     "score": 0.8310213685035706,
+     "start": 3,
+     "end": 5
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "Lab_value",
+     "score": 0.8367692232131958,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9980455040931702,
+     "start": 24,
+     "end": 27
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9473863840103149,
+     "start": 56,
+     "end": 57
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.7056471705436707,
+     "start": 62,
+     "end": 63
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.8867431879043579,
+     "start": 81,
+     "end": 82
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.741120457649231,
+     "start": 103,
+     "end": 104
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "Lab_value",
+     "score": 0.8497569561004639,
+     "start": 7,
+     "end": 8
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9485969543457031,
+     "start": 8,
+     "end": 9
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.91861492395401,
+     "start": 9,
+     "end": 12
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9938647747039795,
+     "start": 66,
+     "end": 67
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9878177046775818,
+     "start": 91,
+     "end": 92
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8464738527933756,
+     "start": 0,
+     "end": 7
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9262068867683411,
+     "start": 32,
+     "end": 35
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9953388571739197,
+     "start": 54,
+     "end": 57
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9267534613609314,
+     "start": 66,
+     "end": 67
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.497459352016449,
+     "start": 68,
+     "end": 72
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9980484843254089,
+     "start": 73,
+     "end": 74
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9892710447311401,
+     "start": 2,
+     "end": 7
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.7867512702941895,
+     "start": 9,
+     "end": 12
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9797936677932739,
+     "start": 19,
+     "end": 21
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7067280411720276,
+     "start": 0,
+     "end": 5
+    },
+    {
+     "entity_group": "Other_entity",
+     "score": 0.47266916185617447,
+     "start": 6,
+     "end": 9
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.17940661311149597,
+     "start": 9,
+     "end": 10
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.7840197086334229,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9973374009132385,
+     "start": 6,
+     "end": 7
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.46537670493125916,
+     "start": 7,
+     "end": 10
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.6493672728538513,
+     "start": 28,
+     "end": 29
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.8882884383201599,
+     "start": 53,
+     "end": 54
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.45442429184913635,
+     "start": 85,
+     "end": 86
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.920640230178833,
+     "start": 0,
+     "end": 3
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8305957615375519,
+     "start": 4,
+     "end": 10
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6096155047416687,
+     "start": 58,
+     "end": 60
+    }
+   ],
+   [
+    {
+     "entity_group": "Coreference",
+     "score": 0.9764987826347351,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "Coreference",
+     "score": 0.985069215297699,
+     "start": 2,
+     "end": 4
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7300969958305359,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.963779091835022,
+     "start": 2,
+     "end": 6
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6928446292877197,
+     "start": 21,
+     "end": 23
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.837040901184082,
+     "start": 5,
+     "end": 11
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5725311040878296,
+     "start": 20,
+     "end": 23
+    },
+    {
+     "entity_group": "Sign_symptom",
+     "score": 0.7809013724327087,
+     "start": 25,
+     "end": 28
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.970565915107727,
+     "start": 31,
+     "end": 33
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9992325305938721,
+     "start": 59,
+     "end": 67
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8004557490348816,
+     "start": 0,
+     "end": 5
+    }
+   ],
+   [
+    {
+     "entity_group": "Other_entity",
+     "score": 0.6622185111045837,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7944259345531464,
+     "start": 3,
+     "end": 6
+    },
+    {
+     "entity_group": "Other_entity",
+     "score": 0.745324432849884,
+     "start": 7,
+     "end": 9
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.6609228253364563,
+     "start": 10,
+     "end": 11
+    },
+    {
+     "entity_group": "Other_entity",
+     "score": 0.8025373816490173,
+     "start": 11,
+     "end": 12
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9930854439735413,
+     "start": 0,
+     "end": 6
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8588955402374268,
+     "start": 7,
+     "end": 15
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7717066705226898,
+     "start": 67,
+     "end": 72
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5930505990982056,
+     "start": 1,
+     "end": 4
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.4436902403831482,
+     "start": 4,
+     "end": 5
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5196669846773148,
+     "start": 5,
+     "end": 11
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9547770619392395,
+     "start": 14,
+     "end": 17
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.6645216345787048,
+     "start": 18,
+     "end": 19
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9756100177764893,
+     "start": 0,
+     "end": 17
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9805681705474854,
+     "start": 2,
+     "end": 5
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.666601836681366,
+     "start": 9,
+     "end": 12
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9733760356903076,
+     "start": 33,
+     "end": 37
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.7341735363006592,
+     "start": 41,
+     "end": 42
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8482187986373901,
+     "start": 42,
+     "end": 47
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7543124556541443,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.8895248174667358,
+     "start": 8,
+     "end": 12
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9996641278266907,
+     "start": 25,
+     "end": 26
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7187970479329427,
+     "start": 47,
+     "end": 57
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.744471033414205,
+     "start": 63,
+     "end": 77
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.5371271371841431,
+     "start": 9,
+     "end": 13
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.5630854815244675,
+     "start": 16,
+     "end": 20
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.960057258605957,
+     "start": 38,
+     "end": 44
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.47571219503879547,
+     "start": 47,
+     "end": 51
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.8603340983390808,
+     "start": 69,
+     "end": 75
+    },
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.4384279400110245,
+     "start": 78,
+     "end": 82
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9981750845909119,
+     "start": 4,
+     "end": 5
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7296785712242126,
+     "start": 9,
+     "end": 14
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.7579575777053833,
+     "start": 15,
+     "end": 18
+    }
+   ],
+   [
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.5519558191299438,
+     "start": 3,
+     "end": 5
+    },
+    {
+     "entity_group": "Lab_value",
+     "score": 0.9924135208129883,
+     "start": 11,
+     "end": 15
+    }
+   ],
+   [
+    {
+     "entity_group": "Diagnostic_procedure",
+     "score": 0.9978774785995483,
+     "start": 2,
+     "end": 7
+    },
+    {
+     "entity_group": "Detailed_description",
+     "score": 0.9231133460998535,
+     "start": 9,
+     "end": 12
+    }
+   ]
+  ],
+  "spanTexts": 200,
+  "spans": 784,
+  "maxAbsScoreDiff": 0.000013709068298339844,
+  "textStats": {
+   "cases": 200,
+   "calls": 200,
+   "inputMismatch": 0,
+   "rows": 200,
+   "bitDiffRows": 0,
+   "batchRows": 0,
+   "batchVsSingleDiffRows": 0
+  }
+ },
+ "gpuErrors": []
+}

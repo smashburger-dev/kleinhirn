@@ -1,5 +1,5 @@
 {{ENABLE}}// C[M,N] = A[M,K] * W[N,K]^T + B[N]. Row-major storage, 16x16 tiles,
-// f32 accumulation. ACT: 0 none, 1 relu, 2 gelu (erf, Abramowitz-Stegun 7.1.26).
+// f32 accumulation. ACT: 0 none, 1 relu, 2 gelu (erf, Abramowitz-Stegun 7.1.26), 3 tanh, 4 silu.
 
 override M: u32 = 1u;
 override N: u32 = 1u;
@@ -26,6 +26,8 @@ fn activate(v: f32) -> f32 {
     let e = 1.0 - p * exp(-u * u);
     return 0.5 * v * (1.0 + select(-e, e, v >= 0.0));
   }
+  if (ACT == 3u) { return tanh(v); }
+  if (ACT == 4u) { return v / (1.0 + exp(-v)); }
   return v;
 }
 

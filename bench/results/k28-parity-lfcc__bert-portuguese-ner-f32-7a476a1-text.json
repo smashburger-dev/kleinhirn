@@ -1,0 +1,766 @@
+{
+ "date": "2026-10-01",
+ "run_id": "k28-parity-lfcc__bert-portuguese-ner-f32-7a476a1-text-1790836868244",
+ "commit": "7a476a1",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "5.82",
+ "loadAvgEnd": "5.54 5.82 5.59",
+ "stage": "done",
+ "model": "lfcc__bert-portuguese-ner",
+ "precision": "f32",
+ "task": "token-classification",
+ "info": {
+  "precision": "f32",
+  "buildId": "mup3g5ui",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "bert",
+  "task": "token-classification",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 367457324,
+  "downloadBytes": 433382381,
+  "loadTiming": {
+   "fetchMs": 603.1000000014901,
+   "bodyMs": 2120.1000000089407,
+   "sha256Ms": 235.19999999552965,
+   "uploadMs": 90.39999999850988,
+   "embedJoinMs": 9.600000001490116,
+   "manifestMs": 2.600000001490116,
+   "planMs": 2.7000000029802322
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "spanExactAgreement": 1,
+  "spansGot": [
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "Pessoa",
+     "score": 0.5268532037734985,
+     "start": 5,
+     "end": 7
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.5809834599494934,
+     "start": 7,
+     "end": 11
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "Pessoa",
+     "score": 0.66603022813797,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.700305163860321,
+     "start": 2,
+     "end": 5
+    }
+   ],
+   [
+    {
+     "entity_group": "Pessoa",
+     "score": 0.7522915005683899,
+     "start": 16,
+     "end": 17
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.840724527835846,
+     "start": 17,
+     "end": 18
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.7188491225242615,
+     "start": 18,
+     "end": 20
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.7124985456466675,
+     "start": 20,
+     "end": 21
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "Pessoa",
+     "score": 0.682438313961029,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.8146430850028992,
+     "start": 1,
+     "end": 12
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "Pessoa",
+     "score": 0.6166810989379883,
+     "start": 1,
+     "end": 2
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "Pessoa",
+     "score": 0.536460667848587,
+     "start": 13,
+     "end": 17
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "Pessoa",
+     "score": 0.5921528339385986,
+     "start": 39,
+     "end": 43
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.8143359763281686,
+     "start": 47,
+     "end": 60
+    }
+   ],
+   [
+    {
+     "entity_group": "Pessoa",
+     "score": 0.6783363819122314,
+     "start": 19,
+     "end": 20
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.5839305520057678,
+     "start": 20,
+     "end": 22
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.555440346399943,
+     "start": 27,
+     "end": 36
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "Pessoa",
+     "score": 0.8054532408714294,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.7267375737428665,
+     "start": 2,
+     "end": 9
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "Pessoa",
+     "score": 0.5575122237205505,
+     "start": 78,
+     "end": 80
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.46057143807411194,
+     "start": 80,
+     "end": 82
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.6258255839347839,
+     "start": 85,
+     "end": 86
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.6613536477088928,
+     "start": 86,
+     "end": 87
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.6315703392028809,
+     "start": 87,
+     "end": 88
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.5996803641319275,
+     "start": 88,
+     "end": 89
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.621343195438385,
+     "start": 89,
+     "end": 91
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "Pessoa",
+     "score": 0.7909696102142334,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.9003876447677612,
+     "start": 2,
+     "end": 5
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.8718328475952148,
+     "start": 5,
+     "end": 8
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.7209711670875549,
+     "start": 8,
+     "end": 9
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.7712132334709167,
+     "start": 9,
+     "end": 11
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.6643280386924744,
+     "start": 11,
+     "end": 14
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "Pessoa",
+     "score": 0.840603232383728,
+     "start": 4,
+     "end": 5
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.7560007572174072,
+     "start": 5,
+     "end": 8
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.8726841807365417,
+     "start": 8,
+     "end": 39
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "Pessoa",
+     "score": 0.42644816637039185,
+     "start": 31,
+     "end": 34
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.37140658497810364,
+     "start": 34,
+     "end": 37
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "Pessoa",
+     "score": 0.5385279357433319,
+     "start": 262,
+     "end": 267
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "Pessoa",
+     "score": 0.5388992428779602,
+     "start": 31,
+     "end": 34
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "Pessoa",
+     "score": 0.4557942748069763,
+     "start": 16,
+     "end": 18
+    }
+   ],
+   [
+    {
+     "entity_group": "Data",
+     "score": 0.992550253868103,
+     "start": 21,
+     "end": 24
+    },
+    {
+     "entity_group": "Data",
+     "score": 0.9925865530967712,
+     "start": 24,
+     "end": 25
+    },
+    {
+     "entity_group": "Data",
+     "score": 0.9912256598472595,
+     "start": 25,
+     "end": 26
+    },
+    {
+     "entity_group": "Data",
+     "score": 0.9921708703041077,
+     "start": 26,
+     "end": 28
+    },
+    {
+     "entity_group": "Data",
+     "score": 0.9749630689620972,
+     "start": 28,
+     "end": 29
+    },
+    {
+     "entity_group": "Data",
+     "score": 0.9671492576599121,
+     "start": 29,
+     "end": 31
+    }
+   ],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "Pessoa",
+     "score": 0.6212590336799622,
+     "start": 17,
+     "end": 20
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.5013913512229919,
+     "start": 21,
+     "end": 23
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.4891163408756256,
+     "start": 23,
+     "end": 26
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "Pessoa",
+     "score": 0.9914522767066956,
+     "start": 17,
+     "end": 20
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.9908233284950256,
+     "start": 20,
+     "end": 21
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.9912170767784119,
+     "start": 22,
+     "end": 24
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.9911455512046814,
+     "start": 24,
+     "end": 26
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.9892828464508057,
+     "start": 26,
+     "end": 29
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "Pessoa",
+     "score": 0.9659748077392578,
+     "start": 17,
+     "end": 18
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.9822819828987122,
+     "start": 18,
+     "end": 21
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.9764172434806824,
+     "start": 21,
+     "end": 23
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.9302395582199097,
+     "start": 23,
+     "end": 34
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "Pessoa",
+     "score": 0.8182648420333862,
+     "start": 3,
+     "end": 6
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.8662047982215881,
+     "start": 6,
+     "end": 9
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.543204665184021,
+     "start": 9,
+     "end": 10
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "Pessoa",
+     "score": 0.49025630950927734,
+     "start": 10,
+     "end": 14
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "Pessoa",
+     "score": 0.8415757417678833,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.7663670480251312,
+     "start": 2,
+     "end": 10
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "Pessoa",
+     "score": 0.5058762431144714,
+     "start": 30,
+     "end": 33
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "Pessoa",
+     "score": 0.4857352077960968,
+     "start": 138,
+     "end": 145
+    }
+   ],
+   [
+    {
+     "entity_group": "Pessoa",
+     "score": 0.8720383048057556,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.8662649061944749,
+     "start": 1,
+     "end": 21
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "Pessoa",
+     "score": 0.9898610711097717,
+     "start": 0,
+     "end": 3
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.9883877635002136,
+     "start": 3,
+     "end": 6
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.9883302648862203,
+     "start": 6,
+     "end": 16
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.987762987613678,
+     "start": 46,
+     "end": 49
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.9221584796905518,
+     "start": 49,
+     "end": 60
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "Pessoa",
+     "score": 0.49163058400154114,
+     "start": 21,
+     "end": 23
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "Pessoa",
+     "score": 0.9233407974243164,
+     "start": 0,
+     "end": 2
+    },
+    {
+     "entity_group": "Pessoa",
+     "score": 0.905376672744751,
+     "start": 2,
+     "end": 16
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "Pessoa",
+     "score": 0.4806124269962311,
+     "start": 7,
+     "end": 10
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   []
+  ],
+  "spanTexts": 200,
+  "spans": 77,
+  "maxAbsScoreDiff": 0.000004589557647705078,
+  "textStats": {
+   "cases": 200,
+   "calls": 200,
+   "inputMismatch": 0,
+   "rows": 200,
+   "bitDiffRows": 0,
+   "batchRows": 0,
+   "batchVsSingleDiffRows": 0
+  }
+ },
+ "gpuErrors": []
+}

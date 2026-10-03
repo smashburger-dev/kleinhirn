@@ -1,0 +1,68 @@
+{
+ "date": "2026-10-01",
+ "run_id": "k28-parity-cybersectony__phishing-email-detection-distilbert_v2.4.1-f16-7a476a1-1790833586394",
+ "commit": "7a476a1",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "5.27",
+ "loadAvgEnd": "4.76 5.37 5.45",
+ "stage": "done",
+ "model": "cybersectony__phishing-email-detection-distilbert_v2.4.1",
+ "precision": "f16",
+ "task": "sequence-classification",
+ "info": {
+  "precision": "f16",
+  "buildId": "mup3g5ui",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "distilbert",
+  "task": "sequence-classification",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 99825216,
+  "downloadBytes": 133923342,
+  "loadTiming": {
+   "fetchMs": 246.29999999701977,
+   "bodyMs": 282.30000000447035,
+   "sha256Ms": 74.19999999552965,
+   "uploadMs": 28,
+   "embedJoinMs": 4.600000001490116,
+   "manifestMs": 3.100000001490116,
+   "planMs": 2.5
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.02480173110961914,
+  "meanAbsLogitDiff": 0.0025157095585018395,
+  "disagreements": []
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0,
+  "groups": 50
+ },
+ "gpuErrors": []
+}

@@ -1,0 +1,135 @@
+{
+ "date": "2026-09-30",
+ "run_id": "k28-parity-ukr-models__uk-ner-f32-6261b07-text-1790803265892",
+ "commit": "6261b07",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "5.35",
+ "loadAvgEnd": "5.06 4.85 5.45",
+ "stage": "done",
+ "model": "ukr-models__uk-ner",
+ "precision": "f32",
+ "task": "token-classification",
+ "info": {
+  "precision": "f32",
+  "buildId": "muolyk0x",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "xlm-roberta",
+  "task": "token-classification",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 367427612,
+  "downloadBytes": 437919624,
+  "loadTiming": {
+   "fetchMs": 544.7999999988824,
+   "bodyMs": 1833.5000000018626,
+   "sha256Ms": 239.19999999552965,
+   "uploadMs": 99.20000000111759,
+   "embedJoinMs": 14.799999998882413,
+   "manifestMs": 2.699999999254942,
+   "planMs": 4.599999999627471
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "spanExactAgreement": 0.895,
+  "spanTexts": 200,
+  "spans": 81,
+  "maxAbsScoreDiff": 0.000002562999725341797,
+  "firstDifferingText": {
+   "text_index": 0,
+   "got": [
+    {
+     "group": "PER",
+     "score": 0.4946563243865967,
+     "start": 16,
+     "end": 18,
+     "text": "ed"
+    },
+    {
+     "group": "PER",
+     "score": 0.560677707195282,
+     "start": 21,
+     "end": 25,
+     "text": " Ber"
+    },
+    {
+     "group": "PER",
+     "score": 0.572931706905365,
+     "start": 25,
+     "end": 26,
+     "text": "e"
+    },
+    {
+     "group": "PER",
+     "score": 0.5037198066711426,
+     "start": 26,
+     "end": 29,
+     "text": "ich"
+    }
+   ],
+   "want": [
+    {
+     "end": 18,
+     "entity_group": "PER",
+     "score": 0.4946567118167877,
+     "start": 16,
+     "word": "ed"
+    },
+    {
+     "end": 25,
+     "entity_group": "PER",
+     "score": 0.5606779456138611,
+     "start": 22,
+     "word": "Ber"
+    },
+    {
+     "end": 26,
+     "entity_group": "PER",
+     "score": 0.5729318261146545,
+     "start": 25,
+     "word": "e"
+    },
+    {
+     "end": 29,
+     "entity_group": "PER",
+     "score": 0.5037201046943665,
+     "start": 26,
+     "word": "ich"
+    }
+   ]
+  },
+  "textStats": {
+   "cases": 200,
+   "calls": 200,
+   "inputMismatch": 0,
+   "rows": 200,
+   "bitDiffRows": 0,
+   "batchRows": 0,
+   "batchVsSingleDiffRows": 0
+  }
+ },
+ "gpuErrors": []
+}

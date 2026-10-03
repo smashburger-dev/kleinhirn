@@ -1,0 +1,112 @@
+{
+ "date": "2026-10-01",
+ "run_id": "k28-parity-MoritzLaurer__multilingual-MiniLMv2-L12-mnli-xnli-f32-7a476a1-text-1790835016605",
+ "commit": "7a476a1",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "5.46",
+ "loadAvgEnd": "12.07 7.47 6.40",
+ "stage": "done",
+ "model": "MoritzLaurer__multilingual-MiniLMv2-L12-mnli-xnli",
+ "precision": "f32",
+ "task": "nli",
+ "info": {
+  "precision": "f32",
+  "buildId": "mup3g5ui",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "xlm-roberta",
+  "task": "nli",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 99355220,
+  "downloadBytes": 470586780,
+  "loadTiming": {
+   "fetchMs": 737.5,
+   "bodyMs": 3052.7999999821186,
+   "sha256Ms": 263.80000000447035,
+   "uploadMs": 48.20000000298023,
+   "embedJoinMs": 46.399999998509884,
+   "manifestMs": 3.2000000029802322,
+   "planMs": 2.7999999970197678
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "zeroShotAgreement": 1,
+  "zeroShotTexts": 40,
+  "choices": [
+   2,
+   2,
+   2,
+   4,
+   3,
+   2,
+   2,
+   3,
+   0,
+   2,
+   2,
+   2,
+   2,
+   4,
+   2,
+   2,
+   4,
+   2,
+   4,
+   4,
+   4,
+   2,
+   2,
+   4,
+   4,
+   4,
+   3,
+   0,
+   2,
+   2,
+   2,
+   2,
+   2,
+   2,
+   2,
+   3,
+   2,
+   2,
+   0,
+   0
+  ],
+  "textStats": {
+   "cases": 40,
+   "calls": 40,
+   "inputMismatch": 0,
+   "rows": 200,
+   "bitDiffRows": 0,
+   "batchRows": 200,
+   "batchVsSingleDiffRows": 0
+  }
+ },
+ "gpuErrors": []
+}

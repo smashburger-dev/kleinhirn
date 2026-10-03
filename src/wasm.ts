@@ -4,7 +4,8 @@
 // Worker for the automatic fallback chain (docs/PLAN.md K5).
 
 import { fetchManifest, fetchShardBytes, type Manifest } from './weights.ts';
-import { relPosTable, type EncoderSpec } from './graph/deberta.ts';
+import { relPosTable } from './plan/build.ts';
+import type { EncoderSpec } from './plan/spec.ts';
 import { HfTokenizer } from './tokenizer/tokenizer.ts';
 import {
   BucketOverflowError, prepareTasks, type SchemaInput,

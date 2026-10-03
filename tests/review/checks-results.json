@@ -1,0 +1,57 @@
+{
+  "sourceCommit": "dfc4b2455612c9ceca37e7da6ac4007c08cfd854",
+  "branch": "k28-review",
+  "userRequestedFastForwardFrom": "bf91b9a",
+  "productionFixes": false,
+  "realGpuOrBrowserRuns": false,
+  "baseline": {
+    "command": "npm test",
+    "exitCode": 0,
+    "tests": 509,
+    "passed": 493,
+    "failed": 0,
+    "skipped": 16,
+    "skipReason": "models/ absent; model-dependent golden checks unavailable"
+  },
+  "typecheck": {
+    "command": "npx --no-install tsc --noEmit",
+    "exitCode": 0,
+    "note": "The earlier bf91b9a errors were fixed upstream in the requested fast-forward, not by this review."
+  },
+  "build": {
+    "command": "npm run build",
+    "exitCode": 0
+  },
+  "regressionContracts": {
+    "command": "node --import ./tests/helpers/node-hooks.mjs --test tests/review/engine.test.mjs tests/review/tokenizer.test.mjs",
+    "exitCode": 1,
+    "tests": 34,
+    "passed": 0,
+    "failedAsExpected": 34,
+    "note": "Deliberately red assertions, outside the default npm test glob. No WGSL execution."
+  },
+  "controls": {
+    "command": "node --import ./tests/helpers/node-hooks.mjs --test tests/review/controls.test.mjs",
+    "exitCode": 0,
+    "tests": 5,
+    "passed": 5,
+    "failed": 0,
+    "acceptedShapes": 92,
+    "rejectedShapes": 0,
+    "plans": 5152,
+    "oversizedPlans": 369,
+    "oversizedAdmittedEncoderBatchPlans": 10,
+    "storedHfReferenceSuccesses": 250,
+    "note": "T04 is current-behavior characterization only, not a verified HF parity assertion."
+  },
+  "cpuMeasurementSource": "bf91b9a",
+  "cpuMeasuredFilesUnchangedByFastForward": [
+    "src/encoder.ts",
+    "src/index.ts",
+    "src/julia.ts",
+    "src/half.ts",
+    "src/tokenizer/"
+  ],
+  "bundleAnalysisSource": "dfc4b24",
+  "bundleAnalysisExitCode": 0
+}

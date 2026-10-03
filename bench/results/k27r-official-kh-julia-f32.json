@@ -1,0 +1,109 @@
+{
+ "run_id": "k27r-official-kh-julia-f32",
+ "engine": "kleinhirn-julia",
+ "model": "julia-1",
+ "precision": "f32",
+ "bucket": null,
+ "ep": null,
+ "batchSize": null,
+ "graph": null,
+ "capture": false,
+ "backend": "webgpu",
+ "official": true,
+ "repetitions": 3,
+ "medianMs": 13.97199999988079,
+ "rangeMs": [
+  13.965,
+  13.990999999940396
+ ],
+ "p95Ms": 26.30000001192093,
+ "downloadBytes": 611556447,
+ "onnxBytes": null,
+ "runtimeBytes": null,
+ "gpuBytes": 261238768,
+ "peakMemMb": 0,
+ "parity": [
+  {
+   "matchingPredictions": 100,
+   "maxAbsLogitError": 0.00011640787124633789
+  },
+  {
+   "matchingPredictions": 100,
+   "maxAbsLogitError": 0.00011640787124633789
+  },
+  {
+   "matchingPredictions": 100,
+   "maxAbsLogitError": 0.00011640787124633789
+  }
+ ],
+ "loadAvg": [
+  [
+   2.11376953125,
+   2.013671875
+  ],
+  [
+   2.1337890625,
+   2.455078125
+  ],
+  [
+   2.51123046875,
+   2.41943359375
+  ]
+ ],
+ "repFiles": [
+  "bench/results/k27r-official-kh-julia-f32-r1.json",
+  "bench/results/k27r-official-kh-julia-f32-r2.json",
+  "bench/results/k27r-official-kh-julia-f32-r3.json"
+ ],
+ "page": {
+  "stage": "done",
+  "precision": "f32",
+  "info": {
+   "precision": "f32",
+   "adapter": {
+    "vendor": "apple",
+    "architecture": "metal-3",
+    "device": "",
+    "description": ""
+   },
+   "limitsMode": "minimum",
+   "timestamps": true,
+   "buckets": [
+    512,
+    1024
+   ],
+   "gpuBytes": 261238768,
+   "downloadBytes": 611556447,
+   "tokenizerBytes": 34363188,
+   "weightBytes": 577193259,
+   "loadTiming": {
+    "fetchMs": 711.5999999940395,
+    "bodyMs": 3070.100000023842,
+    "sha256Ms": 314.5999999642372,
+    "uploadMs": 73,
+    "embedJoinMs": 59.30000001192093,
+    "manifestMs": 3.899999976158142,
+    "tokenizerMs": 513.5,
+    "planMs": 578.5
+   },
+   "loadMs": 1940.4000000059605
+  },
+  "loadMsWarm": 3364.100000023842,
+  "result": {
+   "requests": 100,
+   "batch_size": 1,
+   "iterations": 5,
+   "load_ms": 1940.4000000059605,
+   "load_and_warm_ms": 3364.100000023842,
+   "median_ms": 1399.0999999940395,
+   "min_ms": 1396.199999988079,
+   "max_ms": 1412.199999988079,
+   "ms_per_request": 13.990999999940396,
+   "per_request_median_ms": 12.699999988079071,
+   "per_request_p95_ms": 26.30000001192093,
+   "matching_predictions": 100,
+   "max_abs_logit_error_vs_pytorch": 0.00011640787124633789
+  },
+  "done": true
+ }
+}

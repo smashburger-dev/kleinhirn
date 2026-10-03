@@ -1,0 +1,557 @@
+{
+ "model": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
+ "family": "xlm-roberta",
+ "task": "reranking",
+ "lengths": {
+  "128": {
+   "graphs": {
+    "std": {
+     "f32": {
+      "nodes": 535,
+      "fused": {
+       "Attention": 0,
+       "MultiHeadAttention": 0,
+       "SkipLayerNormalization": 0,
+       "EmbedLayerNormalization": 0,
+       "BiasGelu": 0,
+       "FastGelu": 0
+      },
+      "ops": {
+       "Add": 122,
+       "Constant": 105,
+       "MatMul": 96,
+       "Reshape": 48,
+       "Transpose": 48,
+       "Mul": 26,
+       "LayerNormalization": 25,
+       "Div": 24,
+       "Softmax": 12,
+       "Erf": 12,
+       "Gather": 4,
+       "Cast": 3,
+       "Unsqueeze": 2,
+       "Gemm": 2,
+       "ConstantOfShape": 1,
+       "Equal": 1,
+       "Where": 1,
+       "Expand": 1,
+       "Sub": 1,
+       "Tanh": 1
+      },
+      "bytes": 470707210,
+      "parityCpu": {
+       "cases": 197,
+       "of": 200,
+       "finite": true,
+       "queries": 17,
+       "queriesOf": 20,
+       "bestPassageAgreement": 1.0,
+       "maxAbsLogitDiff": 2.6464462280273438e-05,
+       "pass": true
+      }
+     },
+     "f16": {
+      "nodes": 536,
+      "fused": {
+       "Attention": 0,
+       "MultiHeadAttention": 0,
+       "SkipLayerNormalization": 0,
+       "EmbedLayerNormalization": 0,
+       "BiasGelu": 0,
+       "FastGelu": 0
+      },
+      "ops": {
+       "Add": 122,
+       "Constant": 105,
+       "MatMul": 96,
+       "Reshape": 48,
+       "Transpose": 48,
+       "Mul": 26,
+       "LayerNormalization": 25,
+       "Div": 24,
+       "Softmax": 12,
+       "Erf": 12,
+       "Cast": 4,
+       "Gather": 4,
+       "Unsqueeze": 2,
+       "Gemm": 2,
+       "ConstantOfShape": 1,
+       "Equal": 1,
+       "Where": 1,
+       "Expand": 1,
+       "Sub": 1,
+       "Tanh": 1
+      },
+      "bytes": 235465176,
+      "parityCpu": {
+       "cases": 197,
+       "of": 200,
+       "finite": true,
+       "queries": 17,
+       "queriesOf": 20,
+       "bestPassageAgreement": 1.0,
+       "maxAbsLogitDiff": 0.05062055587768555,
+       "pass": true
+      },
+      "file": "models/k28/cross-encoder__mmarco-mMiniLMv2-L12-H384-v1/k28.8/onnx/L128-std-f16.onnx",
+      "sha256": "8143e0ffa73549c3aca47ef19811ea5c50138cb1e3f7cd9cc4fe2c5a33545751"
+     },
+     "admissibleCpu": true,
+     "date": "2026-10-02 19:58"
+    },
+    "opt": {
+     "optimizer": {
+      "model_type": "bert",
+      "num_heads": 12,
+      "hidden_size": 384,
+      "enable_embed_layer_norm": true,
+      "use_multi_head_attention": false,
+      "fused_operator_statistics": {
+       "EmbedLayerNormalization": 0,
+       "Attention": 12,
+       "MultiHeadAttention": 0,
+       "Gelu": 12,
+       "FastGelu": 0,
+       "BiasGelu": 0,
+       "GemmFastGelu": 0,
+       "LayerNormalization": 1,
+       "SimplifiedLayerNormalization": 0,
+       "SkipLayerNormalization": 24,
+       "SkipSimplifiedLayerNormalization": 0,
+       "RotaryEmbedding": 0,
+       "QOrderedAttention": 0,
+       "QOrderedGelu": 0,
+       "QOrderedLayerNormalization": 0,
+       "QOrderedMatMul": 0
+      }
+     },
+     "f32": {
+      "nodes": 143,
+      "fused": {
+       "Attention": 12,
+       "MultiHeadAttention": 0,
+       "SkipLayerNormalization": 24,
+       "EmbedLayerNormalization": 0,
+       "BiasGelu": 0,
+       "FastGelu": 0
+      },
+      "ops": {
+       "Reshape": 48,
+       "Gemm": 26,
+       "com.microsoft:SkipLayerNormalization": 24,
+       "com.microsoft:Attention": 12,
+       "MatMul": 12,
+       "com.microsoft:Gelu": 12,
+       "Cast": 2,
+       "Gather": 2,
+       "Add": 2,
+       "LayerNormalization": 1,
+       "ReduceSum": 1,
+       "Tanh": 1
+      },
+      "bytes": 470216995,
+      "parityCpu": {
+       "cases": 197,
+       "of": 200,
+       "finite": true,
+       "queries": 17,
+       "queriesOf": 20,
+       "bestPassageAgreement": 1.0,
+       "maxAbsLogitDiff": 2.7179718017578125e-05,
+       "pass": true
+      }
+     },
+     "f16": {
+      "nodes": 143,
+      "fused": {
+       "Attention": 12,
+       "MultiHeadAttention": 0,
+       "SkipLayerNormalization": 24,
+       "EmbedLayerNormalization": 0,
+       "BiasGelu": 0,
+       "FastGelu": 0
+      },
+      "ops": {
+       "Reshape": 48,
+       "Gemm": 26,
+       "com.microsoft:SkipLayerNormalization": 24,
+       "com.microsoft:Attention": 12,
+       "MatMul": 12,
+       "com.microsoft:Gelu": 12,
+       "Cast": 2,
+       "Gather": 2,
+       "Add": 2,
+       "LayerNormalization": 1,
+       "ReduceSum": 1,
+       "Tanh": 1
+      },
+      "bytes": 235142900,
+      "parityCpu": {
+       "cases": 197,
+       "of": 200,
+       "finite": true,
+       "queries": 17,
+       "queriesOf": 20,
+       "bestPassageAgreement": 1.0,
+       "maxAbsLogitDiff": 0.039203643798828125,
+       "pass": true
+      },
+      "file": "models/k28/cross-encoder__mmarco-mMiniLMv2-L12-H384-v1/k28.8/onnx/L128-opt-f16.onnx",
+      "sha256": "6ec46b30efcff5b097106b88d51de679d9968c37f050154834aa4ec7ff145571"
+     },
+     "admissibleCpu": true,
+     "date": "2026-10-02 19:59"
+    },
+    "opt-noemb": {
+     "optimizer": {
+      "model_type": "bert",
+      "num_heads": 12,
+      "hidden_size": 384,
+      "enable_embed_layer_norm": false,
+      "use_multi_head_attention": false,
+      "fused_operator_statistics": {
+       "EmbedLayerNormalization": 0,
+       "Attention": 12,
+       "MultiHeadAttention": 0,
+       "Gelu": 12,
+       "FastGelu": 0,
+       "BiasGelu": 0,
+       "GemmFastGelu": 0,
+       "LayerNormalization": 1,
+       "SimplifiedLayerNormalization": 0,
+       "SkipLayerNormalization": 24,
+       "SkipSimplifiedLayerNormalization": 0,
+       "RotaryEmbedding": 0,
+       "QOrderedAttention": 0,
+       "QOrderedGelu": 0,
+       "QOrderedLayerNormalization": 0,
+       "QOrderedMatMul": 0
+      }
+     },
+     "f32": {
+      "nodes": 143,
+      "fused": {
+       "Attention": 12,
+       "MultiHeadAttention": 0,
+       "SkipLayerNormalization": 24,
+       "EmbedLayerNormalization": 0,
+       "BiasGelu": 0,
+       "FastGelu": 0
+      },
+      "ops": {
+       "Reshape": 48,
+       "Gemm": 26,
+       "com.microsoft:SkipLayerNormalization": 24,
+       "com.microsoft:Attention": 12,
+       "MatMul": 12,
+       "com.microsoft:Gelu": 12,
+       "Cast": 2,
+       "Gather": 2,
+       "Add": 2,
+       "LayerNormalization": 1,
+       "ReduceSum": 1,
+       "Tanh": 1
+      },
+      "bytes": 470216995,
+      "parityCpu": {
+       "cases": 197,
+       "of": 200,
+       "finite": true,
+       "queries": 17,
+       "queriesOf": 20,
+       "bestPassageAgreement": 1.0,
+       "maxAbsLogitDiff": 2.7179718017578125e-05,
+       "pass": true
+      }
+     },
+     "f16": {
+      "nodes": 143,
+      "fused": {
+       "Attention": 12,
+       "MultiHeadAttention": 0,
+       "SkipLayerNormalization": 24,
+       "EmbedLayerNormalization": 0,
+       "BiasGelu": 0,
+       "FastGelu": 0
+      },
+      "ops": {
+       "Reshape": 48,
+       "Gemm": 26,
+       "com.microsoft:SkipLayerNormalization": 24,
+       "com.microsoft:Attention": 12,
+       "MatMul": 12,
+       "com.microsoft:Gelu": 12,
+       "Cast": 2,
+       "Gather": 2,
+       "Add": 2,
+       "LayerNormalization": 1,
+       "ReduceSum": 1,
+       "Tanh": 1
+      },
+      "bytes": 235142900,
+      "parityCpu": {
+       "cases": 197,
+       "of": 200,
+       "finite": true,
+       "queries": 17,
+       "queriesOf": 20,
+       "bestPassageAgreement": 1.0,
+       "maxAbsLogitDiff": 0.039203643798828125,
+       "pass": true
+      },
+      "file": "models/k28/cross-encoder__mmarco-mMiniLMv2-L12-H384-v1/k28.8/onnx/L128-opt-noemb-f16.onnx",
+      "sha256": "6ec46b30efcff5b097106b88d51de679d9968c37f050154834aa4ec7ff145571"
+     },
+     "admissibleCpu": true,
+     "date": "2026-10-02 19:59"
+    },
+    "opt-mha": {
+     "optimizer": {
+      "model_type": "bert",
+      "num_heads": 12,
+      "hidden_size": 384,
+      "enable_embed_layer_norm": true,
+      "use_multi_head_attention": true,
+      "fused_operator_statistics": {
+       "EmbedLayerNormalization": 0,
+       "Attention": 0,
+       "MultiHeadAttention": 12,
+       "Gelu": 12,
+       "FastGelu": 0,
+       "BiasGelu": 0,
+       "GemmFastGelu": 0,
+       "LayerNormalization": 1,
+       "SimplifiedLayerNormalization": 0,
+       "SkipLayerNormalization": 24,
+       "SkipSimplifiedLayerNormalization": 0,
+       "RotaryEmbedding": 0,
+       "QOrderedAttention": 0,
+       "QOrderedGelu": 0,
+       "QOrderedLayerNormalization": 0,
+       "QOrderedMatMul": 0
+      }
+     },
+     "f32": {
+      "nodes": 179,
+      "fused": {
+       "Attention": 0,
+       "MultiHeadAttention": 12,
+       "SkipLayerNormalization": 24,
+       "EmbedLayerNormalization": 0,
+       "BiasGelu": 0,
+       "FastGelu": 0
+      },
+      "ops": {
+       "MatMul": 48,
+       "Reshape": 48,
+       "Gemm": 26,
+       "com.microsoft:SkipLayerNormalization": 24,
+       "com.microsoft:MultiHeadAttention": 12,
+       "com.microsoft:Gelu": 12,
+       "Cast": 2,
+       "Gather": 2,
+       "Add": 2,
+       "LayerNormalization": 1,
+       "ReduceSum": 1,
+       "Tanh": 1
+      },
+      "bytes": 470227571,
+      "parityCpu": {
+       "cases": 197,
+       "of": 200,
+       "finite": true,
+       "queries": 17,
+       "queriesOf": 20,
+       "bestPassageAgreement": 1.0,
+       "maxAbsLogitDiff": 2.6702880859375e-05,
+       "pass": true
+      }
+     },
+     "f16": {
+      "nodes": 179,
+      "fused": {
+       "Attention": 0,
+       "MultiHeadAttention": 12,
+       "SkipLayerNormalization": 24,
+       "EmbedLayerNormalization": 0,
+       "BiasGelu": 0,
+       "FastGelu": 0
+      },
+      "ops": {
+       "MatMul": 48,
+       "Reshape": 48,
+       "Gemm": 26,
+       "com.microsoft:SkipLayerNormalization": 24,
+       "com.microsoft:MultiHeadAttention": 12,
+       "com.microsoft:Gelu": 12,
+       "Cast": 2,
+       "Gather": 2,
+       "Add": 2,
+       "LayerNormalization": 1,
+       "ReduceSum": 1,
+       "Tanh": 1
+      },
+      "bytes": 235156230,
+      "parityCpu": {
+       "cases": 197,
+       "of": 200,
+       "finite": true,
+       "queries": 17,
+       "queriesOf": 20,
+       "bestPassageAgreement": 1.0,
+       "maxAbsLogitDiff": 0.03499555587768555,
+       "pass": true
+      },
+      "file": "models/k28/cross-encoder__mmarco-mMiniLMv2-L12-H384-v1/k28.8/onnx/L128-opt-mha-f16.onnx",
+      "sha256": "9782f4a2daae54441b160632568ce519571e2b25e81b42621bb09fe0dd3d110a"
+     },
+     "admissibleCpu": true,
+     "date": "2026-10-02 19:59"
+    }
+   },
+   "export": {
+    "seconds": 1.6,
+    "torch": "2.7.0",
+    "transformers": "4.57.6",
+    "pooling": null,
+    "padId": 1,
+    "positions": "constant i + 1 + 1"
+   },
+   "cpuReference": {
+    "file": "models/k28/cross-encoder__mmarco-mMiniLMv2-L12-H384-v1/k28.8/cpu-f32-L128.bin",
+    "shape": [
+     320,
+     1
+    ],
+    "sha256": "e8e651c8c66be5fd99d3a507dc4b436e36eaf3cffe26507a54b7d754b466bcd6",
+    "finite": true,
+    "graph": "L128-std-f32.onnx",
+    "provider": "CPUExecutionProvider"
+   }
+  },
+  "512": {
+   "graphs": {
+    "std": {
+     "f32": {
+      "nodes": 535,
+      "fused": {
+       "Attention": 0,
+       "MultiHeadAttention": 0,
+       "SkipLayerNormalization": 0,
+       "EmbedLayerNormalization": 0,
+       "BiasGelu": 0,
+       "FastGelu": 0
+      },
+      "ops": {
+       "Add": 122,
+       "Constant": 105,
+       "MatMul": 96,
+       "Reshape": 48,
+       "Transpose": 48,
+       "Mul": 26,
+       "LayerNormalization": 25,
+       "Div": 24,
+       "Softmax": 12,
+       "Erf": 12,
+       "Gather": 4,
+       "Cast": 3,
+       "Unsqueeze": 2,
+       "Gemm": 2,
+       "ConstantOfShape": 1,
+       "Equal": 1,
+       "Where": 1,
+       "Expand": 1,
+       "Sub": 1,
+       "Tanh": 1
+      },
+      "bytes": 470713354,
+      "parityCpu": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "queries": 20,
+       "queriesOf": 20,
+       "bestPassageAgreement": 1.0,
+       "maxAbsLogitDiff": 2.6464462280273438e-05,
+       "pass": true
+      }
+     },
+     "f16": {
+      "nodes": 536,
+      "fused": {
+       "Attention": 0,
+       "MultiHeadAttention": 0,
+       "SkipLayerNormalization": 0,
+       "EmbedLayerNormalization": 0,
+       "BiasGelu": 0,
+       "FastGelu": 0
+      },
+      "ops": {
+       "Add": 122,
+       "Constant": 105,
+       "MatMul": 96,
+       "Reshape": 48,
+       "Transpose": 48,
+       "Mul": 26,
+       "LayerNormalization": 25,
+       "Div": 24,
+       "Softmax": 12,
+       "Erf": 12,
+       "Cast": 4,
+       "Gather": 4,
+       "Unsqueeze": 2,
+       "Gemm": 2,
+       "ConstantOfShape": 1,
+       "Equal": 1,
+       "Where": 1,
+       "Expand": 1,
+       "Sub": 1,
+       "Tanh": 1
+      },
+      "bytes": 235471320,
+      "parityCpu": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "queries": 20,
+       "queriesOf": 20,
+       "bestPassageAgreement": 1.0,
+       "maxAbsLogitDiff": 0.05062055587768555,
+       "pass": true
+      },
+      "file": "models/k28/cross-encoder__mmarco-mMiniLMv2-L12-H384-v1/k28.8/onnx/L512-std-f16.onnx",
+      "sha256": "3342b883de11e87d622a98aefbdcb3d7955e740ae9d1a9be01390c47bcca5ea8"
+     },
+     "admissibleCpu": true,
+     "date": "2026-10-02 21:22"
+    }
+   },
+   "export": {
+    "seconds": 1.8,
+    "torch": "2.7.0",
+    "transformers": "4.57.6",
+    "pooling": null,
+    "padId": 1,
+    "positions": "constant i + 1 + 1"
+   },
+   "cpuReference": {
+    "file": "models/k28/cross-encoder__mmarco-mMiniLMv2-L12-H384-v1/k28.8/cpu-f32-L512.bin",
+    "shape": [
+     320,
+     1
+    ],
+    "sha256": "50d9e4735283721f8b97d74807241b35660552f85e4d78612c5c1e72be6595ec",
+    "finite": true,
+    "graph": "L512-std-f32.onnx",
+    "provider": "CPUExecutionProvider"
+   }
+  }
+ },
+ "versions": {
+  "onnx": "1.22.0",
+  "onnxruntime": "1.29.0",
+  "torch": "2.7.0",
+  "transformers": "4.57.6",
+  "opset": 17
+ }
+}

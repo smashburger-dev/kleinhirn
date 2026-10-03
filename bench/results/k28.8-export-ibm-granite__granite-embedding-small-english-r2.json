@@ -1,0 +1,512 @@
+{
+ "model": "ibm-granite/granite-embedding-small-english-r2",
+ "family": "modernbert",
+ "task": "embeddings",
+ "lengths": {
+  "128": {
+   "graphs": {
+    "std": {
+     "f32": {
+      "nodes": 1126,
+      "fused": {
+       "Attention": 0,
+       "MultiHeadAttention": 0,
+       "SkipLayerNormalization": 0,
+       "EmbedLayerNormalization": 0,
+       "BiasGelu": 0,
+       "FastGelu": 0
+      },
+      "ops": {
+       "Constant": 440,
+       "Mul": 127,
+       "Add": 84,
+       "MatMul": 74,
+       "Slice": 72,
+       "Cast": 40,
+       "Transpose": 38,
+       "Squeeze": 36,
+       "Concat": 26,
+       "LayerNormalization": 25,
+       "Reshape": 24,
+       "Neg": 24,
+       "Div": 24,
+       "Gather": 14,
+       "Split": 12,
+       "Softmax": 12,
+       "Shape": 12,
+       "Erf": 12,
+       "Unsqueeze": 8,
+       "Where": 5,
+       "ConstantOfShape": 3,
+       "Equal": 3,
+       "Expand": 3,
+       "Cos": 2,
+       "Sin": 2,
+       "Sub": 1,
+       "Abs": 1,
+       "LessOrEqual": 1,
+       "Not": 1
+      },
+      "bytes": 190989664,
+      "parityCpu": {
+       "cases": 195,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999992115,
+       "meanCosine": 0.9999999999996892,
+       "maxAbsDiff": 8.58306884765625e-06,
+       "pass": true
+      }
+     },
+     "f16": {
+      "nodes": 1091,
+      "fused": {
+       "Attention": 0,
+       "MultiHeadAttention": 0,
+       "SkipLayerNormalization": 0,
+       "EmbedLayerNormalization": 0,
+       "BiasGelu": 0,
+       "FastGelu": 0
+      },
+      "ops": {
+       "Constant": 440,
+       "Mul": 127,
+       "Add": 84,
+       "MatMul": 74,
+       "Slice": 72,
+       "Transpose": 38,
+       "Squeeze": 36,
+       "Concat": 26,
+       "LayerNormalization": 25,
+       "Reshape": 24,
+       "Neg": 24,
+       "Div": 24,
+       "Gather": 14,
+       "Split": 12,
+       "Softmax": 12,
+       "Shape": 12,
+       "Erf": 12,
+       "Unsqueeze": 8,
+       "Cast": 5,
+       "Where": 5,
+       "ConstantOfShape": 3,
+       "Equal": 3,
+       "Expand": 3,
+       "Cos": 2,
+       "Sin": 2,
+       "Sub": 1,
+       "Abs": 1,
+       "LessOrEqual": 1,
+       "Not": 1
+      },
+      "bytes": 95695652,
+      "parityCpu": {
+       "cases": 195,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.999999126282251,
+       "meanCosine": 0.9999997009657088,
+       "maxAbsDiff": 0.008255958557128906,
+       "pass": true
+      },
+      "file": "models/k28/ibm-granite__granite-embedding-small-english-r2/k28.8/onnx/L128-std-f16.onnx",
+      "sha256": "5795d9ebf4306d805ebe8271d295a8693bce7731966b9f5ab2083b504356f196"
+     },
+     "admissibleCpu": true,
+     "date": "2026-10-02 20:04"
+    },
+    "opt": {
+     "optimizer": {
+      "model_type": "bert",
+      "num_heads": 12,
+      "hidden_size": 384,
+      "enable_embed_layer_norm": true,
+      "use_multi_head_attention": false,
+      "fused_operator_statistics": {
+       "EmbedLayerNormalization": 0,
+       "Attention": 0,
+       "MultiHeadAttention": 0,
+       "Gelu": 12,
+       "FastGelu": 0,
+       "BiasGelu": 0,
+       "GemmFastGelu": 0,
+       "LayerNormalization": 1,
+       "SimplifiedLayerNormalization": 0,
+       "SkipLayerNormalization": 24,
+       "SkipSimplifiedLayerNormalization": 0,
+       "RotaryEmbedding": 0,
+       "QOrderedAttention": 0,
+       "QOrderedGelu": 0,
+       "QOrderedLayerNormalization": 0,
+       "QOrderedMatMul": 0
+      }
+     },
+     "f32": {
+      "nodes": 481,
+      "fused": {
+       "Attention": 0,
+       "MultiHeadAttention": 0,
+       "SkipLayerNormalization": 24,
+       "EmbedLayerNormalization": 0,
+       "BiasGelu": 0,
+       "FastGelu": 0
+      },
+      "ops": {
+       "MatMul": 72,
+       "Slice": 72,
+       "Mul": 72,
+       "Transpose": 48,
+       "Squeeze": 36,
+       "Add": 36,
+       "Reshape": 24,
+       "Neg": 24,
+       "Concat": 24,
+       "com.microsoft:SkipLayerNormalization": 24,
+       "Split": 12,
+       "Softmax": 12,
+       "com.microsoft:Gelu": 12,
+       "Cast": 4,
+       "Gather": 2,
+       "Unsqueeze": 2,
+       "Where": 2,
+       "LayerNormalization": 1,
+       "Expand": 1,
+       "Sub": 1
+      },
+      "bytes": 190943567,
+      "parityCpu": {
+       "cases": 195,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999992163,
+       "meanCosine": 0.9999999999996805,
+       "maxAbsDiff": 7.62939453125e-06,
+       "pass": true
+      }
+     },
+     "f16": {
+      "nodes": 482,
+      "fused": {
+       "Attention": 0,
+       "MultiHeadAttention": 0,
+       "SkipLayerNormalization": 24,
+       "EmbedLayerNormalization": 0,
+       "BiasGelu": 0,
+       "FastGelu": 0
+      },
+      "ops": {
+       "MatMul": 72,
+       "Slice": 72,
+       "Mul": 72,
+       "Transpose": 48,
+       "Squeeze": 36,
+       "Add": 36,
+       "Reshape": 24,
+       "Neg": 24,
+       "Concat": 24,
+       "com.microsoft:SkipLayerNormalization": 24,
+       "Split": 12,
+       "Softmax": 12,
+       "com.microsoft:Gelu": 12,
+       "Cast": 5,
+       "Gather": 2,
+       "Unsqueeze": 2,
+       "Where": 2,
+       "LayerNormalization": 1,
+       "Expand": 1,
+       "Sub": 1
+      },
+      "bytes": 95557642,
+      "parityCpu": {
+       "cases": 195,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999986261413075,
+       "meanCosine": 0.999999579377783,
+       "maxAbsDiff": 0.010296821594238281,
+       "pass": true
+      },
+      "file": "models/k28/ibm-granite__granite-embedding-small-english-r2/k28.8/onnx/L128-opt-f16.onnx",
+      "sha256": "249131df301424400e26519bfd9fbb199aca76f8aa08e8571741eac0e316af9e"
+     },
+     "admissibleCpu": true,
+     "date": "2026-10-02 20:04"
+    }
+   },
+   "export": {
+    "seconds": 0.8,
+    "torch": "2.7.0",
+    "transformers": "4.57.6",
+    "pooling": "cls",
+    "padId": 50283
+   },
+   "cpuReference": {
+    "file": "models/k28/ibm-granite__granite-embedding-small-english-r2/k28.8/cpu-f32-L128.bin",
+    "shape": [
+     320,
+     384
+    ],
+    "sha256": "7003448a341fc8374bc8a1f025167be993fdb9f2564fc4228726b5ba7d5bac51",
+    "finite": true,
+    "graph": "L128-std-f32.onnx",
+    "provider": "CPUExecutionProvider"
+   }
+  },
+  "512": {
+   "graphs": {
+    "std": {
+     "f32": {
+      "nodes": 1126,
+      "fused": {
+       "Attention": 0,
+       "MultiHeadAttention": 0,
+       "SkipLayerNormalization": 0,
+       "EmbedLayerNormalization": 0,
+       "BiasGelu": 0,
+       "FastGelu": 0
+      },
+      "ops": {
+       "Constant": 440,
+       "Mul": 127,
+       "Add": 84,
+       "MatMul": 74,
+       "Slice": 72,
+       "Cast": 40,
+       "Transpose": 38,
+       "Squeeze": 36,
+       "Concat": 26,
+       "LayerNormalization": 25,
+       "Reshape": 24,
+       "Neg": 24,
+       "Div": 24,
+       "Gather": 14,
+       "Split": 12,
+       "Softmax": 12,
+       "Shape": 12,
+       "Erf": 12,
+       "Unsqueeze": 8,
+       "Where": 5,
+       "ConstantOfShape": 3,
+       "Equal": 3,
+       "Expand": 3,
+       "Cos": 2,
+       "Sin": 2,
+       "Sub": 1,
+       "Abs": 1,
+       "LessOrEqual": 1,
+       "Not": 1
+      },
+      "bytes": 192958820,
+      "parityCpu": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999992115,
+       "meanCosine": 0.9999999999996896,
+       "maxAbsDiff": 8.58306884765625e-06,
+       "pass": true
+      }
+     },
+     "f16": {
+      "nodes": 1091,
+      "fused": {
+       "Attention": 0,
+       "MultiHeadAttention": 0,
+       "SkipLayerNormalization": 0,
+       "EmbedLayerNormalization": 0,
+       "BiasGelu": 0,
+       "FastGelu": 0
+      },
+      "ops": {
+       "Constant": 440,
+       "Mul": 127,
+       "Add": 84,
+       "MatMul": 74,
+       "Slice": 72,
+       "Transpose": 38,
+       "Squeeze": 36,
+       "Concat": 26,
+       "LayerNormalization": 25,
+       "Reshape": 24,
+       "Neg": 24,
+       "Div": 24,
+       "Gather": 14,
+       "Split": 12,
+       "Softmax": 12,
+       "Shape": 12,
+       "Erf": 12,
+       "Unsqueeze": 8,
+       "Cast": 5,
+       "Where": 5,
+       "ConstantOfShape": 3,
+       "Equal": 3,
+       "Expand": 3,
+       "Cos": 2,
+       "Sin": 2,
+       "Sub": 1,
+       "Abs": 1,
+       "LessOrEqual": 1,
+       "Not": 1
+      },
+      "bytes": 97663272,
+      "parityCpu": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999979004652925,
+       "meanCosine": 0.9999996831247573,
+       "maxAbsDiff": 0.008255958557128906,
+       "pass": true
+      },
+      "file": "models/k28/ibm-granite__granite-embedding-small-english-r2/k28.8/onnx/L512-std-f16.onnx",
+      "sha256": "5c16c7a8b188acb2bf2f358d021cce9ad01da0005fb66d940ee78b1e5fae932f"
+     },
+     "admissibleCpu": true,
+     "date": "2026-10-02 21:39"
+    },
+    "opt": {
+     "optimizer": {
+      "model_type": "bert",
+      "num_heads": 12,
+      "hidden_size": 384,
+      "enable_embed_layer_norm": true,
+      "use_multi_head_attention": false,
+      "fused_operator_statistics": {
+       "EmbedLayerNormalization": 0,
+       "Attention": 0,
+       "MultiHeadAttention": 0,
+       "Gelu": 12,
+       "FastGelu": 0,
+       "BiasGelu": 0,
+       "GemmFastGelu": 0,
+       "LayerNormalization": 1,
+       "SimplifiedLayerNormalization": 0,
+       "SkipLayerNormalization": 24,
+       "SkipSimplifiedLayerNormalization": 0,
+       "RotaryEmbedding": 0,
+       "QOrderedAttention": 0,
+       "QOrderedGelu": 0,
+       "QOrderedLayerNormalization": 0,
+       "QOrderedMatMul": 0
+      }
+     },
+     "f32": {
+      "nodes": 481,
+      "fused": {
+       "Attention": 0,
+       "MultiHeadAttention": 0,
+       "SkipLayerNormalization": 24,
+       "EmbedLayerNormalization": 0,
+       "BiasGelu": 0,
+       "FastGelu": 0
+      },
+      "ops": {
+       "MatMul": 72,
+       "Slice": 72,
+       "Mul": 72,
+       "Transpose": 48,
+       "Squeeze": 36,
+       "Add": 36,
+       "Reshape": 24,
+       "Neg": 24,
+       "Concat": 24,
+       "com.microsoft:SkipLayerNormalization": 24,
+       "Split": 12,
+       "Softmax": 12,
+       "com.microsoft:Gelu": 12,
+       "Cast": 4,
+       "Gather": 2,
+       "Unsqueeze": 2,
+       "Where": 2,
+       "LayerNormalization": 1,
+       "Expand": 1,
+       "Sub": 1
+      },
+      "bytes": 191582543,
+      "parityCpu": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999992163,
+       "meanCosine": 0.9999999999996806,
+       "maxAbsDiff": 7.62939453125e-06,
+       "pass": true
+      }
+     },
+     "f16": {
+      "nodes": 482,
+      "fused": {
+       "Attention": 0,
+       "MultiHeadAttention": 0,
+       "SkipLayerNormalization": 24,
+       "EmbedLayerNormalization": 0,
+       "BiasGelu": 0,
+       "FastGelu": 0
+      },
+      "ops": {
+       "MatMul": 72,
+       "Slice": 72,
+       "Mul": 72,
+       "Transpose": 48,
+       "Squeeze": 36,
+       "Add": 36,
+       "Reshape": 24,
+       "Neg": 24,
+       "Concat": 24,
+       "com.microsoft:SkipLayerNormalization": 24,
+       "Split": 12,
+       "Softmax": 12,
+       "com.microsoft:Gelu": 12,
+       "Cast": 5,
+       "Gather": 2,
+       "Unsqueeze": 2,
+       "Where": 2,
+       "LayerNormalization": 1,
+       "Expand": 1,
+       "Sub": 1
+      },
+      "bytes": 96000026,
+      "parityCpu": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999986261413075,
+       "meanCosine": 0.9999995776936939,
+       "maxAbsDiff": 0.010296821594238281,
+       "pass": true
+      },
+      "file": "models/k28/ibm-granite__granite-embedding-small-english-r2/k28.8/onnx/L512-opt-f16.onnx",
+      "sha256": "9e39875a786fc4de5482e37ae87a7a7361bdbea2c050d6d0791876dbcae72c10"
+     },
+     "admissibleCpu": true,
+     "date": "2026-10-02 21:40"
+    }
+   },
+   "export": {
+    "seconds": 0.9,
+    "torch": "2.7.0",
+    "transformers": "4.57.6",
+    "pooling": "cls",
+    "padId": 50283
+   },
+   "cpuReference": {
+    "file": "models/k28/ibm-granite__granite-embedding-small-english-r2/k28.8/cpu-f32-L512.bin",
+    "shape": [
+     320,
+     384
+    ],
+    "sha256": "ba2ef176afe6be878f7423096324d15b142d2eb00a79e2e0ca262cde11e70c00",
+    "finite": true,
+    "graph": "L512-std-f32.onnx",
+    "provider": "CPUExecutionProvider"
+   }
+  }
+ },
+ "versions": {
+  "onnx": "1.22.0",
+  "onnxruntime": "1.29.0",
+  "torch": "2.7.0",
+  "transformers": "4.57.6",
+  "opset": 17
+ }
+}

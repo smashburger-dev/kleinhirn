@@ -42,7 +42,7 @@ async function main(): Promise<void> {
     const plan = (kh as unknown as {
       plans: Map<number, {
         upload: (i: unknown) => void;
-        submit: (c: boolean, s?: Set<number>) => void;
+        submit: (c: boolean, o?: { skip?: Set<number> }) => void;
         readLogits: () => Promise<Float32Array>;
         device: GPUDevice;
       }>;
@@ -118,7 +118,7 @@ async function main(): Promise<void> {
           packedMarkers: plan.packedMarkers(input, 16),
         });
         const a = performance.now();
-        p.submit(false, skip);
+        p.submit(false, { skip });
         await dev.queue.onSubmittedWorkDone();
         ts.push(performance.now() - a);
       }

@@ -1,0 +1,1691 @@
+{
+ "workorder": "docs/K28_8_WORKORDER.md, phase 1 step 10",
+ "date": "2026-10-02T19:53:36.692Z",
+ "commit": "6eca678",
+ "rule": "winner: smallest median of its screening run medians (n = 100); candidates within 5 % of the best ran twice more, alternating",
+ "cells": {
+  "sentence-transformers__all-MiniLM-L6-v2|L128": {
+   "slug": "sentence-transformers__all-MiniLM-L6-v2",
+   "L": 128,
+   "family": "bert",
+   "task": "embeddings",
+   "winner": {
+    "graph": "std",
+    "build": "webgpu",
+    "capture": true,
+    "validationMode": "wgpuOnly",
+    "screeningMedian": 5.260000005364418,
+    "runs": 1
+   },
+   "candidates": [
+    {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "medians": [
+      5.7974999994039536
+     ],
+     "score": 5.7974999994039536,
+     "error": null
+    },
+    {
+     "graph": "std",
+     "build": "jsep",
+     "capture": true,
+     "medians": [],
+     "score": null,
+     "error": "Error: Can't create a session. ERROR_CODE: 1, ERROR_MESSAGE: This session cannot use the graph capture feature as requested by the user  as all compute graph nodes have not been partitioned to the JsE"
+    },
+    {
+     "graph": "std",
+     "build": "webgpu",
+     "capture": false,
+     "medians": [
+      6.49499998986721
+     ],
+     "score": 6.49499998986721,
+     "error": null
+    },
+    {
+     "graph": "std",
+     "build": "webgpu",
+     "capture": true,
+     "medians": [
+      5.260000005364418
+     ],
+     "score": 5.260000005364418,
+     "error": null
+    },
+    {
+     "graph": "std",
+     "build": "jspi",
+     "capture": false,
+     "medians": [
+      6.0899999886751175
+     ],
+     "score": 6.0899999886751175,
+     "error": null
+    },
+    {
+     "graph": "std",
+     "build": "jspi",
+     "capture": true,
+     "medians": [
+      5.270000010728836
+     ],
+     "score": 5.270000010728836,
+     "error": null
+    },
+    {
+     "graph": "opt",
+     "build": "webgpu",
+     "capture": false,
+     "medians": [
+      19.04500000178814
+     ],
+     "score": 19.04500000178814,
+     "error": null
+    },
+    {
+     "graph": "opt",
+     "build": "webgpu",
+     "capture": true,
+     "medians": [],
+     "score": null,
+     "error": "Error: Can't create a session. ERROR_CODE: 1, ERROR_MESSAGE: This session cannot use the graph capture feature as requested by the user  as all compute graph nodes have not been partitioned to the Web"
+    },
+    {
+     "graph": "opt",
+     "build": "jspi",
+     "capture": false,
+     "medians": [
+      18.457499995827675
+     ],
+     "score": 18.457499995827675,
+     "error": null
+    },
+    {
+     "graph": "opt",
+     "build": "jspi",
+     "capture": true,
+     "medians": [],
+     "score": null,
+     "error": "Error: Can't create a session. ERROR_CODE: 1, ERROR_MESSAGE: This session cannot use the graph capture feature as requested by the user  as all compute graph nodes have not been partitioned to the Web"
+    }
+   ],
+   "placement": {
+    "startable": true,
+    "file": "bench/results/k28.8-placement-sentence-transformers__all-MiniLM-L6-v2-L128-std-webgpu.json",
+    "placements": {
+     "CPUExecutionProvider": 5,
+     "WebGpuExecutionProvider": 244
+    },
+    "cpuNodes": 5,
+    "memcpy": 7,
+    "error": null
+   },
+   "cpuParity": {
+    "f32": {
+     "cases": 195,
+     "of": 200,
+     "finite": true,
+     "minCosine": 0.9999999999986661,
+     "meanCosine": 0.9999999999994368,
+     "maxAbsDiff": 0.0000017583370208740234,
+     "pass": true
+    },
+    "f16": {
+     "cases": 195,
+     "of": 200,
+     "finite": true,
+     "minCosine": 0.9999910290727829,
+     "meanCosine": 0.9999954543402264,
+     "maxAbsDiff": 0.004419267177581787,
+     "pass": true
+    },
+    "nodes": 290,
+    "fused": {
+     "Attention": 0,
+     "MultiHeadAttention": 0,
+     "SkipLayerNormalization": 0,
+     "EmbedLayerNormalization": 0,
+     "BiasGelu": 0,
+     "FastGelu": 0
+    },
+    "bytes": 45216142
+   },
+   "browserAccuracy": null,
+   "finite": null,
+   "tiebreak": null,
+   "kleinhirnScreening": {
+    "median": 7.024999976158142,
+    "p95": 7.169999986886978,
+    "gpuBytes": 22970368,
+    "accuracy": {
+     "cases": 195,
+     "of": 200,
+     "finite": true,
+     "minCosine": 0.9999988172872784,
+     "maxAbsDiff": 0.0018267631530761719
+    }
+   }
+  },
+  "cardiffnlp__twitter-roberta-base-sentiment-latest|L128": {
+   "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+   "L": 128,
+   "family": "roberta",
+   "task": "sequence-classification",
+   "winner": {
+    "graph": "std",
+    "build": "jspi",
+    "capture": true,
+    "validationMode": "wgpuOnly",
+    "screeningMedian": 18.282499998807907,
+    "runs": 1
+   },
+   "candidates": [
+    {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "medians": [
+      29.4375
+     ],
+     "score": 29.4375,
+     "error": null
+    },
+    {
+     "graph": "std",
+     "build": "jsep",
+     "capture": true,
+     "medians": [],
+     "score": null,
+     "error": "Error: Can't create a session. ERROR_CODE: 1, ERROR_MESSAGE: This session cannot use the graph capture feature as requested by the user  as all compute graph nodes have not been partitioned to the JsE"
+    },
+    {
+     "graph": "std",
+     "build": "webgpu",
+     "capture": false,
+     "medians": [
+      19.4825000166893
+     ],
+     "score": 19.4825000166893,
+     "error": null
+    },
+    {
+     "graph": "std",
+     "build": "webgpu",
+     "capture": true,
+     "medians": [
+      18.297500014305115
+     ],
+     "score": 18.297500014305115,
+     "error": null
+    },
+    {
+     "graph": "std",
+     "build": "jspi",
+     "capture": false,
+     "medians": [
+      19.609999999403954
+     ],
+     "score": 19.609999999403954,
+     "error": null
+    },
+    {
+     "graph": "std",
+     "build": "jspi",
+     "capture": true,
+     "medians": [
+      18.282499998807907
+     ],
+     "score": 18.282499998807907,
+     "error": null
+    },
+    {
+     "graph": "opt",
+     "build": "webgpu",
+     "capture": false,
+     "medians": [
+      86.48749999701977
+     ],
+     "score": 86.48749999701977,
+     "error": null
+    },
+    {
+     "graph": "opt",
+     "build": "webgpu",
+     "capture": true,
+     "medians": [],
+     "score": null,
+     "error": "Error: Can't create a session. ERROR_CODE: 1, ERROR_MESSAGE: This session cannot use the graph capture feature as requested by the user  as all compute graph nodes have not been partitioned to the Web"
+    },
+    {
+     "graph": "opt",
+     "build": "jspi",
+     "capture": false,
+     "medians": [
+      86.28500001132488
+     ],
+     "score": 86.28500001132488,
+     "error": null
+    },
+    {
+     "graph": "opt",
+     "build": "jspi",
+     "capture": true,
+     "medians": [],
+     "score": null,
+     "error": "Error: Can't create a session. ERROR_CODE: 1, ERROR_MESSAGE: This session cannot use the graph capture feature as requested by the user  as all compute graph nodes have not been partitioned to the Web"
+    }
+   ],
+   "placement": {
+    "startable": true,
+    "file": "bench/results/k28.8-placement-cardiffnlp__twitter-roberta-base-sentiment-latest-L128-std-jspi.json",
+    "placements": {
+     "CPUExecutionProvider": 3,
+     "WebGpuExecutionProvider": 470
+    },
+    "cpuNodes": 3,
+    "memcpy": 5,
+    "error": null
+   },
+   "cpuParity": {
+    "f32": {
+     "cases": 165,
+     "of": 200,
+     "finite": true,
+     "argmaxAgreement": 1,
+     "maxAbsLogitDiff": 0.000011324882507324219,
+     "pass": true
+    },
+    "f16": {
+     "cases": 165,
+     "of": 200,
+     "finite": true,
+     "argmaxAgreement": 1,
+     "maxAbsLogitDiff": 0.013511955738067627,
+     "pass": true
+    },
+    "nodes": 536,
+    "fused": {
+     "Attention": 0,
+     "MultiHeadAttention": 0,
+     "SkipLayerNormalization": 0,
+     "EmbedLayerNormalization": 0,
+     "BiasGelu": 0,
+     "FastGelu": 0
+    },
+    "bytes": 249478924
+   },
+   "browserAccuracy": null,
+   "finite": null,
+   "tiebreak": null,
+   "kleinhirnScreening": {
+    "median": 41.46999999880791,
+    "p95": 43.16999998688698,
+    "gpuBytes": 174648868,
+    "accuracy": {
+     "cases": 165,
+     "of": 200,
+     "finite": true,
+     "argmaxAgreement": 1,
+     "maxAbsLogitDiff": 0.004069238901138306
+    }
+   }
+  },
+  "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1|L128": {
+   "slug": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+   "L": 128,
+   "family": "xlm-roberta",
+   "task": "reranking",
+   "winner": {
+    "graph": "std",
+    "build": "webgpu",
+    "capture": true,
+    "validationMode": "wgpuOnly",
+    "screeningMedian": 10.060000002384186,
+    "runs": 1
+   },
+   "candidates": [
+    {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "medians": [
+      10.520000010728836
+     ],
+     "score": 10.520000010728836,
+     "error": null
+    },
+    {
+     "graph": "std",
+     "build": "jsep",
+     "capture": true,
+     "medians": [],
+     "score": null,
+     "error": "Error: Can't create a session. ERROR_CODE: 1, ERROR_MESSAGE: This session cannot use the graph capture feature as requested by the user  as all compute graph nodes have not been partitioned to the JsE"
+    },
+    {
+     "graph": "std",
+     "build": "webgpu",
+     "capture": false,
+     "medians": [
+      11.227500006556511
+     ],
+     "score": 11.227500006556511,
+     "error": null
+    },
+    {
+     "graph": "std",
+     "build": "webgpu",
+     "capture": true,
+     "medians": [
+      10.060000002384186
+     ],
+     "score": 10.060000002384186,
+     "error": null
+    },
+    {
+     "graph": "std",
+     "build": "jspi",
+     "capture": false,
+     "medians": [
+      11.16499999165535
+     ],
+     "score": 11.16499999165535,
+     "error": null
+    },
+    {
+     "graph": "std",
+     "build": "jspi",
+     "capture": true,
+     "medians": [
+      10.3125
+     ],
+     "score": 10.3125,
+     "error": null
+    },
+    {
+     "graph": "opt",
+     "build": "webgpu",
+     "capture": false,
+     "medians": [
+      35.70000000298023
+     ],
+     "score": 35.70000000298023,
+     "error": null
+    },
+    {
+     "graph": "opt",
+     "build": "webgpu",
+     "capture": true,
+     "medians": [],
+     "score": null,
+     "error": "Error: Can't create a session. ERROR_CODE: 1, ERROR_MESSAGE: This session cannot use the graph capture feature as requested by the user  as all compute graph nodes have not been partitioned to the Web"
+    },
+    {
+     "graph": "opt",
+     "build": "jspi",
+     "capture": false,
+     "medians": [
+      35.127499997615814
+     ],
+     "score": 35.127499997615814,
+     "error": null
+    },
+    {
+     "graph": "opt",
+     "build": "jspi",
+     "capture": true,
+     "medians": [],
+     "score": null,
+     "error": "Error: Can't create a session. ERROR_CODE: 1, ERROR_MESSAGE: This session cannot use the graph capture feature as requested by the user  as all compute graph nodes have not been partitioned to the Web"
+    }
+   ],
+   "placement": {
+    "startable": true,
+    "file": "bench/results/k28.8-placement-cross-encoder__mmarco-mMiniLMv2-L12-H384-v1-L128-std-webgpu.json",
+    "placements": {
+     "CPUExecutionProvider": 3,
+     "WebGpuExecutionProvider": 470
+    },
+    "cpuNodes": 3,
+    "memcpy": 5,
+    "error": null
+   },
+   "cpuParity": {
+    "f32": {
+     "cases": 197,
+     "of": 200,
+     "finite": true,
+     "queries": 17,
+     "queriesOf": 20,
+     "bestPassageAgreement": 1,
+     "maxAbsLogitDiff": 0.000026464462280273438,
+     "pass": true
+    },
+    "f16": {
+     "cases": 197,
+     "of": 200,
+     "finite": true,
+     "queries": 17,
+     "queriesOf": 20,
+     "bestPassageAgreement": 1,
+     "maxAbsLogitDiff": 0.05062055587768555,
+     "pass": true
+    },
+    "nodes": 536,
+    "fused": {
+     "Attention": 0,
+     "MultiHeadAttention": 0,
+     "SkipLayerNormalization": 0,
+     "EmbedLayerNormalization": 0,
+     "BiasGelu": 0,
+     "FastGelu": 0
+    },
+    "bytes": 235465176
+   },
+   "browserAccuracy": null,
+   "finite": null,
+   "tiebreak": null,
+   "kleinhirnScreening": {
+    "median": 13.452500015497208,
+    "p95": 14.090000003576279,
+    "gpuBytes": 44561176,
+    "accuracy": {
+     "cases": 197,
+     "of": 200,
+     "finite": true,
+     "queries": 17,
+     "bestPassageAgreement": 1,
+     "maxAbsLogitDiff": 0.015464305877685547
+    }
+   }
+  },
+  "distilbert__distilbert-base-uncased-finetuned-sst-2-english|L128": {
+   "slug": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+   "L": 128,
+   "family": "distilbert",
+   "task": "sequence-classification",
+   "winner": {
+    "graph": "opt",
+    "build": "jspi",
+    "capture": true,
+    "validationMode": "wgpuOnly",
+    "screeningMedian": 9.5450000166893,
+    "runs": 1
+   },
+   "candidates": [
+    {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "medians": [
+      15.972499996423721
+     ],
+     "score": 15.972499996423721,
+     "error": null
+    },
+    {
+     "graph": "std",
+     "build": "jsep",
+     "capture": true,
+     "medians": [],
+     "score": null,
+     "error": "Error: Can't create a session. ERROR_CODE: 1, ERROR_MESSAGE: This session cannot use the graph capture feature as requested by the user  as all compute graph nodes have not been partitioned to the JsE"
+    },
+    {
+     "graph": "std",
+     "build": "webgpu",
+     "capture": false,
+     "medians": [
+      10.987499997019768
+     ],
+     "score": 10.987499997019768,
+     "error": null
+    },
+    {
+     "graph": "std",
+     "build": "webgpu",
+     "capture": true,
+     "medians": [
+      9.984999999403954
+     ],
+     "score": 9.984999999403954,
+     "error": null
+    },
+    {
+     "graph": "std",
+     "build": "jspi",
+     "capture": false,
+     "medians": [
+      10.894999995827675
+     ],
+     "score": 10.894999995827675,
+     "error": null
+    },
+    {
+     "graph": "std",
+     "build": "jspi",
+     "capture": true,
+     "medians": [
+      10.075000002980232
+     ],
+     "score": 10.075000002980232,
+     "error": null
+    },
+    {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "medians": [
+      15.370000004768372
+     ],
+     "score": 15.370000004768372,
+     "error": null
+    },
+    {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": true,
+     "medians": [],
+     "score": null,
+     "error": "Error: Can't create a session. ERROR_CODE: 1, ERROR_MESSAGE: This session cannot use the graph capture feature as requested by the user  as all compute graph nodes have not been partitioned to the JsE"
+    },
+    {
+     "graph": "opt",
+     "build": "webgpu",
+     "capture": false,
+     "medians": [
+      11.030000001192093
+     ],
+     "score": 11.030000001192093,
+     "error": null
+    },
+    {
+     "graph": "opt",
+     "build": "webgpu",
+     "capture": true,
+     "medians": [
+      9.612500011920929
+     ],
+     "score": 9.612500011920929,
+     "error": null
+    },
+    {
+     "graph": "opt",
+     "build": "jspi",
+     "capture": false,
+     "medians": [
+      10.88000001013279
+     ],
+     "score": 10.88000001013279,
+     "error": null
+    },
+    {
+     "graph": "opt",
+     "build": "jspi",
+     "capture": true,
+     "medians": [
+      9.5450000166893
+     ],
+     "score": 9.5450000166893,
+     "error": null
+    }
+   ],
+   "placement": {
+    "startable": true,
+    "file": "bench/results/k28.8-placement-distilbert__distilbert-base-uncased-finetuned-sst-2-english-L128-opt-jspi.json",
+    "placements": {
+     "CPUExecutionProvider": 1,
+     "WebGpuExecutionProvider": 187
+    },
+    "cpuNodes": 1,
+    "memcpy": 5,
+    "error": null
+   },
+   "cpuParity": {
+    "f32": {
+     "cases": 165,
+     "of": 200,
+     "finite": true,
+     "argmaxAgreement": 1,
+     "maxAbsLogitDiff": 0.000020384788513183594,
+     "pass": true
+    },
+    "f16": {
+     "cases": 165,
+     "of": 200,
+     "finite": true,
+     "argmaxAgreement": 1,
+     "maxAbsLogitDiff": 0.04497349262237549,
+     "pass": true
+    },
+    "nodes": 197,
+    "fused": {
+     "Attention": 0,
+     "MultiHeadAttention": 0,
+     "SkipLayerNormalization": 12,
+     "EmbedLayerNormalization": 0,
+     "BiasGelu": 0,
+     "FastGelu": 0
+    },
+    "bytes": 133398017
+   },
+   "browserAccuracy": null,
+   "finite": null,
+   "tiebreak": null,
+   "kleinhirnScreening": {
+    "median": 21.962500005960464,
+    "p95": 23.189999997615814,
+    "gpuBytes": 89589784,
+    "accuracy": {
+     "cases": 165,
+     "of": 200,
+     "finite": true,
+     "argmaxAgreement": 1,
+     "maxAbsLogitDiff": 0.004473984241485596
+    }
+   }
+  },
+  "protectai__deberta-v3-base-prompt-injection-v2|L128": {
+   "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+   "L": 128,
+   "family": "deberta-v2",
+   "task": "sequence-classification",
+   "winner": {
+    "graph": "opt",
+    "build": "jspi",
+    "capture": false,
+    "validationMode": "wgpuOnly",
+    "screeningMedian": 23.40250000357628,
+    "runs": 1
+   },
+   "candidates": [
+    {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "medians": [
+      100.94499999284744
+     ],
+     "score": 100.94499999284744,
+     "error": null
+    },
+    {
+     "graph": "std",
+     "build": "jsep",
+     "capture": true,
+     "medians": [],
+     "score": null,
+     "error": "Error: Can't create a session. ERROR_CODE: 1, ERROR_MESSAGE: This session cannot use the graph capture feature as requested by the user  as all compute graph nodes have not been partitioned to the JsE"
+    },
+    {
+     "graph": "std",
+     "build": "webgpu",
+     "capture": false,
+     "medians": [
+      28.46500000357628
+     ],
+     "score": 28.46500000357628,
+     "error": null
+    },
+    {
+     "graph": "std",
+     "build": "webgpu",
+     "capture": true,
+     "medians": [],
+     "score": null,
+     "error": "Error: Can't create a session. ERROR_CODE: 1, ERROR_MESSAGE: This session cannot use the graph capture feature as requested by the user  as all compute graph nodes have not been partitioned to the Web"
+    },
+    {
+     "graph": "std",
+     "build": "jspi",
+     "capture": false,
+     "medians": [
+      28.84749999642372
+     ],
+     "score": 28.84749999642372,
+     "error": null
+    },
+    {
+     "graph": "std",
+     "build": "jspi",
+     "capture": true,
+     "medians": [],
+     "score": null,
+     "error": "Error: Can't create a session. ERROR_CODE: 1, ERROR_MESSAGE: This session cannot use the graph capture feature as requested by the user  as all compute graph nodes have not been partitioned to the Web"
+    },
+    {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "medians": [
+      83.70500001311302
+     ],
+     "score": 83.70500001311302,
+     "error": null
+    },
+    {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": true,
+     "medians": [],
+     "score": null,
+     "error": "Error: Can't create a session. ERROR_CODE: 1, ERROR_MESSAGE: This session cannot use the graph capture feature as requested by the user  as all compute graph nodes have not been partitioned to the JsE"
+    },
+    {
+     "graph": "opt",
+     "build": "webgpu",
+     "capture": false,
+     "medians": [
+      23.49499998986721
+     ],
+     "score": 23.49499998986721,
+     "error": null
+    },
+    {
+     "graph": "opt",
+     "build": "webgpu",
+     "capture": true,
+     "medians": [],
+     "score": null,
+     "error": "Error: Can't create a session. ERROR_CODE: 1, ERROR_MESSAGE: This session cannot use the graph capture feature as requested by the user  as all compute graph nodes have not been partitioned to the Web"
+    },
+    {
+     "graph": "opt",
+     "build": "jspi",
+     "capture": false,
+     "medians": [
+      23.40250000357628
+     ],
+     "score": 23.40250000357628,
+     "error": null
+    },
+    {
+     "graph": "opt",
+     "build": "jspi",
+     "capture": true,
+     "medians": [],
+     "score": null,
+     "error": "Error: Can't create a session. ERROR_CODE: 1, ERROR_MESSAGE: This session cannot use the graph capture feature as requested by the user  as all compute graph nodes have not been partitioned to the Web"
+    }
+   ],
+   "placement": {
+    "startable": true,
+    "file": "bench/results/k28.8-placement-protectai__deberta-v3-base-prompt-injection-v2-L128-opt-jspi.json",
+    "placements": {
+     "CPUExecutionProvider": 8,
+     "WebGpuExecutionProvider": 576
+    },
+    "cpuNodes": 8,
+    "memcpy": 7,
+    "error": null
+   },
+   "cpuParity": {
+    "f32": {
+     "cases": 165,
+     "of": 200,
+     "finite": true,
+     "argmaxAgreement": 1,
+     "maxAbsLogitDiff": 0.000043898820877075195,
+     "pass": true
+    },
+    "f16": {
+     "cases": 165,
+     "of": 200,
+     "finite": true,
+     "argmaxAgreement": 1,
+     "maxAbsLogitDiff": 0.04389309883117676,
+     "pass": true
+    },
+    "nodes": 559,
+    "fused": {
+     "Attention": 0,
+     "MultiHeadAttention": 0,
+     "SkipLayerNormalization": 24,
+     "EmbedLayerNormalization": 0,
+     "BiasGelu": 0,
+     "FastGelu": 0
+    },
+    "bytes": 424903774
+   },
+   "browserAccuracy": null,
+   "finite": null,
+   "tiebreak": null,
+   "kleinhirnScreening": {
+    "median": 49.599999994039536,
+    "p95": 49.78499999642372,
+    "gpuBytes": 192795676,
+    "accuracy": {
+     "cases": 165,
+     "of": 200,
+     "finite": true,
+     "argmaxAgreement": 1,
+     "maxAbsLogitDiff": 0.02280139923095703
+    }
+   }
+  },
+  "ibm-granite__granite-embedding-small-english-r2|L128": {
+   "slug": "ibm-granite__granite-embedding-small-english-r2",
+   "L": 128,
+   "family": "modernbert",
+   "task": "embeddings",
+   "winner": {
+    "graph": "opt",
+    "build": "webgpu",
+    "capture": true,
+    "validationMode": "wgpuOnly",
+    "screeningMedian": 12.280000001192093,
+    "runs": 1
+   },
+   "candidates": [
+    {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "medians": [
+      49.57249999046326
+     ],
+     "score": 49.57249999046326,
+     "error": null
+    },
+    {
+     "graph": "std",
+     "build": "jsep",
+     "capture": true,
+     "medians": [],
+     "score": null,
+     "error": "Error: Can't create a session. ERROR_CODE: 1, ERROR_MESSAGE: This session cannot use the graph capture feature as requested by the user  as all compute graph nodes have not been partitioned to the JsE"
+    },
+    {
+     "graph": "std",
+     "build": "webgpu",
+     "capture": false,
+     "medians": [
+      14.14249999821186
+     ],
+     "score": 14.14249999821186,
+     "error": null
+    },
+    {
+     "graph": "std",
+     "build": "webgpu",
+     "capture": true,
+     "medians": [
+      12.55749997496605
+     ],
+     "score": 12.55749997496605,
+     "error": null
+    },
+    {
+     "graph": "std",
+     "build": "jspi",
+     "capture": false,
+     "medians": [
+      13.957499995827675
+     ],
+     "score": 13.957499995827675,
+     "error": null
+    },
+    {
+     "graph": "std",
+     "build": "jspi",
+     "capture": true,
+     "medians": [
+      12.542500004172325
+     ],
+     "score": 12.542500004172325,
+     "error": null
+    },
+    {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "medians": [
+      44.88750000298023
+     ],
+     "score": 44.88750000298023,
+     "error": null
+    },
+    {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": true,
+     "medians": [],
+     "score": null,
+     "error": "Error: Can't create a session. ERROR_CODE: 1, ERROR_MESSAGE: This session cannot use the graph capture feature as requested by the user  as all compute graph nodes have not been partitioned to the JsE"
+    },
+    {
+     "graph": "opt",
+     "build": "webgpu",
+     "capture": false,
+     "medians": [
+      13.702499985694885
+     ],
+     "score": 13.702499985694885,
+     "error": null
+    },
+    {
+     "graph": "opt",
+     "build": "webgpu",
+     "capture": true,
+     "medians": [
+      12.280000001192093
+     ],
+     "score": 12.280000001192093,
+     "error": null
+    },
+    {
+     "graph": "opt",
+     "build": "jspi",
+     "capture": false,
+     "medians": [
+      13.575000017881393
+     ],
+     "score": 13.575000017881393,
+     "error": null
+    },
+    {
+     "graph": "opt",
+     "build": "jspi",
+     "capture": true,
+     "medians": [
+      12.304999992251396
+     ],
+     "score": 12.304999992251396,
+     "error": null
+    }
+   ],
+   "placement": {
+    "startable": true,
+    "file": "bench/results/k28.8-placement-ibm-granite__granite-embedding-small-english-r2-L128-opt-webgpu.json",
+    "placements": {
+     "CPUExecutionProvider": 4,
+     "WebGpuExecutionProvider": 480
+    },
+    "cpuNodes": 4,
+    "memcpy": 5,
+    "error": null
+   },
+   "cpuParity": {
+    "f32": {
+     "cases": 195,
+     "of": 200,
+     "finite": true,
+     "minCosine": 0.9999999999992163,
+     "meanCosine": 0.9999999999996805,
+     "maxAbsDiff": 0.00000762939453125,
+     "pass": true
+    },
+    "f16": {
+     "cases": 195,
+     "of": 200,
+     "finite": true,
+     "minCosine": 0.9999986261413075,
+     "meanCosine": 0.999999579377783,
+     "maxAbsDiff": 0.010296821594238281,
+     "pass": true
+    },
+    "nodes": 482,
+    "fused": {
+     "Attention": 0,
+     "MultiHeadAttention": 0,
+     "SkipLayerNormalization": 24,
+     "EmbedLayerNormalization": 0,
+     "BiasGelu": 0,
+     "FastGelu": 0
+    },
+    "bytes": 95557642
+   },
+   "browserAccuracy": null,
+   "finite": null,
+   "tiebreak": null,
+   "kleinhirnScreening": {
+    "median": 16.125,
+    "p95": 16.320000022649765,
+    "gpuBytes": 58878736,
+    "accuracy": {
+     "cases": 195,
+     "of": 200,
+     "finite": true,
+     "minCosine": 0.9999992280714076,
+     "maxAbsDiff": 0.009217262268066406
+    }
+   }
+  },
+  "sentence-transformers__all-MiniLM-L6-v2|L512": {
+   "slug": "sentence-transformers__all-MiniLM-L6-v2",
+   "L": 512,
+   "family": "bert",
+   "task": "embeddings",
+   "winner": {
+    "graph": "std",
+    "build": "webgpu",
+    "capture": true,
+    "validationMode": "wgpuOnly",
+    "screeningMedian": 12.48250000178814,
+    "runs": 1
+   },
+   "candidates": [
+    {
+     "graph": "std",
+     "build": "webgpu",
+     "capture": true,
+     "medians": [
+      12.48250000178814
+     ],
+     "score": 12.48250000178814,
+     "error": null
+    },
+    {
+     "graph": "std",
+     "build": "jspi",
+     "capture": true,
+     "medians": [
+      12.717500001192093
+     ],
+     "score": 12.717500001192093,
+     "error": null
+    },
+    {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "medians": [
+      19.855000004172325
+     ],
+     "score": 19.855000004172325,
+     "error": null
+    }
+   ],
+   "placement": {
+    "startable": true,
+    "file": "bench/results/k28.8-placement-sentence-transformers__all-MiniLM-L6-v2-L128-std-webgpu.json",
+    "placements": {
+     "CPUExecutionProvider": 5,
+     "WebGpuExecutionProvider": 244
+    },
+    "cpuNodes": 5,
+    "memcpy": 7,
+    "error": null
+   },
+   "cpuParity": {
+    "f32": {
+     "cases": 200,
+     "of": 200,
+     "finite": true,
+     "minCosine": 0.9999999999986661,
+     "meanCosine": 0.9999999999994371,
+     "maxAbsDiff": 0.0000017583370208740234,
+     "pass": true
+    },
+    "f16": {
+     "cases": 200,
+     "of": 200,
+     "finite": true,
+     "minCosine": 0.9999910290727829,
+     "meanCosine": 0.9999954656317276,
+     "maxAbsDiff": 0.004419267177581787,
+     "pass": true
+    },
+    "nodes": 290,
+    "fused": {
+     "Attention": 0,
+     "MultiHeadAttention": 0,
+     "SkipLayerNormalization": 0,
+     "EmbedLayerNormalization": 0,
+     "BiasGelu": 0,
+     "FastGelu": 0
+    },
+    "bytes": 45222286
+   },
+   "browserAccuracy": null,
+   "finite": null,
+   "tiebreak": null,
+   "kleinhirnScreening": {
+    "median": 56.014999985694885,
+    "p95": 57.525000005960464,
+    "gpuBytes": 26807296,
+    "accuracy": {
+     "cases": 200,
+     "of": 200,
+     "finite": true,
+     "minCosine": 0.9999988172872784,
+     "maxAbsDiff": 0.0018267631530761719
+    }
+   }
+  },
+  "cardiffnlp__twitter-roberta-base-sentiment-latest|L512": {
+   "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+   "L": 512,
+   "family": "roberta",
+   "task": "sequence-classification",
+   "winner": {
+    "graph": "std",
+    "build": "webgpu",
+    "capture": true,
+    "validationMode": "wgpuOnly",
+    "screeningMedian": 59.304999992251396,
+    "runs": 1
+   },
+   "candidates": [
+    {
+     "graph": "std",
+     "build": "jspi",
+     "capture": true,
+     "medians": [
+      59.82750000059605
+     ],
+     "score": 59.82750000059605,
+     "error": null
+    },
+    {
+     "graph": "std",
+     "build": "webgpu",
+     "capture": true,
+     "medians": [
+      59.304999992251396
+     ],
+     "score": 59.304999992251396,
+     "error": null
+    },
+    {
+     "graph": "std",
+     "build": "webgpu",
+     "capture": false,
+     "medians": [
+      61.27750000357628
+     ],
+     "score": 61.27750000357628,
+     "error": null
+    }
+   ],
+   "placement": {
+    "startable": true,
+    "file": "bench/results/k28.8-placement-cardiffnlp__twitter-roberta-base-sentiment-latest-L128-std-webgpu.json",
+    "placements": {
+     "CPUExecutionProvider": 3,
+     "WebGpuExecutionProvider": 470
+    },
+    "cpuNodes": 3,
+    "memcpy": 5,
+    "error": null
+   },
+   "cpuParity": {
+    "f32": {
+     "cases": 200,
+     "of": 200,
+     "finite": true,
+     "argmaxAgreement": 1,
+     "maxAbsLogitDiff": 0.000011324882507324219,
+     "pass": true
+    },
+    "f16": {
+     "cases": 200,
+     "of": 200,
+     "finite": true,
+     "argmaxAgreement": 1,
+     "maxAbsLogitDiff": 0.013511955738067627,
+     "pass": true
+    },
+    "nodes": 536,
+    "fused": {
+     "Attention": 0,
+     "MultiHeadAttention": 0,
+     "SkipLayerNormalization": 0,
+     "EmbedLayerNormalization": 0,
+     "BiasGelu": 0,
+     "FastGelu": 0
+    },
+    "bytes": 249485068
+   },
+   "browserAccuracy": null,
+   "finite": null,
+   "tiebreak": null,
+   "kleinhirnScreening": {
+    "median": 240.63750000298023,
+    "p95": 241.5199999809265,
+    "gpuBytes": 182319652,
+    "accuracy": {
+     "cases": 200,
+     "of": 200,
+     "finite": true,
+     "argmaxAgreement": 1,
+     "maxAbsLogitDiff": 0.004069238901138306
+    }
+   }
+  },
+  "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1|L512": {
+   "slug": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+   "L": 512,
+   "family": "xlm-roberta",
+   "task": "reranking",
+   "winner": {
+    "graph": "std",
+    "build": "jspi",
+    "capture": true,
+    "validationMode": "wgpuOnly",
+    "screeningMedian": 24.014999985694885,
+    "runs": 1
+   },
+   "candidates": [
+    {
+     "graph": "std",
+     "build": "webgpu",
+     "capture": true,
+     "medians": [
+      24.052500009536743
+     ],
+     "score": 24.052500009536743,
+     "error": null
+    },
+    {
+     "graph": "std",
+     "build": "jspi",
+     "capture": true,
+     "medians": [
+      24.014999985694885
+     ],
+     "score": 24.014999985694885,
+     "error": null
+    },
+    {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "medians": [
+      38.412499994039536
+     ],
+     "score": 38.412499994039536,
+     "error": null
+    }
+   ],
+   "placement": {
+    "startable": true,
+    "file": "bench/results/k28.8-placement-cross-encoder__mmarco-mMiniLMv2-L12-H384-v1-L128-std-jspi.json",
+    "placements": {
+     "CPUExecutionProvider": 3,
+     "WebGpuExecutionProvider": 470
+    },
+    "cpuNodes": 3,
+    "memcpy": 5,
+    "error": null
+   },
+   "cpuParity": {
+    "f32": {
+     "cases": 200,
+     "of": 200,
+     "finite": true,
+     "queries": 20,
+     "queriesOf": 20,
+     "bestPassageAgreement": 1,
+     "maxAbsLogitDiff": 0.000026464462280273438,
+     "pass": true
+    },
+    "f16": {
+     "cases": 200,
+     "of": 200,
+     "finite": true,
+     "queries": 20,
+     "queriesOf": 20,
+     "bestPassageAgreement": 1,
+     "maxAbsLogitDiff": 0.05062055587768555,
+     "pass": true
+    },
+    "nodes": 536,
+    "fused": {
+     "Attention": 0,
+     "MultiHeadAttention": 0,
+     "SkipLayerNormalization": 0,
+     "EmbedLayerNormalization": 0,
+     "BiasGelu": 0,
+     "FastGelu": 0
+    },
+    "bytes": 235471320
+   },
+   "browserAccuracy": null,
+   "finite": null,
+   "tiebreak": null,
+   "kleinhirnScreening": {
+    "median": 111.45749998092651,
+    "p95": 111.9249999821186,
+    "gpuBytes": 48398104,
+    "accuracy": {
+     "cases": 200,
+     "of": 200,
+     "finite": true,
+     "queries": 20,
+     "bestPassageAgreement": 1,
+     "maxAbsLogitDiff": 0.015964984893798828
+    }
+   }
+  },
+  "distilbert__distilbert-base-uncased-finetuned-sst-2-english|L512": {
+   "slug": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+   "L": 512,
+   "family": "distilbert",
+   "task": "sequence-classification",
+   "winner": {
+    "graph": "opt",
+    "build": "webgpu",
+    "capture": true,
+    "validationMode": "wgpuOnly",
+    "screeningMedian": 33.28000000119209,
+    "runs": 1
+   },
+   "candidates": [
+    {
+     "graph": "opt",
+     "build": "jspi",
+     "capture": true,
+     "medians": [
+      33.38750000298023
+     ],
+     "score": 33.38750000298023,
+     "error": null
+    },
+    {
+     "graph": "opt",
+     "build": "webgpu",
+     "capture": true,
+     "medians": [
+      33.28000000119209
+     ],
+     "score": 33.28000000119209,
+     "error": null
+    },
+    {
+     "graph": "std",
+     "build": "webgpu",
+     "capture": true,
+     "medians": [
+      35.167500004172325
+     ],
+     "score": 35.167500004172325,
+     "error": null
+    }
+   ],
+   "placement": {
+    "startable": true,
+    "file": "bench/results/k28.8-placement-distilbert__distilbert-base-uncased-finetuned-sst-2-english-L128-opt-webgpu.json",
+    "placements": {
+     "CPUExecutionProvider": 1,
+     "WebGpuExecutionProvider": 187
+    },
+    "cpuNodes": 1,
+    "memcpy": 5,
+    "error": null
+   },
+   "cpuParity": {
+    "f32": {
+     "cases": 200,
+     "of": 200,
+     "finite": true,
+     "argmaxAgreement": 1,
+     "maxAbsLogitDiff": 0.000020384788513183594,
+     "pass": true
+    },
+    "f16": {
+     "cases": 200,
+     "of": 200,
+     "finite": true,
+     "argmaxAgreement": 1,
+     "maxAbsLogitDiff": 0.04497349262237549,
+     "pass": true
+    },
+    "nodes": 197,
+    "fused": {
+     "Attention": 0,
+     "MultiHeadAttention": 0,
+     "SkipLayerNormalization": 12,
+     "EmbedLayerNormalization": 0,
+     "BiasGelu": 0,
+     "FastGelu": 0
+    },
+    "bytes": 133987841
+   },
+   "browserAccuracy": null,
+   "finite": null,
+   "tiebreak": null,
+   "kleinhirnScreening": {
+    "median": 120.82500000298023,
+    "p95": 121.51499998569489,
+    "gpuBytes": 97260568,
+    "accuracy": {
+     "cases": 200,
+     "of": 200,
+     "finite": true,
+     "argmaxAgreement": 1,
+     "maxAbsLogitDiff": 0.004473984241485596
+    }
+   }
+  },
+  "protectai__deberta-v3-base-prompt-injection-v2|L512": {
+   "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+   "L": 512,
+   "family": "deberta-v2",
+   "task": "sequence-classification",
+   "winner": {
+    "graph": "opt",
+    "build": "jspi",
+    "capture": false,
+    "validationMode": "wgpuOnly",
+    "screeningMedian": 94.94249999523163,
+    "runs": 1
+   },
+   "candidates": [
+    {
+     "graph": "opt",
+     "build": "jspi",
+     "capture": false,
+     "medians": [
+      94.94249999523163
+     ],
+     "score": 94.94249999523163,
+     "error": null
+    },
+    {
+     "graph": "opt",
+     "build": "webgpu",
+     "capture": false,
+     "medians": [
+      94.96250000596046
+     ],
+     "score": 94.96250000596046,
+     "error": null
+    },
+    {
+     "graph": "std",
+     "build": "webgpu",
+     "capture": false,
+     "medians": [
+      101.74250000715256
+     ],
+     "score": 101.74250000715256,
+     "error": null
+    }
+   ],
+   "placement": {
+    "startable": true,
+    "file": "bench/results/k28.8-placement-protectai__deberta-v3-base-prompt-injection-v2-L128-opt-jspi.json",
+    "placements": {
+     "CPUExecutionProvider": 8,
+     "WebGpuExecutionProvider": 576
+    },
+    "cpuNodes": 8,
+    "memcpy": 7,
+    "error": null
+   },
+   "cpuParity": {
+    "f32": {
+     "cases": 200,
+     "of": 200,
+     "finite": true,
+     "argmaxAgreement": 1,
+     "maxAbsLogitDiff": 0.000043898820877075195,
+     "pass": true
+    },
+    "f16": {
+     "cases": 200,
+     "of": 200,
+     "finite": true,
+     "argmaxAgreement": 1,
+     "maxAbsLogitDiff": 0.04389309883117676,
+     "pass": true
+    },
+    "nodes": 559,
+    "fused": {
+     "Attention": 0,
+     "MultiHeadAttention": 0,
+     "SkipLayerNormalization": 24,
+     "EmbedLayerNormalization": 0,
+     "BiasGelu": 0,
+     "FastGelu": 0
+    },
+    "bytes": 991134862
+   },
+   "browserAccuracy": null,
+   "finite": null,
+   "tiebreak": null,
+   "kleinhirnScreening": {
+    "median": 330.1350000053644,
+    "p95": 330.84999999403954,
+    "gpuBytes": 201447964,
+    "accuracy": {
+     "cases": 200,
+     "of": 200,
+     "finite": true,
+     "argmaxAgreement": 1,
+     "maxAbsLogitDiff": 0.02280139923095703
+    }
+   }
+  },
+  "ibm-granite__granite-embedding-small-english-r2|L512": {
+   "slug": "ibm-granite__granite-embedding-small-english-r2",
+   "L": 512,
+   "family": "modernbert",
+   "task": "embeddings",
+   "winner": {
+    "graph": "opt",
+    "build": "jspi",
+    "capture": true,
+    "validationMode": "wgpuOnly",
+    "screeningMedian": 35.52750000357628,
+    "runs": 1
+   },
+   "candidates": [
+    {
+     "graph": "opt",
+     "build": "webgpu",
+     "capture": true,
+     "medians": [
+      35.719999983906746
+     ],
+     "score": 35.719999983906746,
+     "error": null
+    },
+    {
+     "graph": "opt",
+     "build": "jspi",
+     "capture": true,
+     "medians": [
+      35.52750000357628
+     ],
+     "score": 35.52750000357628,
+     "error": null
+    },
+    {
+     "graph": "std",
+     "build": "jspi",
+     "capture": true,
+     "medians": [
+      36.11250001192093
+     ],
+     "score": 36.11250001192093,
+     "error": null
+    }
+   ],
+   "placement": {
+    "startable": true,
+    "file": "bench/results/k28.8-placement-ibm-granite__granite-embedding-small-english-r2-L128-opt-jspi.json",
+    "placements": {
+     "CPUExecutionProvider": 4,
+     "WebGpuExecutionProvider": 480
+    },
+    "cpuNodes": 4,
+    "memcpy": 5,
+    "error": null
+   },
+   "cpuParity": {
+    "f32": {
+     "cases": 200,
+     "of": 200,
+     "finite": true,
+     "minCosine": 0.9999999999992163,
+     "meanCosine": 0.9999999999996806,
+     "maxAbsDiff": 0.00000762939453125,
+     "pass": true
+    },
+    "f16": {
+     "cases": 200,
+     "of": 200,
+     "finite": true,
+     "minCosine": 0.9999986261413075,
+     "meanCosine": 0.9999995776936939,
+     "maxAbsDiff": 0.010296821594238281,
+     "pass": true
+    },
+    "nodes": 482,
+    "fused": {
+     "Attention": 0,
+     "MultiHeadAttention": 0,
+     "SkipLayerNormalization": 24,
+     "EmbedLayerNormalization": 0,
+     "BiasGelu": 0,
+     "FastGelu": 0
+    },
+    "bytes": 96000026
+   },
+   "browserAccuracy": null,
+   "finite": null,
+   "tiebreak": null,
+   "kleinhirnScreening": {
+    "median": 92.625,
+    "p95": 93.60499998927116,
+    "gpuBytes": 65564944,
+    "accuracy": {
+     "cases": 200,
+     "of": 200,
+     "finite": true,
+     "minCosine": 0.9999992280714076,
+     "maxAbsDiff": 0.009217262268066406
+    }
+   }
+  }
+ },
+ "checks": {
+  "file": "bench/results/k28.8-checks.json",
+  "scope": {
+   "calls": 1000,
+   "plainMedianUs": 125,
+   "scopedMedianUs": 129.99999523162842,
+   "deltaMedianUs": 4.999995231628418,
+   "plainMeanUs": 129.18000000715256,
+   "scopedMeanUs": 134.65999990701675,
+   "deltaMeanUs": 5.479999899864197
+  },
+  "finite": {
+   "n384UsPerCall": 0.26599999964237214,
+   "n1536UsPerCall": 1.0659999996423721
+  },
+  "error": null
+ },
+ "notRun": "stage 3 (tiebreak), the finiteness run over 320 inputs and the dry run were not run: Noa dropped phase 2 on 02.10. after the screening (kleinhirn slower in all twelve cells); winners are the smallest single screening median",
+ "phase2Estimate": {
+  "runs": 72,
+  "computeMinutes": 23,
+  "note": "compute = 320 calls x screening median per run; browser starts, loading and load waits come on top"
+ }
+}

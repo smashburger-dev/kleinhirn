@@ -1,0 +1,658 @@
+{
+ "model": "distilbert/distilbert-base-uncased-finetuned-sst-2-english",
+ "family": "distilbert",
+ "task": "sequence-classification",
+ "lengths": {
+  "128": {
+   "graphs": {
+    "std": {
+     "f32": {
+      "nodes": 302,
+      "fused": {
+       "Attention": 0,
+       "MultiHeadAttention": 0,
+       "SkipLayerNormalization": 0,
+       "EmbedLayerNormalization": 0,
+       "BiasGelu": 0,
+       "FastGelu": 0
+      },
+      "ops": {
+       "Constant": 63,
+       "Add": 55,
+       "MatMul": 48,
+       "Reshape": 30,
+       "Transpose": 24,
+       "LayerNormalization": 13,
+       "Div": 12,
+       "Mul": 12,
+       "Cast": 8,
+       "Shape": 6,
+       "Expand": 6,
+       "Where": 6,
+       "Softmax": 6,
+       "Erf": 6,
+       "Gather": 3,
+       "Gemm": 2,
+       "Equal": 1,
+       "Relu": 1
+      },
+      "bytes": 267899750,
+      "parityCpu": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1.0,
+       "maxAbsLogitDiff": 1.6123056411743164e-05,
+       "pass": true
+      }
+     },
+     "f16": {
+      "nodes": 297,
+      "fused": {
+       "Attention": 0,
+       "MultiHeadAttention": 0,
+       "SkipLayerNormalization": 0,
+       "EmbedLayerNormalization": 0,
+       "BiasGelu": 0,
+       "FastGelu": 0
+      },
+      "ops": {
+       "Constant": 63,
+       "Add": 55,
+       "MatMul": 48,
+       "Reshape": 30,
+       "Transpose": 24,
+       "LayerNormalization": 13,
+       "Div": 12,
+       "Mul": 12,
+       "Shape": 6,
+       "Expand": 6,
+       "Where": 6,
+       "Softmax": 6,
+       "Erf": 6,
+       "Cast": 3,
+       "Gather": 3,
+       "Gemm": 2,
+       "Equal": 1,
+       "Relu": 1
+      },
+      "bytes": 134011077,
+      "parityCpu": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1.0,
+       "maxAbsLogitDiff": 0.021453857421875,
+       "pass": true
+      },
+      "file": "models/k28/distilbert__distilbert-base-uncased-finetuned-sst-2-english/k28.8/onnx/L128-std-f16.onnx",
+      "sha256": "9ec05b1e4a35752ecf8e186169a8daeed101caac6d07b77fac4177dc3555d410"
+     },
+     "admissibleCpu": true,
+     "date": "2026-10-02 20:00"
+    },
+    "opt": {
+     "optimizer": {
+      "model_type": "bert",
+      "num_heads": 12,
+      "hidden_size": 768,
+      "enable_embed_layer_norm": true,
+      "use_multi_head_attention": false,
+      "fused_operator_statistics": {
+       "EmbedLayerNormalization": 0,
+       "Attention": 0,
+       "MultiHeadAttention": 0,
+       "Gelu": 6,
+       "FastGelu": 0,
+       "BiasGelu": 0,
+       "GemmFastGelu": 0,
+       "LayerNormalization": 1,
+       "SimplifiedLayerNormalization": 0,
+       "SkipLayerNormalization": 12,
+       "SkipSimplifiedLayerNormalization": 0,
+       "RotaryEmbedding": 0,
+       "QOrderedAttention": 0,
+       "QOrderedGelu": 0,
+       "QOrderedLayerNormalization": 0,
+       "QOrderedMatMul": 0
+      }
+     },
+     "f32": {
+      "nodes": 196,
+      "fused": {
+       "Attention": 0,
+       "MultiHeadAttention": 0,
+       "SkipLayerNormalization": 12,
+       "EmbedLayerNormalization": 0,
+       "BiasGelu": 0,
+       "FastGelu": 0
+      },
+      "ops": {
+       "Reshape": 54,
+       "MatMul": 36,
+       "Transpose": 24,
+       "Add": 19,
+       "Gemm": 14,
+       "com.microsoft:SkipLayerNormalization": 12,
+       "Expand": 6,
+       "Div": 6,
+       "Where": 6,
+       "Softmax": 6,
+       "com.microsoft:Gelu": 6,
+       "Cast": 2,
+       "Gather": 2,
+       "Equal": 1,
+       "LayerNormalization": 1,
+       "Relu": 1
+      },
+      "bytes": 266704342,
+      "parityCpu": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1.0,
+       "maxAbsLogitDiff": 2.0384788513183594e-05,
+       "pass": true
+      }
+     },
+     "f16": {
+      "nodes": 197,
+      "fused": {
+       "Attention": 0,
+       "MultiHeadAttention": 0,
+       "SkipLayerNormalization": 12,
+       "EmbedLayerNormalization": 0,
+       "BiasGelu": 0,
+       "FastGelu": 0
+      },
+      "ops": {
+       "Reshape": 54,
+       "MatMul": 36,
+       "Transpose": 24,
+       "Add": 19,
+       "Gemm": 14,
+       "com.microsoft:SkipLayerNormalization": 12,
+       "Expand": 6,
+       "Div": 6,
+       "Where": 6,
+       "Softmax": 6,
+       "com.microsoft:Gelu": 6,
+       "Cast": 3,
+       "Gather": 2,
+       "Equal": 1,
+       "LayerNormalization": 1,
+       "Relu": 1
+      },
+      "bytes": 133398017,
+      "parityCpu": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1.0,
+       "maxAbsLogitDiff": 0.04497349262237549,
+       "pass": true
+      },
+      "file": "models/k28/distilbert__distilbert-base-uncased-finetuned-sst-2-english/k28.8/onnx/L128-opt-f16.onnx",
+      "sha256": "f9891eb81458c9af87d93a29f99bdd9b479ac0925b76c10a388e3ecd9706484e"
+     },
+     "admissibleCpu": true,
+     "date": "2026-10-02 20:00"
+    },
+    "opt-noemb": {
+     "optimizer": {
+      "model_type": "bert",
+      "num_heads": 12,
+      "hidden_size": 768,
+      "enable_embed_layer_norm": false,
+      "use_multi_head_attention": false,
+      "fused_operator_statistics": {
+       "EmbedLayerNormalization": 0,
+       "Attention": 0,
+       "MultiHeadAttention": 0,
+       "Gelu": 6,
+       "FastGelu": 0,
+       "BiasGelu": 0,
+       "GemmFastGelu": 0,
+       "LayerNormalization": 1,
+       "SimplifiedLayerNormalization": 0,
+       "SkipLayerNormalization": 12,
+       "SkipSimplifiedLayerNormalization": 0,
+       "RotaryEmbedding": 0,
+       "QOrderedAttention": 0,
+       "QOrderedGelu": 0,
+       "QOrderedLayerNormalization": 0,
+       "QOrderedMatMul": 0
+      }
+     },
+     "f32": {
+      "nodes": 196,
+      "fused": {
+       "Attention": 0,
+       "MultiHeadAttention": 0,
+       "SkipLayerNormalization": 12,
+       "EmbedLayerNormalization": 0,
+       "BiasGelu": 0,
+       "FastGelu": 0
+      },
+      "ops": {
+       "Reshape": 54,
+       "MatMul": 36,
+       "Transpose": 24,
+       "Add": 19,
+       "Gemm": 14,
+       "com.microsoft:SkipLayerNormalization": 12,
+       "Expand": 6,
+       "Div": 6,
+       "Where": 6,
+       "Softmax": 6,
+       "com.microsoft:Gelu": 6,
+       "Cast": 2,
+       "Gather": 2,
+       "Equal": 1,
+       "LayerNormalization": 1,
+       "Relu": 1
+      },
+      "bytes": 266704342,
+      "parityCpu": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1.0,
+       "maxAbsLogitDiff": 2.0384788513183594e-05,
+       "pass": true
+      }
+     },
+     "f16": {
+      "nodes": 197,
+      "fused": {
+       "Attention": 0,
+       "MultiHeadAttention": 0,
+       "SkipLayerNormalization": 12,
+       "EmbedLayerNormalization": 0,
+       "BiasGelu": 0,
+       "FastGelu": 0
+      },
+      "ops": {
+       "Reshape": 54,
+       "MatMul": 36,
+       "Transpose": 24,
+       "Add": 19,
+       "Gemm": 14,
+       "com.microsoft:SkipLayerNormalization": 12,
+       "Expand": 6,
+       "Div": 6,
+       "Where": 6,
+       "Softmax": 6,
+       "com.microsoft:Gelu": 6,
+       "Cast": 3,
+       "Gather": 2,
+       "Equal": 1,
+       "LayerNormalization": 1,
+       "Relu": 1
+      },
+      "bytes": 133398017,
+      "parityCpu": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1.0,
+       "maxAbsLogitDiff": 0.04497349262237549,
+       "pass": true
+      },
+      "file": "models/k28/distilbert__distilbert-base-uncased-finetuned-sst-2-english/k28.8/onnx/L128-opt-noemb-f16.onnx",
+      "sha256": "f9891eb81458c9af87d93a29f99bdd9b479ac0925b76c10a388e3ecd9706484e"
+     },
+     "admissibleCpu": true,
+     "date": "2026-10-02 20:00"
+    },
+    "opt-mha": {
+     "optimizer": {
+      "model_type": "bert",
+      "num_heads": 12,
+      "hidden_size": 768,
+      "enable_embed_layer_norm": true,
+      "use_multi_head_attention": true,
+      "fused_operator_statistics": {
+       "EmbedLayerNormalization": 0,
+       "Attention": 0,
+       "MultiHeadAttention": 0,
+       "Gelu": 6,
+       "FastGelu": 0,
+       "BiasGelu": 0,
+       "GemmFastGelu": 0,
+       "LayerNormalization": 1,
+       "SimplifiedLayerNormalization": 0,
+       "SkipLayerNormalization": 12,
+       "SkipSimplifiedLayerNormalization": 0,
+       "RotaryEmbedding": 0,
+       "QOrderedAttention": 0,
+       "QOrderedGelu": 0,
+       "QOrderedLayerNormalization": 0,
+       "QOrderedMatMul": 0
+      }
+     },
+     "f32": {
+      "nodes": 196,
+      "fused": {
+       "Attention": 0,
+       "MultiHeadAttention": 0,
+       "SkipLayerNormalization": 12,
+       "EmbedLayerNormalization": 0,
+       "BiasGelu": 0,
+       "FastGelu": 0
+      },
+      "ops": {
+       "Reshape": 54,
+       "MatMul": 36,
+       "Transpose": 24,
+       "Add": 19,
+       "Gemm": 14,
+       "com.microsoft:SkipLayerNormalization": 12,
+       "Expand": 6,
+       "Div": 6,
+       "Where": 6,
+       "Softmax": 6,
+       "com.microsoft:Gelu": 6,
+       "Cast": 2,
+       "Gather": 2,
+       "Equal": 1,
+       "LayerNormalization": 1,
+       "Relu": 1
+      },
+      "bytes": 266704342,
+      "parityCpu": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1.0,
+       "maxAbsLogitDiff": 2.0384788513183594e-05,
+       "pass": true
+      }
+     },
+     "f16": {
+      "nodes": 197,
+      "fused": {
+       "Attention": 0,
+       "MultiHeadAttention": 0,
+       "SkipLayerNormalization": 12,
+       "EmbedLayerNormalization": 0,
+       "BiasGelu": 0,
+       "FastGelu": 0
+      },
+      "ops": {
+       "Reshape": 54,
+       "MatMul": 36,
+       "Transpose": 24,
+       "Add": 19,
+       "Gemm": 14,
+       "com.microsoft:SkipLayerNormalization": 12,
+       "Expand": 6,
+       "Div": 6,
+       "Where": 6,
+       "Softmax": 6,
+       "com.microsoft:Gelu": 6,
+       "Cast": 3,
+       "Gather": 2,
+       "Equal": 1,
+       "LayerNormalization": 1,
+       "Relu": 1
+      },
+      "bytes": 133398017,
+      "parityCpu": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1.0,
+       "maxAbsLogitDiff": 0.04497349262237549,
+       "pass": true
+      },
+      "file": "models/k28/distilbert__distilbert-base-uncased-finetuned-sst-2-english/k28.8/onnx/L128-opt-mha-f16.onnx",
+      "sha256": "f9891eb81458c9af87d93a29f99bdd9b479ac0925b76c10a388e3ecd9706484e"
+     },
+     "admissibleCpu": true,
+     "date": "2026-10-02 20:01"
+    }
+   },
+   "export": {
+    "seconds": 1.1,
+    "torch": "2.7.0",
+    "transformers": "4.57.6",
+    "pooling": null,
+    "padId": 0
+   },
+   "cpuReference": {
+    "file": "models/k28/distilbert__distilbert-base-uncased-finetuned-sst-2-english/k28.8/cpu-f32-L128.bin",
+    "shape": [
+     320,
+     2
+    ],
+    "sha256": "2d20e801a04f2d25ae1c1f720c19cd99d2fb8183b605d2a7acf42955ba8a832a",
+    "finite": true,
+    "graph": "L128-std-f32.onnx",
+    "provider": "CPUExecutionProvider"
+   }
+  },
+  "512": {
+   "graphs": {
+    "std": {
+     "f32": {
+      "nodes": 302,
+      "fused": {
+       "Attention": 0,
+       "MultiHeadAttention": 0,
+       "SkipLayerNormalization": 0,
+       "EmbedLayerNormalization": 0,
+       "BiasGelu": 0,
+       "FastGelu": 0
+      },
+      "ops": {
+       "Constant": 63,
+       "Add": 55,
+       "MatMul": 48,
+       "Reshape": 30,
+       "Transpose": 24,
+       "LayerNormalization": 13,
+       "Div": 12,
+       "Mul": 12,
+       "Cast": 8,
+       "Shape": 6,
+       "Expand": 6,
+       "Where": 6,
+       "Softmax": 6,
+       "Erf": 6,
+       "Gather": 3,
+       "Gemm": 2,
+       "Equal": 1,
+       "Relu": 1
+      },
+      "bytes": 267902822,
+      "parityCpu": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1.0,
+       "maxAbsLogitDiff": 1.6123056411743164e-05,
+       "pass": true
+      }
+     },
+     "f16": {
+      "nodes": 297,
+      "fused": {
+       "Attention": 0,
+       "MultiHeadAttention": 0,
+       "SkipLayerNormalization": 0,
+       "EmbedLayerNormalization": 0,
+       "BiasGelu": 0,
+       "FastGelu": 0
+      },
+      "ops": {
+       "Constant": 63,
+       "Add": 55,
+       "MatMul": 48,
+       "Reshape": 30,
+       "Transpose": 24,
+       "LayerNormalization": 13,
+       "Div": 12,
+       "Mul": 12,
+       "Shape": 6,
+       "Expand": 6,
+       "Where": 6,
+       "Softmax": 6,
+       "Erf": 6,
+       "Cast": 3,
+       "Gather": 3,
+       "Gemm": 2,
+       "Equal": 1,
+       "Relu": 1
+      },
+      "bytes": 134014149,
+      "parityCpu": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1.0,
+       "maxAbsLogitDiff": 0.021453857421875,
+       "pass": true
+      },
+      "file": "models/k28/distilbert__distilbert-base-uncased-finetuned-sst-2-english/k28.8/onnx/L512-std-f16.onnx",
+      "sha256": "bf755f651387e3d4389d7f55778ae9c616165006679811e8162fbd5b32054a14"
+     },
+     "admissibleCpu": true,
+     "date": "2026-10-02 21:24"
+    },
+    "opt": {
+     "optimizer": {
+      "model_type": "bert",
+      "num_heads": 12,
+      "hidden_size": 768,
+      "enable_embed_layer_norm": true,
+      "use_multi_head_attention": false,
+      "fused_operator_statistics": {
+       "EmbedLayerNormalization": 0,
+       "Attention": 0,
+       "MultiHeadAttention": 0,
+       "Gelu": 6,
+       "FastGelu": 0,
+       "BiasGelu": 0,
+       "GemmFastGelu": 0,
+       "LayerNormalization": 1,
+       "SimplifiedLayerNormalization": 0,
+       "SkipLayerNormalization": 12,
+       "SkipSimplifiedLayerNormalization": 0,
+       "RotaryEmbedding": 0,
+       "QOrderedAttention": 0,
+       "QOrderedGelu": 0,
+       "QOrderedLayerNormalization": 0,
+       "QOrderedMatMul": 0
+      }
+     },
+     "f32": {
+      "nodes": 196,
+      "fused": {
+       "Attention": 0,
+       "MultiHeadAttention": 0,
+       "SkipLayerNormalization": 12,
+       "EmbedLayerNormalization": 0,
+       "BiasGelu": 0,
+       "FastGelu": 0
+      },
+      "ops": {
+       "Reshape": 54,
+       "MatMul": 36,
+       "Transpose": 24,
+       "Add": 19,
+       "Gemm": 14,
+       "com.microsoft:SkipLayerNormalization": 12,
+       "Expand": 6,
+       "Div": 6,
+       "Where": 6,
+       "Softmax": 6,
+       "com.microsoft:Gelu": 6,
+       "Cast": 2,
+       "Gather": 2,
+       "Equal": 1,
+       "LayerNormalization": 1,
+       "Relu": 1
+      },
+      "bytes": 267883990,
+      "parityCpu": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1.0,
+       "maxAbsLogitDiff": 2.0384788513183594e-05,
+       "pass": true
+      }
+     },
+     "f16": {
+      "nodes": 197,
+      "fused": {
+       "Attention": 0,
+       "MultiHeadAttention": 0,
+       "SkipLayerNormalization": 12,
+       "EmbedLayerNormalization": 0,
+       "BiasGelu": 0,
+       "FastGelu": 0
+      },
+      "ops": {
+       "Reshape": 54,
+       "MatMul": 36,
+       "Transpose": 24,
+       "Add": 19,
+       "Gemm": 14,
+       "com.microsoft:SkipLayerNormalization": 12,
+       "Expand": 6,
+       "Div": 6,
+       "Where": 6,
+       "Softmax": 6,
+       "com.microsoft:Gelu": 6,
+       "Cast": 3,
+       "Gather": 2,
+       "Equal": 1,
+       "LayerNormalization": 1,
+       "Relu": 1
+      },
+      "bytes": 133987841,
+      "parityCpu": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1.0,
+       "maxAbsLogitDiff": 0.04497349262237549,
+       "pass": true
+      },
+      "file": "models/k28/distilbert__distilbert-base-uncased-finetuned-sst-2-english/k28.8/onnx/L512-opt-f16.onnx",
+      "sha256": "073d3bc09dc6f8c3e9dc492c10f098a24ce9bff189d7de5a23dd3679d3ac6c4b"
+     },
+     "admissibleCpu": true,
+     "date": "2026-10-02 21:26"
+    }
+   },
+   "export": {
+    "seconds": 1.1,
+    "torch": "2.7.0",
+    "transformers": "4.57.6",
+    "pooling": null,
+    "padId": 0
+   },
+   "cpuReference": {
+    "file": "models/k28/distilbert__distilbert-base-uncased-finetuned-sst-2-english/k28.8/cpu-f32-L512.bin",
+    "shape": [
+     320,
+     2
+    ],
+    "sha256": "79a032cae2dff537fb01d59198f8574f03d4c09da4f6e7e2c5182c04a38a2c8c",
+    "finite": true,
+    "graph": "L512-std-f32.onnx",
+    "provider": "CPUExecutionProvider"
+   }
+  }
+ },
+ "versions": {
+  "onnx": "1.22.0",
+  "onnxruntime": "1.29.0",
+  "torch": "2.7.0",
+  "transformers": "4.57.6",
+  "opset": 17
+ }
+}

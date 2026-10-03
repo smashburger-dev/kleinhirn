@@ -1,0 +1,431 @@
+{
+ "date": "2026-10-01",
+ "run_id": "k28-parity-OpenMed__OpenMed-NER-SpeciesDetect-ModernMed-149M-f32-7ac9f32-text-1790847568646",
+ "commit": "7ac9f32",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "3.50",
+ "loadAvgEnd": "3.28 4.10 4.74",
+ "stage": "done",
+ "model": "OpenMed__OpenMed-NER-SpeciesDetect-ModernMed-149M",
+ "precision": "f32",
+ "task": "token-classification",
+ "info": {
+  "precision": "f32",
+  "buildId": "mupbt95a",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "modernbert",
+  "task": "token-classification",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 476830228,
+  "downloadBytes": 598446435,
+  "loadTiming": {
+   "fetchMs": 901.1999999955297,
+   "bodyMs": 3615.0000000074506,
+   "sha256Ms": 328.69999999552965,
+   "uploadMs": 93.5,
+   "embedJoinMs": 18.100000001490116,
+   "manifestMs": 2.7999999970197678,
+   "planMs": 6.5
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "spanExactAgreement": 1,
+  "spansGot": [
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.5272685885429382,
+     "start": 12,
+     "end": 14
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.6315885782241821,
+     "start": 23,
+     "end": 25
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.44960376620292664,
+     "start": 30,
+     "end": 33
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.5456283688545227,
+     "start": 312,
+     "end": 314
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.45930734276771545,
+     "start": 25,
+     "end": 29
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.7398871183395386,
+     "start": 9,
+     "end": 10
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.5677144825458527,
+     "start": 10,
+     "end": 15
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.48317405581474304,
+     "start": 95,
+     "end": 98
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.5290437042713165,
+     "start": 13,
+     "end": 21
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.4884372055530548,
+     "start": 2,
+     "end": 4
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.5804599523544312,
+     "start": 10,
+     "end": 13
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.48011788725852966,
+     "start": 26,
+     "end": 28
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.684505432844162,
+     "start": 30,
+     "end": 34
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.3597760697205861,
+     "start": 19,
+     "end": 25
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.8680936098098755,
+     "start": 132,
+     "end": 135
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.805867612361908,
+     "start": 135,
+     "end": 138
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.7362547516822815,
+     "start": 138,
+     "end": 140
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.696281298995018,
+     "start": 141,
+     "end": 148
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.842815637588501,
+     "start": 32,
+     "end": 35
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.7935459017753601,
+     "start": 35,
+     "end": 38
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.619145393371582,
+     "start": 38,
+     "end": 42
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.5312937796115875,
+     "start": 54,
+     "end": 60
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.839717447757721,
+     "start": 24,
+     "end": 26
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.6905477195978165,
+     "start": 26,
+     "end": 36
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   []
+  ],
+  "spanTexts": 200,
+  "spans": 24,
+  "maxAbsScoreDiff": 0.000002384185791015625,
+  "textStats": {
+   "cases": 200,
+   "calls": 200,
+   "inputMismatch": 0,
+   "rows": 200,
+   "bitDiffRows": 0,
+   "batchRows": 0,
+   "batchVsSingleDiffRows": 0
+  }
+ },
+ "gpuErrors": []
+}

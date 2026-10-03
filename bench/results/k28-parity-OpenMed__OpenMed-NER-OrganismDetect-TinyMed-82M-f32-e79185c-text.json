@@ -1,0 +1,893 @@
+{
+ "date": "2026-09-30",
+ "run_id": "k28-parity-OpenMed__OpenMed-NER-OrganismDetect-TinyMed-82M-f32-e79185c-text-1790806250453",
+ "commit": "e79185c",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "3.50",
+ "loadAvgEnd": "3.70 4.32 4.46",
+ "stage": "done",
+ "model": "OpenMed__OpenMed-NER-OrganismDetect-TinyMed-82M",
+ "precision": "f32",
+ "task": "token-classification",
+ "info": {
+  "precision": "f32",
+  "buildId": "muolyk0x",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "roberta",
+  "task": "token-classification",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 197285900,
+  "downloadBytes": 326130561,
+  "loadTiming": {
+   "fetchMs": 515.5999999996275,
+   "bodyMs": 957.6999999992549,
+   "sha256Ms": 176.2000000011176,
+   "uploadMs": 30.09999999962747,
+   "embedJoinMs": 15.800000000745058,
+   "manifestMs": 2.5,
+   "planMs": 4.099999999627471
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "spanExactAgreement": 1,
+  "spansGot": [
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.7300657629966736,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.678560197353363,
+     "start": 1,
+     "end": 3
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.4911668300628662,
+     "start": 3,
+     "end": 7
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.7557047605514526,
+     "start": 35,
+     "end": 39
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.5098210573196411,
+     "start": 47,
+     "end": 49
+    }
+   ],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.5415073037147522,
+     "start": 9,
+     "end": 10
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.5611233711242676,
+     "start": 10,
+     "end": 12
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.5796461900075277,
+     "start": 12,
+     "end": 19
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.5313189625740051,
+     "start": 9,
+     "end": 11
+    }
+   ],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.4848252236843109,
+     "start": 3,
+     "end": 7
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.7509078979492188,
+     "start": 20,
+     "end": 21
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.7071549296379089,
+     "start": 21,
+     "end": 25
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.7342152535915375,
+     "start": 30,
+     "end": 45
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.6145949959754944,
+     "start": 46,
+     "end": 47
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.6625583171844482,
+     "start": 77,
+     "end": 78
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.6294535994529724,
+     "start": 78,
+     "end": 82
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.6207291881243387,
+     "start": 252,
+     "end": 260
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.46968287229537964,
+     "start": 306,
+     "end": 309
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.45185427367687225,
+     "start": 312,
+     "end": 317
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.5657586654027303,
+     "start": 15,
+     "end": 25
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.5047006607055664,
+     "start": 27,
+     "end": 29
+    }
+   ],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.6508422493934631,
+     "start": 13,
+     "end": 15
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.626869261264801,
+     "start": 15,
+     "end": 16
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.44555264711380005,
+     "start": 16,
+     "end": 22
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.5379911661148071,
+     "start": 28,
+     "end": 31
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.5949013233184814,
+     "start": 31,
+     "end": 35
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.9320085644721985,
+     "start": 9,
+     "end": 11
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.9444075226783752,
+     "start": 11,
+     "end": 15
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.8830428123474121,
+     "start": 15,
+     "end": 17
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.8225821852684021,
+     "start": 17,
+     "end": 18
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.7567762732505798,
+     "start": 18,
+     "end": 20
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.7708842158317566,
+     "start": 20,
+     "end": 31
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.6451878547668457,
+     "start": 37,
+     "end": 40
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.7146380543708801,
+     "start": 40,
+     "end": 41
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.4943254292011261,
+     "start": 297,
+     "end": 298
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.536704421043396,
+     "start": 352,
+     "end": 353
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.8306562900543213,
+     "start": 9,
+     "end": 10
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.8448660969734192,
+     "start": 10,
+     "end": 12
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.6555272936820984,
+     "start": 12,
+     "end": 24
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.49013638496398926,
+     "start": 28,
+     "end": 31
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.5514754056930542,
+     "start": 212,
+     "end": 215
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.5201679468154907,
+     "start": 374,
+     "end": 377
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.46256619691848755,
+     "start": 30,
+     "end": 32
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.4598626419901848,
+     "start": 33,
+     "end": 41
+    }
+   ],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.6994959712028503,
+     "start": 16,
+     "end": 23
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.4969687759876251,
+     "start": 7,
+     "end": 8
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.4586721956729889,
+     "start": 0,
+     "end": 3
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.7657607793807983,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.6706017255783081,
+     "start": 1,
+     "end": 3
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.4601947069168091,
+     "start": 3,
+     "end": 7
+    }
+   ],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.5221448540687561,
+     "start": 0,
+     "end": 4
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.7122365236282349,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.4790455102920532,
+     "start": 1,
+     "end": 4
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.7606225609779358,
+     "start": 5,
+     "end": 7
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.7796222567558289,
+     "start": 7,
+     "end": 8
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.7789143323898315,
+     "start": 8,
+     "end": 10
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.49848300218582153,
+     "start": 10,
+     "end": 15
+    }
+   ],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.7360602617263794,
+     "start": 43,
+     "end": 45
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.5014467239379883,
+     "start": 45,
+     "end": 47
+    }
+   ],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.6728121638298035,
+     "start": 31,
+     "end": 40
+    }
+   ],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.5149918794631958,
+     "start": 18,
+     "end": 22
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.5203392505645752,
+     "start": 3,
+     "end": 5
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.6527984738349915,
+     "start": 5,
+     "end": 8
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.5699308514595032,
+     "start": 16,
+     "end": 18
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.5681014955043793,
+     "start": 26,
+     "end": 32
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.8617891669273376,
+     "start": 53,
+     "end": 55
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.7889140248298645,
+     "start": 55,
+     "end": 57
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.6860247850418091,
+     "start": 57,
+     "end": 66
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.522855281829834,
+     "start": 42,
+     "end": 43
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.46510788798332214,
+     "start": 44,
+     "end": 46
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.6275887489318848,
+     "start": 27,
+     "end": 28
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.6072931289672852,
+     "start": 33,
+     "end": 35
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.7741217017173767,
+     "start": 9,
+     "end": 12
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.7137877345085144,
+     "start": 12,
+     "end": 13
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.6678287982940674,
+     "start": 13,
+     "end": 15
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.8696100115776062,
+     "start": 16,
+     "end": 17
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.7961478233337402,
+     "start": 17,
+     "end": 28
+    }
+   ],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.7205122470855713,
+     "start": 46,
+     "end": 59
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.8599357008934021,
+     "start": 43,
+     "end": 44
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.6422374844551086,
+     "start": 44,
+     "end": 46
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.47837284207344055,
+     "start": 47,
+     "end": 48
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.5440553069114685,
+     "start": 52,
+     "end": 68
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.7333190441131592,
+     "start": 0,
+     "end": 1
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.5154737830162048,
+     "start": 1,
+     "end": 4
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.6209886074066162,
+     "start": 5,
+     "end": 7
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.6719881892204285,
+     "start": 7,
+     "end": 8
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.6913913488388062,
+     "start": 8,
+     "end": 10
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.6088546514511108,
+     "start": 38,
+     "end": 42
+    }
+   ],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.6786734461784363,
+     "start": 9,
+     "end": 14
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.6469538867473602,
+     "start": 15,
+     "end": 39
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.6436007618904114,
+     "start": 273,
+     "end": 274
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.5836606621742249,
+     "start": 385,
+     "end": 390
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.7167371511459351,
+     "start": 30,
+     "end": 31
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.6232442855834961,
+     "start": 31,
+     "end": 33
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.5731776456038157,
+     "start": 33,
+     "end": 44
+    }
+   ],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [],
+   [
+    {
+     "entity_group": "SPECIES",
+     "score": 0.759214460849762,
+     "start": 15,
+     "end": 16
+    },
+    {
+     "entity_group": "SPECIES",
+     "score": 0.5712159872055054,
+     "start": 16,
+     "end": 20
+    }
+   ]
+  ],
+  "spanTexts": 200,
+  "spans": 97,
+  "maxAbsScoreDiff": 0.0000014901161193847656,
+  "textStats": {
+   "cases": 200,
+   "calls": 200,
+   "inputMismatch": 0,
+   "rows": 200,
+   "bitDiffRows": 0,
+   "batchRows": 0,
+   "batchVsSingleDiffRows": 0
+  }
+ },
+ "gpuErrors": []
+}

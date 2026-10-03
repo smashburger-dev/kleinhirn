@@ -1,0 +1,69 @@
+{
+ "date": "2026-10-01",
+ "run_id": "k28-parity-OpenMed__OpenMed-NER-GenomeDetect-ModernMed-149M-f32-696526f-1790832320154",
+ "commit": "696526f",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "5.62",
+ "loadAvgEnd": "4.86 5.21 4.60",
+ "stage": "done",
+ "model": "OpenMed__OpenMed-NER-GenomeDetect-ModernMed-149M",
+ "precision": "f32",
+ "task": "token-classification",
+ "info": {
+  "precision": "f32",
+  "buildId": "mup3bpcy",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "modernbert",
+  "task": "token-classification",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 476830228,
+  "downloadBytes": 598446444,
+  "loadTiming": {
+   "fetchMs": 846.6999999955297,
+   "bodyMs": 3275.6000000089407,
+   "sha256Ms": 338.9999999925494,
+   "uploadMs": 88.70000000298023,
+   "embedJoinMs": 15,
+   "manifestMs": 7.800000004470348,
+   "planMs": 8.699999995529652
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "argmaxPerTokenAgreement": 1,
+  "argmaxPerTokenDisagreements": [],
+  "tokens": 6350,
+  "maxAbsLogitDiff": 0.0001316070556640625,
+  "meanAbsLogitDiff": 0.0000018883559099958325
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0,
+  "groups": 50
+ },
+ "gpuErrors": []
+}

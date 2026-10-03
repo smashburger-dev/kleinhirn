@@ -1,0 +1,68 @@
+{
+ "date": "2026-10-01",
+ "run_id": "k28-parity-garak-llm__garak-refusal-detector-f32-7a476a1-1790834303038",
+ "commit": "7a476a1",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "3.99",
+ "loadAvgEnd": "3.56 4.34 4.92",
+ "stage": "done",
+ "model": "garak-llm__garak-refusal-detector",
+ "precision": "f32",
+ "task": "sequence-classification",
+ "info": {
+  "precision": "f32",
+  "buildId": "mup3g5ui",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "modernbert",
+  "task": "sequence-classification",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 472898096,
+  "downloadBytes": 598443354,
+  "loadTiming": {
+   "fetchMs": 952.1000000014901,
+   "bodyMs": 3738.6999999955297,
+   "sha256Ms": 346.59999999403954,
+   "uploadMs": 88.80000000447035,
+   "embedJoinMs": 16.899999998509884,
+   "manifestMs": 10.399999998509884,
+   "planMs": 11.799999997019768
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.0000324249267578125,
+  "meanAbsLogitDiff": 0.0000016952701844274998,
+  "disagreements": []
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0,
+  "groups": 50
+ },
+ "gpuErrors": []
+}

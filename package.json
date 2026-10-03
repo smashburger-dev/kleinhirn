@@ -8,7 +8,8 @@
     "build:wasm": "asc src/wasm/deberta.ts -o src/wasm/deberta.wasm -O --enable simd --runtime stub",
     "build": "npm run build:wasm && vite build",
     "build:site": "npm run build && vite build --config vite.site.config.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "node --import ./tests/helpers/node-hooks.mjs --test tests/*.test.ts tests/*.test.mjs"
   },
   "devDependencies": {
     "@playwright/test": "1.62.1",

@@ -1,0 +1,96 @@
+{
+ "date": "2026-10-02",
+ "run_id": "k27r-official-kh-julia-f16-r2-1790981765391",
+ "official": true,
+ "provisionalReason": null,
+ "engine": "kleinhirn-julia",
+ "model": "julia-1",
+ "precision": "f16",
+ "bucket": null,
+ "backend": "webgpu",
+ "ep": null,
+ "batchSize": null,
+ "graph": null,
+ "capture": false,
+ "browser": "chromium-151.0.7922.34",
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "loadAvgStart": 2.98095703125,
+ "loadAvgEnd": 2.91015625,
+ "loadMaxObserved": 2.98095703125,
+ "baselineMb": 0,
+ "peakMemMb": null,
+ "page": {
+  "stage": "done",
+  "precision": "f16",
+  "info": {
+   "precision": "f16",
+   "adapter": {
+    "vendor": "apple",
+    "architecture": "metal-3",
+    "device": "",
+    "description": ""
+   },
+   "limitsMode": "minimum",
+   "timestamps": true,
+   "buckets": [
+    512,
+    1024
+   ],
+   "gpuBytes": 146744728,
+   "downloadBytes": 322970260,
+   "tokenizerBytes": 34363188,
+   "weightBytes": 288607072,
+   "loadTiming": {
+    "fetchMs": 386.80000001192093,
+    "bodyMs": 888.4000000357628,
+    "sha256Ms": 158.59999999403954,
+    "uploadMs": 32.69999998807907,
+    "embedJoinMs": 22,
+    "manifestMs": 3,
+    "tokenizerMs": 463.5,
+    "planMs": 39.099999994039536
+   },
+   "loadMs": 947.9000000059605
+  },
+  "loadMsWarm": 2019.300000011921,
+  "result": {
+   "requests": 100,
+   "batch_size": 1,
+   "iterations": 5,
+   "load_ms": 947.9000000059605,
+   "load_and_warm_ms": 2019.300000011921,
+   "median_ms": 1041.7999999821186,
+   "min_ms": 1040.5999999940395,
+   "max_ms": 1048.7000000178814,
+   "ms_per_request": 10.417999999821186,
+   "per_request_median_ms": 9.699999988079071,
+   "per_request_p95_ms": 18.099999994039536,
+   "matching_predictions": 100,
+   "max_abs_logit_error_vs_pytorch": 0.10920882225036621
+  },
+  "done": true
+ },
+ "pair": "k20 kh-julia-f16 vs upstream-julia-batch1-graph-opt-f16",
+ "repetition": 2,
+ "latency": {
+  "medianMs": 1041.7999999821186,
+  "msPerRequest": 10.417999999821186,
+  "perRequestMedianMs": 9.699999988079071,
+  "perRequestP95Ms": 18.099999994039536,
+  "loadMs": 947.9000000059605,
+  "loadAndWarmMs": 2019.300000011921
+ },
+ "parity": {
+  "matchingPredictions": 100,
+  "maxAbsLogitError": 0.10920882225036621
+ },
+ "downloadBytes": 322970260,
+ "gpuBytes": 146744728,
+ "n": 100,
+ "file": "bench/results/k27r-official-kh-julia-f16-r2.json"
+}

@@ -1,0 +1,121 @@
+{
+ "date": "2026-10-02",
+ "run_id": "k27r-official-kh-small-f16-L128-r3-1790981396824",
+ "official": true,
+ "provisionalReason": null,
+ "engine": "kleinhirn",
+ "model": "small-upstream",
+ "precision": "f16",
+ "bucket": 128,
+ "backend": "webgpu",
+ "ep": null,
+ "batchSize": null,
+ "graph": null,
+ "capture": false,
+ "browser": "chromium-151.0.7922.34",
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "loadAvgStart": 3.60302734375,
+ "loadAvgEnd": 3.7919921875,
+ "loadMaxObserved": 3.7919921875,
+ "baselineMb": 0,
+ "peakMemMb": null,
+ "page": {
+  "stage": "done",
+  "model": "small-upstream",
+  "precision": "f16",
+  "backend": "webgpu",
+  "loadMs": 387.90000000596046,
+  "info": {
+   "precision": "f16",
+   "buildId": "murk11aw",
+   "adapter": {
+    "vendor": "apple",
+    "architecture": "metal-3",
+    "device": "",
+    "description": ""
+   },
+   "limitsMode": "minimum",
+   "timestamps": true,
+   "buckets": [
+    128
+   ],
+   "gpuBytes": 56353136,
+   "downloadBytes": 159686872,
+   "tokenizerBytes": 8341713,
+   "weightBytes": 151345159,
+   "loadTiming": {
+    "fetchMs": 221.5,
+    "bodyMs": 275.19999998807907,
+    "sha256Ms": 80.40000000596046,
+    "uploadMs": 19.69999998807907,
+    "embedJoinMs": 10.300000011920929,
+    "manifestMs": 3.5999999940395355,
+    "tokenizerMs": 113.40000000596046,
+    "planMs": 18.900000005960464
+   }
+  },
+  "adapterInfo": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "loadMsWarm": 374,
+  "endToEnd": {
+   "n": 968,
+   "medianMs": 4.399999976158142,
+   "p95Ms": 5.5,
+   "minMs": 3.7000000178813934,
+   "maxMs": 7.0999999940395355,
+   "meanMs": 4.550826446237889
+  },
+  "modelOnly": {
+   "n": 968,
+   "medianMs": 4.300000011920929,
+   "p95Ms": 5.4000000059604645,
+   "minMs": 3.699999988079071,
+   "maxMs": 21.400000005960464,
+   "meanMs": 4.520764462834547
+  },
+  "parity": {
+   "n": 968,
+   "argmaxAgreement": 0.9989669421487604,
+   "maxAbsLogitDiff": 0.028233766555786133,
+   "meanAbsLogitDiff": 0.0024548701634091777,
+   "maxAbsProbDiff": 0.0072562041492897356,
+   "disagreements": [
+    907
+   ]
+  },
+  "n": 968,
+  "done": true
+ },
+ "pair": "k20gc kh-small-f16-L128 vs ort-small-f16-webgpu-optgc-capture",
+ "repetition": 3,
+ "latency": {
+  "medianMs": 4.399999976158142,
+  "p95Ms": 5.5,
+  "modelOnlyMedianMs": 4.300000011920929,
+  "loadMs": 387.90000000596046,
+  "loadMsWarm": 374
+ },
+ "parity": {
+  "n": 968,
+  "argmaxAgreement": 0.9989669421487604,
+  "maxAbsLogitDiff": 0.028233766555786133,
+  "meanAbsLogitDiff": 0.0024548701634091777,
+  "maxAbsProbDiff": 0.0072562041492897356,
+  "disagreements": [
+   907
+  ]
+ },
+ "downloadBytes": 159686872,
+ "gpuBytes": 56353136,
+ "n": 968,
+ "file": "bench/results/k27r-official-kh-small-f16-L128-r3.json"
+}

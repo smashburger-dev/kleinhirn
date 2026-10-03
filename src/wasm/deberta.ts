@@ -1,6 +1,6 @@
 // AssemblyScript port of the DeBERTa-v2 + GLiNER2 head for browsers
 // without WebGPU (docs/PLAN.md K5, fallback chain step 3).
-// Same math as src/graph/deberta.ts and the WGSL kernels, f32 throughout.
+// Same math as src/plan/layers.ts and the WGSL kernels, f32 throughout.
 // Weight tensors live in one arena the host fills by byte offset; input
 // regions (embeddings, mask, packed markers, relidx, logits) are allocated
 // here and shared with JS through exported pointers.
