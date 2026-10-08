@@ -1,0 +1,28 @@
+{
+ "model": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+ "task": "reranking",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "d4e4d43",
+ "dirty": false,
+ "date": "2026-10-07T22:15:36.326Z",
+ "cases": 200,
+ "metrics": {
+  "maxAbsLogitDiff": 0.0000095367431640625,
+  "meanAbsLogitDiff": 0.0000018694251775741577,
+  "bestPassageAgreement": 1,
+  "bestPassageDisagreements": []
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 1227.5664590000233,
+ "runMs": 1448.4428330000082,
+ "msPerItem": 7.242214165000041,
+ "wasmMemoryBytes": 108331008
+}

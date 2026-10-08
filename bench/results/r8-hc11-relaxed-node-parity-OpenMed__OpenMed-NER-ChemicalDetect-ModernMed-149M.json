@@ -1,0 +1,28 @@
+{
+ "model": "OpenMed__OpenMed-NER-ChemicalDetect-ModernMed-149M",
+ "task": "token-classification",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "6824571",
+ "dirty": false,
+ "date": "2026-10-07T23:01:57.091Z",
+ "cases": 200,
+ "metrics": {
+  "argmaxPerTokenAgreement": 1,
+  "argmaxPerTokenDisagreements": [],
+  "tokens": 6350,
+  "maxAbsLogitDiff": 0.00032770633697509766
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 1252.1907500000088,
+ "runMs": 4362.769792000006,
+ "msPerItem": 21.813848960000033,
+ "wasmMemoryBytes": 487194624
+}

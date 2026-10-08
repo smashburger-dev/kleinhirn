@@ -2,6 +2,7 @@
 // first half), f32-only capture (R19), finite outputs. The R16 and R06 tests are
 // the review tests unchanged; R19 additionally expects the throw. The mock's
 // error scopes are plain functions that tests replace to inject errors.
+import { GpuBackend } from '../src/backend.ts';
 import { test } from 'node:test';
 import { readFileSync } from 'node:fs';
 import assert from 'node:assert/strict';
@@ -90,7 +91,7 @@ test('R16 engine must install uncapturederror listener or validation scopes', as
     requestAdapter: async () => ({ features: new Set(), info: {}, requestDevice: async () => gpu.device }),
   } } });
   // Real device helper, but ALL navigator/adapter/device calls here are mocks.
-  engine.kh = await getDevice(false, true);
+  engine.backend.kh = await getDevice(false, true);
   // Actual WebGPU errors are asynchronous, not JS exceptions. A thrown mock would hide the bug.
   await engine.runIds({ inputIds: [0] });
   assert.ok(installed || typeof gpu.device.onuncapturederror === 'function',
@@ -193,7 +194,7 @@ test('device: an uncaptured error and a lost device are kept and make every late
   const kh = await getDevice(false, true);
   assert.equal(kh.failure, null);
   const { engine } = model(MINILM, 'f32', [128]);
-  engine.kh = kh;
+  engine.backend.kh = kh;
   await engine.runIds({ inputIds: [0] }); // the model()'s own device is another mock; the scope calls go to gpu.device
   uncaptured({ error: { message: 'out of memory' } });
   await assert.rejects(() => engine.runIds({ inputIds: [0] }), /WebGPU error: out of memory/);
@@ -207,7 +208,7 @@ test('device: an uncaptured error and a lost device are kept and make every late
   lose2({ reason: 'destroyed', message: 'device was destroyed' });
   await new Promise((r) => setTimeout(r, 0));
   const { engine: e2 } = model(MINILM, 'f32', [128]);
-  e2.kh = kh2;
+  e2.backend.kh = kh2;
   await assert.rejects(() => e2.runIds({ inputIds: [0] }), /WebGPU device lost \(destroyed\): device was destroyed/);
   void lose;
 });
@@ -240,18 +241,18 @@ test('finite outputs: NaN and Inf throw before softmax, argmax or the cache', as
   assert.equal((await engine.runIds({ inputIds: [0] })).data[0], 0.5);
   // GLiNER and Julia: nothing reaches the cache
   const plan = (v) => ({
-    length: 128, markers: 4, batch: 1, upload() {}, submit() {}, assertCapturable() {},
-    readLogits: async () => Float32Array.of(v, 0, 0, 0),
+    length: 128, markers: 4, batch: 1, upload() {}, run() {}, assertCapturable() {},
+    readOutput: async () => Float32Array.of(v, 0, 0, 0),
   });
   const device = createMockGpu().device;
-  const kh = Reflect.construct(Kleinhirn, [{ device }, {}, null, {}, 1, 'f32']);
+  const kh = Reflect.construct(Kleinhirn, [new GpuBackend({ device }, { gpuBytes: 0 }), {}, null, {}, 1, 'f32']);
   kh.cache = new LruCache(4);
   kh.plans.set(128, plan(NaN));
   kh.embeddingRows = () => new Float32Array(1);
   const input = { inputIds: Int32Array.of(0), seqLen: 1, markerIndices: Int32Array.of(0), markerMask: Float32Array.of(1), markerGroups: Int32Array.of(0) };
   await assert.rejects(() => kh.runPrepared(input), /logits: 1 of 4 values are not finite/);
   assert.equal(kh.cache.size, 0);
-  const julia = Reflect.construct(JuliaEngine, [{ device }, {}, null, { options: 4 }, 'f32']);
+  const julia = Reflect.construct(JuliaEngine, [new GpuBackend({ device }, { gpuBytes: 0 }), {}, null, { options: 4 }, 'f32']);
   julia.cache = new LruCache(4);
   julia.plans.set(128, plan(Infinity));
   julia.embeddingRows = () => new Float32Array(1);

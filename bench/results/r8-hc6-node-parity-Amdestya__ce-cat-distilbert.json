@@ -1,0 +1,28 @@
+{
+ "model": "Amdestya__ce-cat-distilbert",
+ "task": "reranking",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "458da21",
+ "dirty": false,
+ "date": "2026-10-07T12:15:54.597Z",
+ "cases": 200,
+ "metrics": {
+  "maxAbsLogitDiff": 0.00000768899917602539,
+  "meanAbsLogitDiff": 0.0000019313080701977016,
+  "bestPassageAgreement": 1,
+  "bestPassageDisagreements": []
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 479.252042,
+ "runMs": 16678.738917000002,
+ "msPerItem": 83.393694585,
+ "wasmMemoryBytes": 200802304
+}

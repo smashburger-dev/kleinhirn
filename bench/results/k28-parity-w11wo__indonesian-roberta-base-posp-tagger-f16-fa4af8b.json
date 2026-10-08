@@ -1,0 +1,69 @@
+{
+ "date": "2026-10-06",
+ "run_id": "k28-parity-w11wo__indonesian-roberta-base-posp-tagger-f16-fa4af8b-1791298285654",
+ "commit": "fa4af8b",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "6.04",
+ "loadAvgEnd": "5.42 5.65 6.58",
+ "stage": "done",
+ "model": "w11wo__indonesian-roberta-base-posp-tagger",
+ "precision": "f16",
+ "task": "token-classification",
+ "info": {
+  "precision": "f16",
+  "buildId": "muwsivlb",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "roberta",
+  "task": "token-classification",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 197163588,
+  "downloadBytes": 250297263,
+  "loadTiming": {
+   "fetchMs": 358,
+   "bodyMs": 746.2999999970198,
+   "sha256Ms": 127.6000000089407,
+   "uploadMs": 37.900000005960464,
+   "embedJoinMs": 8.700000002980232,
+   "manifestMs": 2.5,
+   "planMs": 30.5
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "argmaxPerTokenAgreement": 1,
+  "argmaxPerTokenDisagreements": [],
+  "tokens": 7239,
+  "maxAbsLogitDiff": 0.3098176121711731,
+  "meanAbsLogitDiff": 0.0010271602017401743
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0,
+  "groups": 50
+ },
+ "gpuErrors": []
+}

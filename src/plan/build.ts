@@ -144,9 +144,12 @@ export function buildPlan(spec: ModelSpec, head: HeadSpec, opts: BuildOptions): 
   // Embedding.
   const embW = `w:${names.embedNormW}`;
   const embB = names.embedNormB ? `w:${names.embedNormB}` : 'zero';
-  if (spec.embed.positions === 'absolute') {
+  const absolute = spec.embed.positions === 'absolute';
+  if (absolute || spec.embed.typeVocab > 0) {
     // Families without a type table (DistilBERT) bind the shared zero buffer:
     // embln reads row 0 of it for every type id 0, so the sum is unchanged.
+    // DeBERTa without absolute positions but with a type table (review R07) binds the zero buffer
+    // as its position table instead: MAXPOS 1 clamps every row to row 0, word + type as in HF.
     const typeTable = spec.embed.typeVocab > 0 ? 'w:embeddings.type.weight' : 'zero';
     // Word + position + type in f32, LayerNorm over E; with a projection the
     // norm writes embE and a matmul takes E to H.
@@ -154,9 +157,9 @@ export function buildPlan(spec: ModelSpec, head: HeadSpec, opts: BuildOptions): 
     const ops: Op[] = [{
       name: 'embed', kernel: 'embln',
       constants: {
-        N: E, L: length, OFFSET: spec.embed.positionOffset, MAXPOS: spec.embed.maxPositions,
-        EPS: spec.embed.norm.eps, MASKMUL: spec.embed.maskMultiply ? 1 : 0 },
-      bind: ['emb', 'w:embeddings.position.weight', typeTable,
+        N: E, L: length, OFFSET: absolute ? spec.embed.positionOffset : 0, MAXPOS: absolute ? spec.embed.maxPositions : 1,
+        EPS: spec.embed.norm.eps, MASKMUL: spec.embed.maskMultiply ? 1 : 0, POSIDS: spec.embed.padId !== undefined ? 1 : 0 },
+      bind: ['emb', absolute ? 'w:embeddings.position.weight' : 'zero', typeTable,
         'typeIds', embW, embB, 'mask', dst],
       dispatch: ['rows', 1],
     }];
@@ -448,7 +451,7 @@ export function buildPlan(spec: ModelSpec, head: HeadSpec, opts: BuildOptions): 
   };
   st('emb', bytesOf(M * E));
   if (spec.embed.project) st('embE', bytesOf(M * E));
-  if (spec.embed.positions === 'absolute') st('typeIds', M * 4);
+  if (spec.embed.positions === 'absolute' || spec.embed.typeVocab > 0) st('typeIds', M * 4);
   for (const id of ['x', 'tmp']) {
     if (cols.has(id)) st(id, bytesOf(M * (cols.get(id) as number)), 'rwSrc');
   }
@@ -507,8 +510,8 @@ export function buildPlan(spec: ModelSpec, head: HeadSpec, opts: BuildOptions): 
     inputs: pooledHead
       ? {
         embeddings: 'emb', mask: 'mask',
-        // DeBERTa with relative attention and ModernBERT have no type ids input.
-        ...(spec.embed.positions === 'absolute' ? { typeIds: 'typeIds' } : {}),
+        // ModernBERT and DeBERTa without a type table have no type ids input.
+        ...(spec.embed.positions === 'absolute' || spec.embed.typeVocab > 0 ? { typeIds: 'typeIds' } : {}),
       }
       : { embeddings: 'emb', mask: 'mask', markers: 'packed' },
     rowSelect,

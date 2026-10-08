@@ -1,0 +1,28 @@
+{
+ "model": "OpenMed__OpenMed-NER-BloodCancerDetect-TinyMed-65M",
+ "task": "token-classification",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "6824571",
+ "dirty": false,
+ "date": "2026-10-07T23:01:42.782Z",
+ "cases": 200,
+ "metrics": {
+  "argmaxPerTokenAgreement": 1,
+  "argmaxPerTokenDisagreements": [],
+  "tokens": 7886,
+  "maxAbsLogitDiff": 0.000004291534423828125
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 597.0426670000015,
+ "runMs": 1824.7265419999967,
+ "msPerItem": 9.123632709999983,
+ "wasmMemoryBytes": 207618048
+}

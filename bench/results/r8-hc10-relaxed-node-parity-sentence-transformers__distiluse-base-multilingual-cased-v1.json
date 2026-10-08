@@ -1,0 +1,26 @@
+{
+ "model": "sentence-transformers__distiluse-base-multilingual-cased-v1",
+ "task": "embeddings",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "d4e4d43",
+ "dirty": false,
+ "date": "2026-10-07T22:18:39.560Z",
+ "cases": 200,
+ "metrics": {
+  "minCosineFinal": 0.9999999999994571,
+  "maxAbsDiffFinal": 2.0116567611694336e-7
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 1167.4840829999885,
+ "runMs": 1820.0797090000124,
+ "msPerItem": 9.100398545000061,
+ "wasmMemoryBytes": 207814656
+}

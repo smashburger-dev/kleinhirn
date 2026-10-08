@@ -326,10 +326,6 @@ function specFromDeberta(
   } else {
     attention = { kind: 'standard', bias: true, scale: headDim ** -0.5 };
   }
-  // The type table is bound next to the absolute positions only; without them its rows would be dropped.
-  if (!positionBiased && num(config, 'type_vocab_size', 0) > 0) {
-    fail('type_vocab_size', 'type embeddings without position_biased_input are not planned (the plan binds no type ids)');
-  }
   if (!relative && !positionBiased) fail('position_biased_input', 'false without relative attention leaves no position signal');
 
   const spec: ModelSpec = {

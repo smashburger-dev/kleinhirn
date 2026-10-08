@@ -1,10 +1,11 @@
 // kleinhirn parity bench: layer states vs golden bins (f32 capture only),
 // logits on all corpus items and the two-task cases, per docs/PLAN.md K3 B/C.
 // Query: ?model=small-upstream|base-upstream|multi-upstream&precision=f32|f16
+//        &backend=webgpu|wasm|wasm-plan (both WASM names: Kleinhirn on the WASM plan executor, R2
+//        stage 4; src/wasm.ts with deberta.wasm is gone)
 // Layer-capture positions are compared on valid rows (row < seq_len) only.
 
 import { Kleinhirn } from '../src/index.ts';
-import { WasmKleinhirn } from '../src/wasm.ts';
 import type { PreparedResult } from '../src/index.ts';
 import type { SchemaInput } from '../src/tokenizer/schema.ts';
 import { argmax, compareLogits } from './metrics.ts';
@@ -229,11 +230,11 @@ async function main(): Promise<void> {
     const t0 = performance.now();
     const buckets = params.get('buckets')?.split(',').map(Number) ?? [128, 256];
     const sets = params.get('sets') ?? 'all';
-    const kh: Engine = backend === 'wasm'
-      ? await WasmKleinhirn.load({
-        manifestUrl: `/models/${model}/f32/manifest.json`,
-      })
-      : await Kleinhirn.load({
+    const kh: Engine = backend === 'wasm' || backend === 'wasm-plan'
+        ? await Kleinhirn.load({
+          manifestUrl: `/models/${model}/f32/manifest.json`, buckets, precision: 'f32', backend: 'wasm',
+        })
+        : await Kleinhirn.load({
         manifestUrl: `/models/${model}/${precision}/manifest.json`,
         buckets,
         precision: 'auto',
@@ -275,7 +276,7 @@ async function main(): Promise<void> {
     }[];
     const longOk = (cmp: (c: { argmaxAgreement: number; maxAbsLogitDiff: number; maxAbsProbDiff: number }) => boolean) =>
       longCmp.every(cmp);
-    result.gates = backend === 'wasm'
+    result.gates = backend === 'wasm' || backend === 'wasm-plan'
       ? {
         // K5 WASM gate: 100 % argmax, max logit deviation <= 1e-3 on the
         // 1000 corpus texts (plus two-task as extra coverage).

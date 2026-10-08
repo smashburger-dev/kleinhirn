@@ -1,0 +1,30 @@
+{
+ "model": "MoritzLaurer__multilingual-MiniLMv2-L6-mnli-xnli",
+ "task": "nli",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "6824571",
+ "dirty": false,
+ "date": "2026-10-07T23:01:35.493Z",
+ "cases": 200,
+ "metrics": {
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.000005900859832763672,
+  "meanAbsLogitDiff": 0.0000011655983204642932,
+  "disagreements": [],
+  "zeroShotAgreement": 1,
+  "zeroShotDisagreements": []
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 1004.6086670000004,
+ "runMs": 590.5045830000017,
+ "msPerItem": 2.9525229150000087,
+ "wasmMemoryBytes": 66453504
+}

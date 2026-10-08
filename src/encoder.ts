@@ -3,20 +3,21 @@
 // token classification, embeddings). runIds and runIdsBatch take token ids
 // and return f32 output; classify, zeroShot, rerank, embed and tokenClassify
 // take text (tokenizer.json next to the manifest) and go through them. Same
-// discipline as Kleinhirn in index.ts: one plan per bucket, exactly one GPU
-// call in flight, one mapAsync per call.
+// discipline as Kleinhirn in index.ts: one plan per bucket, exactly one
+// call in flight, one output read per call. The plans run behind the Backend
+// seam (src/backend.ts).
 
 import { BATCH_SIZES, MAX_BATCH, batchStride, nextBatchSize } from './cache.ts';
-import { getDevice, scopedCall, scopedSync, type KhDevice } from './device.ts';
+import { f32ManifestUrl, loadBackend, type Backend, type PlanRunner } from './backend.ts';
+import type { Transport } from './wasm-backend.ts';
+import { getDevice } from './device.ts';
 import { buildPlan } from './plan/build.ts';
-import { assertPlan, fitBatchPlan } from './plan/check.ts';
-import { PlanExecutor } from './plan/executor.ts';
 import type { Plan } from './plan/ir.ts';
-import { padIdIndex, type HeadSpec, type ModelSpec } from './plan/spec.ts';
+import { positionRows, type HeadSpec, type ModelSpec } from './plan/spec.ts';
 import { JsonTokenizer, type TruncationStrategy } from './tokenizer/hf/index.ts';
 import { BucketOverflowError } from './tokenizer/schema.ts';
 import { aggregateSimple, argmaxRows, assertFinite, completeLabels, l2normalize, softmax, tokenRowOffset, type EntitySpan } from './tasks.ts';
-import { fetchManifest, loadWeights, resolveManifest, type LoadedWeights } from './weights.ts';
+import { fetchManifest, resolveManifest } from './weights.ts';
 
 declare const __KH_BUILD_ID__: string;
 
@@ -31,6 +32,19 @@ export interface EncoderLoadOptions {
   // the Sentence-Transformers max_seq_length for embeddings), at most the
   // largest bucket.
   maxLength?: number;
+  // 'webgpu' (default) or 'wasm': the plan executor of src/wasm/plan.ts in a worker, f32
+  // manifest (an .../f16/... URL maps to its f32 sibling), R2.
+  backend?: 'webgpu' | 'wasm';
+  // Threads of the WASM path (R8): 'auto' is the core count, at most 8; more than one needs a cross-origin
+  // isolated page (SharedArrayBuffer), else the path runs one thread and info() says why.
+  threads?: number | 'auto';
+  // Build of the WASM executor (R8 hc6): 'auto' (default) takes the relaxed-SIMD build where the
+  // browser validates it, 'plain' and 'relaxed' force one.
+  wasmBuild?: 'auto' | 'plain' | 'relaxed';
+  // Work split of the threaded WASM path (R8 hc8 search; default DEFAULT_SPLIT of src/plan/wasm.ts).
+  wasmSplit?: { rb?: number; cb?: number; qb?: number; minWork?: number };
+  // Batch plans on the threaded WASM path (R8 hc9, default false: slower than single rows).
+  wasmBatchPlans?: boolean;
 }
 
 export interface EncoderInput {
@@ -119,13 +133,12 @@ async function fetchTokenizer(url: string): Promise<{ bytes: number; tokenizer?:
 }
 
 export class EncoderModel {
-  private plans = new Map<number, PlanExecutor>();
-  private batchPlans = new Map<string, PlanExecutor>();
+  private plans = new Map<number, PlanRunner>();
+  private batchPlans = new Map<string, PlanRunner>();
   // `${stride}:${asked batch}` -> the batch size that fits the device (1: none, use the bucket plan)
   private batchFit = new Map<string, number>();
   private queue: Promise<unknown> = Promise.resolve();
   private downloadBytes = 0;
-  private weightGpuBytes = 0;
   private loadTiming: Record<string, number> = {};
   private tokenizer: JsonTokenizer | null = null;
   // Why the tokenizer is missing: a tokenizer.json with a component the text
@@ -138,41 +151,50 @@ export class EncoderModel {
   private textMaxLength = 0;
 
   private constructor(
-    private kh: KhDevice,
-    private weights: LoadedWeights,
+    private backend: Backend,
+    private embeddings: Float32Array | Uint16Array,
     readonly spec: ModelSpec,
     readonly head: HeadSpec,
     readonly task: string,
     readonly precision: 'f16' | 'f32',
   ) {}
 
-  static async load(options: EncoderLoadOptions): Promise<EncoderModel> {
+  // deps.wasmTransport: the executor host of the WASM path without a worker (Node parity run).
+  static async load(
+    options: EncoderLoadOptions, deps: { wasmTransport?: () => Transport } = {},
+  ): Promise<EncoderModel> {
+    const wasm = options.backend === 'wasm';
+    if (wasm && options.precision === 'f16') throw new Error('the WASM path runs the f32 manifest');
     const preferF16 = options.precision !== 'f32';
     const tMf = performance.now();
-    const manifestPromise = fetchManifest(options.manifestUrl);
-    const kh = await getDevice(preferF16, options.limits !== 'default');
-    const resolved = await resolveManifest(options.manifestUrl, options.precision, await manifestPromise);
+    const url = wasm ? f32ManifestUrl(options.manifestUrl) : options.manifestUrl;
+    const manifestPromise = fetchManifest(url);
+    const kh = wasm ? undefined : await getDevice(preferF16, options.limits !== 'default');
+    const resolved = await resolveManifest(url, wasm ? 'f32' : options.precision, await manifestPromise);
     const manifest = resolved.manifest;
     const manifestUrl = resolved.url;
     const manifestMs = performance.now() - tMf;
     if (manifest.format !== 'kleinhirn-weights-2' || !manifest.spec) {
       throw new Error(`EncoderModel needs kleinhirn-weights-2, manifest is ${manifest.format}`);
     }
-    const base = manifestUrl.slice(0, manifestUrl.lastIndexOf('/') + 1);
-    const tokenizerPromise = manifest.tokenizer ? fetchTokenizer(base + manifest.tokenizer) : undefined;
-    const weights = await loadWeights(kh.device, manifestUrl, manifest);
     // Every tensor of a kleinhirn-weights-2 manifest has the manifest's dtype. The first
     // tensor is the word table in all rows (ModernBERT has no layers.0.qkv).
-    const dtype = weights.manifest.tensors[0]?.dtype ?? 'f32';
-    if (dtype === 'f16' && !kh.hasF16) {
+    const dtype = manifest.tensors[0]?.dtype ?? 'f32';
+    if (kh && dtype === 'f16' && !kh.hasF16) {
       throw new Error('f16 manifest but adapter lacks shader-f16; use the f32 manifest');
     }
+    if (wasm && dtype !== 'f32') throw new Error(`the WASM path needs an f32 manifest, ${manifestUrl} holds ${dtype}`);
     if (options.precision && options.precision !== 'auto' && options.precision !== dtype) {
       throw new Error(`precision ${options.precision} requested but manifest is ${dtype}`);
     }
+    const base = manifestUrl.slice(0, manifestUrl.lastIndexOf('/') + 1);
+    const tokenizerPromise = manifest.tokenizer ? fetchTokenizer(base + manifest.tokenizer) : undefined;
+    const loaded = await loadBackend(manifestUrl, manifest, kh, deps.wasmTransport, { build: options.wasmBuild, threads: options.threads, split: options.wasmSplit,
+      batchPlans: options.wasmBatchPlans });
+    const { backend, embeddings } = loaded;
     const spec = manifest.spec as ModelSpec;
     const model = new EncoderModel(
-      kh, weights, spec, manifest.head as unknown as HeadSpec,
+      backend, embeddings, spec, manifest.head as unknown as HeadSpec,
       manifest.task ?? '', dtype as 'f16' | 'f32');
     model.precisionNote = resolved.note;
     model.recommendedPrecision = manifest.recommendedPrecision;
@@ -193,15 +215,14 @@ export class EncoderModel {
       manifest.maxLength ?? Math.min(
         spec.embed.maxPositions - spec.embed.positionOffset, st?.maxSeqLength ?? Infinity),
       largest);
-    model.downloadBytes = weights.downloadBytes + (tok?.bytes ?? 0);
-    model.weightGpuBytes = weights.gpuBytes;
-    model.loadTiming = { ...weights.timing, manifestMs, planMs: 0 };
+    model.downloadBytes = loaded.downloadBytes + (tok?.bytes ?? 0);
+    model.loadTiming = { ...loaded.timing, manifestMs, planMs: 0 };
     const tPlan = performance.now();
-    await scopedSync(kh, () => {
+    await backend.prepare(() => {
       for (const length of options.buckets ?? DEFAULT_BUCKETS) {
         const bucket = model.planFor(length, 1);
-        assertPlan(bucket, kh.device.limits, (name) => weights.tensors.get(name)?.size);
-        model.plans.set(length, new PlanExecutor(kh.device, bucket, weights.tensors));
+        backend.check(bucket);
+        model.plans.set(length, backend.runner(bucket));
       }
     });
     model.loadTiming.planMs = performance.now() - tPlan;
@@ -213,11 +234,11 @@ export class EncoderModel {
       length, batch, markers: 0, f16: this.precision === 'f16' });
   }
 
-  private makePlan(length: number, batch: number): PlanExecutor {
-    return new PlanExecutor(this.kh.device, this.planFor(length, batch), this.weights.tensors);
+  private makePlan(length: number, batch: number): PlanRunner {
+    return this.backend.runner(this.planFor(length, batch));
   }
 
-  private pickBucket(seqLen: number): PlanExecutor {
+  private pickBucket(seqLen: number): PlanRunner {
     const fits = [...this.plans.values()]
       .filter((p) => seqLen <= p.length)
       .sort((a, b) => a.length - b.length);
@@ -239,7 +260,7 @@ export class EncoderModel {
     inputs: EncoderInput[], length: number,
   ): Float32Array<ArrayBuffer> | Uint16Array<ArrayBuffer> {
     const width = this.spec.embeddingSize;
-    const emb = this.weights.embeddings;
+    const emb = this.embeddings;
     const out = emb instanceof Float32Array
       ? new Float32Array(length * inputs.length * width)
       : new Uint16Array(length * inputs.length * width);
@@ -269,6 +290,17 @@ export class EncoderModel {
           typeIds[b * length + i] = t;
         }
       }
+      // RoBERTa and XLM-R: the position row of each id in the high 16 bits (embln POSIDS, review
+      // R09); rows past the input keep the pad row.
+      const { padId, maxPositions } = this.spec.embed;
+      if (padId !== undefined) {
+        const rows = positionRows(padId, input.inputIds);
+        for (let i = 0; i < length; i += 1) {
+          const p = i < rows.length ? rows[i] : padId;
+          if (p >= maxPositions || p > 0xffff) throw new Error(`position row ${p} of id ${i} is outside the ${maxPositions} position rows`);
+          typeIds[b * length + i] |= p << 16;
+        }
+      }
     }
     return { mask, typeIds };
   }
@@ -287,7 +319,7 @@ export class EncoderModel {
   }
 
   // Sequence b of a call: its slice of the plan output.
-  private shape(data: Float32Array, b: number, seqLen: number, plan: PlanExecutor): EncoderOutput {
+  private shape(data: Float32Array, b: number, seqLen: number, plan: PlanRunner): EncoderOutput {
     const cols = this.cols;
     if (this.head.type === 'token') {
       const start = b * plan.length * cols;
@@ -305,24 +337,9 @@ export class EncoderModel {
     }
   }
 
-  // RoBERTa and XLM-R positions count the ids that are not the pad id (transformers); the engine
-  // numbers them by index. A pad id where that differs is rejected with its index. Also the text
-  // methods reach it, for a literal pad token in the text.
-  private checkPadIds(ids: ArrayLike<number>): void {
-    const at = padIdIndex(this.spec.embed, ids);
-    if (at < 0) return;
-    const { padId, positionOffset } = this.spec.embed;
-    throw new Error(positionOffset === padId && at === 0
-      ? `token id ${ids[0]} at index 0 is not the pad id ${padId}: the position rule of this model `
-        + 'needs the pad id first and nowhere else'
-      : `token id ${ids[at]} at index ${at} is the pad id ${padId}: positions of RoBERTa and XLM-R `
-        + 'count only the ids that are not the pad id, which the engine does not do');
-  }
-
   async runIds(input: EncoderInput, options: RunOptions = {}): Promise<EncoderOutput> {
     const seqLen = input.inputIds.length;
     if (seqLen === 0) throw new Error('empty input');
-    this.checkPadIds(input.inputIds);
     this.checkPositions(seqLen);
     const plan = options.bucket === undefined
       ? this.pickBucket(seqLen) : this.plans.get(options.bucket);
@@ -331,10 +348,10 @@ export class EncoderModel {
       throw new BucketOverflowError(`seqLen ${seqLen} exceeds bucket ${plan.length}`);
     }
     if (options.capture) plan.assertCapturable();
-    return this.enqueue(() => scopedCall(this.kh, () => {
+    return this.enqueue(() => this.backend.call(() => {
       const { mask, typeIds } = this.maskAndTypes([input], plan.length);
       plan.upload({ embeddings: this.wordRows([input], plan.length), mask, typeIds });
-      plan.submit(!!options.capture, { seqLen });
+      plan.run(seqLen, !!options.capture);
     }, async () => {
       const data = await plan.readOutput();
       const result = this.shape(data, 0, seqLen, plan);
@@ -350,14 +367,14 @@ export class EncoderModel {
   // Lazily built batch plan for row stride and batch size B: the plan of the
   // largest size up to B that fits the device limits (checkPlan), or
   // undefined when none does and the rows run on the bucket plan. Plans are capped.
-  private batchPlan(stride: number, batch: number): PlanExecutor | undefined {
+  private batchPlan(stride: number, batch: number): PlanRunner | undefined {
     const asked = `${stride}:${batch}`;
     const memo = this.batchFit.get(asked);
     if (memo === 1) return undefined;
     const known = this.batchPlans.get(`${stride}:${memo ?? batch}`);
     if (known) return known;
     const plan = memo === undefined
-      ? fitBatchPlan((b) => this.planFor(stride, b), this.kh.device.limits, batch)
+      ? this.backend.fitBatch((b) => this.planFor(stride, b), batch)
       : this.planFor(stride, memo);
     this.batchFit.set(asked, plan ? plan.batch : 1);
     if (!plan) return undefined;
@@ -366,7 +383,7 @@ export class EncoderModel {
       this.batchPlans.get(oldest)?.destroy();
       this.batchPlans.delete(oldest);
     }
-    const p = new PlanExecutor(this.kh.device, plan, this.weights.tensors);
+    const p = this.backend.runner(plan);
     this.batchPlans.set(`${stride}:${plan.batch}`, p);
     return p;
   }
@@ -392,9 +409,9 @@ export class EncoderModel {
     const stride = Math.min(plan.length, batchStride(maxSeq));
     return this.enqueue(async () => {
       const out: EncoderOutput[] = [];
-      let bPlan: PlanExecutor | undefined;
+      let bPlan: PlanRunner | undefined;
       while (out.length < inputs.length) {
-        const piece = await scopedCall(this.kh, () => {
+        const piece = await this.backend.call(() => {
           bPlan ??= (n === 1 ? undefined : this.batchPlan(stride, n)) ?? plan;
           const rows = inputs.slice(out.length, out.length + bPlan.batch);
           this.submitPiece(rows, bPlan);
@@ -407,7 +424,7 @@ export class EncoderModel {
   }
 
   // Upload and submit of one piece (the synchronous part of a scoped call).
-  private submitPiece(inputs: EncoderInput[], bPlan: PlanExecutor): void {
+  private submitPiece(inputs: EncoderInput[], bPlan: PlanRunner): void {
     // Zero-length rows pad up to the batch size; their outputs are dropped.
     const padded = [...inputs, ...Array.from(
       { length: bPlan.batch - inputs.length }, () => ({ inputIds: [] as number[] }))];
@@ -415,10 +432,10 @@ export class EncoderModel {
       ? Math.max(...inputs.map((i) => i.inputIds.length)) : bPlan.length * bPlan.batch;
     const { mask, typeIds } = this.maskAndTypes(padded, bPlan.length);
     bPlan.upload({ embeddings: this.wordRows(padded, bPlan.length), mask, typeIds });
-    bPlan.submit(false, { seqLen: rows });
+    bPlan.run(rows);
   }
 
-  private async readPiece(inputs: EncoderInput[], bPlan: PlanExecutor): Promise<EncoderOutput[]> {
+  private async readPiece(inputs: EncoderInput[], bPlan: PlanRunner): Promise<EncoderOutput[]> {
     const all = await bPlan.readOutput();
     return inputs.map((input, i) => {
       const result = this.shape(all, i, input.inputIds.length, bPlan);
@@ -432,11 +449,6 @@ export class EncoderModel {
   async runIdsBatch(inputs: EncoderInput[], options: { bucket?: number } = {}): Promise<EncoderOutput[]> {
     for (const [i, input] of inputs.entries()) {
       if (input.inputIds.length === 0) throw new Error(`empty input (input ${i})`);
-      try {
-        this.checkPadIds(input.inputIds);
-      } catch (e) {
-        throw new Error(`input ${i}: ${(e as Error).message}`);
-      }
     }
     const order = inputs.map((_, i) => i)
       .sort((a, b) => inputs[a].inputIds.length - inputs[b].inputIds.length || a - b);
@@ -550,9 +562,9 @@ export class EncoderModel {
   // Weights plus every live plan (a capture buffer counts once it exists);
   // an evicted batch plan is gone from the map and from the sum.
   private liveGpuBytes(): number {
-    let n = this.weightGpuBytes;
-    for (const p of this.plans.values()) n += p.gpuBytes;
-    for (const p of this.batchPlans.values()) n += p.gpuBytes;
+    let n = this.backend.weightBytes;
+    for (const p of this.plans.values()) n += p.bytes;
+    for (const p of this.batchPlans.values()) n += p.bytes;
     return n;
   }
 
@@ -562,22 +574,20 @@ export class EncoderModel {
       ...(this.recommendedPrecision ? { recommendedPrecision: this.recommendedPrecision } : {}),
       ...(this.precisionNote ? { precisionNote: this.precisionNote } : {}),
       buildId: typeof __KH_BUILD_ID__ === 'string' ? __KH_BUILD_ID__ : 'dev',
-      adapter: this.kh.adapterInfo,
-      limitsMode: this.kh.limitsMode,
-      timestamps: this.kh.hasTimestamps,
+      ...this.backend.info(),
       family: this.spec.family,
       task: this.task,
       buckets: [...this.plans.keys()].sort((a, b) => a - b),
       textMaxLength: this.textMaxLength,
       hasTokenizer: this.tokenizer !== null,
       batchSizes: [...BATCH_SIZES],
-      gpuBytes: this.liveGpuBytes(),
+      gpuBytes: this.backend.kind === 'webgpu' ? this.liveGpuBytes() : null,
       downloadBytes: this.downloadBytes,
       loadTiming: this.loadTiming,
     };
   }
 
   dispose(): void {
-    this.kh.device.destroy();
+    this.backend.dispose();
   }
 }

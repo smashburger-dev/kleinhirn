@@ -1,0 +1,155 @@
+{
+ "run_id": "r8-hc8-search-webkit-kleinhirn-DeBERTa-v3-base-128-wasm-1791385311172",
+ "change": "r1-search",
+ "commit": "6fec030",
+ "date": "2026-10-07T15:01:57.478Z",
+ "spec": {
+  "stage": "search",
+  "browser": "webkit",
+  "engine": "kleinhirn",
+  "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+  "way": "wasm",
+  "len": "128",
+  "n": 20,
+  "warmup": 3,
+  "acc": false,
+  "keepOutputs": false,
+  "mem": false,
+  "parityFromRef": true,
+  "threads": 4
+ },
+ "browser": "webkit-26.5",
+ "loadStart": 3.41,
+ "loadWaitedSeconds": 0,
+ "loadEnd": "3.54 4.41 4.25",
+ "stage": "done",
+ "mode": "run",
+ "engine": "kleinhirn",
+ "model": "protectai__deberta-v3-base-prompt-injection-v2",
+ "way": "wasm",
+ "len": "128",
+ "crossOriginIsolated": true,
+ "timerStepMs": 0.01999999999999602,
+ "block": 1,
+ "n": 20,
+ "warmup": 3,
+ "loadMs": 1149.12,
+ "warmupMs": [
+  175.4000000000001,
+  160.29999999999995,
+  159.36000000000013
+ ],
+ "warmupFinite": true,
+ "latency": {
+  "n": 20,
+  "medianMs": 159.36000000000013,
+  "p95Ms": 160.30000000000018,
+  "minMs": 158.79999999999973,
+  "maxMs": 160.30000000000018,
+  "meanMs": 159.46599999999998
+ },
+ "samplesMs": [
+  160.07999999999993,
+  160.24,
+  159.36000000000013,
+  159.36000000000013,
+  158.89999999999964,
+  159.64000000000033,
+  160.2199999999998,
+  159.19999999999982,
+  159.36000000000013,
+  159.1600000000003,
+  158.79999999999973,
+  158.98000000000002,
+  160.30000000000018,
+  159.23999999999978,
+  159.0999999999999,
+  159.52000000000044,
+  159.03999999999996,
+  159.42000000000007,
+  159.8800000000001,
+  159.51999999999953
+ ],
+ "info": {
+  "name": "kleinhirn",
+  "version": "muy73akh",
+  "build": "dist/kleinhirn.js",
+  "config": {
+   "precision": "f32",
+   "buckets": [
+    128
+   ],
+   "limits": "minimum",
+   "backend": "wasm",
+   "threads": 4,
+   "threadNote": null,
+   "wasmBuild": "plain",
+   "split": null
+  },
+  "gpuBytes": null,
+  "adapter": null
+ },
+ "accuracy": {
+  "skipped": true
+ },
+ "download": {
+  "bytes": 783726848,
+  "files": {
+   "/dist/kleinhirn.js": 1172394,
+   "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f32/manifest.json": 30854,
+   "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f32/tokenizer.json": 8657044,
+   "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f32/weights-0.bin": 184320300,
+   "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f32/weights-1.bin": 184320300,
+   "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f32/weights-2.bin": 94971180,
+   "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f32/weights-3.bin": 94491948,
+   "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f32/weights-4.bin": 94491948,
+   "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f32/weights-5.bin": 94491948,
+   "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f32/weights-6.bin": 26778932
+  }
+ },
+ "engineFiles": [
+  "/dist/kleinhirn.js"
+ ],
+ "done": true,
+ "outputs": {
+  "rows": 20,
+  "nonFinite": 0
+ },
+ "vsCpuF32": {
+  "rows": 20,
+  "maxAbsDiff": 0.00000762939453125,
+  "argmaxAgreement": 1
+ },
+ "summary": {
+  "runId": "r8-hc8-search-webkit-kleinhirn-DeBERTa-v3-base-128-wasm-1791385311172",
+  "file": "bench/results/r8-hc8-search-webkit-kleinhirn-DeBERTa-v3-base-128-wasm-1791385311172.json",
+  "engine": "kleinhirn",
+  "browser": "webkit-26.5",
+  "medianMs": 159.36000000000013,
+  "p95Ms": 160.30000000000018,
+  "block": 1,
+  "n": 20,
+  "downloadMb": 747.420166015625,
+  "loadMs": 1149.12,
+  "gpuBytes": null,
+  "engineGzipB": 46566,
+  "config": {
+   "precision": "wasm"
+  },
+  "parity": {
+   "pass": true,
+   "reasons": [],
+   "vsCpuF32": {
+    "rows": 20,
+    "maxAbsDiff": 0.00000762939453125,
+    "argmaxAgreement": 1
+   }
+  },
+  "timerStepMs": 0.01999999999999602,
+  "isolated": true,
+  "loadStart": 3.41,
+  "peakMemMib": null,
+  "memSamples": null,
+  "error": null
+ }
+}

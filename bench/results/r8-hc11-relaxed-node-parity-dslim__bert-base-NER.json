@@ -1,0 +1,28 @@
+{
+ "model": "dslim__bert-base-NER",
+ "task": "token-classification",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "6824571",
+ "dirty": false,
+ "date": "2026-10-07T23:04:40.483Z",
+ "cases": 200,
+ "metrics": {
+  "argmaxPerTokenAgreement": 1,
+  "argmaxPerTokenDisagreements": [],
+  "tokens": 7886,
+  "maxAbsLogitDiff": 0.000019073486328125
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 827.8099590000056,
+ "runMs": 3543.0528329999943,
+ "msPerItem": 17.715264164999972,
+ "wasmMemoryBytes": 377749504
+}

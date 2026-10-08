@@ -140,10 +140,9 @@ const DEBERTA = {
   position_buckets: 256, pos_att_type: ['p2c', 'c2p'],
 };
 
-test('R07 DeBERTa with a type table and no absolute positions is rejected at load', () => {
-  assert.throws(() => specFromHfConfig({ ...DEBERTA, position_biased_input: false, type_vocab_size: 2 },
-    { task: 'token-classification' }), /type_vocab_size/);
-  // the combinations that stay: no type table, or absolute positions with a type table
+test('R07 DeBERTa with a type table and no absolute positions is planned (type ids bound, review R07)', () => {
+  assert.doesNotThrow(() => specFromHfConfig({ ...DEBERTA, position_biased_input: false, type_vocab_size: 2 },
+    { task: 'token-classification' }));
   assert.doesNotThrow(() => specFromHfConfig({ ...DEBERTA, position_biased_input: false, type_vocab_size: 0 },
     { task: 'token-classification' }));
   assert.doesNotThrow(() => specFromHfConfig({ ...DEBERTA, position_biased_input: true, type_vocab_size: 2 },

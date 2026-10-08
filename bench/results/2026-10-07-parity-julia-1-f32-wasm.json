@@ -1,0 +1,47 @@
+{
+ "date": "2026-10-07",
+ "run_id": "kh-parity-julia-1-f32-wasm-minimum-1791359111954",
+ "engine": "kleinhirn",
+ "model": "julia-1",
+ "precision": "f32",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvg": "8.93 7.58 10.28",
+ "stage": "done",
+ "info": {
+  "precision": "f32",
+  "backend": "wasm",
+  "threads": 1,
+  "wasmMemoryBytes": 261357568,
+  "buckets": [
+   512,
+   1024
+  ],
+  "gpuBytes": null,
+  "downloadBytes": 611556447,
+  "tokenizerBytes": 34363188,
+  "weightBytes": 577193259,
+  "loadTiming": {
+   "fetchMs": 1064.7999999821186,
+   "bodyMs": 4699.499999970198,
+   "sha256Ms": 398.30000001192093,
+   "uploadMs": 10.300000011920929,
+   "embedJoinMs": 124.69999998807907,
+   "manifestMs": 6.800000011920929,
+   "tokenizerMs": 586.1999999880791,
+   "planMs": 119.2999999821186
+  },
+  "loadMs": 1913.2999999821186
+ },
+ "logits": {
+  "n": 100,
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.00011789798736572266,
+  "meanAbsLogitDiff": 0.000011603908475350451,
+  "maxAbsProbDiff": 0.000027431483317630345,
+  "disagreements": []
+ },
+ "gates": {
+  "argmax": true,
+  "logits": true
+ }
+}

@@ -1,0 +1,189 @@
+{
+ "run_id": "r8-hc8-split-search-chromium-kleinhirn-MiniLM-128-wasm-1791385785264",
+ "change": "r1-search",
+ "commit": "386814f",
+ "date": "2026-10-07T15:09:46.842Z",
+ "spec": {
+  "stage": "search",
+  "browser": "chromium",
+  "engine": "kleinhirn",
+  "slug": "sentence-transformers__all-MiniLM-L6-v2",
+  "way": "wasm",
+  "len": "128",
+  "n": 50,
+  "warmup": 5,
+  "acc": false,
+  "keepOutputs": false,
+  "mem": false,
+  "parityFromRef": true,
+  "threads": 8,
+  "split": "16,64,16"
+ },
+ "browser": "chromium-151.0.7922.34",
+ "loadStart": 3.29,
+ "loadWaitedSeconds": 0,
+ "loadEnd": "3.82 4.04 4.08",
+ "stage": "done",
+ "mode": "run",
+ "engine": "kleinhirn",
+ "model": "sentence-transformers__all-MiniLM-L6-v2",
+ "way": "wasm",
+ "len": "128",
+ "crossOriginIsolated": true,
+ "timerStepMs": 0.004999995231628418,
+ "block": 1,
+ "n": 50,
+ "warmup": 5,
+ "loadMs": 230.0949999988079,
+ "warmupMs": [
+  15.7049999833107,
+  10.439999997615814,
+  9.025000005960464,
+  8.59500002861023,
+  8.58500000834465
+ ],
+ "warmupFinite": true,
+ "latency": {
+  "n": 50,
+  "medianMs": 8.172500014305115,
+  "p95Ms": 8.694999992847443,
+  "minMs": 8.105000019073486,
+  "maxMs": 8.91499999165535,
+  "meanMs": 8.235300001502036
+ },
+ "samplesMs": [
+  8.840000003576279,
+  8.694999992847443,
+  8.230000019073486,
+  8.299999982118607,
+  8.344999998807907,
+  8.340000003576279,
+  8.185000002384186,
+  8.375,
+  8.1700000166893,
+  8.129999995231628,
+  8.185000002384186,
+  8.169999986886978,
+  8.425000011920929,
+  8.354999989271164,
+  8.115000009536743,
+  8.215000003576279,
+  8.180000007152557,
+  8.129999995231628,
+  8.13500002026558,
+  8.234999984502792,
+  8.140000015497208,
+  8.145000010728836,
+  8.134999990463257,
+  8.194999992847443,
+  8.175000011920929,
+  8.91499999165535,
+  8.534999996423721,
+  8.169999986886978,
+  8.219999998807907,
+  8.25,
+  8.159999996423721,
+  8.105000019073486,
+  8.189999997615814,
+  8.150000005960464,
+  8.180000007152557,
+  8.159999996423721,
+  8.115000009536743,
+  8.16499999165535,
+  8.155000001192093,
+  8.115000009536743,
+  8.194999992847443,
+  8.134999990463257,
+  8.129999995231628,
+  8.224999994039536,
+  8.275000005960464,
+  8.13500002026558,
+  8.129999995231628,
+  8.110000014305115,
+  8.150000005960464,
+  8.150000005960464
+ ],
+ "info": {
+  "name": "kleinhirn",
+  "version": "muy8skgl",
+  "build": "dist/kleinhirn.js",
+  "config": {
+   "precision": "f32",
+   "buckets": [
+    128
+   ],
+   "limits": "minimum",
+   "backend": "wasm",
+   "threads": 8,
+   "threadNote": null,
+   "wasmBuild": "relaxed",
+   "split": {
+    "rb": 16,
+    "cb": 64,
+    "qb": 16
+   }
+  },
+  "gpuBytes": null,
+  "adapter": null
+ },
+ "accuracy": {
+  "skipped": true
+ },
+ "download": {
+  "bytes": 91915107,
+  "files": {
+   "/dist/kleinhirn.js": 1172543,
+   "/models/k28/sentence-transformers__all-MiniLM-L6-v2/f32/manifest.json": 14213,
+   "/models/k28/sentence-transformers__all-MiniLM-L6-v2/f32/tokenizer.json": 466547,
+   "/models/k28/sentence-transformers__all-MiniLM-L6-v2/f32/weights-0.bin": 90261804
+  }
+ },
+ "engineFiles": [
+  "/dist/kleinhirn.js"
+ ],
+ "done": true,
+ "outputs": {
+  "rows": 50,
+  "nonFinite": 0
+ },
+ "vsCpuF32": {
+  "rows": 50,
+  "maxAbsDiff": 4.76837158203125e-7,
+  "minCosine": 0.9999999999991865
+ },
+ "summary": {
+  "runId": "r8-hc8-split-search-chromium-kleinhirn-MiniLM-128-wasm-1791385785264",
+  "file": "bench/results/r8-hc8-split-search-chromium-kleinhirn-MiniLM-128-wasm-1791385785264.json",
+  "engine": "kleinhirn",
+  "browser": "chromium-151.0.7922.34",
+  "medianMs": 8.172500014305115,
+  "p95Ms": 8.694999992847443,
+  "block": 1,
+  "n": 50,
+  "downloadMb": 87.65707683563232,
+  "loadMs": 230.0949999988079,
+  "gpuBytes": null,
+  "engineGzipB": 46573,
+  "config": {
+   "precision": "wasm",
+   "threads": 8,
+   "threadNote": null,
+   "wasmBuild": "relaxed"
+  },
+  "parity": {
+   "pass": true,
+   "reasons": [],
+   "vsCpuF32": {
+    "rows": 50,
+    "maxAbsDiff": 4.76837158203125e-7,
+    "minCosine": 0.9999999999991865
+   }
+  },
+  "timerStepMs": 0.004999995231628418,
+  "isolated": true,
+  "loadStart": 3.29,
+  "peakMemMib": null,
+  "memSamples": null,
+  "error": null
+ }
+}

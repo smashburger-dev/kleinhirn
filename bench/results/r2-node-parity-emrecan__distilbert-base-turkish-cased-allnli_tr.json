@@ -1,0 +1,30 @@
+{
+ "model": "emrecan__distilbert-base-turkish-cased-allnli_tr",
+ "task": "nli",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "cf2ae3b",
+ "dirty": false,
+ "date": "2026-10-06T19:41:45.263Z",
+ "cases": 200,
+ "metrics": {
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.000003933906555175781,
+  "meanAbsLogitDiff": 5.322461947798729e-7,
+  "disagreements": [],
+  "zeroShotAgreement": 1,
+  "zeroShotDisagreements": []
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 599.2640840001404,
+ "runMs": 32715.085750000086,
+ "msPerItem": 163.57542875000044,
+ "wasmMemoryBytes": 213057536
+}

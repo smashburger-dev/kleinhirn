@@ -1,0 +1,28 @@
+{
+ "model": "OpenMed__OpenMed-NER-GenomeDetect-ModernMed-149M",
+ "task": "token-classification",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "d4e4d43",
+ "dirty": false,
+ "date": "2026-10-07T22:06:22.246Z",
+ "cases": 200,
+ "metrics": {
+  "argmaxPerTokenAgreement": 1,
+  "argmaxPerTokenDisagreements": [],
+  "tokens": 6350,
+  "maxAbsLogitDiff": 0.00009238719940185547
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 1316.3396670000075,
+ "runMs": 5807.655874999997,
+ "msPerItem": 29.038279374999984,
+ "wasmMemoryBytes": 485818368
+}

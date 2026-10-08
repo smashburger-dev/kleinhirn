@@ -1,0 +1,28 @@
+{
+ "model": "antoinelouis__crossencoder-camemberta-L6-mmarcoFR",
+ "task": "reranking",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "6824571",
+ "dirty": false,
+ "date": "2026-10-07T23:02:45.571Z",
+ "cases": 200,
+ "metrics": {
+  "maxAbsLogitDiff": 0.000007271766662597656,
+  "meanAbsLogitDiff": 0.0000021670013666152956,
+  "bestPassageAgreement": 1,
+  "bestPassageDisagreements": []
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 641.9711249999964,
+ "runMs": 3230.3350840000057,
+ "msPerItem": 16.15167542000003,
+ "wasmMemoryBytes": 280297472
+}

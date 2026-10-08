@@ -108,16 +108,15 @@ test('checkPlan: every shipped pilot plan fits the minimum limits at the default
   }
 });
 
-test('R01: a bucket length that is not a positive multiple of 4 is rejected, with bucket and reason', async () => {
-  for (const length of [5, 130, 0, -4, 6.5]) {
+test('R01: a bucket length outside multiples of 4 is planned (remainder loops), a length that is no positive integer is rejected', async () => {
+  for (const length of [0, -4, 6.5]) {
     const plan = planOf(MINILM, 128, 1);
     plan.length = length;
     const bad = checkPlan(plan, {});
-    assert.ok(bad.some((m) => m.includes(`bucket L${length} B1`) && /multiple of 4/.test(m)), `${length}: ${bad}`);
+    assert.ok(bad.some((m) => m.includes(`bucket L${length} B1`) && /positive integer/.test(m)), `${length}: ${bad}`);
   }
-  assert.deepEqual(checkPlan(planOf(MINILM, 128, 1), {}), []);
-  // through the loader: the bucket is named, nothing is allocated for it
-  await assert.rejects(() => loadTiny({ buckets: [130] }), /bucket L130 B1.*multiple of 4/);
+  for (const length of [5, 130]) assert.deepEqual(checkPlan(planOf(MINILM, length, 1), {}), [], `L${length}`);
+  await assert.doesNotReject(() => loadTiny({ buckets: [130] }));
 });
 
 test('R03 L4100: a single plan over the workgroup memory limit is rejected at load, with need and limit', async () => {
@@ -190,14 +189,15 @@ test('workgroup bytes of the checker equal the var<workgroup> declarations of ev
     const decls = [...code.matchAll(/var<workgroup>\s+\w+:\s*array<(f32|f16|u32|i32|vec4<(?:f32|f16|\{\{F\}\})>),\s*(\w+)>/g)];
     // scalar workgroup variables (K27 tile flags) count 4 bytes each
     const scalars = [...code.matchAll(/var<workgroup>\s+\w+:\s*(?:u32|i32|f32);/g)].length;
+    const c = { N: 768 };
     for (const L of [4, 128, 1024, 4032]) {
-      const bytes = 4 * scalars + decls.reduce((n, [, type, size]) => n + (type.startsWith('vec4') ? 16 : 4) * (size === 'L' ? L : Number(size)), 0);
-      assert.equal(WORKGROUP_BYTES[f.replace('.wgsl', '')](L), bytes, `${f} at L${L}`);
+      const bytes = 4 * scalars + decls.reduce((n, [, type, size]) => n + (type.startsWith('vec4') ? 16 : 4) * (size === 'L' ? L : size === 'N' ? c.N : Number(size)), 0);
+      assert.equal(WORKGROUP_BYTES[f.replace('.wgsl', '')](L, c), bytes, `${f} at L${L}`);
     }
   }
 });
 
-test('R08: relative attention with a head width outside groups of 4 is rejected, other attention is not', () => {
+test('R08: relative attention with a head width outside groups of 4 is planned (scalar remainder in attention.wgsl)', () => {
   const relative = (hidden) => specFromHfConfig({
     model_type: 'deberta-v2', hidden_size: hidden, num_hidden_layers: 1, num_attention_heads: 2,
     intermediate_size: 128, vocab_size: 8, max_position_embeddings: 512,
@@ -208,10 +208,9 @@ test('R08: relative attention with a head width outside groups of 4 is rejected,
     const { spec, head } = relative(hidden);
     return buildPlan(spec, head, { length: 128, batch: 1, markers: 0, f16: false });
   };
-  const bad = checkPlan(at(100), {}); // D = 50
-  assert.ok(bad.some((m) => m.includes('bucket L128 B1') && /relative attention with head width 50/.test(m)), `${bad}`);
+  assert.deepEqual(checkPlan(at(100), {}), []); // D = 50
   assert.deepEqual(checkPlan(at(128), {}), []); // D = 64
-  // standard attention (mbattention) with D = 50 (polyBERT) is not touched by the rule
+  // standard attention (mbattention) with D = 50 (polyBERT)
   const { spec, head } = pilotSpec('xushijie/polyBERT');
   assert.equal(spec.headDim % 4, 2);
   assert.deepEqual(checkPlan(buildPlan(spec, head, { length: 128, batch: 1, markers: 0, f16: false }), {}), []);

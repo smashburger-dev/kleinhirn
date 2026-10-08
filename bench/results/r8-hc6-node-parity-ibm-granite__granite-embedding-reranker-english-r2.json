@@ -1,0 +1,28 @@
+{
+ "model": "ibm-granite__granite-embedding-reranker-english-r2",
+ "task": "reranking",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "458da21",
+ "dirty": false,
+ "date": "2026-10-07T12:41:01.825Z",
+ "cases": 200,
+ "metrics": {
+  "maxAbsLogitDiff": 7.748603820800781e-7,
+  "meanAbsLogitDiff": 1.963973045349121e-7,
+  "bestPassageAgreement": 1,
+  "bestPassageDisagreements": []
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 1592.3482500000391,
+ "runMs": 36236.00920900004,
+ "msPerItem": 181.1800460450002,
+ "wasmMemoryBytes": 474087424
+}

@@ -1,0 +1,26 @@
+{
+ "model": "sentence-transformers__all-MiniLM-L6-v2",
+ "task": "embeddings",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "d4e4d43",
+ "dirty": false,
+ "date": "2026-10-07T22:11:40.798Z",
+ "cases": 200,
+ "metrics": {
+  "minCosineFinal": 0.9999999999991747,
+  "maxAbsDiffFinal": 2.3189932107925415e-7
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 312.4666660000221,
+ "runMs": 706.3103339999798,
+ "msPerItem": 3.531551669999899,
+ "wasmMemoryBytes": 65142784
+}

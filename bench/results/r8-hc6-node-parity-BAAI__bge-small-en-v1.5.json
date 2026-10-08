@@ -1,0 +1,26 @@
+{
+ "model": "BAAI__bge-small-en-v1.5",
+ "task": "embeddings",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "458da21",
+ "dirty": false,
+ "date": "2026-10-07T12:20:05.987Z",
+ "cases": 200,
+ "metrics": {
+  "minCosineFinal": 0.9999999999994119,
+  "maxAbsDiffFinal": 3.2782554626464844e-7
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 287.91037499997765,
+ "runMs": 6074.259250000003,
+ "msPerItem": 30.371296250000015,
+ "wasmMemoryBytes": 99942400
+}

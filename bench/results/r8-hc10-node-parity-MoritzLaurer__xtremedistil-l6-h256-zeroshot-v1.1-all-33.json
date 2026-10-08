@@ -1,0 +1,30 @@
+{
+ "model": "MoritzLaurer__xtremedistil-l6-h256-zeroshot-v1.1-all-33",
+ "task": "nli",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "d4e4d43",
+ "dirty": false,
+ "date": "2026-10-07T22:05:36.564Z",
+ "cases": 200,
+ "metrics": {
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.0000050067901611328125,
+  "meanAbsLogitDiff": 0.0000011157989501953124,
+  "disagreements": [],
+  "zeroShotAgreement": 1,
+  "zeroShotDisagreements": []
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 259.3496659999946,
+ "runMs": 414.38058399999863,
+ "msPerItem": 2.071902919999993,
+ "wasmMemoryBytes": 37224448
+}

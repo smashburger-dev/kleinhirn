@@ -1,0 +1,28 @@
+{
+ "model": "daekeun-ml__koelectra-small-v3-nsmc",
+ "task": "sequence-classification",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "d4e4d43",
+ "dirty": false,
+ "date": "2026-10-07T22:08:47.108Z",
+ "cases": 200,
+ "metrics": {
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.000009298324584960938,
+  "meanAbsLogitDiff": 0.0000018467544578015804,
+  "disagreements": []
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 278.0675410000258,
+ "runMs": 2123.404416000005,
+ "msPerItem": 10.617022080000025,
+ "wasmMemoryBytes": 56098816
+}

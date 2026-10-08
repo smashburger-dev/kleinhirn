@@ -1,0 +1,181 @@
+{
+ "run_id": "r8-hc8-search-chromium-kleinhirn-MiniLM-128-wasm-1791383793092",
+ "change": "r1-search",
+ "commit": "6fec030",
+ "date": "2026-10-07T14:36:34.637Z",
+ "spec": {
+  "stage": "search",
+  "browser": "chromium",
+  "engine": "kleinhirn",
+  "slug": "sentence-transformers__all-MiniLM-L6-v2",
+  "way": "wasm",
+  "len": "128",
+  "n": 50,
+  "warmup": 5,
+  "acc": false,
+  "keepOutputs": false,
+  "mem": false,
+  "parityFromRef": true,
+  "threads": 10
+ },
+ "browser": "chromium-151.0.7922.34",
+ "loadStart": 2.57,
+ "loadWaitedSeconds": 0,
+ "loadEnd": "2.44 3.35 3.77",
+ "stage": "done",
+ "mode": "run",
+ "engine": "kleinhirn",
+ "model": "sentence-transformers__all-MiniLM-L6-v2",
+ "way": "wasm",
+ "len": "128",
+ "crossOriginIsolated": true,
+ "timerStepMs": 0.004999995231628418,
+ "block": 1,
+ "n": 50,
+ "warmup": 5,
+ "loadMs": 232.43000000715256,
+ "warmupMs": [
+  16.219999998807907,
+  12.099999994039536,
+  10.61999997496605,
+  10.185000002384186,
+  11.060000002384186
+ ],
+ "warmupFinite": true,
+ "latency": {
+  "n": 50,
+  "medianMs": 9.547499999403954,
+  "p95Ms": 10.905000001192093,
+  "minMs": 8.740000009536743,
+  "maxMs": 14.254999995231628,
+  "meanMs": 9.75740000128746
+ },
+ "samplesMs": [
+  9.905000001192093,
+  10.134999990463257,
+  9.125,
+  9.515000015497208,
+  9.430000007152557,
+  10.145000010728836,
+  10.61999997496605,
+  9.384999990463257,
+  9.854999989271164,
+  9.965000003576279,
+  9.265000015497208,
+  9.560000002384186,
+  9.185000002384186,
+  10.870000004768372,
+  10.515000015497208,
+  9.629999995231628,
+  9.105000019073486,
+  9.224999994039536,
+  9.705000013113022,
+  9.534999996423721,
+  14.254999995231628,
+  11.104999989271164,
+  9.680000007152557,
+  9.060000002384186,
+  8.740000009536743,
+  9.639999985694885,
+  10.480000019073486,
+  9.305000007152557,
+  9.580000013113022,
+  8.814999997615814,
+  9.159999996423721,
+  9.099999994039536,
+  10.550000011920929,
+  10.474999994039536,
+  8.88000002503395,
+  9.75,
+  9.444999992847443,
+  9.784999996423721,
+  9.895000010728836,
+  9.189999997615814,
+  10.905000001192093,
+  9.389999985694885,
+  9.390000015497208,
+  9.194999992847443,
+  9.025000005960464,
+  9.484999984502792,
+  9.38000002503395,
+  10.149999976158142,
+  9.435000002384186,
+  9.949999988079071
+ ],
+ "info": {
+  "name": "kleinhirn",
+  "version": "muy73akh",
+  "build": "dist/kleinhirn.js",
+  "config": {
+   "precision": "f32",
+   "buckets": [
+    128
+   ],
+   "limits": "minimum",
+   "backend": "wasm",
+   "threads": 10,
+   "threadNote": null,
+   "wasmBuild": "relaxed",
+   "split": null
+  },
+  "gpuBytes": null,
+  "adapter": null
+ },
+ "accuracy": {
+  "skipped": true
+ },
+ "download": {
+  "bytes": 91914958,
+  "files": {
+   "/dist/kleinhirn.js": 1172394,
+   "/models/k28/sentence-transformers__all-MiniLM-L6-v2/f32/manifest.json": 14213,
+   "/models/k28/sentence-transformers__all-MiniLM-L6-v2/f32/tokenizer.json": 466547,
+   "/models/k28/sentence-transformers__all-MiniLM-L6-v2/f32/weights-0.bin": 90261804
+  }
+ },
+ "engineFiles": [
+  "/dist/kleinhirn.js"
+ ],
+ "done": true,
+ "outputs": {
+  "rows": 50,
+  "nonFinite": 0
+ },
+ "vsCpuF32": {
+  "rows": 50,
+  "maxAbsDiff": 4.76837158203125e-7,
+  "minCosine": 0.9999999999991865
+ },
+ "summary": {
+  "runId": "r8-hc8-search-chromium-kleinhirn-MiniLM-128-wasm-1791383793092",
+  "file": "bench/results/r8-hc8-search-chromium-kleinhirn-MiniLM-128-wasm-1791383793092.json",
+  "engine": "kleinhirn",
+  "browser": "chromium-151.0.7922.34",
+  "medianMs": 9.547499999403954,
+  "p95Ms": 10.905000001192093,
+  "block": 1,
+  "n": 50,
+  "downloadMb": 87.65693473815918,
+  "loadMs": 232.43000000715256,
+  "gpuBytes": null,
+  "engineGzipB": 46566,
+  "config": {
+   "precision": "wasm"
+  },
+  "parity": {
+   "pass": true,
+   "reasons": [],
+   "vsCpuF32": {
+    "rows": 50,
+    "maxAbsDiff": 4.76837158203125e-7,
+    "minCosine": 0.9999999999991865
+   }
+  },
+  "timerStepMs": 0.004999995231628418,
+  "isolated": true,
+  "loadStart": 2.57,
+  "peakMemMib": null,
+  "memSamples": null,
+  "error": null
+ }
+}

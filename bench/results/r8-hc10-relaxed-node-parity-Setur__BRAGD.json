@@ -1,0 +1,28 @@
+{
+ "model": "Setur__BRAGD",
+ "task": "token-classification",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "d4e4d43",
+ "dirty": false,
+ "date": "2026-10-07T22:14:52.492Z",
+ "cases": 200,
+ "metrics": {
+  "argmaxPerTokenAgreement": 1,
+  "argmaxPerTokenDisagreements": [],
+  "tokens": 7303,
+  "maxAbsLogitDiff": 0.0007815361022949219
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 1367.9677500000107,
+ "runMs": 3479.3947500000068,
+ "msPerItem": 17.396973750000033,
+ "wasmMemoryBytes": 376766464
+}

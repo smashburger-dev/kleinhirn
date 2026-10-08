@@ -19,9 +19,9 @@ export interface PlanLimits {
   maxStorageBuffersPerShaderStage?: number;
 }
 
-// Workgroup bytes per kernel for a bucket length, from the var<workgroup>
+// Workgroup bytes per kernel for a bucket length and the op constants, from the var<workgroup>
 // declarations in src/kernels (tests/k28r_a.test.mjs reads them back).
-export const WORKGROUP_BYTES: Record<KernelName, (length: number) => number> = {
+export const WORKGROUP_BYTES: Record<KernelName, (length: number, c: Record<string, number>) => number> = {
   add: () => 0,
   attention: (L) => 4 * L + 256,   // scores[L] + red[64]
   attpv: () => 8200,               // sa[256] vec4<f32> + sb[256] vec4 (f32 plans) + keyFirst, keyLast
@@ -29,11 +29,11 @@ export const WORKGROUP_BYTES: Record<KernelName, (length: number) => number> = {
   attscore: () => 12292,           // sa[256] + sw[512] vec4 (f32 plans) + tileLive
   attsoftmax: () => 256,           // red[64]
   attsoftrel: () => 256,           // red[64]
-  embln: () => 256,                // red[64]
+  embln: (_, c) => 4 * c.N + 256,  // xs[N] + red[64]
   gather: () => 0,
   geglu: () => 0,
   im2col: () => 0,
-  layernorm: () => 256,            // red[64]
+  layernorm: (_, c) => 4 * c.N + 256, // xs[N] + red[64]
   masklogits: () => 0,
   matmul: () => 2048,              // ta[256] + tw[256]
   mbattention: (L) => 4 * L + 256, // scores[L] + red[64]
@@ -74,10 +74,8 @@ export function checkPlan(
   const ops = plan.segments.flatMap((s) => [...(s.captureOps ?? []), ...s.ops]
     .map((op) => ({ op, at: `${s.prefix}${op.name}` })));
 
-  if (!options.batchOnly) {
-    if (!Number.isInteger(plan.length) || plan.length <= 0 || plan.length % 4 !== 0) {
-      bad.push(`${where}: the length must be a positive multiple of 4 (the attention kernels read keys in groups of 4)`);
-    }
+  if (!options.batchOnly && (!Number.isInteger(plan.length) || plan.length <= 0)) {
+    bad.push(`${where}: the length must be a positive integer`);
   }
   if (!Number.isInteger(plan.batch) || plan.batch <= 0) bad.push(`${where}: the batch must be a positive integer`);
 
@@ -99,11 +97,8 @@ export function checkPlan(
     for (const a of op.alts ?? []) for (const d of a.dispatch) over(`dispatch ${at} (${a.kernel})`, dimOf(d, rows), 'maxComputeWorkgroupsPerDimension', groups);
     if (options.batchOnly) continue;
     over(`op ${at}`, op.bind.length, 'maxStorageBuffersPerShaderStage', perStage);
-    over(`workgroup memory of ${at} (${op.kernel})`, WORKGROUP_BYTES[op.kernel](plan.length),
+    over(`workgroup memory of ${at} (${op.kernel})`, WORKGROUP_BYTES[op.kernel](plan.length, op.constants),
       'maxComputeWorkgroupStorageSize', shared);
-    if (op.kernel === 'attention' && op.constants.D % 4 !== 0) {
-      bad.push(`${where}: relative attention with head width ${op.constants.D} is not supported (needs a multiple of 4)`);
-    }
   }
 
   if (weightBytes && !options.batchOnly) {

@@ -7,7 +7,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { specFromHfConfig } from '../src/plan/hf.ts';
-import { padIdIndex } from '../src/plan/spec.ts';
+import { positionRows } from '../src/plan/spec.ts';
 import { model, source } from './helpers/review.mjs';
 
 const models = JSON.parse(readFileSync('data/k28/models.json', 'utf8')).models;
@@ -103,40 +103,38 @@ test('R13 pool max starts at the first valid row, no sentinel', () => {
 
 const ROBERTA = 'cardiffnlp/twitter-roberta-base-sentiment-latest';
 
-test('R09 rule: no id may be the pad id; with offset equal to the pad id, id 0 must be it and no other', () => {
-  const normal = { positionOffset: 2, padId: 1 };
-  assert.equal(padIdIndex(normal, [0, 7, 8, 2]), -1);
-  assert.equal(padIdIndex(normal, [0, 7, 1, 8, 2]), 2);
-  assert.equal(padIdIndex(normal, [1]), 0);
-  const special = { positionOffset: 0, padId: 0 }; // d0rj/e5-small-en-ru: <s> and <pad> are both 0
-  assert.equal(padIdIndex(special, [0, 5, 6, 2]), -1);
-  assert.equal(padIdIndex(special, [5, 6, 2]), 0);
-  assert.equal(padIdIndex(special, [0, 5, 0, 2]), 2);
-  assert.equal(padIdIndex({ positionOffset: 0 }, [1, 1, 1]), -1, 'a spec without a pad id is not checked');
+test('R09 positions follow transformers: a pad id keeps the pad row, other ids count', () => {
+  assert.deepEqual(positionRows(1, [0, 7, 8, 2]), [2, 3, 4, 5]);
+  assert.deepEqual(positionRows(1, [0, 7, 1, 8, 2]), [2, 3, 1, 4, 5]);
+  assert.deepEqual(positionRows(1, [1]), [1]);
+  // d0rj/e5-small-en-ru: <s> and <pad> are both 0
+  assert.deepEqual(positionRows(0, [0, 5, 6, 2]), [0, 1, 2, 3]);
+  assert.deepEqual(positionRows(0, [5, 6, 2]), [1, 2, 3]);
+  assert.deepEqual(positionRows(0, [0, 5, 0, 2]), [0, 1, 0, 2]);
 });
 
-test('R09 runIds and runIdsBatch throw naming the index of the pad id', async () => {
+test('R09 runIds and runIdsBatch run ids with the pad id, positions packed in the high 16 bits', async () => {
   const { engine, spec } = model(ROBERTA);
   assert.equal(spec.embed.padId, 1);
-  await assert.rejects(() => engine.runIds({ inputIds: [0, 7, 1, 6, 2] }), /index 2 is the pad id 1/);
-  await assert.rejects(() => engine.runIdsBatch([{ inputIds: [0, 2] }, { inputIds: [0, 7, 1, 2] }]),
-    /input 1: .*index 2 is the pad id 1/);
-  // ids without the pad id run, in a call with padding rows (3 callers pad up to 4)
-  const outs = await engine.runIdsBatch([{ inputIds: [0, 3, 2] }, { inputIds: [0, 4, 2] }, { inputIds: [0, 5, 6, 2] }]);
+  assert.equal((await engine.runIds({ inputIds: [0, 7, 1, 6, 2] })).seqLen, 5);
+  const outs = await engine.runIdsBatch([{ inputIds: [0, 2] }, { inputIds: [0, 7, 1, 2] }, { inputIds: [0, 5, 6, 2] }]);
   assert.equal(outs.length, 3);
+  const { typeIds } = engine.maskAndTypes([{ inputIds: [0, 7, 1, 6, 2] }], 8);
+  assert.deepEqual(Array.from(typeIds, (t) => t >>> 16), [2, 3, 1, 4, 5, 1, 1, 1]);
+  assert.deepEqual(Array.from(typeIds, (t) => t & 0xffff), [0, 0, 0, 0, 0, 0, 0, 0]);
 });
 
-test('R09 text methods reach the rule: a literal pad token in the text throws', async () => {
+test('R09 text methods run a literal pad token in the text', async () => {
   const { engine } = model(ROBERTA);
-  engine.textInput = () => ({ inputIds: [0, 7, 1, 8, 2] }); // the tokenizer maps "<pad>" to id 1
-  await assert.rejects(() => engine.classify('a <pad> b'), /index 2 is the pad id 1/);
+  engine.textInput = () => ({ inputIds: [0, 7, 1, 6, 2] }); // the tokenizer maps "<pad>" to id 1
+  await assert.doesNotReject(() => engine.classify('a <pad> b'));
 });
 
-test('R09 special offset: runIds needs id 0 first and nowhere else', async () => {
+test('R09 special offset: ids without the pad id first run with transformers positions', async () => {
   const { engine, spec } = model('d0rj/e5-small-en-ru', 'f32', [128]);
   assert.deepEqual([spec.embed.padId, spec.embed.positionOffset], [0, 0]);
-  await assert.rejects(() => engine.runIds({ inputIds: [5, 6] }), /index 0 is not the pad id 0/);
-  await assert.rejects(() => engine.runIds({ inputIds: [0, 5, 0, 2] }), /index 2 is the pad id 0/);
+  assert.equal((await engine.runIds({ inputIds: [5, 6] })).seqLen, 2);
+  assert.equal((await engine.runIds({ inputIds: [0, 5, 0, 2] })).seqLen, 4);
   assert.equal((await engine.runIds({ inputIds: [0, 5, 6, 2] })).seqLen, 4);
 });
 
@@ -146,22 +144,13 @@ test('R09 BERT models are not checked', async () => {
   assert.equal((await engine.runIds({ inputIds: [1, 1, 1] })).seqLen, 3);
 });
 
-// HF positions of RoBERTa and XLM-R: cumsum(ids != pad) * (ids != pad) + pad.
-function hfPositionsDiffer(ids, pad, offset) {
-  let count = 0;
-  return ids.some((id, i) => {
-    const hf = id === pad ? pad : pad + ++count;
-    return hf !== i + offset;
-  });
-}
-
 // Gate: for every case with ids of every RoBERTa and XLM-R model with golden tokenizer cases, the
-// rule throws exactly when the HF positions differ from the engine positions i + positionOffset
-// (pad id and offset from specFromHfConfig on the frozen config and the single template <s> A </s>).
-// Cases are not skipped by text. Skipped when models/ is absent.
-test('R09 gate: the rule throws exactly where HF and engine positions differ (golden tokenizer cases)', (t) => {
+// packed position rows equal transformers (cumsum(ids != pad) * (ids != pad) + pad), and they equal
+// the rows before R09 (i + positionOffset) in every case without a pad id, so those bits stay.
+// Skipped when models/ is absent.
+test('R09 gate: positions equal transformers on the golden tokenizer cases, and the old rows without a pad id', (t) => {
   if (!existsSync('models/k28')) return t.skip('models/k28 is absent');
-  let checkedModels = 0, checkedCases = 0, rejected = 0;
+  let checkedModels = 0, checkedCases = 0, withPad = 0;
   for (const e of models.filter((m) => ['roberta', 'xlm-roberta'].includes(m.config.model_type))) {
     const dir = `models/k28/${e.id.replace('/', '__')}/golden`;
     if (!existsSync(dir)) continue;
@@ -169,19 +158,22 @@ test('R09 gate: the rule throws exactly where HF and engine positions differ (go
     if (!files.length) continue;
     const { spec } = specFromHfConfig(e.config, { task: e.task, sentenceTransformers: e.sentenceTransformers,
       template: [e.config.bos_token_id, null, e.config.eos_token_id] });
-    assert.notEqual(spec.embed.padId, undefined, e.id);
+    const { padId, positionOffset } = spec.embed;
+    assert.notEqual(padId, undefined, e.id);
     checkedModels += 1;
     for (const f of files) {
       for (const [i, c] of JSON.parse(readFileSync(`${dir}/${f}`, 'utf8')).cases.entries()) {
         if (!c.ok || !Array.isArray(c.input_ids)) continue;
         checkedCases += 1;
-        const throws = padIdIndex(spec.embed, c.input_ids) >= 0;
-        if (throws) rejected += 1;
-        assert.equal(throws, hfPositionsDiffer(c.input_ids, spec.embed.padId, spec.embed.positionOffset),
-          `${e.id} ${f} case ${i}`);
+        const rows = positionRows(padId, c.input_ids);
+        let count = 0;
+        assert.deepEqual(rows, c.input_ids.map((id) => (id === padId ? padId : padId + ++count)), `${e.id} ${f} case ${i}`);
+        const old = c.input_ids.map((_, k) => k + positionOffset);
+        if (rows.some((r, k) => r !== old[k])) withPad += 1;
+        else assert.deepEqual(rows, old);
       }
     }
   }
   assert.ok(checkedModels > 0 && checkedCases > 0);
-  console.log(`R09 gate: ${checkedModels} models, ${checkedCases} cases, ${rejected} rejected`);
+  console.log(`R09 gate: ${checkedModels} models, ${checkedCases} cases, ${withPad} with positions that change`);
 });

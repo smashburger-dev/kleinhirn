@@ -1,0 +1,26 @@
+{
+ "model": "ibm-granite__granite-embedding-small-english-r2",
+ "task": "embeddings",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "458da21",
+ "dirty": false,
+ "date": "2026-10-07T12:41:22.268Z",
+ "cases": 200,
+ "metrics": {
+  "minCosineFinal": 0.99999999999954,
+  "maxAbsDiffFinal": 0.00000476837158203125
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 449.1216250001453,
+ "runMs": 6611.679459000006,
+ "msPerItem": 33.058397295000034,
+ "wasmMemoryBytes": 136445952
+}

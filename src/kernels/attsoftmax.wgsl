@@ -32,7 +32,7 @@ fn main(
   let kbase = (i / L) * L;
   let il = i - kbase;
   let base = (i * H + h) * L;
-  var m = -1e30;
+  var m = -3.40282346638528859812e38f; // lowest finite f32: below every real score (review R21)
   for (var j = lid.x; j < L; j += 64u) {
     if (keep(il, j, kbase)) { m = max(m, scores[base + j]); }
   }

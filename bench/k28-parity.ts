@@ -334,11 +334,14 @@ async function main(): Promise<void> {
       `/tests/golden/k28/${model}/${task}.json`)).json()) as Golden;
     const bins = await GoldenBins.open(`${dir}/golden`, golden);
     const enc = await EncoderModel.load({
-      manifestUrl: `${dir}/${precision}/manifest.json`, precision: 'auto',
+      manifestUrl: `${dir}/${precision}/manifest.json`, precision: precision as 'f16' | 'f32',
       buckets: [128, 512], limits: 'minimum',
     });
     checkErrors();
     result.info = enc.info();
+    // 'auto' followed recommendedPrecision of the f16 manifest (deepvk/USER2-base) and ran f32.
+    const ran = enc.info().precision;
+    if (ran !== precision) throw new Error(`asked for ${precision}, the engine runs ${String(ran)}`);
     result.adapterInfo = (result.info as { adapter?: unknown }).adapter;
     const items = golden.items;
     result.cases = items.length;

@@ -1,0 +1,68 @@
+{
+ "date": "2026-10-06",
+ "run_id": "k28-parity-ProsusAI__finbert-f16-fa4af8b-1791297908486",
+ "commit": "fa4af8b",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "3.27",
+ "loadAvgEnd": "3.40 4.17 6.58",
+ "stage": "done",
+ "model": "ProsusAI__finbert",
+ "precision": "f16",
+ "task": "sequence-classification",
+ "info": {
+  "precision": "f16",
+  "buildId": "muwsivlb",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "bert",
+  "task": "sequence-classification",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 198247504,
+  "downloadBytes": 219698805,
+  "loadTiming": {
+   "fetchMs": 365.80000001192093,
+   "bodyMs": 687.9000000059605,
+   "sha256Ms": 110.8999999910593,
+   "uploadMs": 33.5,
+   "embedJoinMs": 3.7000000029802322,
+   "manifestMs": 3,
+   "planMs": 27.900000005960464
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.003365159034729004,
+  "meanAbsLogitDiff": 0.0005487408364812533,
+  "disagreements": []
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0,
+  "groups": 50
+ },
+ "gpuErrors": []
+}

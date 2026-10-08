@@ -11,6 +11,7 @@
 import { MINIMUM_LIMITS } from '../device.ts';
 import { halfBitsToFloat32 } from '../half.ts';
 import { KERNELS, wgsl } from '../kernels/index.ts';
+import type { PlanRunner } from '../backend.ts';
 import type { BufferDecl, Dim, KernelName, Op, Plan } from './ir.ts';
 
 export type ProfileGranularity = 'pass' | 'dispatch';
@@ -65,7 +66,7 @@ const USAGE: Record<BufferDecl['usage'], () => GPUBufferUsageFlags> = {
 const constantsKey = (c: Record<string, number>): string =>
   Object.keys(c).sort().map((k) => `${k}=${c[k]}`).join(',');
 
-export class PlanExecutor {
+export class PlanExecutor implements PlanRunner {
   readonly length: number;
   readonly markers: number;
   readonly batch: number;
@@ -202,7 +203,7 @@ export class PlanExecutor {
     return d === 'rows' ? rows : d === 'rows8' ? Math.ceil(rows / 8) : d === 'rows16' ? Math.ceil(rows / 16) : d === 'rows32' ? Math.ceil(rows / 32) : d;
   }
 
-  private run(pass: GPUComputePassEncoder, op: Prepared, rows: number): void {
+  private dispatchOp(pass: GPUComputePassEncoder, op: Prepared, rows: number): void {
     const o = op.alts.find((a) => rows <= a.maxRows) ?? op;
     pass.setPipeline(o.pipeline);
     pass.setBindGroup(0, o.bindGroup);
@@ -251,7 +252,7 @@ export class PlanExecutor {
         for (const op of seg.ops) {
           dispatchNames.push(`${seg.prefix}${op.name}`);
           const pass = beginPass();
-          this.run(pass, op, rows);
+          this.dispatchOp(pass, op, rows);
           pass.end();
         }
       }
@@ -260,15 +261,15 @@ export class PlanExecutor {
       // boundaries between segments are pure overhead here.
       const pass = beginPass();
       for (const seg of this.segments) {
-        for (const op of kept(seg)) this.run(pass, op, rows);
+        for (const op of kept(seg)) this.dispatchOp(pass, op, rows);
       }
       pass.end();
     } else {
       const capOff = this.plan.captureSlotBytes;
       for (const seg of this.segments) {
         const pass = beginPass();
-        if (capture) for (const op of seg.captureOps) this.run(pass, op, rows);
-        for (const op of kept(seg)) this.run(pass, op, rows);
+        if (capture) for (const op of seg.captureOps) this.dispatchOp(pass, op, rows);
+        for (const op of kept(seg)) this.dispatchOp(pass, op, rows);
         pass.end();
         if (capture) {
           for (const c of seg.capture) {
@@ -288,6 +289,15 @@ export class PlanExecutor {
 
   submit(capture: boolean, o: EncodeOptions = {}): void {
     this.device.queue.submit([this.encode(capture, o)]);
+  }
+
+  // Runner seam (src/backend.ts): one forward over seqLen rows, with the type rows of the last upload.
+  run(seqLen: number, capture = false): void {
+    this.submit(capture, { seqLen, qtype: this.qtype });
+  }
+
+  get bytes(): number {
+    return this.gpuBytes;
   }
 
   // GPU timestamp profiling (K5, K27): one timed forward. 'pass' (default)
@@ -350,7 +360,10 @@ export class PlanExecutor {
     return this.tsResources;
   }
 
+  private qtype?: number | number[];
+
   upload(input: RunInput): void {
+    this.qtype = input.qtype;
     const i = this.plan.inputs;
     this.device.queue.writeBuffer(this.resolve(i.embeddings), 0, input.embeddings);
     this.device.queue.writeBuffer(this.resolve(i.mask), 0, input.mask);

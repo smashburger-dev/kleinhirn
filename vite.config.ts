@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   // Relative asset URLs: the lib bundle emits the wasm worker as
-  // assets/wasm-worker-*.js and resolves it against import.meta.url; an
+  // assets/wasm-plan-worker-*.js and resolves it against import.meta.url; an
   // absolute base would point at the origin root and 404 whenever the
   // bundle is not served from /.
   base: './',
@@ -23,6 +23,9 @@ export default defineConfig({
     // this value against the file on disk before trusting a measurement.
     __KH_BUILD_ID__: JSON.stringify(Date.now().toString(36)),
   },
+  // R8 hc6: the executor worker loads one build of plan.wasm per browser through a dynamic
+  // import; code splitting in a worker needs the es format (the worker starts as type module).
+  worker: { format: 'es' },
   build: {
     lib: {
       entry: 'src/index.ts',

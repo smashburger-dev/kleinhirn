@@ -1,0 +1,28 @@
+{
+ "model": "protectai__deberta-v3-base-prompt-injection-v2",
+ "task": "sequence-classification",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "d4e4d43",
+ "dirty": false,
+ "date": "2026-10-07T22:18:13.663Z",
+ "cases": 200,
+ "metrics": {
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.000025324523448944092,
+  "meanAbsLogitDiff": 0.0000028913747519254686,
+  "disagreements": []
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 1589.7433330000495,
+ "runMs": 10512.420457999979,
+ "msPerItem": 52.56210228999989,
+ "wasmMemoryBytes": 451674112
+}

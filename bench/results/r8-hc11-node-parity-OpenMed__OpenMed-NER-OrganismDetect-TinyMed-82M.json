@@ -1,0 +1,28 @@
+{
+ "model": "OpenMed__OpenMed-NER-OrganismDetect-TinyMed-82M",
+ "task": "token-classification",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "6824571",
+ "dirty": false,
+ "date": "2026-10-07T22:54:17.118Z",
+ "cases": 200,
+ "metrics": {
+  "argmaxPerTokenAgreement": 1,
+  "argmaxPerTokenDisagreements": [],
+  "tokens": 6797,
+  "maxAbsLogitDiff": 0.000006243586540222168
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 752.38883299999,
+ "runMs": 2165.328667000009,
+ "msPerItem": 10.826643335000044,
+ "wasmMemoryBytes": 207618048
+}

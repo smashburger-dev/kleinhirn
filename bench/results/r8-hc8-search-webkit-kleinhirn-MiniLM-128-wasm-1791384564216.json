@@ -1,0 +1,149 @@
+{
+ "run_id": "r8-hc8-search-webkit-kleinhirn-MiniLM-128-wasm-1791384564216",
+ "change": "r1-search",
+ "commit": "6fec030",
+ "date": "2026-10-07T14:49:28.546Z",
+ "spec": {
+  "stage": "search",
+  "browser": "webkit",
+  "engine": "kleinhirn",
+  "slug": "sentence-transformers__all-MiniLM-L6-v2",
+  "way": "wasm",
+  "len": "128",
+  "n": 20,
+  "warmup": 3,
+  "acc": false,
+  "keepOutputs": false,
+  "mem": false,
+  "parityFromRef": true,
+  "threads": 1
+ },
+ "browser": "webkit-26.5",
+ "loadStart": 3.38,
+ "loadWaitedSeconds": 120,
+ "loadEnd": "3.59 4.21 4.01",
+ "stage": "done",
+ "mode": "run",
+ "engine": "kleinhirn",
+ "model": "sentence-transformers__all-MiniLM-L6-v2",
+ "way": "wasm",
+ "len": "128",
+ "crossOriginIsolated": true,
+ "timerStepMs": 0.01999999999999602,
+ "block": 1,
+ "n": 20,
+ "warmup": 3,
+ "loadMs": 237.7,
+ "warmupMs": [
+  90.06,
+  78.07999999999998,
+  79.31999999999994
+ ],
+ "warmupFinite": true,
+ "latency": {
+  "n": 20,
+  "medianMs": 77.97000000000003,
+  "p95Ms": 79,
+  "minMs": 77.67999999999984,
+  "maxMs": 79,
+  "meanMs": 78.033
+ },
+ "samplesMs": [
+  78,
+  79,
+  78.32000000000005,
+  77.79999999999995,
+  77.80000000000007,
+  78.10000000000002,
+  78.33999999999992,
+  77.79999999999995,
+  77.98000000000002,
+  77.98000000000002,
+  78.20000000000005,
+  78.27999999999997,
+  77.96000000000004,
+  77.88000000000011,
+  77.67999999999984,
+  77.77999999999997,
+  78.13999999999987,
+  77.88000000000011,
+  77.87999999999988,
+  77.86000000000013
+ ],
+ "info": {
+  "name": "kleinhirn",
+  "version": "muy73akh",
+  "build": "dist/kleinhirn.js",
+  "config": {
+   "precision": "f32",
+   "buckets": [
+    128
+   ],
+   "limits": "minimum",
+   "backend": "wasm",
+   "threads": 1,
+   "threadNote": null,
+   "wasmBuild": "plain",
+   "split": null
+  },
+  "gpuBytes": null,
+  "adapter": null
+ },
+ "accuracy": {
+  "skipped": true
+ },
+ "download": {
+  "bytes": 91914958,
+  "files": {
+   "/dist/kleinhirn.js": 1172394,
+   "/models/k28/sentence-transformers__all-MiniLM-L6-v2/f32/manifest.json": 14213,
+   "/models/k28/sentence-transformers__all-MiniLM-L6-v2/f32/tokenizer.json": 466547,
+   "/models/k28/sentence-transformers__all-MiniLM-L6-v2/f32/weights-0.bin": 90261804
+  }
+ },
+ "engineFiles": [
+  "/dist/kleinhirn.js"
+ ],
+ "done": true,
+ "outputs": {
+  "rows": 20,
+  "nonFinite": 0
+ },
+ "vsCpuF32": {
+  "rows": 20,
+  "maxAbsDiff": 5.662441253662109e-7,
+  "minCosine": 0.9999999999993798
+ },
+ "summary": {
+  "runId": "r8-hc8-search-webkit-kleinhirn-MiniLM-128-wasm-1791384564216",
+  "file": "bench/results/r8-hc8-search-webkit-kleinhirn-MiniLM-128-wasm-1791384564216.json",
+  "engine": "kleinhirn",
+  "browser": "webkit-26.5",
+  "medianMs": 77.97000000000003,
+  "p95Ms": 79,
+  "block": 1,
+  "n": 20,
+  "downloadMb": 87.65693473815918,
+  "loadMs": 237.7,
+  "gpuBytes": null,
+  "engineGzipB": 46566,
+  "config": {
+   "precision": "wasm"
+  },
+  "parity": {
+   "pass": true,
+   "reasons": [],
+   "vsCpuF32": {
+    "rows": 20,
+    "maxAbsDiff": 5.662441253662109e-7,
+    "minCosine": 0.9999999999993798
+   }
+  },
+  "timerStepMs": 0.01999999999999602,
+  "isolated": true,
+  "loadStart": 3.38,
+  "peakMemMib": null,
+  "memSamples": null,
+  "error": null
+ }
+}

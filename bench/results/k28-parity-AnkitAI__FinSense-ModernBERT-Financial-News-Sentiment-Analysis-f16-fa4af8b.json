@@ -1,0 +1,68 @@
+{
+ "date": "2026-10-06",
+ "run_id": "k28-parity-AnkitAI__FinSense-ModernBERT-Financial-News-Sentiment-Analysis-f16-fa4af8b-1791298037314",
+ "commit": "fa4af8b",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "9.44",
+ "loadAvgEnd": "8.29 6.17 7.04",
+ "stage": "done",
+ "model": "AnkitAI__FinSense-ModernBERT-Financial-News-Sentiment-Analysis",
+ "precision": "f16",
+ "task": "sequence-classification",
+ "info": {
+  "precision": "f16",
+  "buildId": "muwsivlb",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "modernbert",
+  "task": "sequence-classification",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 250148928,
+  "downloadBytes": 302815233,
+  "loadTiming": {
+   "fetchMs": 404,
+   "bodyMs": 1016.6000000089407,
+   "sha256Ms": 162.8999999910593,
+   "uploadMs": 41.29999999701977,
+   "embedJoinMs": 7.700000002980232,
+   "manifestMs": 2.9000000059604645,
+   "planMs": 97
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.365264892578125,
+  "meanAbsLogitDiff": 0.0071418680747350055,
+  "disagreements": []
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0,
+  "groups": 50
+ },
+ "gpuErrors": []
+}

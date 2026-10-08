@@ -1,0 +1,5382 @@
+{
+ "workorder": "docs/R8_WORKORDER.md",
+ "date": "2026-10-08T07:34:08.416Z",
+ "commit": "b6cd38b",
+ "bundle": {
+  "raw": 180280,
+  "gzip9": 46572
+ },
+ "gate": {
+  "cells": 12,
+  "kleinhirnAhead": 0,
+  "parity": true,
+  "r8": {
+   "chromium": {
+    "cells": 18,
+    "ahead": 18,
+    "geo": 3.2763367920396984
+   },
+   "webkit": {
+    "cells": 18,
+    "geo": 1.3318272973743752
+   },
+   "safari": {
+    "cells": 18,
+    "geo": 1.4809722563341206
+   },
+   "firefox-reg": {
+    "cells": 18,
+    "geo": 4.13893629479418
+   },
+   "pass": true
+  }
+ },
+ "rows": [
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "sentence-transformers__all-MiniLM-L6-v2",
+   "len": "128",
+   "short": "MiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 8.3924999833107,
+    "p95Ms": 8.550000011920929,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 195,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.9999999999992729,
+      "maxAbsDiff": 0.0000013709068298339844
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 4.76837158203125e-7,
+      "minCosine": 0.9999999999991865
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-kleinhirn-MiniLM-128-wasm-1791389142917.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 33.1075000166893,
+    "p95Ms": 38.76000002026558,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 195,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999984838,
+       "maxAbsDiff": 0.0000017285346984863281
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 2.2351741790771484e-7,
+       "minCosine": 0.9999999999998255
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-ort-MiniLM-128-wasm-std-jsep-c0-thc-1791389221021.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 3.944891281802416,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "sentence-transformers__all-MiniLM-L6-v2",
+   "len": "512",
+   "short": "MiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 46.59000001847744,
+    "p95Ms": 47.8299999833107,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.9999999999992729,
+      "maxAbsDiff": 0.0000013709068298339844
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 3.725290298461914e-7,
+      "minCosine": 0.9999999999994116
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-kleinhirn-MiniLM-512-wasm-1791389554784.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 130.84249998629093,
+    "p95Ms": 147.53499999642372,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999984838,
+       "maxAbsDiff": 0.0000017285346984863281
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 2.2351741790771484e-7,
+       "minCosine": 0.9999999999998663
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-ort-MiniLM-512-wasm-std-jsep-c0-thc-1791389337749.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 2.8083816255505307,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "sentence-transformers__all-MiniLM-L6-v2",
+   "len": "real",
+   "short": "MiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 2.7574999928474426,
+    "p95Ms": 5.370000004768372,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.9999999999992729,
+      "maxAbsDiff": 0.0000013709068298339844
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-kleinhirn-MiniLM-real-wasm-1791389574841.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 10.14249999821186,
+    "p95Ms": 27.28999999165535,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999984724,
+       "maxAbsDiff": 0.0000017285346984863281
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-ort-MiniLM-real-wasm-std-jsep-c0-dyn-thc-1791389576770.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 3.6781505075322007,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+   "len": "128",
+   "short": "RoBERTa-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 54.48749999701977,
+    "p95Ms": 55.55500000715256,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 165,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000004172325134277344
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.000010102987289428711,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-kleinhirn-RoBERTa-base-128-wasm-1791390155045.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 196.17500001192093,
+    "p95Ms": 213.68000000715256,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.000010669231414794922
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.000004589557647705078,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-ort-RoBERTa-base-128-wasm-std-jsep-c0-thc-1791389672978.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 3.60036705708008,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+   "len": "512",
+   "short": "RoBERTa-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 245.85000002384186,
+    "p95Ms": 249.80499997735023,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000004172325134277344
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.000008419156074523926,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-kleinhirn-RoBERTa-base-512-wasm-1791390223534.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 649.1399999856949,
+    "p95Ms": 677.0399999916553,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.000010669231414794922
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.000002391636371612549,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-ort-RoBERTa-base-512-wasm-std-jsep-c0-thc-1791390369815.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 2.640390481686976,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+   "len": "real",
+   "short": "RoBERTa-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 18.14749999344349,
+    "p95Ms": 248.94499999284744,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000004172325134277344
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-kleinhirn-RoBERTa-base-real-wasm-1791391098855.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 62.82999999821186,
+    "p95Ms": 644.3650000095367,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.000011682510375976562
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-ort-RoBERTa-base-real-wasm-std-jsep-c0-dyn-thc-1791390825086.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 3.462184875101899,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+   "len": "128",
+   "short": "mMiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 17.912500008940697,
+    "p95Ms": 18.719999998807907,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 197,
+      "of": 200,
+      "finite": true,
+      "queries": 17,
+      "bestPassageAgreement": 1,
+      "maxAbsLogitDiff": 0.00000762939453125
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.00000667572021484375
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-kleinhirn-mMiniLM-128-wasm-1791391171010.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 69.31999999284744,
+    "p95Ms": 80.42500001192093,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 197,
+       "of": 200,
+       "finite": true,
+       "queries": 17,
+       "bestPassageAgreement": 1,
+       "maxAbsLogitDiff": 0.00002574920654296875
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.0000057220458984375
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-ort-mMiniLM-128-wasm-std-jsep-c0-thc-1791391191043.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 3.86992323563141,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+   "len": "512",
+   "short": "mMiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 94.50499999523163,
+    "p95Ms": 95.88000002503395,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "queries": 20,
+      "bestPassageAgreement": 1,
+      "maxAbsLogitDiff": 0.00000762939453125
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.00002384185791015625
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-kleinhirn-mMiniLM-512-wasm-1791391687381.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 259.46750001609325,
+    "p95Ms": 282.91499999165535,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "queries": 20,
+       "bestPassageAgreement": 1,
+       "maxAbsLogitDiff": 0.00002574920654296875
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.0000152587890625
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-ort-mMiniLM-512-wasm-std-jsep-c0-thc-1791391332321.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 2.7455425641943285,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+   "len": "real",
+   "short": "mMiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 8.54500000178814,
+    "p95Ms": 13.844999998807907,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "queries": 20,
+      "bestPassageAgreement": 1,
+      "maxAbsLogitDiff": 0.00000762939453125
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-kleinhirn-mMiniLM-real-wasm-1791391756510.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 30.72749999165535,
+    "p95Ms": 51.25500002503395,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "queries": 20,
+       "bestPassageAgreement": 1,
+       "maxAbsLogitDiff": 0.0000247955322265625
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-ort-mMiniLM-real-wasm-std-jsep-c0-dyn-thc-1791391835615.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 3.5959625494704817,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+   "len": "128",
+   "short": "DistilBERT",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 27.09749999642372,
+    "p95Ms": 28.719999998807907,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 165,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000008106231689453125
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.000013053417205810547,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-kleinhirn-DistilBERT-128-wasm-1791392097094.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 99.0324999988079,
+    "p95Ms": 114.09999999403954,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.00001630932092666626
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.000006794929504394531,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-ort-DistilBERT-128-wasm-opt-jsep-c0-thc-1791391921730.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 3.654672940746491,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+   "len": "512",
+   "short": "DistilBERT",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 123.19500002264977,
+    "p95Ms": 124.86500000953674,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000008106231689453125
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.000009298324584960938,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-kleinhirn-DistilBERT-512-wasm-1791392117169.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 325.4424999952316,
+    "p95Ms": 359.3400000035763,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.00001630932092666626
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.0000021457672119140625,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-ort-DistilBERT-512-wasm-opt-jsep-c0-thc-1791392175670.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 2.6416859445220835,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+   "len": "real",
+   "short": "DistilBERT",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 9.622500002384186,
+    "p95Ms": 122.86000001430511,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000008106231689453125
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-kleinhirn-DistilBERT-real-wasm-1791392732070.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 32.50500001013279,
+    "p95Ms": 313.5300000011921,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.000014215707778930664
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-ort-DistilBERT-real-wasm-opt-jsep-c0-dyn-thc-1791392623223.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 3.3780202652199494,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+   "len": "128",
+   "short": "DeBERTa-v3-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 63.04749999940395,
+    "p95Ms": 70.18999999761581,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 165,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000037513673305511475
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.000007152557373046875,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-kleinhirn-DeBERTa-v3-base-128-wasm-1791392754146.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 221.53749999403954,
+    "p95Ms": 242.02500000596046,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.00003853440284729004
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.0000019073486328125,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-ort-DeBERTa-v3-base-128-wasm-opt-jsep-c0-thc-1791392808644.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 3.5138189459714333,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+   "len": "512",
+   "short": "DeBERTa-v3-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 326.99000000953674,
+    "p95Ms": 330.2849999964237,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000037513673305511475
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.0000073909759521484375,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-kleinhirn-DeBERTa-v3-base-512-wasm-1791393757975.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 769.3149999976158,
+    "p95Ms": 839.5999999940395,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.00003853440284729004
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.0000016689300537109375,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-ort-DeBERTa-v3-base-512-wasm-opt-jsep-c0-thc-1791393042644.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 2.3527172084014145,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+   "len": "real",
+   "short": "DeBERTa-v3-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 19.03499999642372,
+    "p95Ms": 325.66499999165535,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000037513673305511475
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-kleinhirn-DeBERTa-v3-base-real-wasm-1791393911822.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 75.73000000417233,
+    "p95Ms": 796.0949999988079,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.00004240870475769043
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-ort-DeBERTa-v3-base-real-wasm-opt-jsep-c0-dyn-thc-1791394001542.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 3.9784607312004416,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "ibm-granite__granite-embedding-small-english-r2",
+   "len": "128",
+   "short": "granite",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 22.239999994635582,
+    "p95Ms": 23.355000019073486,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 195,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.99999999999954,
+      "maxAbsDiff": 0.00000476837158203125
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.00000476837158203125,
+      "minCosine": 0.999999999999695
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-kleinhirn-granite-128-wasm-1791394306727.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 82.22999998927116,
+    "p95Ms": 95.39500001072884,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 195,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999991064,
+       "maxAbsDiff": 0.00000762939453125
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.000003814697265625,
+       "minCosine": 0.9999999999998344
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-ort-granite-128-wasm-opt-jsep-c0-thc-1791394147188.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 3.697392086740356,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "ibm-granite__granite-embedding-small-english-r2",
+   "len": "512",
+   "short": "granite",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 107.81749999523163,
+    "p95Ms": 110.12999999523163,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.99999999999954,
+      "maxAbsDiff": 0.00000476837158203125
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.0000054836273193359375,
+      "minCosine": 0.999999999998303
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-kleinhirn-granite-512-wasm-1791394311212.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 295.02999998629093,
+    "p95Ms": 310.64500001072884,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999991064,
+       "maxAbsDiff": 0.00000762939453125
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.000003814697265625,
+       "minCosine": 0.9999999999998588
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-ort-granite-512-wasm-opt-jsep-c0-thc-1791394785198.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 2.7363832401914254,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "ibm-granite__granite-embedding-small-english-r2",
+   "len": "real",
+   "short": "granite",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 6.479999989271164,
+    "p95Ms": 11.66499999165535,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.99999999999954,
+      "maxAbsDiff": 0.00000476837158203125
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-kleinhirn-granite-real-wasm-1791395190660.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 22.049999997019768,
+    "p95Ms": 53.82499998807907,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999991709,
+       "maxAbsDiff": 0.00000762939453125
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-chromium-ort-granite-real-wasm-opt-jsep-c0-dyn-thc-1791395061197.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 3.4027777829517922,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "sentence-transformers__all-MiniLM-L6-v2",
+   "len": "128",
+   "short": "MiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 12.61000000000007,
+    "p95Ms": 13.580000000000041,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 195,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.9999999999991953,
+      "maxAbsDiff": 0.0000012516975402832031
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 5.662441253662109e-7,
+      "minCosine": 0.9999999999991951
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-kleinhirn-MiniLM-128-wasm-1791395209171.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 16.749999999999886,
+    "p95Ms": 52.86000000000013,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 195,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999984838,
+       "maxAbsDiff": 0.0000017285346984863281
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 2.2351741790771484e-7,
+       "minCosine": 0.9999999999998255
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-ort-MiniLM-128-wasm-std-jsep-c0-thc-1791395214349.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.3283108643933221,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "sentence-transformers__all-MiniLM-L6-v2",
+   "len": "512",
+   "short": "MiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 59.72000000000003,
+    "p95Ms": 70.03999999999996,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.9999999999991953,
+      "maxAbsDiff": 0.0000012516975402832031
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 4.470348358154297e-7,
+      "minCosine": 0.9999999999993918
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-kleinhirn-MiniLM-512-wasm-1791395395948.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 62.570000000000164,
+    "p95Ms": 180.98000000000002,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999984838,
+       "maxAbsDiff": 0.0000017285346984863281
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 2.2351741790771484e-7,
+       "minCosine": 0.9999999999998663
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-ort-MiniLM-512-wasm-std-jsep-c0-thc-1791395253824.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.0477227059611542,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "sentence-transformers__all-MiniLM-L6-v2",
+   "len": "real",
+   "short": "MiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 3.8800000000000523,
+    "p95Ms": 8.220000000000027,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.9999999999991953,
+      "maxAbsDiff": 0.0000012516975402832031
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-kleinhirn-MiniLM-real-wasm-1791395431998.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 10.139999999999873,
+    "p95Ms": 30.720000000000255,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999984724,
+       "maxAbsDiff": 0.0000017285346984863281
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-ort-MiniLM-real-wasm-std-jsep-c0-dyn-thc-1791395449997.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 2.613402061855602,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+   "len": "128",
+   "short": "RoBERTa-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 79.43000000000006,
+    "p95Ms": 84.86000000000013,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 165,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000006556510925292969
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.000010013580322265625,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-kleinhirn-RoBERTa-base-128-wasm-1791395830610.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 93.14000000000033,
+    "p95Ms": 219.76000000000022,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.000010669231414794922
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.000004589557647705078,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-ort-RoBERTa-base-128-wasm-std-jsep-c0-thc-1791395562713.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.1726048092660235,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+   "len": "512",
+   "short": "RoBERTa-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 351.90000000000055,
+    "p95Ms": 363.1999999999998,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000006556510925292969
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.000009119510650634766,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-kleinhirn-RoBERTa-base-512-wasm-1791396171379.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 383.2599999999993,
+    "p95Ms": 439.96000000000276,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.000010669231414794922
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.000002391636371612549,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-ort-RoBERTa-base-512-wasm-std-jsep-c0-thc-1791396327214.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.0891162262006215,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+   "len": "real",
+   "short": "RoBERTa-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 23.519999999999982,
+    "p95Ms": 351.1400000000003,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000006556510925292969
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-kleinhirn-RoBERTa-base-real-wasm-1791396636073.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 33.899999999999636,
+    "p95Ms": 380.7999999999993,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.000011682510375976562
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-ort-RoBERTa-base-real-wasm-std-jsep-c0-dyn-thc-1791396551999.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.4413265306122305,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+   "len": "128",
+   "short": "mMiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 24.529999999999973,
+    "p95Ms": 25.539999999999964,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 197,
+      "of": 200,
+      "finite": true,
+      "queries": 17,
+      "bestPassageAgreement": 1,
+      "maxAbsLogitDiff": 0.000009059906005859375
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.0000073909759521484375
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-kleinhirn-mMiniLM-128-wasm-1791396712723.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 31.7199999999998,
+    "p95Ms": 128.94000000000005,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 197,
+       "of": 200,
+       "finite": true,
+       "queries": 17,
+       "bestPassageAgreement": 1,
+       "maxAbsLogitDiff": 0.00002574920654296875
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.0000057220458984375
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-ort-mMiniLM-128-wasm-std-jsep-c0-thc-1791396748742.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.2931104769669726,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+   "len": "512",
+   "short": "mMiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 118.16000000000054,
+    "p95Ms": 121.15999999999985,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "queries": 20,
+      "bestPassageAgreement": 1,
+      "maxAbsLogitDiff": 0.000009059906005859375
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.00001811981201171875
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-kleinhirn-mMiniLM-512-wasm-1791397086192.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 120.60000000000036,
+    "p95Ms": 221.74000000000024,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "queries": 20,
+       "bestPassageAgreement": 1,
+       "maxAbsLogitDiff": 0.00002574920654296875
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.0000152587890625
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-ort-mMiniLM-512-wasm-std-jsep-c0-thc-1791396868199.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.020649966147595,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+   "len": "real",
+   "short": "mMiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 11.299999999999955,
+    "p95Ms": 18.76000000000022,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "queries": 20,
+      "bestPassageAgreement": 1,
+      "maxAbsLogitDiff": 0.000009059906005859375
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-kleinhirn-mMiniLM-real-wasm-1791397097911.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 29.590000000000146,
+    "p95Ms": 79.36000000000058,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "queries": 20,
+       "bestPassageAgreement": 1,
+       "maxAbsLogitDiff": 0.00002574920654296875
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-ort-mMiniLM-real-wasm-std-jsep-c0-thc-1791397102917.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 2.6185840707964836,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+   "len": "128",
+   "short": "DistilBERT",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 40.749999999999886,
+    "p95Ms": 42.37999999999988,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 165,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000008733943104743958
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.000013723969459533691,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-kleinhirn-DistilBERT-128-wasm-1791397268955.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 47.559999999999945,
+    "p95Ms": 102.20000000000027,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.00001630932092666626
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.000006794929504394531,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-ort-DistilBERT-128-wasm-opt-jsep-c0-thc-1791397148071.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.16711656441718,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+   "len": "512",
+   "short": "DistilBERT",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 175.07000000000016,
+    "p95Ms": 181.3599999999999,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000008733943104743958
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.000008344650268554688,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-kleinhirn-DistilBERT-512-wasm-1791397275543.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 196.07000000000016,
+    "p95Ms": 307.4800000000005,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.00001630932092666626
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.0000021457672119140625,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-ort-DistilBERT-512-wasm-opt-jsep-c0-thc-1791397384635.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.119952019192323,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+   "len": "real",
+   "short": "DistilBERT",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 14.700000000000273,
+    "p95Ms": 172.1800000000003,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000008733943104743958
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-kleinhirn-DistilBERT-real-wasm-1791397788184.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 25.40000000000009,
+    "p95Ms": 241.65999999999985,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.000014215707778930664
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-ort-DistilBERT-real-wasm-opt-jsep-c0-dyn-thc-1791397635092.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.7278911564625592,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+   "len": "128",
+   "short": "DeBERTa-v3-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 89.07999999999993,
+    "p95Ms": 102.77999999999975,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 165,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000025816261768341064
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.00000762939453125,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-kleinhirn-DeBERTa-v3-base-128-wasm-1791397827752.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 105.26999999999953,
+    "p95Ms": 275.6199999999999,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.00003853440284729004
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.0000019073486328125,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-ort-DeBERTa-v3-base-128-wasm-opt-jsep-c0-thc-1791397854990.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.1817467444993222,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+   "len": "512",
+   "short": "DeBERTa-v3-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 436.119999999999,
+    "p95Ms": 441.39999999999964,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000025816261768341064
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.000006198883056640625,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-kleinhirn-DeBERTa-v3-base-512-wasm-1791398253544.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 449.0400000000009,
+    "p95Ms": 493.9200000000001,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.00003853440284729004
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.0000016689300537109375,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-ort-DeBERTa-v3-base-512-wasm-opt-jsep-c0-thc-1791397975723.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.0296248738879252,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+   "len": "real",
+   "short": "DeBERTa-v3-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 22.960000000000036,
+    "p95Ms": 434.34000000000015,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000025816261768341064
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-kleinhirn-DeBERTa-v3-base-real-wasm-1791398386742.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 40.57999999999993,
+    "p95Ms": 466.34000000000015,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.00004240870475769043
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-ort-DeBERTa-v3-base-real-wasm-opt-jsep-c0-dyn-thc-1791398465426.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.7674216027874505,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "ibm-granite__granite-embedding-small-english-r2",
+   "len": "128",
+   "short": "granite",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 30.369999999999777,
+    "p95Ms": 35.65999999999997,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 195,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.9999999999994431,
+      "maxAbsDiff": 0.000003814697265625
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.000003814697265625,
+      "minCosine": 0.9999999999996779
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-kleinhirn-granite-128-wasm-1791398642754.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 37.100000000000136,
+    "p95Ms": 96.98000000000002,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 195,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999991064,
+       "maxAbsDiff": 0.00000762939453125
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.000003814697265625,
+       "minCosine": 0.9999999999998344
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-ort-granite-128-wasm-opt-jsep-c0-thc-1791398568053.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.22160026341786,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "ibm-granite__granite-embedding-small-english-r2",
+   "len": "512",
+   "short": "granite",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 144.54999999999995,
+    "p95Ms": 150.32000000000016,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.9999999999994431,
+      "maxAbsDiff": 0.000003814697265625
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.00000476837158203125,
+      "minCosine": 0.9999999999990261
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-kleinhirn-granite-512-wasm-1791398648288.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 143.15999999999985,
+    "p95Ms": 228.59999999999854,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999991064,
+       "maxAbsDiff": 0.00000762939453125
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.000003814697265625,
+       "minCosine": 0.9999999999998588
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-ort-granite-512-wasm-opt-jsep-c0-thc-1791398675272.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 0.9903839501902449,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "ibm-granite__granite-embedding-small-english-r2",
+   "len": "real",
+   "short": "granite",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 10.420000000000073,
+    "p95Ms": 20.24000000000001,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.9999999999994431,
+      "maxAbsDiff": 0.000003814697265625
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-kleinhirn-granite-real-wasm-1791398953198.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 13.320000000000164,
+    "p95Ms": 61,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999991709,
+       "maxAbsDiff": 0.00000762939453125
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-webkit-ort-granite-real-wasm-opt-jsep-c0-dyn-thc-1791398838465.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.2783109404990471,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "sentence-transformers__all-MiniLM-L6-v2",
+   "len": "128",
+   "short": "MiniLM",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "sentence-transformers__all-MiniLM-L6-v2",
+   "len": "512",
+   "short": "MiniLM",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "sentence-transformers__all-MiniLM-L6-v2",
+   "len": "real",
+   "short": "MiniLM",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+   "len": "128",
+   "short": "RoBERTa-base",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+   "len": "512",
+   "short": "RoBERTa-base",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+   "len": "real",
+   "short": "RoBERTa-base",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+   "len": "128",
+   "short": "mMiniLM",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+   "len": "512",
+   "short": "mMiniLM",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+   "len": "real",
+   "short": "mMiniLM",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+   "len": "128",
+   "short": "DistilBERT",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+   "len": "512",
+   "short": "DistilBERT",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+   "len": "real",
+   "short": "DistilBERT",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+   "len": "128",
+   "short": "DeBERTa-v3-base",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+   "len": "512",
+   "short": "DeBERTa-v3-base",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+   "len": "real",
+   "short": "DeBERTa-v3-base",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "ibm-granite__granite-embedding-small-english-r2",
+   "len": "128",
+   "short": "granite",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "ibm-granite__granite-embedding-small-english-r2",
+   "len": "512",
+   "short": "granite",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "ibm-granite__granite-embedding-small-english-r2",
+   "len": "real",
+   "short": "granite",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "sentence-transformers__all-MiniLM-L6-v2",
+   "len": "128",
+   "short": "MiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 15.629999999999939,
+    "p95Ms": 21.159999999999968,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 195,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.9999999999991953,
+      "maxAbsDiff": 0.0000012516975402832031
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 5.662441253662109e-7,
+      "minCosine": 0.9999999999991951
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-kleinhirn-MiniLM-128-wasm-1791399017768.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 44.37999999999988,
+    "p95Ms": 78.94000000000005,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 195,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999984838,
+       "maxAbsDiff": 0.0000017285346984863281
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 2.2351741790771484e-7,
+       "minCosine": 0.9999999999998255
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-ort-MiniLM-128-wasm-std-jsep-c0-thc-1791399023746.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 2.83941138835573,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "sentence-transformers__all-MiniLM-L6-v2",
+   "len": "512",
+   "short": "MiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 61.66999999999996,
+    "p95Ms": 65.03999999999996,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.9999999999991953,
+      "maxAbsDiff": 0.0000012516975402832031
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 4.470348358154297e-7,
+      "minCosine": 0.9999999999993918
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-kleinhirn-MiniLM-512-wasm-1791399224997.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 61.929999999999836,
+    "p95Ms": 154.01999999999998,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999984838,
+       "maxAbsDiff": 0.0000017285346984863281
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 2.2351741790771484e-7,
+       "minCosine": 0.9999999999998663
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-ort-MiniLM-512-wasm-std-jsep-c0-thc-1791399111841.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.0042159883249535,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "sentence-transformers__all-MiniLM-L6-v2",
+   "len": "real",
+   "short": "MiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 4.2000000000000455,
+    "p95Ms": 7.8799999999999955,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.9999999999991953,
+      "maxAbsDiff": 0.0000012516975402832031
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-kleinhirn-MiniLM-real-wasm-1791399277484.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 10.090000000000032,
+    "p95Ms": 26.5,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999984724,
+       "maxAbsDiff": 0.0000017285346984863281
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-ort-MiniLM-real-wasm-std-jsep-c0-dyn-thc-1791399370977.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 2.402380952380934,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+   "len": "128",
+   "short": "RoBERTa-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 78.48000000000002,
+    "p95Ms": 85.28000000000065,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 165,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000006556510925292969
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.000010013580322265625,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-kleinhirn-RoBERTa-base-128-wasm-1791399752444.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 92.5,
+    "p95Ms": 222.32000000000016,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.000010669231414794922
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.000004589557647705078,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-ort-RoBERTa-base-128-wasm-std-jsep-c0-thc-1791399469169.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.1786442405708457,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+   "len": "512",
+   "short": "RoBERTa-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 344.3499999999999,
+    "p95Ms": 350.5799999999999,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000006556510925292969
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.000009119510650634766,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-kleinhirn-RoBERTa-base-512-wasm-1791399853934.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 372.5499999999993,
+    "p95Ms": 436.7199999999975,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.000010669231414794922
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.000002391636371612549,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-ort-RoBERTa-base-512-wasm-std-jsep-c0-thc-1791399964519.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.0818934223900083,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+   "len": "real",
+   "short": "RoBERTa-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 23.3900000000001,
+    "p95Ms": 341.21999999999935,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000006556510925292969
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-kleinhirn-RoBERTa-base-real-wasm-1791400314499.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 32.01999999999998,
+    "p95Ms": 372.380000000001,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.000011682510375976562
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-ort-RoBERTa-base-real-wasm-std-jsep-c0-dyn-thc-1791400215188.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.3689610944848158,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+   "len": "128",
+   "short": "mMiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 23.08000000000004,
+    "p95Ms": 34.45999999999981,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 197,
+      "of": 200,
+      "finite": true,
+      "queries": 17,
+      "bestPassageAgreement": 1,
+      "maxAbsLogitDiff": 0.000009059906005859375
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.0000073909759521484375
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-kleinhirn-mMiniLM-128-wasm-1791400377017.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 50.95000000000027,
+    "p95Ms": 112.55999999999995,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 197,
+       "of": 200,
+       "finite": true,
+       "queries": 17,
+       "bestPassageAgreement": 1,
+       "maxAbsLogitDiff": 0.00002574920654296875
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.0000057220458984375
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-ort-mMiniLM-128-wasm-std-jsep-c0-thc-1791400714532.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 2.207538994800701,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+   "len": "512",
+   "short": "mMiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 116.58000000000038,
+    "p95Ms": 121.86000000000013,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "queries": 20,
+      "bestPassageAgreement": 1,
+      "maxAbsLogitDiff": 0.000009059906005859375
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.00001811981201171875
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-kleinhirn-mMiniLM-512-wasm-1791400962757.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 116.19999999999982,
+    "p95Ms": 292.8399999999997,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "queries": 20,
+       "bestPassageAgreement": 1,
+       "maxAbsLogitDiff": 0.00002574920654296875
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.0000152587890625
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-ort-mMiniLM-512-wasm-std-jsep-c0-thc-1791400836376.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 0.9967404357522683,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+   "len": "real",
+   "short": "mMiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 11.040000000000191,
+    "p95Ms": 17.720000000000027,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "queries": 20,
+      "bestPassageAgreement": 1,
+      "maxAbsLogitDiff": 0.000009059906005859375
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-kleinhirn-mMiniLM-real-wasm-1791401034259.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 28.710000000000036,
+    "p95Ms": 74.26000000000022,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "queries": 20,
+       "bestPassageAgreement": 1,
+       "maxAbsLogitDiff": 0.00002574920654296875
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-ort-mMiniLM-real-wasm-std-jsep-c0-thc-1791401099686.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 2.600543478260828,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+   "len": "128",
+   "short": "DistilBERT",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 40.069999999999936,
+    "p95Ms": 42.13999999999987,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 165,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000008733943104743958
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.000013723969459533691,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-kleinhirn-DistilBERT-128-wasm-1791401191853.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 48.470000000000255,
+    "p95Ms": 117.51999999999998,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.00001630932092666626
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.000006794929504394531,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-ort-DistilBERT-128-wasm-opt-jsep-c0-thc-1791401145733.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.2096331420015056,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+   "len": "512",
+   "short": "DistilBERT",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 176.17000000000007,
+    "p95Ms": 232.1199999999999,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000008733943104743958
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.000008344650268554688,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-kleinhirn-DistilBERT-512-wasm-1791401214268.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 195.44000000000005,
+    "p95Ms": 267.4200000000001,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.00001630932092666626
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.0000021457672119140625,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-ort-DistilBERT-512-wasm-opt-jsep-c0-thc-1791401308855.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.1093829823465968,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+   "len": "real",
+   "short": "DistilBERT",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 12.180000000000064,
+    "p95Ms": 171.8800000000001,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000008733943104743958
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-kleinhirn-DistilBERT-real-wasm-1791401544380.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 21.87999999999988,
+    "p95Ms": 185.89999999999964,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.000014215707778930664
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-ort-DistilBERT-real-wasm-opt-jsep-c0-dyn-thc-1791401483748.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.7963875205254325,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+   "len": "128",
+   "short": "DeBERTa-v3-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 88.61000000000013,
+    "p95Ms": 95.68000000000029,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 165,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000025816261768341064
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.00000762939453125,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-kleinhirn-DeBERTa-v3-base-128-wasm-1791401598847.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 131.95000000000027,
+    "p95Ms": 260.2399999999998,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.00003853440284729004
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.0000019073486328125,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-ort-DeBERTa-v3-base-128-wasm-opt-jsep-c0-thc-1791401655346.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.4891095813113653,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+   "len": "512",
+   "short": "DeBERTa-v3-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 436.5699999999997,
+    "p95Ms": 441.9200000000001,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000025816261768341064
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.000006198883056640625,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-kleinhirn-DeBERTa-v3-base-512-wasm-1791402019224.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 564.6899999999987,
+    "p95Ms": 683.7400000000016,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.00003853440284729004
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.0000016689300537109375,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-ort-DeBERTa-v3-base-512-wasm-opt-jsep-c0-thc-1791401780458.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.2934695466935406,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+   "len": "real",
+   "short": "DeBERTa-v3-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 23.680000000000064,
+    "p95Ms": 434.1600000000017,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000025816261768341064
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-kleinhirn-DeBERTa-v3-base-real-wasm-1791402138427.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 40.92000000000007,
+    "p95Ms": 477.22000000000116,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.00004240870475769043
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-ort-DeBERTa-v3-base-real-wasm-opt-jsep-c0-dyn-thc-1791402217956.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.728040540540539,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "ibm-granite__granite-embedding-small-english-r2",
+   "len": "128",
+   "short": "granite",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 30.189999999999827,
+    "p95Ms": 32.360000000000014,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 195,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.9999999999994431,
+      "maxAbsDiff": 0.000003814697265625
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.000003814697265625,
+      "minCosine": 0.9999999999996779
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-kleinhirn-granite-128-wasm-1791402368885.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 37.40000000000009,
+    "p95Ms": 96.74000000000001,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 195,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999991064,
+       "maxAbsDiff": 0.00000762939453125
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.000003814697265625,
+       "minCosine": 0.9999999999998344
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-ort-granite-128-wasm-opt-jsep-c0-thc-1791402307747.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.2388208015899405,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "ibm-granite__granite-embedding-small-english-r2",
+   "len": "512",
+   "short": "granite",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 145.14999999999986,
+    "p95Ms": 155.42000000000007,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.9999999999994431,
+      "maxAbsDiff": 0.000003814697265625
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.00000476837158203125,
+      "minCosine": 0.9999999999990261
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-kleinhirn-granite-512-wasm-1791402374296.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 148.1600000000003,
+    "p95Ms": 276.17999999999984,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999991064,
+       "maxAbsDiff": 0.00000762939453125
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.000003814697265625,
+       "minCosine": 0.9999999999998588
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-ort-granite-512-wasm-opt-jsep-c0-thc-1791402462757.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.020737168446438,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "ibm-granite__granite-embedding-small-english-r2",
+   "len": "real",
+   "short": "granite",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 8.5,
+    "p95Ms": 16.26000000000022,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.9999999999994431,
+      "maxAbsDiff": 0.000003814697265625
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-kleinhirn-granite-real-wasm-1791402699259.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 14.380000000000337,
+    "p95Ms": 71.63999999999987,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999991709,
+       "maxAbsDiff": 0.00000762939453125
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-safari-ort-granite-real-wasm-opt-jsep-c0-dyn-thc-1791402628209.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.6917647058823926,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox-reg",
+   "way": "wasm",
+   "slug": "sentence-transformers__all-MiniLM-L6-v2",
+   "len": "128",
+   "short": "MiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 11.829999999999927,
+    "p95Ms": 20.74000000000001,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 195,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.9999999999992729,
+      "maxAbsDiff": 0.0000013709068298339844
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 4.76837158203125e-7,
+      "minCosine": 0.9999999999991865
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-kleinhirn-MiniLM-128-wasm-1791402734761.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 52.159999999999854,
+    "p95Ms": 68.81999999999994,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 195,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999984838,
+       "maxAbsDiff": 0.0000017285346984863281
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 2.2351741790771484e-7,
+       "minCosine": 0.9999999999998255
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-ort-MiniLM-128-wasm-std-jsep-c0-thc-1791402793057.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 4.40912933220627,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox-reg",
+   "way": "wasm",
+   "slug": "sentence-transformers__all-MiniLM-L6-v2",
+   "len": "512",
+   "short": "MiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 66.83999999999992,
+    "p95Ms": 69.27999999999997,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.9999999999992729,
+      "maxAbsDiff": 0.0000013709068298339844
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 3.725290298461914e-7,
+      "minCosine": 0.9999999999994116
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-kleinhirn-MiniLM-512-wasm-1791403293994.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 187.48000000000047,
+    "p95Ms": 250.19999999999982,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999984838,
+       "maxAbsDiff": 0.0000017285346984863281
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 2.2351741790771484e-7,
+       "minCosine": 0.9999999999998663
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-ort-MiniLM-512-wasm-std-jsep-c0-thc-1791402981360.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 2.8049072411729608,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox-reg",
+   "way": "wasm",
+   "slug": "sentence-transformers__all-MiniLM-L6-v2",
+   "len": "real",
+   "short": "MiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 3.8800000000000523,
+    "p95Ms": 9.639999999999986,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.9999999999992729,
+      "maxAbsDiff": 0.0000013709068298339844
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-kleinhirn-MiniLM-real-wasm-1791403336287.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 16.1899999999996,
+    "p95Ms": 43.55999999999949,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999984724,
+       "maxAbsDiff": 0.0000017285346984863281
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-ort-MiniLM-real-wasm-std-jsep-c0-dyn-thc-1791403360558.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 4.172680412370974,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox-reg",
+   "way": "wasm",
+   "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+   "len": "128",
+   "short": "RoBERTa-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 58.26999999999987,
+    "p95Ms": 63.16000000000031,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 165,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000004172325134277344
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.000010102987289428711,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-kleinhirn-RoBERTa-base-128-wasm-1791403658567.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 306.22000000000116,
+    "p95Ms": 335.5799999999999,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.000010669231414794922
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.000004589557647705078,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-ort-RoBERTa-base-128-wasm-std-jsep-c0-thc-1791403420324.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 5.255191350609265,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox-reg",
+   "way": "wasm",
+   "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+   "len": "512",
+   "short": "RoBERTa-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 286.0100000000002,
+    "p95Ms": 311.8800000000001,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000004172325134277344
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.000008419156074523926,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-kleinhirn-RoBERTa-base-512-wasm-1791403687860.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 937.5200000000004,
+    "p95Ms": 1059.2400000000016,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.000010669231414794922
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.000002391636371612549,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-ort-RoBERTa-base-512-wasm-std-jsep-c0-thc-1791403814459.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 3.2779273451977193,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox-reg",
+   "way": "wasm",
+   "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+   "len": "real",
+   "short": "RoBERTa-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 18.620000000000346,
+    "p95Ms": 280.5599999999995,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000004172325134277344
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-kleinhirn-RoBERTa-base-real-wasm-1791404644814.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 91.77999999999975,
+    "p95Ms": 952.4199999999983,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.000011682510375976562
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-ort-RoBERTa-base-real-wasm-std-jsep-c0-dyn-thc-1791404349714.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 4.929108485499357,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox-reg",
+   "way": "wasm",
+   "slug": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+   "len": "128",
+   "short": "mMiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 21.649999999999977,
+    "p95Ms": 23.83999999999969,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 197,
+      "of": 200,
+      "finite": true,
+      "queries": 17,
+      "bestPassageAgreement": 1,
+      "maxAbsLogitDiff": 0.00000762939453125
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.00000667572021484375
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-kleinhirn-mMiniLM-128-wasm-1791404694635.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 97.71000000000004,
+    "p95Ms": 131.48000000000002,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 197,
+       "of": 200,
+       "finite": true,
+       "queries": 17,
+       "bestPassageAgreement": 1,
+       "maxAbsLogitDiff": 0.00002574920654296875
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.0000057220458984375
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-ort-mMiniLM-128-wasm-std-jsep-c0-thc-1791404721901.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 4.513163972286381,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox-reg",
+   "way": "wasm",
+   "slug": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+   "len": "512",
+   "short": "mMiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 132.05000000000018,
+    "p95Ms": 146.30000000000018,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "queries": 20,
+      "bestPassageAgreement": 1,
+      "maxAbsLogitDiff": 0.00000762939453125
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.00002384185791015625
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-kleinhirn-mMiniLM-512-wasm-1791405433050.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 398.3900000000003,
+    "p95Ms": 438.15999999999985,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "queries": 20,
+       "bestPassageAgreement": 1,
+       "maxAbsLogitDiff": 0.00002574920654296875
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.0000152587890625
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-ort-mMiniLM-512-wasm-std-jsep-c0-thc-1791404999085.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 3.016963271488071,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox-reg",
+   "way": "wasm",
+   "slug": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+   "len": "real",
+   "short": "mMiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 9.749999999999886,
+    "p95Ms": 15.919999999999618,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "queries": 20,
+      "bestPassageAgreement": 1,
+      "maxAbsLogitDiff": 0.00000762939453125
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-kleinhirn-mMiniLM-real-wasm-1791405496815.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 43.909999999999854,
+    "p95Ms": 80.86000000000058,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "queries": 20,
+       "bestPassageAgreement": 1,
+       "maxAbsLogitDiff": 0.0000247955322265625
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-ort-mMiniLM-real-wasm-std-jsep-c0-dyn-thc-1791405508018.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 4.503589743589782,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox-reg",
+   "way": "wasm",
+   "slug": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+   "len": "128",
+   "short": "DistilBERT",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 30.879999999999995,
+    "p95Ms": 34.88000000000011,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 165,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000008106231689453125
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.000013053417205810547,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-kleinhirn-DistilBERT-128-wasm-1791405900599.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 149.30999999999995,
+    "p95Ms": 191.79999999999973,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.00001630932092666626
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.000006794929504394531,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-ort-DistilBERT-128-wasm-opt-jsep-c0-thc-1791405679245.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 4.835168393782382,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox-reg",
+   "way": "wasm",
+   "slug": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+   "len": "512",
+   "short": "DistilBERT",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 142.32999999999993,
+    "p95Ms": 155.48000000000025,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000008106231689453125
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.000009298324584960938,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-kleinhirn-DistilBERT-512-wasm-1791405942899.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 475.78999999999996,
+    "p95Ms": 581.4799999999996,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.00001630932092666626
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.0000021457672119140625,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-ort-DistilBERT-512-wasm-opt-jsep-c0-thc-1791405980173.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 3.3428651724864764,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox-reg",
+   "way": "wasm",
+   "slug": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+   "len": "real",
+   "short": "DistilBERT",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 10.060000000000173,
+    "p95Ms": 140.84000000000015,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000008106231689453125
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-kleinhirn-DistilBERT-real-wasm-1791406623688.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 48.73999999999978,
+    "p95Ms": 468.6999999999971,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.000014215707778930664
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-ort-DistilBERT-real-wasm-opt-jsep-c0-dyn-thc-1791406395632.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 4.844930417494925,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox-reg",
+   "way": "wasm",
+   "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+   "len": "128",
+   "short": "DeBERTa-v3-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 70.50999999999976,
+    "p95Ms": 74.53999999999996,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 165,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000037513673305511475
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.000007152557373046875,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-kleinhirn-DeBERTa-v3-base-128-wasm-1791406983554.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 348.3000000000002,
+    "p95Ms": 416.1999999999989,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.00003853440284729004
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.0000019073486328125,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-ort-DeBERTa-v3-base-128-wasm-opt-jsep-c0-thc-1791407059881.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 4.939724861721761,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox-reg",
+   "way": "wasm",
+   "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+   "len": "512",
+   "short": "DeBERTa-v3-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 412.0700000000006,
+    "p95Ms": 475.0599999999977,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000037513673305511475
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.0000073909759521484375,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-kleinhirn-DeBERTa-v3-base-512-wasm-1791408049907.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 1141.8700000000026,
+    "p95Ms": 1275.8200000000015,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.00003853440284729004
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.0000016689300537109375,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-ort-DeBERTa-v3-base-512-wasm-opt-jsep-c0-thc-1791407340789.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 2.771058315334775,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox-reg",
+   "way": "wasm",
+   "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+   "len": "real",
+   "short": "DeBERTa-v3-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 18.819999999999936,
+    "p95Ms": 411.10000000000036,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000037513673305511475
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-kleinhirn-DeBERTa-v3-base-real-wasm-1791408188741.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 129.48999999999978,
+    "p95Ms": 1182.4000000000015,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.00004240870475769043
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-ort-DeBERTa-v3-base-real-wasm-opt-jsep-c0-dyn-thc-1791408272537.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 6.880446333687578,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox-reg",
+   "way": "wasm",
+   "slug": "ibm-granite__granite-embedding-small-english-r2",
+   "len": "128",
+   "short": "granite",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 27.110000000000127,
+    "p95Ms": 31.799999999999955,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 195,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.99999999999954,
+      "maxAbsDiff": 0.00000476837158203125
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.00000476837158203125,
+      "minCosine": 0.999999999999695
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-kleinhirn-granite-128-wasm-1791409912150.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 127.15000000000009,
+    "p95Ms": 165.07999999999993,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 195,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999991064,
+       "maxAbsDiff": 0.00000762939453125
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.000003814697265625,
+       "minCosine": 0.9999999999998344
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-ort-granite-128-wasm-opt-jsep-c0-thc-1791409090648.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 4.690151235706363,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox-reg",
+   "way": "wasm",
+   "slug": "ibm-granite__granite-embedding-small-english-r2",
+   "len": "512",
+   "short": "granite",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 140.35000000000036,
+    "p95Ms": 155.70000000000073,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.99999999999954,
+      "maxAbsDiff": 0.00000476837158203125
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.0000054836273193359375,
+      "minCosine": 0.999999999998303
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-kleinhirn-granite-512-wasm-1791409998463.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 433.52999999999975,
+    "p95Ms": 535.9000000000015,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999991064,
+       "maxAbsDiff": 0.00000762939453125
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.000003814697265625,
+       "minCosine": 0.9999999999998588
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-ort-granite-512-wasm-opt-jsep-c0-thc-1791410031762.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 3.0889205557534636,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox-reg",
+   "way": "wasm",
+   "slug": "ibm-granite__granite-embedding-small-english-r2",
+   "len": "real",
+   "short": "granite",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 8.059999999999945,
+    "p95Ms": 17.059999999999945,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.99999999999954,
+      "maxAbsDiff": 0.00000476837158203125
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 8,
+     "threadNote": null,
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-kleinhirn-granite-real-wasm-1791410607668.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 35.67000000000007,
+    "p95Ms": 84.57999999999993,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999991709,
+       "maxAbsDiff": 0.00000762939453125
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8-table-firefox-reg-ort-granite-real-wasm-opt-jsep-c0-dyn-thc-1791410542900.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 4.4255583126551254,
+   "factorT1": null
+  }
+ ]
+}

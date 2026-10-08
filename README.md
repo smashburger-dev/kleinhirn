@@ -25,8 +25,8 @@ classifier that takes any set of labels, and
 model that picks one of up to 20 options. The engine ships its own GPU
 programs ([WGSL](https://www.w3.org/TR/WGSL/) kernels) for
 [WebGPU](https://www.w3.org/TR/webgpu/); browsers without WebGPU fall
-back to a hand-written WASM-SIMD module on the CPU (today for the
-DeBERTa models only).
+back to a WASM-SIMD executor on the CPU that runs the same plan for
+every family, on up to 8 threads.
 
 The usual tool for running such models in a browser is
 [ONNX Runtime Web](https://github.com/microsoft/onnxruntime) (ORT) from
@@ -34,14 +34,13 @@ Microsoft. It is the baseline for every speed number below.
 
 ## Results
 
-- **Same answers as the original.** 88 of the 89 checkpoints on our list
+- **Same answers as the original.** All 89 checkpoints on our list
   (the three most downloaded per family and task, up to 200M parameters)
   make the same decisions as the [PyTorch](https://github.com/pytorch/pytorch)
   reference: 100 % in full
   precision (f32), at least 99.5 % in half precision (f16) of the
   decisions that f16 rounding cannot flip, embeddings with cosine at
-  least 0.9999 and 0.999. The 89th passes in f32 and the
-  engine picks f32 for it.
+  least 0.9999 and 0.999.
 - **Faster than ORT at its best, in every family.** One model per family
   (the most downloaded), inputs of exactly 128 and 512 tokens, f16,
   against ORT's fastest setting we found for each model (graph optimizer
@@ -59,12 +58,52 @@ Microsoft. It is the baseline for every speed number below.
   1.26x to 1.78x faster; all three kleinhirn repetitions below all three
   ORT repetitions in each of the twelve cells.
 - **Faster again on real texts.** kleinhirn computes only the rows a text
-  has; ORT's fixed-shape graphs compute the whole bucket. On the
+  has; ORT runs a fixed-shape graph padded to the bucket or a
+  dynamic-length graph without graph capture. Same six models, each on its 200 test texts at their
+  real length, against ORT's fastest setting per browser and model
+  (including dynamic-length graphs), ms per call:
+
+  | Model | Chromium f16 | Chromium f32 | Safari f16 | Safari f32 |
+  |---|---|---|---|---|
+  | all-MiniLM-L6-v2 | 2.09 / 5.22 | 2.58 / 6.23 | 5.25 / 11.44 | 6.30 / 14.24 |
+  | twitter-roberta-base-sentiment | 7.27 / 17.23 | 10.69 / 19.67 | 19.52 / 40.96 | 28.85 / 48.05 |
+  | mmarco-mMiniLMv2-L12 | 4.03 / 10.16 | 5.23 / 11.89 | 10.68 / 21.94 | 13.86 / 28.12 |
+  | distilbert-base-uncased-sst-2 | 3.95 / 9.48 | 5.61 / 10.52 | 10.38 / 21.14 | 15.07 / 25.01 |
+  | deberta-v3-base-prompt-injection-v2 | 7.77 / 23.48 | 11.57 / 30.01 | 20.85 / 48.73 | 29.05 / 67.36 |
+  | granite-embedding-small-english-r2 | 3.96 / 10.80 | 5.67 / 11.98 | 10.48 / 24.13 | 13.44 / 27.18 |
+
+  kleinhirn / ORT. 1.66x to 3.02x faster, on average 2.58x (Chromium
+  f16), 2.17x (Chromium f32), 2.16x (Safari f16) and 1.98x (Safari
+  f32); all three kleinhirn repetitions below all three ORT repetitions
+  in each of the 24 cells. On the
   1,000-text corpus (median 45 of 128 tokens) GLiNER2.5-small runs 4.4
   ms against 12.2 ms for ORT with graph capture in f16 (2.8x) and 5.4
   against 14.8 ms in f32 (2.7x). Julia 1 decides in 10.4 ms against
   25.5 ms for its upstream ORT pipeline in f16 (2.4x) and 14.0 against
   29.2 ms in f32 (2.1x).
+- **Faster than ORT without a GPU too.** The WASM path against ORT's
+  WASM runtime with all cores in its fastest setting per browser and
+  model, all six models at 128 tokens, 512 tokens and real length (18
+  cells per browser), ms per call, kleinhirn / ORT:
+
+  | Model | Chromium 128 | Chromium real | Safari 128 | Safari real |
+  |---|---|---|---|---|
+  | all-MiniLM-L6-v2 | 8.39 / 33.11 | 2.76 / 10.14 | 15.63 / 44.38 | 4.20 / 10.09 |
+  | twitter-roberta-base-sentiment | 54.49 / 196.18 | 18.15 / 62.83 | 78.48 / 92.50 | 23.39 / 32.02 |
+  | mmarco-mMiniLMv2-L12 | 17.91 / 69.32 | 8.55 / 30.73 | 23.08 / 50.95 | 11.04 / 28.71 |
+  | distilbert-base-uncased-sst-2 | 27.10 / 99.03 | 9.62 / 32.51 | 40.07 / 48.47 | 12.18 / 21.88 |
+  | deberta-v3-base-prompt-injection-v2 | 63.05 / 221.54 | 19.04 / 75.73 | 88.61 / 131.95 | 23.68 / 40.92 |
+  | granite-embedding-small-english-r2 | 22.24 / 82.23 | 6.48 / 22.05 | 30.19 / 37.40 | 8.50 / 14.38 |
+
+  Geometric mean of ORT / kleinhirn over the 18 cells: 3.28x in
+  Chromium (kleinhirn ahead in all 18, 2.35x to 3.98x), 1.33x in WebKit,
+  1.48x in Safari and 4.14x in a regular Firefox 157. At 512 tokens
+  Safari and WebKit are about even (0.99x to 1.29x). Same answers as
+  PyTorch in all 72 cells. Threads need a cross-origin isolated page;
+  without it both engines run one thread. Measured on 7 and 8 October
+  2026; two later kernel steps (vectorized exp, attention scores as a
+  tiled matmul) are 16 % (Chromium) and 8 % (WebKit) faster again and
+  will be in the next table.
 - **Closer to the reference than ORT.** On the measurement inputs above,
   ORT's f16 output deviates 2.9 to 20.5 times more from ORT's own f32
   output than kleinhirn's f16 does. On Julia 1 the largest logit error
@@ -74,12 +113,12 @@ Microsoft. It is the baseline for every speed number below.
   path (941 vs 1,442 MiB for GLiNER2.5-small in f16, 1,138 vs 1,599 MiB
   for Julia 1). The ORT peaks are from September; kleinhirn's grew by 5
   to 14 % with the new kernels.
-- **Small.** The engine is 46 KB gzip, plus 10 KB for the WASM
-  fallback. ORT's WebGPU runtime files are 6.3 MB gzip (25.9 MB raw).
+- **Small.** The engine is 47 KB gzip, plus 16 KB for the WASM
+  path (17 KB with threads). ORT's WebGPU runtime files are 6.3 MB gzip (25.9 MB raw).
   The model weights come on top in both cases.
-- **Not done yet.** The WASM fallback covers only the DeBERTa models.
-  Phones have not been measured since the kernels changed (October
-  2026); the last iPhone run missed the latency target (below).
+- **Not done yet.** Phones have not been measured since the kernels
+  changed (October 2026); the last iPhone run missed the latency target
+  (below).
 - **Reproducible.** Every number comes from a script in this repo under
   a fixed protocol: interleaved runs, a quiet machine, the median of
   three repetitions. Details under "How we measure" and in
@@ -204,7 +243,6 @@ call.
 
 ## Roadmap
 
-- WASM for every family, so a model that runs on one path runs on all.
 - Phones: the iPhone with the new kernels, peak memory, how the weights
   are loaded.
 - Smaller downloads: the word-embedding table is 31 to 82 % of a
@@ -236,14 +274,18 @@ call.
 
 ## Bundle size
 
-The engine bundle (`npm run build`) is `dist/kleinhirn.js` plus the
-WASM worker with the embedded `.wasm` module:
+The engine bundle (`npm run build`) is `dist/kleinhirn.js`. The WASM
+path loads on demand: the backend chunk, the executor worker and one
+build of the executor, plus the helper worker with threads. A browser
+loads one of four paths (`node tools/r8_bundle.mjs`):
 
-| File | Raw | gzip -9 |
+| File or path | Raw | gzip -9 |
 |---|---|---|
-| kleinhirn.js | 179,317 B | 46,253 B |
-| wasm-worker.js incl. deberta.wasm | 35,771 B | 10,000 B |
-| total | 215,088 B | 56,253 B |
+| kleinhirn.js | 180,280 B | 46,572 B |
+| WASM path, plain build | 45,765 B | 16,407 B |
+| WASM path, relaxed-SIMD build (Chromium, Firefox) | 45,621 B | 16,395 B |
+| WASM path with threads, plain | 47,303 B | 17,279 B |
+| WASM path with threads, relaxed SIMD | 47,159 B | 17,264 B |
 
 `kleinhirn.js` embeds a build id (`Date.now()` in base 36), so its gzip
 size can differ by a byte between builds. It grew from 20,948 B with the
@@ -265,7 +307,9 @@ Fallback chain (`backend: 'auto'`):
 3. WASM-SIMD in a worker
    ([AssemblyScript](https://github.com/AssemblyScript/assemblyscript),
    no [Emscripten](https://github.com/emscripten-core/emscripten)),
-   DeBERTa models only
+   every family; `threads: 'auto'` uses up to 8 threads on a
+   cross-origin isolated page (COOP and COEP headers), else one, and
+   the relaxed-SIMD build where the browser has it
 
 The engine requests the device with exactly the WebGPU minimum limits
 (`limits: 'minimum'`, the default): 256 invocations per workgroup,

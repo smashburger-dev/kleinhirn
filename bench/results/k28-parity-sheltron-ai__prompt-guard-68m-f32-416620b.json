@@ -1,0 +1,68 @@
+{
+ "date": "2026-10-06",
+ "run_id": "k28-parity-sheltron-ai__prompt-guard-68m-f32-416620b-1791303120915",
+ "commit": "416620b",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "2.38",
+ "loadAvgEnd": "3.12 3.38 4.07",
+ "stage": "done",
+ "model": "sheltron-ai__prompt-guard-68m",
+ "precision": "f32",
+ "task": "sequence-classification",
+ "info": {
+  "precision": "f32",
+  "buildId": "muwvju24",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "modernbert",
+  "task": "sequence-classification",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 198794192,
+  "downloadBytes": 275823359,
+  "loadTiming": {
+   "fetchMs": 425,
+   "bodyMs": 921,
+   "sha256Ms": 140.1000000089407,
+   "uploadMs": 35.099999994039536,
+   "embedJoinMs": 12.099999994039536,
+   "manifestMs": 3,
+   "planMs": 175.29999999701977
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.00010967254638671875,
+  "meanAbsLogitDiff": 0.0000041540674018588935,
+  "disagreements": []
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0,
+  "groups": 50
+ },
+ "gpuErrors": []
+}

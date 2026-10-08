@@ -1,0 +1,28 @@
+{
+ "model": "cross-encoder__stsb-distilroberta-base",
+ "task": "reranking",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "6824571",
+ "dirty": false,
+ "date": "2026-10-07T23:03:49.150Z",
+ "cases": 200,
+ "metrics": {
+  "maxAbsLogitDiff": 0.000005245208740234375,
+  "meanAbsLogitDiff": 9.083375334739686e-7,
+  "bestPassageAgreement": 1,
+  "bestPassageDisagreements": []
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 703.8265410000167,
+ "runMs": 2561.338167000009,
+ "msPerItem": 12.806690835000046,
+ "wasmMemoryBytes": 209977344
+}

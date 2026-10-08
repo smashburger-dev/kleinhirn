@@ -1,0 +1,72 @@
+{
+ "date": "2026-10-06",
+ "run_id": "k28-parity-d4data__biomedical-ner-all-f16-416620b-1791303402837",
+ "commit": "416620b",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "5.86",
+ "loadAvgEnd": "6.35 5.07 4.67",
+ "stage": "done",
+ "model": "d4data__biomedical-ner-all",
+ "precision": "f16",
+ "task": "token-classification",
+ "info": {
+  "precision": "f16",
+  "buildId": "muwvju24",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "distilbert",
+  "task": "token-classification",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 112345272,
+  "downloadBytes": 133578052,
+  "loadTiming": {
+   "fetchMs": 244.79999999701977,
+   "bodyMs": 272.5,
+   "sha256Ms": 77.3999999910593,
+   "uploadMs": 27.900000005960464,
+   "embedJoinMs": 5.200000002980232,
+   "manifestMs": 3,
+   "planMs": 29.900000005960464
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "argmaxPerTokenAgreement": 0.9997258771929824,
+  "argmaxPerTokenDisagreements": [
+   736,
+   2253
+  ],
+  "tokens": 7296,
+  "maxAbsLogitDiff": 0.026602745056152344,
+  "meanAbsLogitDiff": 0.0008869999680892551
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0,
+  "groups": 50
+ },
+ "gpuErrors": []
+}

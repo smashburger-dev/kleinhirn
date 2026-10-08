@@ -928,11 +928,16 @@ async function importEngine(): Promise<{
   const bytes = await res.arrayBuffer();
   const bundleSha256 = await sha256Hex(bytes);
   const bundleText = new TextDecoder().decode(bytes);
-  const workerRel = /assets\/wasm-worker-[\w-]+\.js/.exec(bundleText)?.[0] ?? null;
+  // WASM path (R2): the core imports wasm-backend-*.js, which starts assets/wasm-plan-worker-*.js
+  // (plan.wasm inlined); the hash covers the worker.
+  const chunkRel = /wasm-backend-[\w-]+\.js/.exec(bundleText)?.[0] ?? null;
   let workerSha256: string | null = null;
-  if (workerRel) {
-    const w = await fetch(new URL(workerRel, url).href);
-    if (w.ok) workerSha256 = await sha256Hex(await w.arrayBuffer());
+  if (chunkRel) {
+    const chunkUrl = new URL(chunkRel, url).href;
+    const c = await fetch(chunkUrl);
+    const workerRel = c.ok ? /assets\/wasm-plan-worker-[\w-]+\.js/.exec(await c.text())?.[0] : undefined;
+    const w = workerRel ? await fetch(new URL(workerRel, chunkUrl).href) : undefined;
+    if (w?.ok) workerSha256 = await sha256Hex(await w.arrayBuffer());
   }
   const engineBuildId = /buildId\s*:\s*["']([a-z0-9]+)["']/.exec(bundleText)?.[1] ?? null;
   const module = (await import(/* @vite-ignore */ url)) as EngineModule;

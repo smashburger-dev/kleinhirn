@@ -1,0 +1,26 @@
+{
+ "model": "sentence-transformers__all-distilroberta-v1",
+ "task": "embeddings",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "458da21",
+ "dirty": false,
+ "date": "2026-10-07T12:46:59.460Z",
+ "cases": 200,
+ "metrics": {
+  "minCosineFinal": 0.9999999999982658,
+  "maxAbsDiffFinal": 2.7567148208618164e-7
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 688.4462920001242,
+ "runMs": 9423.130417000037,
+ "msPerItem": 47.115652085000185,
+ "wasmMemoryBytes": 198443008
+}

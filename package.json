@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build:wasm": "asc src/wasm/deberta.ts -o src/wasm/deberta.wasm -O --enable simd --runtime stub",
+    "build:wasm": "asc src/wasm/plan.ts -o src/wasm/plan.wasm -O3 --enable simd --runtime stub --noAssert && asc src/wasm/plan.ts -o src/wasm/plan-relaxed.wasm -O3 --enable simd,relaxed-simd --runtime stub --noAssert && asc src/wasm/plan.ts -o src/wasm/plan-mt.wasm -O3 --enable simd,threads --sharedMemory --importMemory --initialMemory 16 --maximumMemory 65536 --runtime stub --noAssert && asc src/wasm/plan.ts -o src/wasm/plan-mt-relaxed.wasm -O3 --enable simd,relaxed-simd,threads --sharedMemory --importMemory --initialMemory 16 --maximumMemory 65536 --runtime stub --noAssert",
     "build": "npm run build:wasm && vite build",
     "build:site": "npm run build && vite build --config vite.site.config.ts",
     "typecheck": "tsc --noEmit",

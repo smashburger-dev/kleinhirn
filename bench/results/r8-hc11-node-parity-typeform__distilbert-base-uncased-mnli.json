@@ -1,0 +1,30 @@
+{
+ "model": "typeform__distilbert-base-uncased-mnli",
+ "task": "nli",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "6824571",
+ "dirty": false,
+ "date": "2026-10-07T23:00:12.747Z",
+ "cases": 200,
+ "metrics": {
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.00004076957702636719,
+  "meanAbsLogitDiff": 0.0000026786451538403827,
+  "disagreements": [],
+  "zeroShotAgreement": 1,
+  "zeroShotDisagreements": []
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 622.4497080000001,
+ "runMs": 2798.9638330000453,
+ "msPerItem": 13.994819165000226,
+ "wasmMemoryBytes": 209977344
+}

@@ -1,0 +1,28 @@
+{
+ "model": "sheltron-ai__prompt-guard-68m",
+ "task": "sequence-classification",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "6824571",
+ "dirty": false,
+ "date": "2026-10-07T23:06:27.454Z",
+ "cases": 200,
+ "metrics": {
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.00007343292236328125,
+  "meanAbsLogitDiff": 0.000004250391132452271,
+  "disagreements": []
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 653.9811670000199,
+ "runMs": 5332.333749999991,
+ "msPerItem": 26.661668749999954,
+ "wasmMemoryBytes": 200278016
+}

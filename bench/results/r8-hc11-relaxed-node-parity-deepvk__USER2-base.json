@@ -1,0 +1,26 @@
+{
+ "model": "deepvk__USER2-base",
+ "task": "embeddings",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "6824571",
+ "dirty": false,
+ "date": "2026-10-07T23:04:15.383Z",
+ "cases": 200,
+ "metrics": {
+  "minCosineFinal": 0.9999999967325592,
+  "maxAbsDiffFinal": 0.00023162364959716797
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 1206.4752910000097,
+ "runMs": 5470.862040999986,
+ "msPerItem": 27.35431020499993,
+ "wasmMemoryBytes": 480903168
+}

@@ -1,0 +1,28 @@
+{
+ "model": "hotchpotch__japanese-reranker-xsmall-v2",
+ "task": "reranking",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "6824571",
+ "dirty": false,
+ "date": "2026-10-07T22:57:49.844Z",
+ "cases": 200,
+ "metrics": {
+  "maxAbsLogitDiff": 0.000005245208740234375,
+  "meanAbsLogitDiff": 0.0000013303756713867188,
+  "bestPassageAgreement": 1,
+  "bestPassageDisagreements": []
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 420.3834999999963,
+ "runMs": 1072.9527089999756,
+ "msPerItem": 5.364763544999878,
+ "wasmMemoryBytes": 67698688
+}

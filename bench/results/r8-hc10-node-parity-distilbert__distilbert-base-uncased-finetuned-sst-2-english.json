@@ -1,0 +1,28 @@
+{
+ "model": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+ "task": "sequence-classification",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "d4e4d43",
+ "dirty": false,
+ "date": "2026-10-07T22:09:29.239Z",
+ "cases": 200,
+ "metrics": {
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.000006323680281639099,
+  "meanAbsLogitDiff": 7.036309398245067e-7,
+  "disagreements": []
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 596.185291999951,
+ "runMs": 6411.398166999978,
+ "msPerItem": 32.05699083499989,
+ "wasmMemoryBytes": 208601088
+}

@@ -1,0 +1,28 @@
+{
+ "model": "OpenMed__OpenMed-NER-ProteinDetect-SuperClinical-141M",
+ "task": "token-classification",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "effc561",
+ "dirty": false,
+ "date": "2026-10-07T11:24:16.134Z",
+ "cases": 200,
+ "metrics": {
+  "argmaxPerTokenAgreement": 1,
+  "argmaxPerTokenDisagreements": [],
+  "tokens": 6848,
+  "maxAbsLogitDiff": 0.000007867813110351562
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 1028.37,
+ "runMs": 15774.624000000002,
+ "msPerItem": 78.87312000000001,
+ "wasmMemoryBytes": 221380608
+}

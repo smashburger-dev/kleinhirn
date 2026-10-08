@@ -1,0 +1,181 @@
+{
+ "run_id": "r8-hc8-search-chromium-kleinhirn-MiniLM-128-wasm-1791383787450",
+ "change": "r1-search",
+ "commit": "6fec030",
+ "date": "2026-10-07T14:36:29.512Z",
+ "spec": {
+  "stage": "search",
+  "browser": "chromium",
+  "engine": "kleinhirn",
+  "slug": "sentence-transformers__all-MiniLM-L6-v2",
+  "way": "wasm",
+  "len": "128",
+  "n": 50,
+  "warmup": 5,
+  "acc": false,
+  "keepOutputs": false,
+  "mem": false,
+  "parityFromRef": true,
+  "threads": 4
+ },
+ "browser": "chromium-151.0.7922.34",
+ "loadStart": 2.7,
+ "loadWaitedSeconds": 0,
+ "loadEnd": "2.57 3.39 3.79",
+ "stage": "done",
+ "mode": "run",
+ "engine": "kleinhirn",
+ "model": "sentence-transformers__all-MiniLM-L6-v2",
+ "way": "wasm",
+ "len": "128",
+ "crossOriginIsolated": true,
+ "timerStepMs": 0.004999995231628418,
+ "block": 1,
+ "n": 50,
+ "warmup": 5,
+ "loadMs": 228.1550000011921,
+ "warmupMs": [
+  19.799999982118607,
+  15.305000007152557,
+  15.365000009536743,
+  15.25500002503395,
+  15.219999998807907
+ ],
+ "warmupFinite": true,
+ "latency": {
+  "n": 50,
+  "medianMs": 14.935000002384186,
+  "p95Ms": 15.08500000834465,
+  "minMs": 14.699999988079071,
+  "maxMs": 15.16499999165535,
+  "meanMs": 14.91400000154972
+ },
+ "samplesMs": [
+  15.160000026226044,
+  15.16499999165535,
+  14.939999997615814,
+  15.08500000834465,
+  15.004999995231628,
+  14.969999998807907,
+  14.924999982118607,
+  15.040000021457672,
+  15.025000005960464,
+  14.770000010728836,
+  14.770000010728836,
+  14.729999989271164,
+  15,
+  15.020000010728836,
+  14.78999999165535,
+  14.759999990463257,
+  14.754999995231628,
+  15.050000011920929,
+  14.909999996423721,
+  14.844999998807907,
+  14.724999994039536,
+  14.764999985694885,
+  14.820000022649765,
+  14.764999985694885,
+  14.75,
+  14.699999988079071,
+  14.96000000834465,
+  14.955000013113022,
+  14.895000010728836,
+  14.924999982118607,
+  14.800000011920929,
+  14.930000007152557,
+  14.939999997615814,
+  14.875,
+  14.850000023841858,
+  14.919999986886978,
+  14.7950000166893,
+  14.78999999165535,
+  14.764999985694885,
+  14.939999997615814,
+  14.944999992847443,
+  15.060000002384186,
+  15.004999995231628,
+  14.955000013113022,
+  15.060000002384186,
+  14.995000004768372,
+  15.060000002384186,
+  15,
+  15,
+  15.040000021457672
+ ],
+ "info": {
+  "name": "kleinhirn",
+  "version": "muy73akh",
+  "build": "dist/kleinhirn.js",
+  "config": {
+   "precision": "f32",
+   "buckets": [
+    128
+   ],
+   "limits": "minimum",
+   "backend": "wasm",
+   "threads": 4,
+   "threadNote": null,
+   "wasmBuild": "relaxed",
+   "split": null
+  },
+  "gpuBytes": null,
+  "adapter": null
+ },
+ "accuracy": {
+  "skipped": true
+ },
+ "download": {
+  "bytes": 91914958,
+  "files": {
+   "/dist/kleinhirn.js": 1172394,
+   "/models/k28/sentence-transformers__all-MiniLM-L6-v2/f32/manifest.json": 14213,
+   "/models/k28/sentence-transformers__all-MiniLM-L6-v2/f32/tokenizer.json": 466547,
+   "/models/k28/sentence-transformers__all-MiniLM-L6-v2/f32/weights-0.bin": 90261804
+  }
+ },
+ "engineFiles": [
+  "/dist/kleinhirn.js"
+ ],
+ "done": true,
+ "outputs": {
+  "rows": 50,
+  "nonFinite": 0
+ },
+ "vsCpuF32": {
+  "rows": 50,
+  "maxAbsDiff": 4.76837158203125e-7,
+  "minCosine": 0.9999999999991865
+ },
+ "summary": {
+  "runId": "r8-hc8-search-chromium-kleinhirn-MiniLM-128-wasm-1791383787450",
+  "file": "bench/results/r8-hc8-search-chromium-kleinhirn-MiniLM-128-wasm-1791383787450.json",
+  "engine": "kleinhirn",
+  "browser": "chromium-151.0.7922.34",
+  "medianMs": 14.935000002384186,
+  "p95Ms": 15.08500000834465,
+  "block": 1,
+  "n": 50,
+  "downloadMb": 87.65693473815918,
+  "loadMs": 228.1550000011921,
+  "gpuBytes": null,
+  "engineGzipB": 46566,
+  "config": {
+   "precision": "wasm"
+  },
+  "parity": {
+   "pass": true,
+   "reasons": [],
+   "vsCpuF32": {
+    "rows": 50,
+    "maxAbsDiff": 4.76837158203125e-7,
+    "minCosine": 0.9999999999991865
+   }
+  },
+  "timerStepMs": 0.004999995231628418,
+  "isolated": true,
+  "loadStart": 2.7,
+  "peakMemMib": null,
+  "memSamples": null,
+  "error": null
+ }
+}

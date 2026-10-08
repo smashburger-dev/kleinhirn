@@ -21,8 +21,8 @@ export interface ModelSpec {
   embed: {
     positions: 'absolute' | 'none';
     positionOffset: number;
-    // RoBERTa and XLM-R: pad_token_id. The engine numbers positions as offset + index and cannot
-    // follow transformers, which counts the ids that are not the pad id (see padIdIndex).
+    // RoBERTa and XLM-R: pad_token_id. Positions follow transformers, which counts the ids that
+    // are not the pad id (see positionRows); the plan reads them per row (embln POSIDS).
     padId?: number;
     maxPositions: number;
     typeVocab: number;
@@ -57,21 +57,12 @@ export interface ModelSpec {
   conv?: { kernel: number; act: Act };
 }
 
-// Index of the first id the position rule of RoBERTa and XLM-R cannot number, or -1. The engine
-// uses row offset + index; transformers uses pad + the count of ids that are not the pad id.
-// Both agree when no id is the pad id. With positionOffset equal to the pad id (the first token
-// of the template is itself a pad id, d0rj/e5-small-en-ru) they agree when id 0 is the pad id
-// and no other id is. A spec without padId is not checked.
-export function padIdIndex(embed: ModelSpec['embed'], ids: ArrayLike<number>): number {
-  const pad = embed.padId;
-  if (pad === undefined) return -1;
-  const first = embed.positionOffset === pad;
-  for (let i = 0; i < ids.length; i += 1) {
-    if (i === 0 && first) {
-      if (ids[0] !== pad) return 0;
-    } else if (ids[i] === pad) return i;
-  }
-  return -1;
+// Position row of every id for RoBERTa and XLM-R as transformers computes it
+// (create_position_ids_from_input_ids): a pad id keeps row padId, every other id gets padId plus
+// the number of ids up to and including it that are not the pad id (review R09).
+export function positionRows(padId: number, ids: ArrayLike<number>): number[] {
+  let count = 0;
+  return Array.from(ids, (id) => (id === padId ? padId : padId + ++count));
 }
 
 // One step of a pooled or per-row head. `name` is the tensor prefix in the

@@ -1,0 +1,193 @@
+{
+ "run_id": "r8-hc8-split-search-chromium-kleinhirn-RoBERTa-base-128-wasm-1791385851835",
+ "change": "r1-search",
+ "commit": "386814f",
+ "date": "2026-10-07T15:10:56.461Z",
+ "spec": {
+  "stage": "search",
+  "browser": "chromium",
+  "engine": "kleinhirn",
+  "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+  "way": "wasm",
+  "len": "128",
+  "n": 50,
+  "warmup": 5,
+  "acc": false,
+  "keepOutputs": false,
+  "mem": false,
+  "parityFromRef": true,
+  "threads": 8,
+  "split": "32,64,32"
+ },
+ "browser": "chromium-151.0.7922.34",
+ "loadStart": 3.8,
+ "loadWaitedSeconds": 15,
+ "loadEnd": "3.50 3.95 4.04",
+ "stage": "done",
+ "mode": "run",
+ "engine": "kleinhirn",
+ "model": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+ "way": "wasm",
+ "len": "128",
+ "crossOriginIsolated": true,
+ "timerStepMs": 0.004999995231628418,
+ "block": 1,
+ "n": 50,
+ "warmup": 5,
+ "loadMs": 939.7600000202656,
+ "warmupMs": [
+  58.900000005960464,
+  50.75,
+  50.42500001192093,
+  50.104999989271164,
+  50.68000000715256
+ ],
+ "warmupFinite": true,
+ "latency": {
+  "n": 50,
+  "medianMs": 50.12500001490116,
+  "p95Ms": 50.804999977350235,
+  "minMs": 49.91999998688698,
+  "maxMs": 51.610000014305115,
+  "meanMs": 50.23969999969005
+ },
+ "samplesMs": [
+  50.185000002384186,
+  49.91999998688698,
+  50.1700000166893,
+  50.00999999046326,
+  50.68000000715256,
+  50.064999997615814,
+  50.04000002145767,
+  50.05500000715256,
+  50.04999998211861,
+  50.025000005960464,
+  50.00999999046326,
+  50.395000010728836,
+  50.12000000476837,
+  50.139999985694885,
+  50.09499999880791,
+  50.804999977350235,
+  50.17499998211861,
+  50.105000019073486,
+  49.939999997615814,
+  50.25,
+  50.150000005960464,
+  49.974999994039536,
+  50.04499998688698,
+  50.09499999880791,
+  49.97500002384186,
+  50.2049999833107,
+  50.564999997615814,
+  50.070000022649765,
+  50.104999989271164,
+  50.0450000166893,
+  50.03999999165535,
+  50.59000000357628,
+  51.610000014305115,
+  50.44499999284744,
+  50.11500000953674,
+  50.46000000834465,
+  51.25499999523163,
+  50.46500000357628,
+  50.060000002384186,
+  50.2950000166893,
+  50.21999999880791,
+  50.11499997973442,
+  50.025000005960464,
+  50.13000002503395,
+  50.23499998450279,
+  50.224999994039536,
+  50.17499998211861,
+  50.785000026226044,
+  49.99499997496605,
+  50.27999997138977
+ ],
+ "info": {
+  "name": "kleinhirn",
+  "version": "muy8skgl",
+  "build": "dist/kleinhirn.js",
+  "config": {
+   "precision": "f32",
+   "buckets": [
+    128
+   ],
+   "limits": "minimum",
+   "backend": "wasm",
+   "threads": 8,
+   "threadNote": null,
+   "wasmBuild": "relaxed",
+   "split": {
+    "rb": 32,
+    "cb": 64,
+    "qb": 32
+   }
+  },
+  "gpuBytes": null,
+  "adapter": null
+ },
+ "accuracy": {
+  "skipped": true
+ },
+ "download": {
+  "bytes": 503351255,
+  "files": {
+   "/dist/kleinhirn.js": 1172543,
+   "/models/k28/cardiffnlp__twitter-roberta-base-sentiment-latest/f32/manifest.json": 26509,
+   "/models/k28/cardiffnlp__twitter-roberta-base-sentiment-latest/f32/tokenizer.json": 3558947,
+   "/models/k28/cardiffnlp__twitter-roberta-base-sentiment-latest/f32/weights-0.bin": 154414380,
+   "/models/k28/cardiffnlp__twitter-roberta-base-sentiment-latest/f32/weights-1.bin": 93730092,
+   "/models/k28/cardiffnlp__twitter-roberta-base-sentiment-latest/f32/weights-2.bin": 87429420,
+   "/models/k28/cardiffnlp__twitter-roberta-base-sentiment-latest/f32/weights-3.bin": 94504236,
+   "/models/k28/cardiffnlp__twitter-roberta-base-sentiment-latest/f32/weights-4.bin": 68515128
+  }
+ },
+ "engineFiles": [
+  "/dist/kleinhirn.js"
+ ],
+ "done": true,
+ "outputs": {
+  "rows": 50,
+  "nonFinite": 0
+ },
+ "vsCpuF32": {
+  "rows": 50,
+  "maxAbsDiff": 0.000010102987289428711,
+  "argmaxAgreement": 1
+ },
+ "summary": {
+  "runId": "r8-hc8-split-search-chromium-kleinhirn-RoBERTa-base-128-wasm-1791385851835",
+  "file": "bench/results/r8-hc8-split-search-chromium-kleinhirn-RoBERTa-base-128-wasm-1791385851835.json",
+  "engine": "kleinhirn",
+  "browser": "chromium-151.0.7922.34",
+  "medianMs": 50.12500001490116,
+  "p95Ms": 50.804999977350235,
+  "block": 1,
+  "n": 50,
+  "downloadMb": 480.033164024353,
+  "loadMs": 939.7600000202656,
+  "gpuBytes": null,
+  "engineGzipB": 46573,
+  "config": {
+   "precision": "wasm",
+   "threads": 8,
+   "threadNote": null,
+   "wasmBuild": "relaxed"
+  },
+  "parity": {
+   "pass": true,
+   "reasons": [],
+   "vsCpuF32": {
+    "rows": 50,
+    "maxAbsDiff": 0.000010102987289428711,
+    "argmaxAgreement": 1
+   }
+  },
+  "timerStepMs": 0.004999995231628418,
+  "isolated": true,
+  "loadStart": 3.8,
+  "peakMemMib": null,
+  "memSamples": null,
+  "error": null
+ }
+}

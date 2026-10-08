@@ -1,0 +1,187 @@
+{
+ "run_id": "r8-hc8-search-chromium-kleinhirn-DeBERTa-v3-base-128-wasm-1791384184445",
+ "change": "r1-search",
+ "commit": "6fec030",
+ "date": "2026-10-07T14:43:10.101Z",
+ "spec": {
+  "stage": "search",
+  "browser": "chromium",
+  "engine": "kleinhirn",
+  "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+  "way": "wasm",
+  "len": "128",
+  "n": 50,
+  "warmup": 5,
+  "acc": false,
+  "keepOutputs": false,
+  "mem": false,
+  "parityFromRef": true,
+  "threads": 8
+ },
+ "browser": "chromium-151.0.7922.34",
+ "loadStart": 3.62,
+ "loadWaitedSeconds": 0,
+ "loadEnd": "3.43 3.77 3.82",
+ "stage": "done",
+ "mode": "run",
+ "engine": "kleinhirn",
+ "model": "protectai__deberta-v3-base-prompt-injection-v2",
+ "way": "wasm",
+ "len": "128",
+ "crossOriginIsolated": true,
+ "timerStepMs": 0.004999995231628418,
+ "block": 1,
+ "n": 50,
+ "warmup": 5,
+ "loadMs": 1325.3250000178814,
+ "warmupMs": [
+  71.125,
+  58.78000000119209,
+  59.06999999284744,
+  59.37999999523163,
+  59.2950000166893
+ ],
+ "warmupFinite": true,
+ "latency": {
+  "n": 50,
+  "medianMs": 59.26749999821186,
+  "p95Ms": 59.96000000834465,
+  "minMs": 59.06999999284744,
+  "maxMs": 61.020000010728836,
+  "meanMs": 59.35899999916553
+ },
+ "samplesMs": [
+  59.29499998688698,
+  59.09000000357628,
+  59.38499999046326,
+  59.49000000953674,
+  59.354999989271164,
+  59.10000002384186,
+  59.179999977350235,
+  59.310000002384186,
+  59.19499999284744,
+  59.16499999165535,
+  59.25499999523163,
+  59.21000000834465,
+  59.75499999523163,
+  61.020000010728836,
+  59.60999998450279,
+  59.28000000119209,
+  59.10999998450279,
+  59.22500002384186,
+  59.24500000476837,
+  59.15999999642372,
+  59.13499999046326,
+  59.389999985694885,
+  59.099999994039536,
+  59.16499999165535,
+  59.06999999284744,
+  59.22000002861023,
+  59.104999989271164,
+  59.25,
+  59.15500000119209,
+  59.1700000166893,
+  59.560000002384186,
+  59.15999999642372,
+  59.224999994039536,
+  59.18000000715256,
+  59.28999999165535,
+  59.214999973773956,
+  59.96000000834465,
+  60.37000000476837,
+  59.31999999284744,
+  59.84000000357628,
+  59.445000022649765,
+  59.33499997854233,
+  59.29000002145767,
+  59.34499999880791,
+  59.354999989271164,
+  59.32500001788139,
+  59.394999980926514,
+  59.2049999833107,
+  59.46999999880791,
+  59.47000002861023
+ ],
+ "info": {
+  "name": "kleinhirn",
+  "version": "muy73akh",
+  "build": "dist/kleinhirn.js",
+  "config": {
+   "precision": "f32",
+   "buckets": [
+    128
+   ],
+   "limits": "minimum",
+   "backend": "wasm",
+   "threads": 8,
+   "threadNote": null,
+   "wasmBuild": "relaxed",
+   "split": null
+  },
+  "gpuBytes": null,
+  "adapter": null
+ },
+ "accuracy": {
+  "skipped": true
+ },
+ "download": {
+  "bytes": 783726848,
+  "files": {
+   "/dist/kleinhirn.js": 1172394,
+   "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f32/manifest.json": 30854,
+   "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f32/tokenizer.json": 8657044,
+   "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f32/weights-0.bin": 184320300,
+   "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f32/weights-1.bin": 184320300,
+   "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f32/weights-2.bin": 94971180,
+   "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f32/weights-3.bin": 94491948,
+   "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f32/weights-4.bin": 94491948,
+   "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f32/weights-5.bin": 94491948,
+   "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f32/weights-6.bin": 26778932
+  }
+ },
+ "engineFiles": [
+  "/dist/kleinhirn.js"
+ ],
+ "done": true,
+ "outputs": {
+  "rows": 50,
+  "nonFinite": 0
+ },
+ "vsCpuF32": {
+  "rows": 50,
+  "maxAbsDiff": 0.000007152557373046875,
+  "argmaxAgreement": 1
+ },
+ "summary": {
+  "runId": "r8-hc8-search-chromium-kleinhirn-DeBERTa-v3-base-128-wasm-1791384184445",
+  "file": "bench/results/r8-hc8-search-chromium-kleinhirn-DeBERTa-v3-base-128-wasm-1791384184445.json",
+  "engine": "kleinhirn",
+  "browser": "chromium-151.0.7922.34",
+  "medianMs": 59.26749999821186,
+  "p95Ms": 59.96000000834465,
+  "block": 1,
+  "n": 50,
+  "downloadMb": 747.420166015625,
+  "loadMs": 1325.3250000178814,
+  "gpuBytes": null,
+  "engineGzipB": 46566,
+  "config": {
+   "precision": "wasm"
+  },
+  "parity": {
+   "pass": true,
+   "reasons": [],
+   "vsCpuF32": {
+    "rows": 50,
+    "maxAbsDiff": 0.000007152557373046875,
+    "argmaxAgreement": 1
+   }
+  },
+  "timerStepMs": 0.004999995231628418,
+  "isolated": true,
+  "loadStart": 3.62,
+  "peakMemMib": null,
+  "memSamples": null,
+  "error": null
+ }
+}

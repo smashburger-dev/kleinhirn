@@ -42,7 +42,7 @@ fn main(
       q[d] = vec4<f32>(qkv[i * row4 + h * D4 + d]) * SCALE;
     }
   }
-  var m = -1e30;
+  var m = -3.40282346638528859812e38f; // lowest finite f32: below every real score (review R21)
   var l = 0.0;
   for (var j0 = 0u; j0 < L; j0 += 32u) {
     // 32 keys x D4 vec4 per operand, 32 threads.

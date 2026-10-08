@@ -1,0 +1,28 @@
+{
+ "model": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+ "task": "sequence-classification",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "d4e4d43",
+ "dirty": false,
+ "date": "2026-10-07T22:15:30.787Z",
+ "cases": 200,
+ "metrics": {
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.0000073909759521484375,
+  "meanAbsLogitDiff": 7.999626298745474e-7,
+  "disagreements": []
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 1100.6064590000024,
+ "runMs": 8930.220124999993,
+ "msPerItem": 44.65110062499996,
+ "wasmMemoryBytes": 378732544
+}

@@ -1,0 +1,26 @@
+{
+ "model": "xushijie__polyBERT",
+ "task": "embeddings",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "6824571",
+ "dirty": false,
+ "date": "2026-10-07T23:00:36.021Z",
+ "cases": 200,
+ "metrics": {
+  "minCosineFinal": 0.9999999999998064,
+  "maxAbsDiffFinal": 0.0000019073486328125
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 345.21891699999105,
+ "runMs": 2471.784833999991,
+ "msPerItem": 12.358924169999955,
+ "wasmMemoryBytes": 126025728
+}

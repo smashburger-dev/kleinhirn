@@ -1,0 +1,68 @@
+{
+ "date": "2026-10-06",
+ "run_id": "k28-parity-qilowoq__mmarco-mMiniLMv2-L12-H384-v1-en-ru-f32-416620b-1791303038307",
+ "commit": "416620b",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "3.05",
+ "loadAvgEnd": "2.80 3.56 4.22",
+ "stage": "done",
+ "model": "qilowoq__mmarco-mMiniLMv2-L12-H384-v1-en-ru",
+ "precision": "f32",
+ "task": "sequence-classification",
+ "info": {
+  "precision": "f32",
+  "buildId": "muwvju24",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "xlm-roberta",
+  "task": "sequence-classification",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 112721468,
+  "downloadBytes": 183513639,
+  "loadTiming": {
+   "fetchMs": 336.29999999701977,
+   "bodyMs": 519.5000000149012,
+   "sha256Ms": 97.69999998807907,
+   "uploadMs": 25.69999998807907,
+   "embedJoinMs": 11,
+   "manifestMs": 3,
+   "planMs": 32
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.00001049041748046875,
+  "meanAbsLogitDiff": 0.0000020779669284820555,
+  "disagreements": []
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0,
+  "groups": 50
+ },
+ "gpuErrors": []
+}

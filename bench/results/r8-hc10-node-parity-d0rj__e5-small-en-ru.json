@@ -1,0 +1,26 @@
+{
+ "model": "d0rj__e5-small-en-ru",
+ "task": "embeddings",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "d4e4d43",
+ "dirty": false,
+ "date": "2026-10-07T22:08:40.380Z",
+ "cases": 200,
+ "metrics": {
+  "minCosineFinal": 0.9999999999994628,
+  "maxAbsDiffFinal": 1.6763806343078613e-7
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 471.3778329999768,
+ "runMs": 1383.5054170000367,
+ "msPerItem": 6.9175270850001835,
+ "wasmMemoryBytes": 107741184
+}

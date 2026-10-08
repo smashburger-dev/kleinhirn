@@ -1,7 +1,8 @@
 {{ENABLE}}// ModernBERT multi-head attention, one workgroup per (head, query
 // row). scores[i,j] = (q_i . k_j) / sqrt(D) over key positions, masked by the
 // key mask and (WINDOW > 0) the sliding window |i - j| <= WINDOW; softmax in
-// f32 (fully masked rows give a uniform distribution, never NaN), then . v.
+// f32 over the kept keys only (review R21), then . v. L and D need not be
+// multiples of 4 (review R01).
 // RoPE is applied upstream to q and k inside qkv; layout matches the DeBERTa
 // kernel: row i holds [q | k | v] of H * D each.
 // The q row is hoisted into registers once; masked query rows write zeros
@@ -23,6 +24,18 @@ override WINDOW: u32 = 0u;   // 0 = global attention
 // L1024 pipeline takes 4 KiB (well under the 16 KiB minimum limit).
 var<workgroup> scores: array<f32, L>;
 var<workgroup> red: array<f32, 64>;
+
+// Start of the softmax max: the lowest finite f32, below every real score.
+const LOWEST = -3.40282346638528859812e38f;
+
+fn keep(il: u32, j: u32, kbase: u32) -> bool {
+  var k = mask[kbase + j] > 0.5;
+  if (WINDOW > 0u) {
+    let dist = select(il - j, j - il, j > il);
+    k = k && dist <= WINDOW;
+  }
+  return k;
+}
 
 @compute @workgroup_size(64)
 fn main(
@@ -49,30 +62,28 @@ fn main(
     return;
   }
   for (var j = lid.x; j < L; j += 64u) {
-    var outside = mask[kbase + j] <= 0.5;
-    if (WINDOW > 0u) {
-      let dist = select(il - j, j - il, j > il);
-      outside = outside || dist > WINDOW;
-    }
-    // Masked keys land at -1e30 regardless of the dot product.
-    // The sentinel sits below any real score; the softmax max also starts at -1e30.
-    if (outside) {
-      scores[j] = -1e30;
+    if (!keep(il, j, kbase)) {
+      scores[j] = 0.0;
       continue;
     }
     var s = 0.0;
     let kb = (kbase + j) * 3u * hd + (H + h) * D;
-    for (var d = 0u; d < D; d += 4u) {
+    for (var d = 0u; d + 3u < D; d += 4u) {
       s += qreg[d] * f32(qkv[kb + d])
         + qreg[d + 1u] * f32(qkv[kb + d + 1u])
         + qreg[d + 2u] * f32(qkv[kb + d + 2u])
         + qreg[d + 3u] * f32(qkv[kb + d + 3u]);
     }
+    for (var d = D - D % 4u; d < D; d += 1u) {
+      s += qreg[d] * f32(qkv[kb + d]);
+    }
     scores[j] = s * SCALE;
   }
   workgroupBarrier();
-  var m = -1e30;
-  for (var j = lid.x; j < L; j += 64u) { m = max(m, scores[j]); }
+  var m = LOWEST;
+  for (var j = lid.x; j < L; j += 64u) {
+    if (keep(il, j, kbase)) { m = max(m, scores[j]); }
+  }
   red[lid.x] = m;
   workgroupBarrier();
   for (var o = 32u; o > 0u; o >>= 1u) {
@@ -83,7 +94,8 @@ fn main(
   workgroupBarrier();
   var sum = 0.0;
   for (var j = lid.x; j < L; j += 64u) {
-    let e = exp(scores[j] - mx);
+    var e = 0.0;
+    if (keep(il, j, kbase)) { e = exp(scores[j] - mx); }
     scores[j] = e;
     sum += e;
   }
@@ -93,13 +105,16 @@ fn main(
     if (lid.x < o) { red[lid.x] += red[lid.x + o]; }
     workgroupBarrier();
   }
-  let invTotal = 1.0 / red[0];
+  // A valid query always keeps its own key, so the sum is positive; the guard keeps any other
+  // row at zero instead of NaN.
+  let invTotal = select(0.0, 1.0 / red[0], red[0] > 0.0);
   workgroupBarrier();
   for (var d = lid.x; d < D; d += 64u) {
     let vb = (2u * H + h) * D + d;
     // Softmax normalization folds into the epilogue (ctx = acc / total):
-    // exp() underflows to exactly 0 for masked keys, so the sv != 0 branch
-    // keeps stale rows out, and four accumulators shorten the serial chain.
+    // masked keys hold exactly 0, so the sv != 0 branch keeps stale rows out,
+    // and four accumulators shorten the serial chain; the last L % 4 keys
+    // follow on acc0.
     var acc0 = 0.0;
     var acc1 = 0.0;
     var acc2 = 0.0;
@@ -113,6 +128,10 @@ fn main(
       if (s1 != 0.0) { acc1 += s1 * f32(qkv[(kbase + j + 1u) * 3u * hd + vb]); }
       if (s2 != 0.0) { acc2 += s2 * f32(qkv[(kbase + j + 2u) * 3u * hd + vb]); }
       if (s3 != 0.0) { acc3 += s3 * f32(qkv[(kbase + j + 3u) * 3u * hd + vb]); }
+    }
+    for (var j = L - L % 4u; j < L; j += 1u) {
+      let s0 = scores[j];
+      if (s0 != 0.0) { acc0 += s0 * f32(qkv[(kbase + j) * 3u * hd + vb]); }
     }
     var acc = (acc0 + acc1 + acc2 + acc3) * invTotal;
     ctx[i * hd + h * D + d] = {{F}}(acc);

@@ -7,8 +7,8 @@ No production fixes. No browser, GPU, server, downloads or installed dependencie
 From the repository root:
 
 ```sh
-# Intentionally fails. Tests of fixed findings moved into the normal glob (K28.R, tests/k28r_*.test.mjs);
-# the rest are deferred or belong to groups D to F.
+# Since R1b (06.10.2026, docs/R2_WORKORDER.md) only T01 fails; it goes with the tokenizer work (R6).
+# Tests of findings fixed in K28.R moved into the normal glob (tests/k28r_*.test.mjs).
 node --import ./tests/helpers/node-hooks.mjs --test tests/review/engine.test.mjs tests/review/tokenizer.test.mjs
 
 # Five passing tests: static sweep, numerical controls, stored reference fixtures,

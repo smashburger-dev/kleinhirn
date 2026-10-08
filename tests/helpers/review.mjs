@@ -1,5 +1,6 @@
 // CPU-only review helpers. No navigator, fetch, browser or real GPU is used.
 import { readFileSync } from 'node:fs';
+import { GpuBackend } from '../../src/backend.ts';
 import { EncoderModel } from '../../src/encoder.ts';
 import { buildPlan } from '../../src/plan/build.ts';
 import { PlanExecutor } from '../../src/plan/executor.ts';
@@ -31,8 +32,8 @@ export function model(id = 'sentence-transformers/all-MiniLM-L6-v2', precision =
   // Private TS constructor is callable in JS. Tiny CPU table, real plan construction.
   const embeddings = precision === 'f32' ? new Float32Array(8 * spec.embeddingSize)
     : new Uint16Array(8 * spec.embeddingSize);
-  const weights = { tensors: gpu.weights(), embeddings, manifest: { tensors: [] } };
-  const engine = Reflect.construct(EncoderModel, [{ device: gpu.device }, weights, spec, head, task, precision]);
+  const weights = { tensors: gpu.weights(), embeddings, manifest: { tensors: [] }, gpuBytes: 0 };
+  const engine = Reflect.construct(EncoderModel, [new GpuBackend({ device: gpu.device }, weights), embeddings, spec, head, task, precision]);
   for (const length of lengths) engine.plans.set(length, engine.makePlan(length, 1));
   return { engine, gpu, destroyed, destroyedWrites, spec, head };
 }
@@ -47,34 +48,36 @@ export function executeMock(plan) {
   return { gpu, executor: new PlanExecutor(gpu.device, plan, gpu.weights()) };
 }
 
-// The scalar operations and the 64-thread tree of both LayerNorm kernels.
+// The scalar operations and the 64-thread trees of both LayerNorm kernels: the mean, then the mean
+// of (v - mean)^2 over the row held in workgroup memory (R05).
 export function normVariance(values) {
   const f = Math.fround;
+  const tree = (part) => {
+    for (let o = 32; o > 0; o >>= 1) for (let t = 0; t < o; t += 1) part[t] = f(part[t] + part[t + o]);
+    return part[0];
+  };
   const s = Array(64).fill(0), q = Array(64).fill(0);
+  for (let t = 0; t < 64; t += 1) for (let i = t; i < values.length; i += 64) s[t] = f(s[t] + f(values[i]));
+  const mean = f(tree(s) / values.length);
   for (let t = 0; t < 64; t += 1) {
     for (let i = t; i < values.length; i += 64) {
-      const v = f(values[i]);
-      s[t] = f(s[t] + v);
-      q[t] = f(q[t] + f(v * v));
+      const d = f(f(values[i]) - mean);
+      q[t] = f(q[t] + f(d * d));
     }
   }
-  for (let o = 32; o > 0; o >>= 1) {
-    for (let t = 0; t < o; t += 1) {
-      s[t] = f(s[t] + s[t + o]);
-      q[t] = f(q[t] + q[t + o]);
-    }
-  }
-  const mean = f(s[0] / values.length);
-  return f(f(q[0] / values.length) - f(mean * mean));
+  return f(tree(q) / values.length);
 }
 
 export function valueEpilogue(scores, values) {
-  // Exactly the j+3<L loop in attention and mbattention, for one output column.
+  // Exactly the j+3<L loop plus the L%4 remainder on acc0 in attention and mbattention, for one
+  // output column.
   const acc = [0, 0, 0, 0];
-  for (let j = 0; j + 3 < scores.length; j += 4) {
+  const L = scores.length;
+  for (let j = 0; j + 3 < L; j += 4) {
     for (let k = 0; k < 4; k += 1) {
       if (scores[j + k] !== 0) acc[k] += scores[j + k] * values[j + k];
     }
   }
+  for (let j = L - (L % 4); j < L; j += 1) if (scores[j] !== 0) acc[0] += scores[j] * values[j];
   return acc.reduce((a, b) => a + b, 0) / scores.reduce((a, b) => a + b, 0);
 }

@@ -1,0 +1,28 @@
+{
+ "model": "mixedbread-ai__mxbai-rerank-xsmall-v1",
+ "task": "reranking",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "458da21",
+ "dirty": false,
+ "date": "2026-10-07T12:41:51.847Z",
+ "cases": 200,
+ "metrics": {
+  "maxAbsLogitDiff": 0.000004410743713378906,
+  "meanAbsLogitDiff": 8.51750373840332e-7,
+  "bestPassageAgreement": 1,
+  "bestPassageDisagreements": []
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 554.4996249999385,
+ "runMs": 9667.380875000032,
+ "msPerItem": 48.33690437500016,
+ "wasmMemoryBytes": 124190720
+}

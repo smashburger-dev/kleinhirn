@@ -1,0 +1,30 @@
+{
+ "model": "cross-encoder__nli-distilroberta-base",
+ "task": "nli",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "6824571",
+ "dirty": false,
+ "date": "2026-10-07T23:03:40.797Z",
+ "cases": 200,
+ "metrics": {
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.000006020069122314453,
+  "meanAbsLogitDiff": 0.0000014269507179657619,
+  "disagreements": [],
+  "zeroShotAgreement": 1,
+  "zeroShotDisagreements": []
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 892.7534169999999,
+ "runMs": 2036.9020420000015,
+ "msPerItem": 10.184510210000008,
+ "wasmMemoryBytes": 209977344
+}

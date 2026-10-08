@@ -1,0 +1,185 @@
+{
+ "run_id": "r8-hc8-search-chromium-kleinhirn-RoBERTa-base-128-wasm-1791383809655",
+ "change": "r1-search",
+ "commit": "6fec030",
+ "date": "2026-10-07T14:37:10.351Z",
+ "spec": {
+  "stage": "search",
+  "browser": "chromium",
+  "engine": "kleinhirn",
+  "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+  "way": "wasm",
+  "len": "128",
+  "n": 50,
+  "warmup": 5,
+  "acc": false,
+  "keepOutputs": false,
+  "mem": false,
+  "parityFromRef": true,
+  "threads": 1
+ },
+ "browser": "chromium-151.0.7922.34",
+ "loadStart": 2.27,
+ "loadWaitedSeconds": 0,
+ "loadEnd": "2.59 3.28 3.73",
+ "stage": "done",
+ "mode": "run",
+ "engine": "kleinhirn",
+ "model": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+ "way": "wasm",
+ "len": "128",
+ "crossOriginIsolated": true,
+ "timerStepMs": 0.004999995231628418,
+ "block": 1,
+ "n": 50,
+ "warmup": 5,
+ "loadMs": 1034.8550000190735,
+ "warmupMs": [
+  380.53999999165535,
+  340.169999986887,
+  340.2300000190735,
+  344.4650000035763,
+  338.90000000596046
+ ],
+ "warmupFinite": true,
+ "latency": {
+  "n": 50,
+  "medianMs": 340.3399999886751,
+  "p95Ms": 350.8700000047684,
+  "minMs": 338.97999998927116,
+  "maxMs": 354.02499997615814,
+  "meanMs": 341.58599999785423
+ },
+ "samplesMs": [
+  340.1550000011921,
+  352.89500001072884,
+  340.35499998927116,
+  340.4150000214577,
+  340.24499997496605,
+  340.2849999964237,
+  339.88499999046326,
+  339.5600000023842,
+  339.53999999165535,
+  339.6700000166893,
+  339.9849999845028,
+  339.9249999821186,
+  340.2650000154972,
+  339.9050000011921,
+  343.80000001192093,
+  343.169999986887,
+  340.6599999964237,
+  339.83500000834465,
+  340.5600000023842,
+  339.7950000166893,
+  340.8100000023842,
+  340.375,
+  338.97999998927116,
+  339.3649999797344,
+  339.0649999976158,
+  339.625,
+  340.4050000011921,
+  340.625,
+  340.4099999964237,
+  340.17500001192093,
+  341.52499997615814,
+  344.81500002741814,
+  339.84999999403954,
+  341.044999986887,
+  339.9699999988079,
+  354.02499997615814,
+  349.3899999856949,
+  341.57499998807907,
+  350.8700000047684,
+  342.80499997735023,
+  343.42999997735023,
+  341.31999999284744,
+  342.8600000143051,
+  340.32499998807907,
+  340.080000013113,
+  339.5300000011921,
+  340.2650000154972,
+  344.7199999988079,
+  340.40000000596046,
+  339.75999999046326
+ ],
+ "info": {
+  "name": "kleinhirn",
+  "version": "muy73akh",
+  "build": "dist/kleinhirn.js",
+  "config": {
+   "precision": "f32",
+   "buckets": [
+    128
+   ],
+   "limits": "minimum",
+   "backend": "wasm",
+   "threads": 1,
+   "threadNote": null,
+   "wasmBuild": "relaxed",
+   "split": null
+  },
+  "gpuBytes": null,
+  "adapter": null
+ },
+ "accuracy": {
+  "skipped": true
+ },
+ "download": {
+  "bytes": 503351106,
+  "files": {
+   "/dist/kleinhirn.js": 1172394,
+   "/models/k28/cardiffnlp__twitter-roberta-base-sentiment-latest/f32/manifest.json": 26509,
+   "/models/k28/cardiffnlp__twitter-roberta-base-sentiment-latest/f32/tokenizer.json": 3558947,
+   "/models/k28/cardiffnlp__twitter-roberta-base-sentiment-latest/f32/weights-0.bin": 154414380,
+   "/models/k28/cardiffnlp__twitter-roberta-base-sentiment-latest/f32/weights-1.bin": 93730092,
+   "/models/k28/cardiffnlp__twitter-roberta-base-sentiment-latest/f32/weights-2.bin": 87429420,
+   "/models/k28/cardiffnlp__twitter-roberta-base-sentiment-latest/f32/weights-3.bin": 94504236,
+   "/models/k28/cardiffnlp__twitter-roberta-base-sentiment-latest/f32/weights-4.bin": 68515128
+  }
+ },
+ "engineFiles": [
+  "/dist/kleinhirn.js"
+ ],
+ "done": true,
+ "outputs": {
+  "rows": 50,
+  "nonFinite": 0
+ },
+ "vsCpuF32": {
+  "rows": 50,
+  "maxAbsDiff": 0.000010102987289428711,
+  "argmaxAgreement": 1
+ },
+ "summary": {
+  "runId": "r8-hc8-search-chromium-kleinhirn-RoBERTa-base-128-wasm-1791383809655",
+  "file": "bench/results/r8-hc8-search-chromium-kleinhirn-RoBERTa-base-128-wasm-1791383809655.json",
+  "engine": "kleinhirn",
+  "browser": "chromium-151.0.7922.34",
+  "medianMs": 340.3399999886751,
+  "p95Ms": 350.8700000047684,
+  "block": 1,
+  "n": 50,
+  "downloadMb": 480.0330219268799,
+  "loadMs": 1034.8550000190735,
+  "gpuBytes": null,
+  "engineGzipB": 46566,
+  "config": {
+   "precision": "wasm"
+  },
+  "parity": {
+   "pass": true,
+   "reasons": [],
+   "vsCpuF32": {
+    "rows": 50,
+    "maxAbsDiff": 0.000010102987289428711,
+    "argmaxAgreement": 1
+   }
+  },
+  "timerStepMs": 0.004999995231628418,
+  "isolated": true,
+  "loadStart": 2.27,
+  "peakMemMib": null,
+  "memSamples": null,
+  "error": null
+ }
+}

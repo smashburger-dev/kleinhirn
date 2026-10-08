@@ -1,0 +1,30 @@
+{
+ "model": "cross-encoder__nli-deberta-v3-small",
+ "task": "nli",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "d4e4d43",
+ "dirty": false,
+ "date": "2026-10-07T22:08:15.555Z",
+ "cases": 200,
+ "metrics": {
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.000016808509826660156,
+  "meanAbsLogitDiff": 0.0000022659264504909515,
+  "disagreements": [],
+  "zeroShotAgreement": 1,
+  "zeroShotDisagreements": []
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 1175.968583000009,
+ "runMs": 2861.4187920000113,
+ "msPerItem": 14.307093960000056,
+ "wasmMemoryBytes": 262668288
+}

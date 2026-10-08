@@ -1,0 +1,28 @@
+{
+ "model": "AnkitAI__FinSense-ModernBERT-Financial-News-Sentiment-Analysis",
+ "task": "sequence-classification",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "6824571",
+ "dirty": false,
+ "date": "2026-10-07T22:53:06.475Z",
+ "cases": 200,
+ "metrics": {
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.0003070831298828125,
+  "meanAbsLogitDiff": 0.000007074149325489998,
+  "disagreements": []
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 1254.8331670000007,
+ "runMs": 16614.704542,
+ "msPerItem": 83.07352270999999,
+ "wasmMemoryBytes": 483328000
+}

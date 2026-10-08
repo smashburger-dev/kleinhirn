@@ -13,7 +13,8 @@ const wgsl = readFileSync(new URL('../src/kernels/embln.wgsl', import.meta.url),
 
 test('embln clamps the position index to the last table row', () => {
   assert.match(wgsl, /override MAXPOS: u32/);
-  assert.match(wgsl, /min\(\(row % L\) \+ OFFSET, MAXPOS - 1u\)/);
+  assert.match(wgsl, /let prow = select\(\(row % L\) \+ OFFSET, t >> 16u, POSIDS == 1u\);/);
+  assert.match(wgsl, /min\(prow, MAXPOS - 1u\)/);
 });
 
 for (const id of PILOT_IDS.slice(0, 3)) {

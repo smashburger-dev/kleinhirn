@@ -1,0 +1,187 @@
+{
+ "run_id": "r8-hc8-search-chromium-kleinhirn-DeBERTa-v3-base-128-wasm-1791384155258",
+ "change": "r1-search",
+ "commit": "6fec030",
+ "date": "2026-10-07T14:42:42.920Z",
+ "spec": {
+  "stage": "search",
+  "browser": "chromium",
+  "engine": "kleinhirn",
+  "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+  "way": "wasm",
+  "len": "128",
+  "n": 50,
+  "warmup": 5,
+  "acc": false,
+  "keepOutputs": false,
+  "mem": false,
+  "parityFromRef": true,
+  "threads": 4
+ },
+ "browser": "chromium-151.0.7922.34",
+ "loadStart": 3.79,
+ "loadWaitedSeconds": 0,
+ "loadEnd": "4.05 3.91 3.87",
+ "stage": "done",
+ "mode": "run",
+ "engine": "kleinhirn",
+ "model": "protectai__deberta-v3-base-prompt-injection-v2",
+ "way": "wasm",
+ "len": "128",
+ "crossOriginIsolated": true,
+ "timerStepMs": 0.004999995231628418,
+ "block": 1,
+ "n": 50,
+ "warmup": 5,
+ "loadMs": 1304.3949999809265,
+ "warmupMs": [
+  115.1749999821186,
+  105.46500000357628,
+  105.20500001311302,
+  104.79499998688698,
+  103.85999998450279
+ ],
+ "warmupFinite": true,
+ "latency": {
+  "n": 50,
+  "medianMs": 105.13249999284744,
+  "p95Ms": 105.84000000357628,
+  "minMs": 103.4200000166893,
+  "maxMs": 105.85499998927116,
+  "meanMs": 105.12349999845028
+ },
+ "samplesMs": [
+  105.23500001430511,
+  105.41499999165535,
+  104.67500001192093,
+  105.38999998569489,
+  104.8250000178814,
+  104.97999998927116,
+  105.30999997258186,
+  105.36999997496605,
+  105.10499998927116,
+  104.84000000357628,
+  105.10000002384186,
+  104.8449999988079,
+  105.18999999761581,
+  105.13499999046326,
+  104.71500000357628,
+  104.90999999642372,
+  105.02499997615814,
+  105.18999999761581,
+  105.5499999821186,
+  104.34999999403954,
+  105.20999997854233,
+  103.4200000166893,
+  105.5,
+  105.22999998927116,
+  104.75500002503395,
+  105.44499999284744,
+  104.5949999988079,
+  105.1550000011921,
+  105.84000000357628,
+  105.03499999642372,
+  105.11500000953674,
+  105.44999998807907,
+  104.78499999642372,
+  105.44499999284744,
+  105.59000000357628,
+  104.94999998807907,
+  105.85499998927116,
+  104.41000002622604,
+  105.81999999284744,
+  105.09999999403954,
+  105.06999999284744,
+  105.8449999988079,
+  105.0750000178814,
+  105.625,
+  105.02000001072884,
+  104.91999998688698,
+  105.30000001192093,
+  105.14500001072884,
+  105.12999999523163,
+  105.18500000238419
+ ],
+ "info": {
+  "name": "kleinhirn",
+  "version": "muy73akh",
+  "build": "dist/kleinhirn.js",
+  "config": {
+   "precision": "f32",
+   "buckets": [
+    128
+   ],
+   "limits": "minimum",
+   "backend": "wasm",
+   "threads": 4,
+   "threadNote": null,
+   "wasmBuild": "relaxed",
+   "split": null
+  },
+  "gpuBytes": null,
+  "adapter": null
+ },
+ "accuracy": {
+  "skipped": true
+ },
+ "download": {
+  "bytes": 783726848,
+  "files": {
+   "/dist/kleinhirn.js": 1172394,
+   "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f32/manifest.json": 30854,
+   "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f32/tokenizer.json": 8657044,
+   "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f32/weights-0.bin": 184320300,
+   "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f32/weights-1.bin": 184320300,
+   "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f32/weights-2.bin": 94971180,
+   "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f32/weights-3.bin": 94491948,
+   "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f32/weights-4.bin": 94491948,
+   "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f32/weights-5.bin": 94491948,
+   "/models/k28/protectai__deberta-v3-base-prompt-injection-v2/f32/weights-6.bin": 26778932
+  }
+ },
+ "engineFiles": [
+  "/dist/kleinhirn.js"
+ ],
+ "done": true,
+ "outputs": {
+  "rows": 50,
+  "nonFinite": 0
+ },
+ "vsCpuF32": {
+  "rows": 50,
+  "maxAbsDiff": 0.000007152557373046875,
+  "argmaxAgreement": 1
+ },
+ "summary": {
+  "runId": "r8-hc8-search-chromium-kleinhirn-DeBERTa-v3-base-128-wasm-1791384155258",
+  "file": "bench/results/r8-hc8-search-chromium-kleinhirn-DeBERTa-v3-base-128-wasm-1791384155258.json",
+  "engine": "kleinhirn",
+  "browser": "chromium-151.0.7922.34",
+  "medianMs": 105.13249999284744,
+  "p95Ms": 105.84000000357628,
+  "block": 1,
+  "n": 50,
+  "downloadMb": 747.420166015625,
+  "loadMs": 1304.3949999809265,
+  "gpuBytes": null,
+  "engineGzipB": 46566,
+  "config": {
+   "precision": "wasm"
+  },
+  "parity": {
+   "pass": true,
+   "reasons": [],
+   "vsCpuF32": {
+    "rows": 50,
+    "maxAbsDiff": 0.000007152557373046875,
+    "argmaxAgreement": 1
+   }
+  },
+  "timerStepMs": 0.004999995231628418,
+  "isolated": true,
+  "loadStart": 3.79,
+  "peakMemMib": null,
+  "memSamples": null,
+  "error": null
+ }
+}

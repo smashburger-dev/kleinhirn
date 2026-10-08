@@ -29,7 +29,7 @@ fn main(
   let il = i - kbase;
   let base = (i * H + h) * L;
   let cbase = (i * H + h) * NM;
-  var m = -1e30;
+  var m = -3.40282346638528859812e38f; // lowest finite f32: below every real score (review R21)
   for (var j = lid.x; j < L; j += 64u) {
     if (mask[kbase + j] > 0.5) {
       let p = relidx[il * L + j] - MOFF;

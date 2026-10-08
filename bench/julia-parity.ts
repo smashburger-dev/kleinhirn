@@ -159,11 +159,14 @@ async function main(): Promise<void> {
   window.khJuliaParityResult = result;
   try {
     const t0 = performance.now();
+    // backend=wasm (R2 stage 4): the WASM plan executor, f32, logits only (no layer capture)
+    const wasm = params.get('backend') === 'wasm';
     const kh = await JuliaEngine.load({
       manifestUrl: `/models/julia-1/${precision}/manifest.json`,
       buckets,
-      precision: 'auto',
+      precision: wasm ? 'f32' : 'auto',
       limits,
+      ...(wasm ? { backend: 'wasm' as const } : {}),
     });
     result.info = { ...kh.info(), loadMs: performance.now() - t0 };
     result.adapterInfo = (result.info as { adapter?: unknown }).adapter;
@@ -172,7 +175,7 @@ async function main(): Promise<void> {
       '/tests/golden/julia-1/parity100.json')).json()) as { items: ParityItem[] };
     result.stage = 'logits';
     result.logits = await logitsParity(kh, golden.items, result);
-    if (precision === 'f32') {
+    if (precision === 'f32' && !wasm) {
       result.stage = 'layers';
       result.layers = await layerParity(kh, golden.items, result);
     }
@@ -183,7 +186,7 @@ async function main(): Promise<void> {
       ? {
         argmax: lg.argmaxAgreement === 1,
         logits: lg.maxAbsLogitDiff <= 0.00225,
-        layerConditioning: (ly?.pass ?? 0) === (ly?.n ?? 1),
+        ...(wasm ? {} : { layerConditioning: (ly?.pass ?? 0) === (ly?.n ?? 1) }),
       }
       : {
         argmax: lg.argmaxAgreement >= 0.99,

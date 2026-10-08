@@ -1,0 +1,74 @@
+{
+ "date": "2026-10-07",
+ "run_id": "kh-parity-small-upstream-f16-minimum-1791359154530",
+ "engine": "kleinhirn",
+ "model": "small-upstream",
+ "precision": "f16",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvg": "7.34 7.30 10.12",
+ "stage": "done",
+ "backend": "webgpu",
+ "info": {
+  "precision": "f16",
+  "buildId": "muxslfp6",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "buckets": [
+   128,
+   256
+  ],
+  "gpuBytes": 65513180,
+  "downloadBytes": 159686872,
+  "tokenizerBytes": 8341713,
+  "weightBytes": 151345159,
+  "loadTiming": {
+   "fetchMs": 282.5,
+   "bodyMs": 387.10000002384186,
+   "sha256Ms": 83.39999997615814,
+   "uploadMs": 23.600000023841858,
+   "embedJoinMs": 11.799999982118607,
+   "manifestMs": 3.7000000178813934,
+   "tokenizerMs": 145.30000001192093,
+   "planMs": 42.5
+  },
+  "loadMs": 512.2000000178814
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "corpus": {
+  "n": 968,
+  "argmaxAgreement": 0.9989669421487604,
+  "maxAbsLogitDiff": 0.023350954055786133,
+  "meanAbsLogitDiff": 0.0024698624549017957,
+  "maxAbsProbDiff": 0.005616359945323279,
+  "disagreements": [
+   907
+  ]
+ },
+ "twoTasks": {
+  "n": 40,
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.012778174132108688,
+  "meanAbsLogitDiff": 0.0018800986644167167,
+  "maxAbsProbDiff": 0.004210068669547762,
+  "disagreements": []
+ },
+ "gates": {
+  "corpusArgmax": true,
+  "corpusProbs": true,
+  "twoTaskArgmax": true,
+  "twoTaskProbs": true,
+  "longArgmax": true,
+  "longProbs": true
+ }
+}

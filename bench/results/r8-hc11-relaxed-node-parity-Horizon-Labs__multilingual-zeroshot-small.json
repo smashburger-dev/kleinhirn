@@ -1,0 +1,30 @@
+{
+ "model": "Horizon-Labs__multilingual-zeroshot-small",
+ "task": "nli",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "6824571",
+ "dirty": false,
+ "date": "2026-10-07T23:01:32.699Z",
+ "cases": 200,
+ "metrics": {
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.0000069141387939453125,
+  "meanAbsLogitDiff": 0.0000018600095063447953,
+  "disagreements": [],
+  "zeroShotAgreement": 1,
+  "zeroShotDisagreements": []
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 1922.1326670000053,
+ "runMs": 2067.554041000003,
+ "msPerItem": 10.337770205000016,
+ "wasmMemoryBytes": 198770688
+}

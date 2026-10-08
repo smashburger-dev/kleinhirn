@@ -5,14 +5,17 @@
 // "Nur Modell": golden input arrays, same single-flight rule, no tokenization.
 // Query: ?model=small-upstream|small-upstream&precision=f32|f16
 //        &backend=webgpu|wasm&goldens=texts1000_l128k16|long200_l256k16|...
+//        &bundle=ref: dist-ref/kleinhirn.js instead of dist (ABAB of two builds, R2 stage 4)
 
 // @ts-expect-error runtime bundle built by vite lib mode has no d.ts
-import { Kleinhirn, loadEngine } from '../dist/kleinhirn.js';
+import * as current from '../dist/kleinhirn.js';
 import type { SchemaInput } from '../src/tokenizer/schema.ts';
 import { compareLogits, summarizeLatency } from './metrics.ts';
 import { bitIdentical, buildDispatchProfile, type DispatchProfile, type DispatchRow } from './profile-agg.ts';
 
 const K_MAX = 16;
+// an older build of the engine, copied there for an ABAB of two commits
+const REF_BUNDLE = '/dist-ref/kleinhirn.js';
 
 interface GoldenItem {
   title: string;
@@ -79,6 +82,8 @@ async function main(): Promise<void> {
   const result: KhResult = { stage: 'boot', model, precision, backend };
   window.khResult = result;
   try {
+    const { Kleinhirn, loadEngine } = params.get('bundle') === 'ref'
+      ? await import(/* @vite-ignore */ REF_BUNDLE) : current;
     let golden: GoldenFile;
     try {
       const gres = await fetch(`/tests/golden/${model}/${goldenName}.json`);

@@ -15,6 +15,9 @@ override EPS: f32 = 1e-7;
 @group(0) @binding(4) var<storage, read> mask: array<f32>;
 @group(0) @binding(5) var<storage, read_write> out: array<{{F}}>;
 
+// The row is kept here between the passes: one read from storage, and the variance is the mean of
+// (v - mean)^2 (never negative, exactly 0 for a constant row) instead of E[v^2] - mean^2 (review R05).
+var<workgroup> xs: array<f32, N>;
 var<workgroup> red: array<f32, 64>;
 
 @compute @workgroup_size(64)
@@ -25,12 +28,11 @@ fn main(
   let row = wid.x;
   let base = row * N;
   var s = 0.0;
-  var sq = 0.0;
   for (var i = lid.x; i < N; i += 64u) {
     var v = f32(a[base + i]);
     if (MODE == 2u) { v += f32(b[base + i]); }
+    xs[i] = v;
     s += v;
-    sq += v * v;
   }
   red[lid.x] = s;
   workgroupBarrier();
@@ -40,18 +42,21 @@ fn main(
   }
   let mean = red[0] / f32(N);
   workgroupBarrier();
+  var sq = 0.0;
+  for (var i = lid.x; i < N; i += 64u) {
+    let d = xs[i] - mean;
+    sq += d * d;
+  }
   red[lid.x] = sq;
   workgroupBarrier();
   for (var o = 32u; o > 0u; o >>= 1u) {
     if (lid.x < o) { red[lid.x] += red[lid.x + o]; }
     workgroupBarrier();
   }
-  let variance = red[0] / f32(N) - mean * mean;
+  let variance = red[0] / f32(N);
   let inv = 1.0 / sqrt(variance + EPS);
   for (var i = lid.x; i < N; i += 64u) {
-    var v = f32(a[base + i]);
-    if (MODE == 2u) { v += f32(b[base + i]); }
-    var y = (v - mean) * inv * f32(weight[i]) + f32(bias[i]);
+    var y = (xs[i] - mean) * inv * f32(weight[i]) + f32(bias[i]);
     if (MODE == 1u) { y *= mask[row]; }
     out[base + i] = {{F}}(y);
   }

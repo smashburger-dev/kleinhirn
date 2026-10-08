@@ -69,13 +69,13 @@ test('workgroup storage stays within 16 KiB on every bucket', () => {
     'mmtile8.wgsl': () => (64 + 256) * 16,          // sa + sw vec4 tiles, f32 plans (K27)
     'attention.wgsl': (L: number) => L * 4 + 64 * 4, // scores[L] + red[64]
     'mbattention.wgsl': (L: number) => L * 4 + 64 * 4, // scores[L] + red[64]
-    'layernorm.wgsl': () => 64 * 4,                  // red[64]
+    'layernorm.wgsl': () => 768 * 4 + 64 * 4,        // xs[N] at the widest list model + red[64]
     'gather.wgsl': () => 0,
     'masklogits.wgsl': () => 0,
     'rope.wgsl': () => 0,
     'geglu.wgsl': () => 0,
     'add.wgsl': () => 0,
-    'embln.wgsl': () => 64 * 4,                      // red[64]
+    'embln.wgsl': () => 768 * 4 + 64 * 4,            // xs[N] at the widest list model + red[64]
     'pool.wgsl': () => 0,
   };
   for (const [name, bytes] of Object.entries(perKernel)) {

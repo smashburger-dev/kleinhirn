@@ -1,0 +1,58 @@
+{
+ "date": "2026-10-06",
+ "run_id": "kh-parity-julia-1-f16-minimum-1791302987796",
+ "engine": "kleinhirn",
+ "model": "julia-1",
+ "precision": "f16",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvg": "3.37 3.78 4.33",
+ "stage": "done",
+ "info": {
+  "precision": "f16",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "buckets": [
+   512,
+   1024
+  ],
+  "gpuBytes": 146744728,
+  "downloadBytes": 322970260,
+  "tokenizerBytes": 34363188,
+  "weightBytes": 288607072,
+  "loadTiming": {
+   "fetchMs": 456.79999999701977,
+   "bodyMs": 1097.8999999910593,
+   "sha256Ms": 158.09999999403954,
+   "uploadMs": 33.900000005960464,
+   "embedJoinMs": 21.899999991059303,
+   "manifestMs": 3.2000000029802322,
+   "tokenizerMs": 487.59999999403954,
+   "planMs": 49.19999998807907
+  },
+  "loadMs": 1053.5
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "logits": {
+  "n": 100,
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.09565329551696777,
+  "meanAbsLogitDiff": 0.012309573616625534,
+  "maxAbsProbDiff": 0.01771994034753821,
+  "disagreements": []
+ },
+ "gates": {
+  "argmax": true,
+  "probs": false
+ }
+}

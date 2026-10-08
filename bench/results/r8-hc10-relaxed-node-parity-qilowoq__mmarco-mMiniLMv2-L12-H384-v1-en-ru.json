@@ -1,0 +1,28 @@
+{
+ "model": "qilowoq__mmarco-mMiniLMv2-L12-H384-v1-en-ru",
+ "task": "sequence-classification",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "d4e4d43",
+ "dirty": false,
+ "date": "2026-10-07T22:18:23.565Z",
+ "cases": 200,
+ "metrics": {
+  "argmaxAgreement": 1,
+  "maxAbsLogitDiff": 0.000007927417755126953,
+  "meanAbsLogitDiff": 0.0000019166851416230203,
+  "disagreements": []
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 672.0015839999542,
+ "runMs": 3198.7426249999553,
+ "msPerItem": 15.993713124999777,
+ "wasmMemoryBytes": 108331008
+}

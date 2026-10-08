@@ -4,8 +4,9 @@
 // (256k x 384 exceeds the 128 MiB binding limit); sequence assembly follows
 // julia/data.py via prepareDecision.
 
-import { getDevice, scopedCall, scopedSync, type KhDevice } from './device.ts';
-import { fetchManifest, loadWeights, type LoadedWeights, type Manifest } from './weights.ts';
+import { f32ManifestUrl, loadBackend, type Backend, type PlanRunner } from './backend.ts';
+import { getDevice } from './device.ts';
+import { fetchManifest, type Manifest } from './weights.ts';
 import { assertFinite, tokenRowOffset } from './tasks.ts';
 import { BpeTokenizer } from './tokenizer/bpe.ts';
 import { BucketOverflowError } from './tokenizer/schema.ts';
@@ -13,11 +14,11 @@ import {
   prepareDecision, type JuliaInput, type JuliaRequest,
 } from './tokenizer/julia-input.ts';
 import { buildPlan } from './plan/build.ts';
-import { assertPlan, fitBatchPlan } from './plan/check.ts';
 import type { Plan } from './plan/ir.ts';
 import { PlanExecutor, type ProfileGranularity } from './plan/executor.ts';
 import { specFromJuliaManifest, type JuliaSpec } from './plan/spec.ts';
 import type { LoadOptions } from './index.ts';
+import type { Transport } from './wasm-backend.ts';
 import {
   LruCache, MAX_BATCH, batchStride, dedupMerge, juliaMergeKey,
   nextBatchSize, sortByKey,
@@ -66,46 +67,54 @@ function softmaxPrefix(logits: Float32Array, valid: number): Float32Array {
 const MAX_BATCH_PLANS = 8;
 
 export class JuliaEngine {
-  private plans = new Map<number, PlanExecutor>();
-  private batchPlans = new Map<string, PlanExecutor>();
+  private plans = new Map<number, PlanRunner>();
+  private batchPlans = new Map<string, PlanRunner>();
   // `${stride}:${asked batch}` -> the batch size that fits the device (1: none, use the bucket plan)
   private batchFit = new Map<string, number>();
   private queue: Promise<unknown> = Promise.resolve();
   private downloadBytes = 0;
   private tokenizerBytes = 0;
-  private weightGpuBytes = 0;
   private loadTiming: Record<string, number> = {};
   private cache = new LruCache<JuliaPreparedResult>(0);
 
   private constructor(
-    private kh: KhDevice,
-    private weights: LoadedWeights,
+    private backend: Backend,
+    private weights: { embeddings: Float32Array | Uint16Array },
     private tokenizer: BpeTokenizer,
     private spec: JuliaSpec,
     public readonly precision: 'f16' | 'f32',
   ) {}
 
-  static async load(options: LoadOptions, prefetched?: Manifest): Promise<JuliaEngine> {
+  // options.backend 'wasm': the plan executor of src/wasm/plan.ts in a worker on the f32 manifest
+  // (R2 stage 4); deps.wasmTransport replaces the worker (Node).
+  static async load(
+    options: LoadOptions, prefetched?: Manifest, deps: { wasmTransport?: () => Transport } = {},
+  ): Promise<JuliaEngine> {
+    const wasm = options.backend === 'wasm';
+    if (wasm && options.precision === 'f16') throw new Error('the WASM path runs the f32 manifest');
     const preferF16 = options.precision !== 'f32';
-    const base = options.manifestUrl.slice(0, options.manifestUrl.lastIndexOf('/') + 1);
+    const url = wasm ? f32ManifestUrl(options.manifestUrl) : options.manifestUrl;
+    const base = url.slice(0, url.lastIndexOf('/') + 1);
     const tMf = performance.now();
-    const manifestPromise = prefetched
+    const manifestPromise = prefetched && url === options.manifestUrl
       ? Promise.resolve(prefetched)
-      : fetchManifest(options.manifestUrl);
-    const kh = await getDevice(preferF16, options.limits !== 'default');
+      : fetchManifest(url);
+    const kh = wasm ? undefined : await getDevice(preferF16, options.limits !== 'default');
     const manifest = await manifestPromise;
     const manifestMs = performance.now() - tMf;
     const tokPromise = (async () =>
       (await fetch(base + manifest.tokenizer)).arrayBuffer())();
-    const weights = await loadWeights(kh.device, options.manifestUrl, manifest);
-    const first = weights.manifest.tensors.find((t) => t.name.endsWith('wqkv.weight'));
+    const first = manifest.tensors.find((t) => t.name.endsWith('wqkv.weight'));
     const dtype = first?.dtype ?? 'f32';
-    if (dtype === 'f16' && !kh.hasF16) {
+    if (kh && dtype === 'f16' && !kh.hasF16) {
       throw new Error('f16 manifest but adapter lacks shader-f16; use the f32 manifest');
     }
+    if (wasm && dtype !== 'f32') throw new Error(`the WASM path needs an f32 manifest, ${url} holds ${dtype}`);
     if (options.precision && options.precision !== 'auto' && options.precision !== dtype) {
       throw new Error(`precision ${options.precision} requested but manifest is ${dtype}`);
     }
+    const loaded = await loadBackend(url, manifest, kh, deps.wasmTransport);
+    const { backend } = loaded;
     const precision = dtype as 'f16' | 'f32';
     const tTok = performance.now();
     const tokBuf = await tokPromise;
@@ -113,19 +122,18 @@ export class JuliaEngine {
       JSON.parse(new TextDecoder().decode(tokBuf)));
     const tokenizerMs = performance.now() - tTok;
     const spec = manifest.encoder as unknown as JuliaSpec;
-    const engine = new JuliaEngine(kh, weights, tokenizer, spec, precision);
-    engine.downloadBytes = weights.downloadBytes + tokBuf.byteLength;
+    const engine = new JuliaEngine(backend, loaded, tokenizer, spec, precision);
+    engine.downloadBytes = loaded.downloadBytes + tokBuf.byteLength;
     engine.tokenizerBytes = tokBuf.byteLength;
-    engine.weightGpuBytes = weights.gpuBytes;
     engine.loadTiming = {
-      ...weights.timing, manifestMs, tokenizerMs, planMs: 0 };
+      ...loaded.timing, manifestMs, tokenizerMs, planMs: 0 };
     const tPlan = performance.now();
-    await scopedSync(kh, () => {
+    await backend.prepare(() => {
       for (const bucket of options.buckets ?? [512]) {
         const length = typeof bucket === 'number' ? bucket : bucket.length;
         const bucketPlan = engine.planFor(length, 1);
-        assertPlan(bucketPlan, kh.device.limits, (name) => weights.tensors.get(name)?.size);
-        engine.plans.set(length, new PlanExecutor(kh.device, bucketPlan, weights.tensors));
+        backend.check(bucketPlan);
+        engine.plans.set(length, backend.runner(bucketPlan));
       }
     });
     engine.cache = new LruCache(options.cacheSize ?? 256);
@@ -139,17 +147,17 @@ export class JuliaEngine {
       length, batch, markers: this.spec.options, f16: this.precision === 'f16' });
   }
 
-  private pickBucket(seqLen: number): PlanExecutor {
+  private pickBucket(seqLen: number): PlanRunner {
     const fits = [...this.plans.keys()].sort((a, b) => a - b)
       .find((b) => seqLen <= b);
     if (fits === undefined) {
       throw new BucketOverflowError(`seqLen ${seqLen} exceeds largest bucket`);
     }
-    return this.plans.get(fits) as PlanExecutor;
+    return this.plans.get(fits) as PlanRunner;
   }
 
   private embeddingRows(
-    input: JuliaPreparedInput, plan: PlanExecutor,
+    input: JuliaPreparedInput, plan: PlanRunner,
   ): Float32Array<ArrayBuffer> | Uint16Array<ArrayBuffer> {
     const L = plan.length;
     const hidden = this.spec.hiddenSize;
@@ -200,7 +208,7 @@ export class JuliaEngine {
   ): Promise<JuliaPreparedResult> {
     const plan = bucket === undefined
       ? this.pickBucket(input.seqLen)
-      : this.plans.get(bucket) as PlanExecutor;
+      : this.plans.get(bucket) as PlanRunner;
     if (!plan) throw new Error(`bucket ${bucket} not loaded`);
     if (input.seqLen > plan.length) {
       throw new BucketOverflowError(
@@ -210,16 +218,16 @@ export class JuliaEngine {
     const key = juliaMergeKey(input);
     const hit = capture ? undefined : this.cache.get(key);
     if (hit) return copyResult(hit);
-    return this.enqueue(() => scopedCall(this.kh, () => {
+    return this.enqueue(() => this.backend.call(() => {
       plan.upload({
         embeddings: this.embeddingRows(input, plan),
         mask: this.maskOf(input, plan.length),
         packedMarkers: this.packedMarkers(input),
         qtype: input.qtype,
       });
-      plan.submit(capture, { seqLen: input.seqLen, qtype: input.qtype });
+      plan.run(input.seqLen, capture);
     }, async () => {
-      const logits = await plan.readLogits();
+      const logits = await plan.readOutput();
       assertFinite(logits, 'logits');
       const probabilities = softmaxPrefix(
         logits, Math.min(input.markers.length, this.spec.options));
@@ -234,14 +242,14 @@ export class JuliaEngine {
   // the largest size up to B that fits the device limits (checkPlan), or
   // undefined when none does and the rows run on the bucket plan. Plans are
   // capped so distinct strides cannot grow GPU memory without bound.
-  private batchPlan(stride: number, batch: number): PlanExecutor | undefined {
+  private batchPlan(stride: number, batch: number): PlanRunner | undefined {
     const asked = `${stride}:${batch}`;
     const memo = this.batchFit.get(asked);
     if (memo === 1) return undefined;
     const known = this.batchPlans.get(`${stride}:${memo ?? batch}`);
     if (known) return known;
     const plan = memo === undefined
-      ? fitBatchPlan((b) => this.planFor(stride, b), this.kh.device.limits, batch)
+      ? this.backend.fitBatch((b) => this.planFor(stride, b), batch)
       : this.planFor(stride, memo);
     this.batchFit.set(asked, plan ? plan.batch : 1);
     if (!plan) return undefined;
@@ -250,7 +258,7 @@ export class JuliaEngine {
       this.batchPlans.get(oldest)?.destroy();
       this.batchPlans.delete(oldest);
     }
-    const p = new PlanExecutor(this.kh.device, plan, this.weights.tensors);
+    const p = this.backend.runner(plan);
     this.batchPlans.set(`${stride}:${plan.batch}`, p);
     return p;
   }
@@ -262,7 +270,7 @@ export class JuliaEngine {
   }
 
   private batchEmbeddingRows(
-    inputs: JuliaPreparedInput[], plan: PlanExecutor,
+    inputs: JuliaPreparedInput[], plan: PlanRunner,
   ): Float32Array<ArrayBuffer> | Uint16Array<ArrayBuffer> {
     const hidden = this.spec.hiddenSize;
     const emb = this.weights.embeddings;
@@ -280,7 +288,7 @@ export class JuliaEngine {
   }
 
   private batchMask(
-    inputs: JuliaPreparedInput[], plan: PlanExecutor,
+    inputs: JuliaPreparedInput[], plan: PlanRunner,
   ): Float32Array<ArrayBuffer> {
     const mask = new Float32Array(plan.length * plan.batch);
     for (const [b, input] of inputs.entries()) {
@@ -311,7 +319,7 @@ export class JuliaEngine {
     const maxSeq = Math.max(...inputs.map((i) => i.seqLen));
     const plan = bucket === undefined
       ? this.pickBucket(maxSeq)
-      : this.plans.get(bucket) as PlanExecutor;
+      : this.plans.get(bucket) as PlanRunner;
     if (!plan) throw new Error(`bucket ${bucket} not loaded`);
     if (maxSeq > plan.length) {
       throw new BucketOverflowError(
@@ -323,9 +331,9 @@ export class JuliaEngine {
     const stride = Math.min(plan.length, batchStride(maxSeq));
     return this.enqueue(async () => {
       const out: JuliaPreparedResult[] = [];
-      let bPlan: PlanExecutor | undefined;
+      let bPlan: PlanRunner | undefined;
       while (out.length < inputs.length) {
-        const piece = await scopedCall(this.kh, () => {
+        const piece = await this.backend.call(() => {
           bPlan ??= (n === 1 ? undefined : this.batchPlan(stride, n)) ?? plan;
           const rows = inputs.slice(out.length, out.length + bPlan.batch);
           this.submitPiece(rows, bPlan);
@@ -338,7 +346,7 @@ export class JuliaEngine {
   }
 
   // Upload and submit of one piece (the synchronous part of a scoped call).
-  private submitPiece(inputs: JuliaPreparedInput[], bPlan: PlanExecutor): void {
+  private submitPiece(inputs: JuliaPreparedInput[], bPlan: PlanRunner): void {
     const padded = inputs.length === bPlan.batch
       ? inputs
       : [...inputs, ...Array.from(
@@ -349,16 +357,15 @@ export class JuliaEngine {
       embeddings: this.batchEmbeddingRows(padded, bPlan),
       mask: this.batchMask(padded, bPlan),
       packedMarkers: this.batchPackedMarkers(padded),
-      qtype: 0,
+      qtype: padded.map((p) => p.qtype),
     });
-    bPlan.submit(false, {
-      seqLen: rows, qtype: padded.map((p) => p.qtype) });
+    bPlan.run(rows);
   }
 
   private async readPiece(
-    inputs: JuliaPreparedInput[], bPlan: PlanExecutor,
+    inputs: JuliaPreparedInput[], bPlan: PlanRunner,
   ): Promise<JuliaPreparedResult[]> {
-    const all = await bPlan.readLogits();
+    const all = await bPlan.readOutput();
     const K = this.spec.options;
     return inputs.map((input, i) => {
       const logits = all.slice(i * K, (i + 1) * K);
@@ -481,6 +488,7 @@ export class JuliaEngine {
     input: JuliaPreparedInput, options: { granularity?: ProfileGranularity } = {},
   ): Promise<{ times: Record<string, number>; logits: Float32Array } | null> {
     const plan = this.pickBucket(input.seqLen);
+    if (!(plan instanceof PlanExecutor)) throw new Error('GPU profiling needs the WebGPU path');
     return this.enqueue(() => plan.profileForward({
       embeddings: this.embeddingRows(input, plan),
       mask: this.maskOf(input, plan.length),
@@ -492,20 +500,18 @@ export class JuliaEngine {
   // Weights plus every live plan (a capture buffer counts once it exists);
   // an evicted batch plan is gone from the map and from the sum.
   private liveGpuBytes(): number {
-    let n = this.weightGpuBytes;
-    for (const p of this.plans.values()) n += p.gpuBytes;
-    for (const p of this.batchPlans.values()) n += p.gpuBytes;
+    let n = this.backend.weightBytes;
+    for (const p of this.plans.values()) n += p.bytes;
+    for (const p of this.batchPlans.values()) n += p.bytes;
     return n;
   }
 
   info(): Record<string, unknown> {
     return {
       precision: this.precision,
-      adapter: this.kh.adapterInfo,
-      limitsMode: this.kh.limitsMode,
-      timestamps: this.kh.hasTimestamps,
+      ...this.backend.info(),
       buckets: [...this.plans.keys()].sort((a, b) => a - b),
-      gpuBytes: this.liveGpuBytes(),
+      gpuBytes: this.backend.kind === 'webgpu' ? this.liveGpuBytes() : null,
       downloadBytes: this.downloadBytes,
       tokenizerBytes: this.tokenizerBytes,
       weightBytes: this.downloadBytes - this.tokenizerBytes,
@@ -514,6 +520,6 @@ export class JuliaEngine {
   }
 
   dispose(): void {
-    this.kh.device.destroy();
+    this.backend.dispose();
   }
 }

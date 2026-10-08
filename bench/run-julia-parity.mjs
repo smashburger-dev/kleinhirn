@@ -1,7 +1,8 @@
 // Julia 1 parity runner: visible Playwright Chromium on
 // bench/julia-parity.html, writes bench/results/<date>-parity-julia-1-
 // <precision>.json and a runs.tsv line.
-// Usage: node bench/run-julia-parity.mjs <precision> [limits] [buckets]
+// Usage: node bench/run-julia-parity.mjs <precision> [limits] [buckets] [backend]
+// backend wasm (R2 stage 4): the WASM plan executor, f32 manifest, result file ...-wasm.json.
 
 import { chromium } from '@playwright/test';
 import { execFileSync } from 'node:child_process';
@@ -16,6 +17,7 @@ const RUNS = 'data/hillclimb/runs.tsv';
 const precision = process.argv[2] ?? 'f32';
 const limits = process.argv[3] ?? 'minimum';
 const buckets = process.argv[4] ?? '';
+const backend = process.argv[5] ?? '';
 
 function gitCommit() {
   return execFileSync('git', ['rev-parse', '--short', 'HEAD'], { encoding: 'utf8' }).trim();
@@ -46,7 +48,7 @@ function finishRun(runId, fields) {
 }
 
 async function main() {
-  const runId = `kh-parity-julia-1-${precision}-${limits}-${Date.now()}`;
+  const runId = `kh-parity-julia-1-${precision}${backend ? `-${backend}` : ''}-${limits}-${Date.now()}`;
   appendRun(runId);
   mkdirSync('bench/results', { recursive: true });
   const browser = await chromium.launch({ headless: false,
@@ -58,7 +60,7 @@ async function main() {
     });
     await page.goto(
       `${BASE}/bench/julia-parity.html?precision=${precision}`
-      + `&limits=${limits}${buckets ? `&buckets=${buckets}` : ''}`);
+      + `&limits=${limits}${buckets ? `&buckets=${buckets}` : ''}${backend ? `&backend=${backend}` : ''}`);
     const t0 = Date.now();
     while (Date.now() - t0 < 900000) {
       const done = await page.evaluate(() => window.khJuliaParityResult?.done ?? false);
@@ -79,7 +81,7 @@ async function main() {
       ...result,
     };
     delete out.done;
-    const file = `bench/results/${out.date}-parity-julia-1-${precision}.json`;
+    const file = `bench/results/${out.date}-parity-julia-1-${precision}${backend ? `-${backend}` : ''}.json`;
     writeFileSync(file, JSON.stringify(out, null, 1));
     const lg = result.logits ?? {};
     finishRun(runId, {

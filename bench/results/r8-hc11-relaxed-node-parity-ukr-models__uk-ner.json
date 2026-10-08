@@ -1,0 +1,28 @@
+{
+ "model": "ukr-models__uk-ner",
+ "task": "token-classification",
+ "precision": "f32",
+ "backend": "wasm",
+ "commit": "6824571",
+ "dirty": false,
+ "date": "2026-10-07T23:06:46.178Z",
+ "cases": 200,
+ "metrics": {
+  "argmaxPerTokenAgreement": 1,
+  "argmaxPerTokenDisagreements": [],
+  "tokens": 7792,
+  "maxAbsLogitDiff": 0.00002193450927734375
+ },
+ "g4": {
+  "rows": 200,
+  "differingRows": 0
+ },
+ "gate": {
+  "pass": true,
+  "reasons": []
+ },
+ "loadMs": 850.41949999996,
+ "runMs": 3711.654416000005,
+ "msPerItem": 18.558272080000023,
+ "wasmMemoryBytes": 377749504
+}
