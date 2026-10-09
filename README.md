@@ -88,22 +88,22 @@ Microsoft. It is the baseline for every speed number below.
 
   | Model | Chromium 128 | Chromium real | Safari 128 | Safari real |
   |---|---|---|---|---|
-  | all-MiniLM-L6-v2 | 8.39 / 33.11 | 2.76 / 10.14 | 15.63 / 44.38 | 4.20 / 10.09 |
-  | twitter-roberta-base-sentiment | 54.49 / 196.18 | 18.15 / 62.83 | 78.48 / 92.50 | 23.39 / 32.02 |
-  | mmarco-mMiniLMv2-L12 | 17.91 / 69.32 | 8.55 / 30.73 | 23.08 / 50.95 | 11.04 / 28.71 |
-  | distilbert-base-uncased-sst-2 | 27.10 / 99.03 | 9.62 / 32.51 | 40.07 / 48.47 | 12.18 / 21.88 |
-  | deberta-v3-base-prompt-injection-v2 | 63.05 / 221.54 | 19.04 / 75.73 | 88.61 / 131.95 | 23.68 / 40.92 |
-  | granite-embedding-small-english-r2 | 22.24 / 82.23 | 6.48 / 22.05 | 30.19 / 37.40 | 8.50 / 14.38 |
+  | all-MiniLM-L6-v2 | 8.20 / 55.11 | 2.34 / 8.91 | 22.03 / 33.77 | 3.24 / 10.18 |
+  | twitter-roberta-base-sentiment | 46.65 / 209.03 | 15.39 / 60.29 | 73.40 / 79.69 | 22.01 / 28.71 |
+  | mmarco-mMiniLMv2-L12 | 13.34 / 63.75 | 6.73 / 28.54 | 25.64 / 26.57 | 10.05 / 25.14 |
+  | distilbert-base-uncased-sst-2 | 23.22 / 103.87 | 8.27 / 31.45 | 36.54 / 40.09 | 11.72 / 18.35 |
+  | deberta-v3-base-prompt-injection-v2 | 51.08 / 231.18 | 15.84 / 72.72 | 79.25 / 94.80 | 22.72 / 43.63 |
+  | granite-embedding-small-english-r2 | 18.57 / 80.26 | 5.39 / 19.91 | 27.69 / 37.13 | 7.62 / 12.05 |
 
-  Geometric mean of ORT / kleinhirn over the 18 cells: 3.28x in
-  Chromium (kleinhirn ahead in all 18, 2.35x to 3.98x), 1.33x in WebKit,
-  1.48x in Safari and 4.14x in a regular Firefox 157. At 512 tokens
-  Safari and WebKit are about even (0.99x to 1.29x). Same answers as
-  PyTorch in all 72 cells. Threads need a cross-origin isolated page;
-  without it both engines run one thread. Measured on 7 and 8 October
-  2026; two later kernel steps (vectorized exp, attention scores as a
-  tiled matmul) are 16 % (Chromium) and 8 % (WebKit) faster again and
-  will be in the next table.
+  Geometric mean of ORT / kleinhirn over the 18 cells: 4.20x in
+  Chromium (kleinhirn ahead in all 18, 3.59x to 6.72x), 1.53x in WebKit,
+  1.34x in Safari and 4.37x in a regular Firefox 157. At 512 tokens
+  Safari and WebKit are about even (0.98x to 1.29x). Same answers as
+  PyTorch in all 72 cells. One run per cell and engine: single cells
+  vary by 20 to 50 % between two nights, the means over 18 cells hold.
+  Threads need a cross-origin isolated page; without it both engines
+  run one thread, and kleinhirn is 1.74x faster in Chromium and 1.09x
+  in Safari. Measured 8 and 9 October 2026.
 - **Closer to the reference than ORT.** On the measurement inputs above,
   ORT's f16 output deviates 2.9 to 20.5 times more from ORT's own f32
   output than kleinhirn's f16 does. On Julia 1 the largest logit error

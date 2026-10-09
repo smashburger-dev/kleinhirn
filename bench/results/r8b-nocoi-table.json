@@ -1,0 +1,3195 @@
+{
+ "workorder": "docs/R8_WORKORDER.md",
+ "date": "2026-10-09T02:10:15.719Z",
+ "commit": "d6593f8",
+ "bundle": {
+  "raw": 180280,
+  "gzip9": 46572
+ },
+ "gate": {
+  "cells": 12,
+  "kleinhirnAhead": 0,
+  "parity": true,
+  "r8": {
+   "chromium": {
+    "cells": 18,
+    "ahead": 18,
+    "geo": 1.7388922150080166
+   },
+   "webkit": {
+    "cells": 0,
+    "geo": null
+   },
+   "safari": {
+    "cells": 18,
+    "geo": 1.0913378125876485
+   },
+   "firefox-reg": {
+    "cells": 0,
+    "geo": null
+   },
+   "pass": false
+  }
+ },
+ "rows": [
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "sentence-transformers__all-MiniLM-L6-v2",
+   "len": "128",
+   "short": "MiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 43.09999996423721,
+    "p95Ms": 44,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 195,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.9999999999993748,
+      "maxAbsDiff": 0.0000011324882507324219
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 5.103647708892822e-7,
+      "minCosine": 0.9999999999991679
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-kleinhirn-MiniLM-128-wasm-1791487759266.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 77.5,
+    "p95Ms": 78.70000004768372,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 195,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999984838,
+       "maxAbsDiff": 0.0000017285346984863281
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 2.2351741790771484e-7,
+       "minCosine": 0.9999999999998255
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-ort-MiniLM-128-wasm-std-jsep-c0-thc-1791487811011.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.798143853000154,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "sentence-transformers__all-MiniLM-L6-v2",
+   "len": "512",
+   "short": "MiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 215.60000002384186,
+    "p95Ms": 219.30000001192093,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.9999999999993748,
+      "maxAbsDiff": 0.0000011324882507324219
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 4.470348358154297e-7,
+      "minCosine": 0.999999999999451
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-kleinhirn-MiniLM-512-wasm-1791488080108.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 359.7000000178814,
+    "p95Ms": 379.19999998807907,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999984838,
+       "maxAbsDiff": 0.0000017285346984863281
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 2.2351741790771484e-7,
+       "minCosine": 0.9999999999998663
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-ort-MiniLM-512-wasm-std-jsep-c0-thc-1791487834111.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.668367346837219,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "sentence-transformers__all-MiniLM-L6-v2",
+   "len": "real",
+   "short": "MiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 10.100000023841858,
+    "p95Ms": 28.900000035762787,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.9999999999993748,
+      "maxAbsDiff": 0.0000011324882507324219
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-kleinhirn-MiniLM-real-wasm-1791488189654.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 17.75,
+    "p95Ms": 45.40000003576279,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999984724,
+       "maxAbsDiff": 0.0000017285346984863281
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-ort-MiniLM-real-wasm-std-jsep-c0-dyn-thc-1791488209019.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.7574257384257135,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+   "len": "128",
+   "short": "RoBERTa-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 308.25,
+    "p95Ms": 311.89999997615814,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 165,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000004887580871582031
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.000011295080184936523,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-kleinhirn-RoBERTa-base-128-wasm-1791488360599.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 565.6000000238419,
+    "p95Ms": 571.1999999880791,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.000010669231414794922
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.000004589557647705078,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-ort-RoBERTa-base-128-wasm-std-jsep-c0-thc-1791488217491.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.8348742904260888,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+   "len": "512",
+   "short": "RoBERTa-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 1372.4000000059605,
+    "p95Ms": 1378.8999999761581,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000004887580871582031
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.000011220574378967285,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-kleinhirn-RoBERTa-base-512-wasm-1791488392710.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 2399.2000000178814,
+    "p95Ms": 2440.300000011921,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.000010669231414794922
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.000002391636371612549,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-ort-RoBERTa-base-512-wasm-std-jsep-c0-thc-1791488522759.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.7481783736574332,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+   "len": "real",
+   "short": "RoBERTa-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 85.84999999403954,
+    "p95Ms": 1374.9000000357628,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000004887580871582031
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-kleinhirn-RoBERTa-base-real-wasm-1791489236318.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 143.59999999403954,
+    "p95Ms": 2434.599999964237,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.000011682510375976562
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-ort-RoBERTa-base-real-wasm-std-jsep-c0-dyn-thc-1791489140285.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.6726849155970822,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+   "len": "128",
+   "short": "mMiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 84.5,
+    "p95Ms": 85.5,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 197,
+      "of": 200,
+      "finite": true,
+      "queries": 17,
+      "bestPassageAgreement": 1,
+      "maxAbsLogitDiff": 0.000009775161743164062
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.000009059906005859375
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-kleinhirn-mMiniLM-128-wasm-1791489291505.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 149.7999999821186,
+    "p95Ms": 152.70000004768372,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 197,
+       "of": 200,
+       "finite": true,
+       "queries": 17,
+       "bestPassageAgreement": 1,
+       "maxAbsLogitDiff": 0.00002574920654296875
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.0000057220458984375
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-ort-mMiniLM-128-wasm-std-jsep-c0-thc-1791489305500.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.7727810648771434,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+   "len": "512",
+   "short": "mMiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 430.0999999642372,
+    "p95Ms": 448.7999999523163,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "queries": 20,
+      "bestPassageAgreement": 1,
+      "maxAbsLogitDiff": 0.000009775161743164062
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.000014066696166992188
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-kleinhirn-mMiniLM-512-wasm-1791489704463.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 726.3499999940395,
+    "p95Ms": 748.6999999880791,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "queries": 20,
+       "bestPassageAgreement": 1,
+       "maxAbsLogitDiff": 0.00002574920654296875
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.0000152587890625
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-ort-mMiniLM-512-wasm-std-jsep-c0-thc-1791489347304.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.6887933040093828,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+   "len": "real",
+   "short": "mMiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 36.599999994039536,
+    "p95Ms": 63.5,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "queries": 20,
+      "bestPassageAgreement": 1,
+      "maxAbsLogitDiff": 0.000009775161743164062
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-kleinhirn-mMiniLM-real-wasm-1791489738423.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 66.25,
+    "p95Ms": 116.5,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "queries": 20,
+       "bestPassageAgreement": 1,
+       "maxAbsLogitDiff": 0.0000247955322265625
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-ort-mMiniLM-real-wasm-std-jsep-c0-dyn-thc-1791489748610.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.8101092899122704,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+   "len": "128",
+   "short": "DistilBERT",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 155.19999998807907,
+    "p95Ms": 156.60000002384186,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 165,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000007314607501029968
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.000009179115295410156,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-kleinhirn-DistilBERT-128-wasm-1791489891626.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 276.59999999403954,
+    "p95Ms": 281.30000001192093,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.00001630932092666626
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.000006794929504394531,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-ort-DistilBERT-128-wasm-opt-jsep-c0-thc-1791489782025.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.782216494943848,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+   "len": "512",
+   "short": "DistilBERT",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 710.25,
+    "p95Ms": 776.2999999523163,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000007314607501029968
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.000008106231689453125,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-kleinhirn-DistilBERT-512-wasm-1791489924261.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 1238.1000000238419,
+    "p95Ms": 1282.6000000238419,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.00001630932092666626
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.0000021457672119140625,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-ort-DistilBERT-512-wasm-opt-jsep-c0-thc-1791490038189.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.7431890179849938,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+   "len": "real",
+   "short": "DistilBERT",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 47,
+    "p95Ms": 689.8999999761581,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000007314607501029968
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-kleinhirn-DistilBERT-real-wasm-1791491114347.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 75.24999997019768,
+    "p95Ms": 1203.2999999523163,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.000014215707778930664
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-ort-DistilBERT-real-wasm-opt-jsep-c0-dyn-thc-1791491062620.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.601063829153142,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+   "len": "128",
+   "short": "DeBERTa-v3-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 335.19999995827675,
+    "p95Ms": 348.7999999523163,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 165,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000025540590286254883
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.000008106231689453125,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-kleinhirn-DeBERTa-v3-base-128-wasm-1791491203623.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 627.1500000059605,
+    "p95Ms": 639.9000000357628,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.00003853440284729004
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.0000019073486328125,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-ort-DeBERTa-v3-base-128-wasm-opt-jsep-c0-thc-1791491238877.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.8709725539499509,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+   "len": "512",
+   "short": "DeBERTa-v3-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 1584.699999988079,
+    "p95Ms": 1619.800000011921,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000025540590286254883
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.000006198883056640625,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-kleinhirn-DeBERTa-v3-base-512-wasm-1791492285736.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 2802.2999999821186,
+    "p95Ms": 2944.800000011921,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.00003853440284729004
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.0000016689300537109375,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-ort-DeBERTa-v3-base-512-wasm-opt-jsep-c0-thc-1791491488447.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.768347321261563,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+   "len": "real",
+   "short": "DeBERTa-v3-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 88.5499999821186,
+    "p95Ms": 1576.5,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000025540590286254883
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-kleinhirn-DeBERTa-v3-base-real-wasm-1791492823976.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 159.75,
+    "p95Ms": 2857.7000000476837,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.00004240870475769043
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-ort-DeBERTa-v3-base-real-wasm-opt-jsep-c0-dyn-thc-1791492885668.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.8040655000819785,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "ibm-granite__granite-embedding-small-english-r2",
+   "len": "128",
+   "short": "granite",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 113.85000002384186,
+    "p95Ms": 115.80000001192093,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 195,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.9999999999995822,
+      "maxAbsDiff": 0.000003814697265625
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.00000476837158203125,
+      "minCosine": 0.9999999999996977
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-kleinhirn-granite-128-wasm-1791507043358.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 198.59999999403954,
+    "p95Ms": 203.60000002384186,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 195,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999991064,
+       "maxAbsDiff": 0.00000762939453125
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.000003814697265625,
+       "minCosine": 0.9999999999998344
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-ort-granite-128-wasm-opt-jsep-c0-thc-1791493041058.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.744400526591566,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "ibm-granite__granite-embedding-small-english-r2",
+   "len": "512",
+   "short": "granite",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 577.1500000059605,
+    "p95Ms": 582.1999999880791,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.9999999999995822,
+      "maxAbsDiff": 0.000003814697265625
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.00000476837158203125,
+      "minCosine": 0.9999999999995766
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-kleinhirn-granite-512-wasm-1791507161877.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 890.7000000178814,
+    "p95Ms": 891.8000000119209,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999991064,
+       "maxAbsDiff": 0.00000762939453125
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.000003814697265625,
+       "minCosine": 0.9999999999998588
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-ort-granite-512-wasm-opt-jsep-c0-thc-1791507200933.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.543272979309855,
+   "factorT1": null
+  },
+  {
+   "browser": "chromium",
+   "way": "wasm",
+   "slug": "ibm-granite__granite-embedding-small-english-r2",
+   "len": "real",
+   "short": "granite",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 23.599999994039536,
+    "p95Ms": 54.39999997615814,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.9999999999995822,
+      "maxAbsDiff": 0.000003814697265625
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "relaxed"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-kleinhirn-granite-real-wasm-1791507444312.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 40.69999998807907,
+    "p95Ms": 98,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999991709,
+       "maxAbsDiff": 0.00000762939453125
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-chromium-ort-granite-real-wasm-opt-jsep-c0-dyn-thc-1791507430417.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.724576271116879,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "sentence-transformers__all-MiniLM-L6-v2",
+   "len": "128",
+   "short": "MiniLM",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "sentence-transformers__all-MiniLM-L6-v2",
+   "len": "512",
+   "short": "MiniLM",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "sentence-transformers__all-MiniLM-L6-v2",
+   "len": "real",
+   "short": "MiniLM",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+   "len": "128",
+   "short": "RoBERTa-base",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+   "len": "512",
+   "short": "RoBERTa-base",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+   "len": "real",
+   "short": "RoBERTa-base",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+   "len": "128",
+   "short": "mMiniLM",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+   "len": "512",
+   "short": "mMiniLM",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+   "len": "real",
+   "short": "mMiniLM",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+   "len": "128",
+   "short": "DistilBERT",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+   "len": "512",
+   "short": "DistilBERT",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+   "len": "real",
+   "short": "DistilBERT",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+   "len": "128",
+   "short": "DeBERTa-v3-base",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+   "len": "512",
+   "short": "DeBERTa-v3-base",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+   "len": "real",
+   "short": "DeBERTa-v3-base",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "ibm-granite__granite-embedding-small-english-r2",
+   "len": "128",
+   "short": "granite",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "ibm-granite__granite-embedding-small-english-r2",
+   "len": "512",
+   "short": "granite",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "webkit",
+   "way": "wasm",
+   "slug": "ibm-granite__granite-embedding-small-english-r2",
+   "len": "real",
+   "short": "granite",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "sentence-transformers__all-MiniLM-L6-v2",
+   "len": "128",
+   "short": "MiniLM",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "sentence-transformers__all-MiniLM-L6-v2",
+   "len": "512",
+   "short": "MiniLM",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "sentence-transformers__all-MiniLM-L6-v2",
+   "len": "real",
+   "short": "MiniLM",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+   "len": "128",
+   "short": "RoBERTa-base",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+   "len": "512",
+   "short": "RoBERTa-base",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+   "len": "real",
+   "short": "RoBERTa-base",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+   "len": "128",
+   "short": "mMiniLM",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+   "len": "512",
+   "short": "mMiniLM",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+   "len": "real",
+   "short": "mMiniLM",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+   "len": "128",
+   "short": "DistilBERT",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+   "len": "512",
+   "short": "DistilBERT",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+   "len": "real",
+   "short": "DistilBERT",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+   "len": "128",
+   "short": "DeBERTa-v3-base",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+   "len": "512",
+   "short": "DeBERTa-v3-base",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+   "len": "real",
+   "short": "DeBERTa-v3-base",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "ibm-granite__granite-embedding-small-english-r2",
+   "len": "128",
+   "short": "granite",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "ibm-granite__granite-embedding-small-english-r2",
+   "len": "512",
+   "short": "granite",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "firefox",
+   "way": "wasm",
+   "slug": "ibm-granite__granite-embedding-small-english-r2",
+   "len": "real",
+   "short": "granite",
+   "kleinhirn": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ort": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": null,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "sentence-transformers__all-MiniLM-L6-v2",
+   "len": "128",
+   "short": "MiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 71.5,
+    "p95Ms": 71.6,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 195,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.999999999999157,
+      "maxAbsDiff": 0.0000013709068298339844
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 4.76837158203125e-7,
+      "minCosine": 0.9999999999991067
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-kleinhirn-MiniLM-128-wasm-1791507451655.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 73.6,
+    "p95Ms": 76.4,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 195,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999984838,
+       "maxAbsDiff": 0.0000017285346984863281
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 2.2351741790771484e-7,
+       "minCosine": 0.9999999999998255
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-ort-MiniLM-128-wasm-std-jsep-c0-thc-1791507461396.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.0293706293706293,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "sentence-transformers__all-MiniLM-L6-v2",
+   "len": "512",
+   "short": "MiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 338.6,
+    "p95Ms": 339,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.999999999999157,
+      "maxAbsDiff": 0.0000013709068298339844
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 4.76837158203125e-7,
+      "minCosine": 0.9999999999994449
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-kleinhirn-MiniLM-512-wasm-1791507578460.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 345.5,
+    "p95Ms": 346.5,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999984838,
+       "maxAbsDiff": 0.0000017285346984863281
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 2.2351741790771484e-7,
+       "minCosine": 0.9999999999998663
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-ort-MiniLM-512-wasm-std-jsep-c0-thc-1791507485016.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.0203780271707028,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "sentence-transformers__all-MiniLM-L6-v2",
+   "len": "real",
+   "short": "MiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 19.049999999999997,
+    "p95Ms": 32,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.999999999999157,
+      "maxAbsDiff": 0.0000013709068298339844
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-kleinhirn-MiniLM-real-wasm-1791507603839.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 20.950000000000003,
+    "p95Ms": 35.7,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999984724,
+       "maxAbsDiff": 0.0000017285346984863281
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-ort-MiniLM-real-wasm-std-jsep-c0-dyn-thc-1791507611199.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.0997375328083994,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+   "len": "128",
+   "short": "RoBERTa-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 530.4,
+    "p95Ms": 531.4,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 165,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000006586313247680664
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.000009804964065551758,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-kleinhirn-RoBERTa-base-128-wasm-1791507744274.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 541.6,
+    "p95Ms": 542,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.000010669231414794922
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.000004589557647705078,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-ort-RoBERTa-base-128-wasm-std-jsep-c0-thc-1791507620923.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.0211161387631977,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+   "len": "512",
+   "short": "RoBERTa-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 2322.1,
+    "p95Ms": 2505.6,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000006586313247680664
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.000008732080459594727,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-kleinhirn-RoBERTa-base-512-wasm-1791507797703.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 2326.3,
+    "p95Ms": 2339,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.000010669231414794922
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.000002391636371612549,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-ort-RoBERTa-base-512-wasm-std-jsep-c0-thc-1791508019744.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.0018087076353301,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+   "len": "real",
+   "short": "RoBERTa-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 143.39999999999998,
+    "p95Ms": 2135.1,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000006586313247680664
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-kleinhirn-RoBERTa-base-real-wasm-1791508848288.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 150.2,
+    "p95Ms": 2182.4,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.000011682510375976562
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-ort-RoBERTa-base-real-wasm-std-jsep-c0-dyn-thc-1791508753069.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.0474198047419805,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+   "len": "128",
+   "short": "mMiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 139.9,
+    "p95Ms": 140.1,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 197,
+      "of": 200,
+      "finite": true,
+      "queries": 17,
+      "bestPassageAgreement": 1,
+      "maxAbsLogitDiff": 0.000011682510375976562
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.00000858306884765625
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-kleinhirn-mMiniLM-128-wasm-1791508937928.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 144.1,
+    "p95Ms": 148.4,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 197,
+       "of": 200,
+       "finite": true,
+       "queries": 17,
+       "bestPassageAgreement": 1,
+       "maxAbsLogitDiff": 0.00002574920654296875
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.0000057220458984375
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-ort-mMiniLM-128-wasm-std-jsep-c0-thc-1791508959331.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.0300214438884916,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+   "len": "512",
+   "short": "mMiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 674.4,
+    "p95Ms": 674.8,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "queries": 20,
+      "bestPassageAgreement": 1,
+      "maxAbsLogitDiff": 0.000011682510375976562
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.00001621246337890625
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-kleinhirn-mMiniLM-512-wasm-1791509179042.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 684,
+    "p95Ms": 686.9,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "queries": 20,
+       "bestPassageAgreement": 1,
+       "maxAbsLogitDiff": 0.00002574920654296875
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.0000152587890625
+      }
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-ort-mMiniLM-512-wasm-std-jsep-c0-thc-1791508999883.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.0142348754448398,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+   "len": "real",
+   "short": "mMiniLM",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 58.2,
+    "p95Ms": 96.5,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "queries": 20,
+      "bestPassageAgreement": 1,
+      "maxAbsLogitDiff": 0.000011682510375976562
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-kleinhirn-mMiniLM-real-wasm-1791509230550.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 145.25,
+    "p95Ms": 200.6,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "queries": 20,
+       "bestPassageAgreement": 1,
+       "maxAbsLogitDiff": 0.00002574920654296875
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "std",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-ort-mMiniLM-real-wasm-std-jsep-c0-thc-1791509245929.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 2.495704467353952,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+   "len": "128",
+   "short": "DistilBERT",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 261,
+    "p95Ms": 262.3,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 165,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.0000050067901611328125
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.00001704692840576172,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-kleinhirn-DistilBERT-128-wasm-1791509422883.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 271.3,
+    "p95Ms": 271.6,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.00001630932092666626
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.000006794929504394531,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-ort-DistilBERT-128-wasm-opt-jsep-c0-thc-1791509284555.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.0394636015325671,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+   "len": "512",
+   "short": "DistilBERT",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 1137.3,
+    "p95Ms": 1143.1,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.0000050067901611328125
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.00000667572021484375,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-kleinhirn-DistilBERT-512-wasm-1791509570304.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 1184.7,
+    "p95Ms": 1191,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.00001630932092666626
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.0000021457672119140625,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-ort-DistilBERT-512-wasm-opt-jsep-c0-thc-1791509696934.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.0416776576101294,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "distilbert__distilbert-base-uncased-finetuned-sst-2-english",
+   "len": "real",
+   "short": "DistilBERT",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 74.15,
+    "p95Ms": 1077.2,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.0000050067901611328125
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-kleinhirn-DistilBERT-real-wasm-1791510052215.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 77.4,
+    "p95Ms": 1097,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.000014215707778930664
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-ort-DistilBERT-real-wasm-opt-jsep-c0-dyn-thc-1791510001223.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.0438300741739717,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+   "len": "128",
+   "short": "DeBERTa-v3-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 565.3,
+    "p95Ms": 571.5,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 165,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000022567808628082275
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.0000073909759521484375,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-kleinhirn-DeBERTa-v3-base-128-wasm-1791510099678.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 607.7,
+    "p95Ms": 613.4,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 165,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.00003853440284729004
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.0000019073486328125,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-ort-DeBERTa-v3-base-128-wasm-opt-jsep-c0-thc-1791510155125.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.075004422430568,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+   "len": "512",
+   "short": "DeBERTa-v3-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 2664.7,
+    "p95Ms": 2674.9,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000022567808628082275
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.0000064373016357421875,
+      "argmaxAgreement": 1
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-kleinhirn-DeBERTa-v3-base-512-wasm-1791510983920.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 2685.4,
+    "p95Ms": 2704,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.00003853440284729004
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.0000016689300537109375,
+       "argmaxAgreement": 1
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-ort-DeBERTa-v3-base-512-wasm-opt-jsep-c0-thc-1791510294776.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.0077682290689385,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "protectai__deberta-v3-base-prompt-injection-v2",
+   "len": "real",
+   "short": "DeBERTa-v3-base",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 144.05,
+    "p95Ms": 2326.6,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "argmaxAgreement": 1,
+      "maxAbsLogitDiff": 0.000022567808628082275
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-kleinhirn-DeBERTa-v3-base-real-wasm-1791511228071.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 166.35000000000002,
+    "p95Ms": 2434.1,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "argmaxAgreement": 1,
+       "maxAbsLogitDiff": 0.00004240870475769043
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-ort-DeBERTa-v3-base-real-wasm-opt-jsep-c0-dyn-thc-1791511325731.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.154807358556057,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "ibm-granite__granite-embedding-small-english-r2",
+   "len": "128",
+   "short": "granite",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 184.6,
+    "p95Ms": 185.1,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 195,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.9999999999995317,
+      "maxAbsDiff": 0.000003814697265625
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.00000476837158203125,
+      "minCosine": 0.9999999999996353
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-kleinhirn-granite-128-wasm-1791511484655.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 186.1,
+    "p95Ms": 189.3,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 195,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999991064,
+       "maxAbsDiff": 0.00000762939453125
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.000003814697265625,
+       "minCosine": 0.9999999999998344
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-ort-granite-128-wasm-opt-jsep-c0-thc-1791511432752.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.0081256771397618,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "ibm-granite__granite-embedding-small-english-r2",
+   "len": "512",
+   "short": "granite",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 890.2,
+    "p95Ms": 892.6,
+    "n": 50,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.9999999999995202,
+      "maxAbsDiff": 0.000003814697265625
+     },
+     "vsCpuF32": {
+      "rows": 50,
+      "maxAbsDiff": 0.00000476837158203125,
+      "minCosine": 0.9999999999988473
+     }
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-kleinhirn-granite-512-wasm-1791511503789.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 849.6,
+    "p95Ms": 856.1,
+    "n": 50,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999991064,
+       "maxAbsDiff": 0.00000762939453125
+      },
+      "vsCpuF32": {
+       "rows": 50,
+       "maxAbsDiff": 0.000003814697265625,
+       "minCosine": 0.9999999999998588
+      }
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-ort-granite-512-wasm-opt-jsep-c0-thc-1791511565313.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 0.9543922713996854,
+   "factorT1": null
+  },
+  {
+   "browser": "safari",
+   "way": "wasm",
+   "slug": "ibm-granite__granite-embedding-small-english-r2",
+   "len": "real",
+   "short": "granite",
+   "kleinhirn": {
+    "status": "ok",
+    "medianMs": 42.650000000000006,
+    "p95Ms": 80.9,
+    "n": 200,
+    "parity": {
+     "pass": true,
+     "reasons": [],
+     "accuracy": {
+      "cases": 200,
+      "of": 200,
+      "finite": true,
+      "minCosine": 0.9999999999995202,
+      "maxAbsDiff": 0.000003814697265625
+     },
+     "vsCpuF32": null
+    },
+    "config": {
+     "precision": "wasm",
+     "threads": 1,
+     "threadNote": "no SharedArrayBuffer",
+     "wasmBuild": "plain"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-kleinhirn-granite-real-wasm-1791511803944.json"
+   },
+   "ort": {
+    "status": "ok",
+    "medianMs": 46.85,
+    "p95Ms": 83.6,
+    "n": 200,
+    "parity": {
+     "report": {
+      "accuracy": {
+       "cases": 200,
+       "of": 200,
+       "finite": true,
+       "minCosine": 0.9999999999991709,
+       "maxAbsDiff": 0.00000762939453125
+      },
+      "vsCpuF32": null
+     }
+    },
+    "config": {
+     "graph": "opt",
+     "build": "jsep",
+     "capture": false,
+     "dynamic": true,
+     "threads": "hc"
+    },
+    "peakMemMib": null,
+    "file": "bench/results/r8b-nocoi-table-safari-ort-granite-real-wasm-opt-jsep-c0-dyn-thc-1791511788637.json"
+   },
+   "ortT1": {
+    "status": "fehlt: nicht gelaufen"
+   },
+   "factorBest": 1.0984759671746775,
+   "factorT1": null
+  }
+ ]
+}
