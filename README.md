@@ -99,7 +99,9 @@ Microsoft. It is the baseline for every speed number below.
   Chromium (kleinhirn ahead in all 18, 3.59x to 6.72x), 1.53x in WebKit,
   1.34x in Safari and 4.37x in a regular Firefox 157. At 512 tokens
   Safari and WebKit are about even (0.98x to 1.29x). Same answers as
-  PyTorch in all 72 cells. One run per cell and engine: single cells
+  PyTorch in all 72 cells. At real text length alone (6 cells per
+  browser): 4.00x Chromium, 2.01x WebKit, 1.91x Safari, 4.43x Firefox.
+  One run per cell and engine: single cells
   vary by 20 to 50 % between two nights, the means over 18 cells hold.
   Threads need a cross-origin isolated page; without it both engines
   run one thread, and kleinhirn is 1.74x faster in Chromium and 1.09x
