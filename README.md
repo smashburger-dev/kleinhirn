@@ -332,6 +332,11 @@ load option `words` picks how it arrives:
 - `'progressive'`: like `'rows'` at first, then the whole table in the
   background; after that it computes like `'full'`.
 
+Ready-made weights for the six bench models, GLiNER2.5 small, base and
+multi and Julia 1 (f16 and f32, every mode) are on Hugging Face in
+[smashburger-dev/kleinhirn-weights](https://huggingface.co/smashburger-dev/kleinhirn-weights),
+one folder per source model; pin a revision in the manifest URL.
+
 Row requests show the host which tokens a text contains. Use `'rows'`
 and `'progressive'` for public text or a host you control; keep
 `'full'` for private text. A host that ignores Range gets the full

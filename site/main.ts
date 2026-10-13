@@ -8,9 +8,9 @@ import { STAGE_ORDER, gateRule, parityPasses, type StageName } from './gates.ts'
 
 const SCHEMA = 'kleinhirn-device-result/1';
 // Pin of the weights repository revision (commit of smashburger-dev/kleinhirn-weights).
-const REVISION = 'f664c7a5ad15c81f1258e72c8f90925b64711d1d';
+const REVISION = '051494e67d62e43569a9773787042fbff9d296d6';
 const DEFAULT_WEIGHTS =
-  `https://huggingface.co/smashburger-dev/kleinhirn-weights/resolve/${REVISION}/small-upstream/`;
+  `https://huggingface.co/smashburger-dev/kleinhirn-weights/resolve/${REVISION}/fastino/gliner2.5-small-v1/`;
 const LOCAL_WEIGHTS = '/models/small-upstream/';
 const BUCKETS = [128, 256];
 const BUCKET_KEYS = ['L128', 'L256'] as const;

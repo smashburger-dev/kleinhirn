@@ -1,0 +1,1 @@
+const e=self;e.onmessage=async t=>{let{module:n,memory:r,ctl:i,tid:a}=t.data,o=await WebAssembly.instantiate(n,{env:{memory:r,abort:()=>{throw Error(`wasm abort`)}}});e.postMessage(`ready`),o.exports.helper(i,a),e.postMessage(`stopped`)};
