@@ -2,17 +2,18 @@
 // first half), f32-only capture (R19), finite outputs. The R16 and R06 tests are
 // the review tests unchanged; R19 additionally expects the throw. The mock's
 // error scopes are plain functions that tests replace to inject errors.
-import { GpuBackend } from '../src/backend.ts';
+import { GpuBackend } from '../src/webgpu-backend.ts';
 import { test } from 'node:test';
 import { readFileSync } from 'node:fs';
 import assert from 'node:assert/strict';
 import { buildManifest, F16RangeError } from '../src/convert/manifest.ts';
-import { Kleinhirn } from '../src/index.ts';
+import { Kleinhirn } from '../src/gliner.ts';
 import { JuliaEngine } from '../src/julia.ts';
 import { LruCache } from '../src/cache.ts';
 import { getDevice, scopedCall } from '../src/device.ts';
 import { assertFinite } from '../src/tasks.ts';
 import { model, planOf, executeMock } from './helpers/review.mjs';
+import { legacyTable } from '../src/words.ts';
 import { loadTiny } from './helpers/tiny-model.mjs';
 import { createMockGpu } from './helpers/mock-gpu.ts';
 
@@ -54,7 +55,10 @@ test('R06 f16 converter must reject finite weights that become Inf', async () =>
 });
 
 test('R06 converter: the f16 range, non-finite sources and the f32 manifest', async () => {
-  const one = (data, dtype, name = 'head.classifier.bias') => buildManifest([{ name, shape: [data.length], data }], dtype, {});
+  // R4: buildManifest needs the word table (words.bin); a 4x2 table is enough for these checks
+  const table = { name: 'embeddings.word.weight', shape: [4, 2], data: Float32Array.of(0, 1, 2, 3, 4, 5, 6, 7) };
+  const one = (data, dtype, name = 'head.classifier.bias') => buildManifest(
+    [{ name, shape: [data.length], data }, table], dtype, {});
   // 65504 is the largest f16; 65519 still rounds to it, 65520 rounds to Inf
   await one(Float32Array.of(65504, -65504, 65519, 0, 1e-8), 'f16');
   await assert.rejects(() => one(Float32Array.of(1, 65520), 'f16', 'layers.0.ffn_in.weight'),
@@ -245,14 +249,14 @@ test('finite outputs: NaN and Inf throw before softmax, argmax or the cache', as
     readOutput: async () => Float32Array.of(v, 0, 0, 0),
   });
   const device = createMockGpu().device;
-  const kh = Reflect.construct(Kleinhirn, [new GpuBackend({ device }, { gpuBytes: 0 }), {}, null, {}, 1, 'f32']);
+  const kh = Reflect.construct(Kleinhirn, [new GpuBackend({ device }, { gpuBytes: 0 }), legacyTable(new ArrayBuffer(0), 'f32', 1), null, {}, 1, 'f32']);
   kh.cache = new LruCache(4);
   kh.plans.set(128, plan(NaN));
   kh.embeddingRows = () => new Float32Array(1);
   const input = { inputIds: Int32Array.of(0), seqLen: 1, markerIndices: Int32Array.of(0), markerMask: Float32Array.of(1), markerGroups: Int32Array.of(0) };
   await assert.rejects(() => kh.runPrepared(input), /logits: 1 of 4 values are not finite/);
   assert.equal(kh.cache.size, 0);
-  const julia = Reflect.construct(JuliaEngine, [new GpuBackend({ device }, { gpuBytes: 0 }), {}, null, { options: 4 }, 'f32']);
+  const julia = Reflect.construct(JuliaEngine, [new GpuBackend({ device }, { gpuBytes: 0 }), legacyTable(new ArrayBuffer(0), 'f32', 1), null, { options: 4 }, 'f32']);
   julia.cache = new LruCache(4);
   julia.plans.set(128, plan(Infinity));
   julia.embeddingRows = () => new Float32Array(1);

@@ -1,11 +1,12 @@
 // CPU-only review helpers. No navigator, fetch, browser or real GPU is used.
 import { readFileSync } from 'node:fs';
-import { GpuBackend } from '../../src/backend.ts';
+import { GpuBackend } from '../../src/webgpu-backend.ts';
 import { EncoderModel } from '../../src/encoder.ts';
 import { buildPlan } from '../../src/plan/build.ts';
 import { PlanExecutor } from '../../src/plan/executor.ts';
 import { createMockGpu, installGpuGlobals } from './mock-gpu.ts';
 import { pilotSpec } from './pilot.ts';
+import { legacyTable } from '../../src/words.ts';
 
 installGpuGlobals();
 export const source = (path) => readFileSync(path, 'utf8');
@@ -32,8 +33,9 @@ export function model(id = 'sentence-transformers/all-MiniLM-L6-v2', precision =
   // Private TS constructor is callable in JS. Tiny CPU table, real plan construction.
   const embeddings = precision === 'f32' ? new Float32Array(8 * spec.embeddingSize)
     : new Uint16Array(8 * spec.embeddingSize);
-  const weights = { tensors: gpu.weights(), embeddings, manifest: { tensors: [] }, gpuBytes: 0 };
-  const engine = Reflect.construct(EncoderModel, [new GpuBackend({ device: gpu.device }, weights), embeddings, spec, head, task, precision]);
+  const weights = { tensors: gpu.weights(), manifest: { tensors: [] }, gpuBytes: 0 };
+  const words = legacyTable(embeddings.buffer, precision, spec.embeddingSize);
+  const engine = Reflect.construct(EncoderModel, [new GpuBackend({ device: gpu.device }, weights), words, spec, head, task, precision]);
   for (const length of lengths) engine.plans.set(length, engine.makePlan(length, 1));
   return { engine, gpu, destroyed, destroyedWrites, spec, head };
 }

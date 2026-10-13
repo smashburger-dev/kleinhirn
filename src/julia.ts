@@ -4,20 +4,22 @@
 // (256k x 384 exceeds the 128 MiB binding limit); sequence assembly follows
 // julia/data.py via prepareDecision.
 
-import { f32ManifestUrl, loadBackend, type Backend, type PlanRunner } from './backend.ts';
+import { f32ManifestUrl, loadBackend, webgpuChunk, type Backend, type PlanRunner } from './backend.ts';
 import { getDevice } from './device.ts';
 import { fetchManifest, type Manifest } from './weights.ts';
-import { assertFinite, tokenRowOffset } from './tasks.ts';
+import { parseTokenizerCompact } from './tokenizer/bin.ts';
+import { assertFinite } from './tasks.ts';
 import { BpeTokenizer } from './tokenizer/bpe.ts';
-import { BucketOverflowError } from './tokenizer/schema.ts';
+import { ensureRows, wordsInfo, type RowArray, type WordsMode, type WordTable } from './words.ts';
+import { BucketOverflowError } from './errors.ts';
 import {
   prepareDecision, type JuliaInput, type JuliaRequest,
 } from './tokenizer/julia-input.ts';
 import { buildPlan } from './plan/build.ts';
 import type { Plan } from './plan/ir.ts';
-import { PlanExecutor, type ProfileGranularity } from './plan/executor.ts';
+import type { PlanExecutor, ProfileGranularity } from './plan/executor.ts';
 import { specFromJuliaManifest, type JuliaSpec } from './plan/spec.ts';
-import type { LoadOptions } from './index.ts';
+import type { LoadOptions } from './gliner.ts';
 import type { Transport } from './wasm-backend.ts';
 import {
   LruCache, MAX_BATCH, batchStride, dedupMerge, juliaMergeKey,
@@ -74,12 +76,13 @@ export class JuliaEngine {
   private queue: Promise<unknown> = Promise.resolve();
   private downloadBytes = 0;
   private tokenizerBytes = 0;
+  private wordsMode: WordsMode = 'full';
   private loadTiming: Record<string, number> = {};
   private cache = new LruCache<JuliaPreparedResult>(0);
 
   private constructor(
     private backend: Backend,
-    private weights: { embeddings: Float32Array | Uint16Array },
+    private words: WordTable,
     private tokenizer: BpeTokenizer,
     private spec: JuliaSpec,
     public readonly precision: 'f16' | 'f32',
@@ -92,6 +95,8 @@ export class JuliaEngine {
   ): Promise<JuliaEngine> {
     const wasm = options.backend === 'wasm';
     if (wasm && options.precision === 'f16') throw new Error('the WASM path runs the f32 manifest');
+    // a failed import surfaces at the await in loadBackend, not as an unhandled rejection here
+    if (!wasm) webgpuChunk().catch(() => undefined);
     const preferF16 = options.precision !== 'f32';
     const url = wasm ? f32ManifestUrl(options.manifestUrl) : options.manifestUrl;
     const base = url.slice(0, url.lastIndexOf('/') + 1);
@@ -113,18 +118,19 @@ export class JuliaEngine {
     if (options.precision && options.precision !== 'auto' && options.precision !== dtype) {
       throw new Error(`precision ${options.precision} requested but manifest is ${dtype}`);
     }
-    const loaded = await loadBackend(url, manifest, kh, deps.wasmTransport);
+    const loaded = await loadBackend(url, manifest, kh, deps.wasmTransport, undefined, options.words);
     const { backend } = loaded;
     const precision = dtype as 'f16' | 'f32';
     const tTok = performance.now();
     const tokBuf = await tokPromise;
     const tokenizer = new BpeTokenizer(
-      JSON.parse(new TextDecoder().decode(tokBuf)));
+      await parseTokenizerCompact(new Uint8Array(tokBuf)) as unknown as ConstructorParameters<typeof BpeTokenizer>[0]);
     const tokenizerMs = performance.now() - tTok;
     const spec = manifest.encoder as unknown as JuliaSpec;
-    const engine = new JuliaEngine(backend, loaded, tokenizer, spec, precision);
+    const engine = new JuliaEngine(backend, loaded.words, tokenizer, spec, precision);
     engine.downloadBytes = loaded.downloadBytes + tokBuf.byteLength;
     engine.tokenizerBytes = tokBuf.byteLength;
+    engine.wordsMode = options.words ?? 'full';
     engine.loadTiming = {
       ...loaded.timing, manifestMs, tokenizerMs, planMs: 0 };
     const tPlan = performance.now();
@@ -156,25 +162,11 @@ export class JuliaEngine {
     return this.plans.get(fits) as PlanRunner;
   }
 
-  private embeddingRows(
-    input: JuliaPreparedInput, plan: PlanRunner,
-  ): Float32Array<ArrayBuffer> | Uint16Array<ArrayBuffer> {
-    const L = plan.length;
+  private embeddingRows(input: JuliaPreparedInput, plan: PlanRunner): RowArray {
     const hidden = this.spec.hiddenSize;
-    if (this.weights.embeddings instanceof Float32Array) {
-      const rows = new Float32Array(L * hidden);
-      const emb = this.weights.embeddings;
-      for (let i = 0; i < input.seqLen; i += 1) {
-        const off = tokenRowOffset(input.inputIds[i], hidden, emb.length);
-        rows.set(emb.subarray(off, off + hidden), i * hidden);
-      }
-      return rows;
-    }
-    const rows = new Uint16Array(L * hidden);
-    const emb = this.weights.embeddings;
+    const rows = this.words.alloc(plan.length * hidden);
     for (let i = 0; i < input.seqLen; i += 1) {
-      const off = tokenRowOffset(input.inputIds[i], hidden, emb.length);
-      rows.set(emb.subarray(off, off + hidden), i * hidden);
+      this.words.copyRow(input.inputIds[i], rows, i * hidden);
     }
     return rows;
   }
@@ -218,6 +210,8 @@ export class JuliaEngine {
     const key = juliaMergeKey(input);
     const hit = capture ? undefined : this.cache.get(key);
     if (hit) return copyResult(hit);
+    const pending = ensureRows(this.words, [input]);
+    if (pending) await pending;
     return this.enqueue(() => this.backend.call(() => {
       plan.upload({
         embeddings: this.embeddingRows(input, plan),
@@ -269,19 +263,13 @@ export class JuliaEngine {
     };
   }
 
-  private batchEmbeddingRows(
-    inputs: JuliaPreparedInput[], plan: PlanRunner,
-  ): Float32Array<ArrayBuffer> | Uint16Array<ArrayBuffer> {
+  private batchEmbeddingRows(inputs: JuliaPreparedInput[], plan: PlanRunner): RowArray {
     const hidden = this.spec.hiddenSize;
-    const emb = this.weights.embeddings;
-    const out = emb instanceof Float32Array
-      ? new Float32Array(plan.length * plan.batch * hidden)
-      : new Uint16Array(plan.length * plan.batch * hidden);
+    const out = this.words.alloc(plan.length * plan.batch * hidden);
     for (const [b, input] of inputs.entries()) {
       const base = b * plan.length * hidden;
       for (let i = 0; i < input.seqLen; i += 1) {
-        const off = tokenRowOffset(input.inputIds[i], hidden, emb.length);
-        out.set(emb.subarray(off, off + hidden), base + i * hidden);
+        this.words.copyRow(input.inputIds[i], out, base + i * hidden);
       }
     }
     return out;
@@ -329,6 +317,8 @@ export class JuliaEngine {
     // B=1 runs on the bucket plan like the single path and dispatches
     // only the real rows; B>1 packs at the quantized stride.
     const stride = Math.min(plan.length, batchStride(maxSeq));
+    const pending = ensureRows(this.words, inputs);
+    if (pending) await pending;
     return this.enqueue(async () => {
       const out: JuliaPreparedResult[] = [];
       let bPlan: PlanRunner | undefined;
@@ -488,7 +478,10 @@ export class JuliaEngine {
     input: JuliaPreparedInput, options: { granularity?: ProfileGranularity } = {},
   ): Promise<{ times: Record<string, number>; logits: Float32Array } | null> {
     const plan = this.pickBucket(input.seqLen);
+    const { PlanExecutor } = await webgpuChunk();
     if (!(plan instanceof PlanExecutor)) throw new Error('GPU profiling needs the WebGPU path');
+    const pending = ensureRows(this.words, [input]);
+    if (pending) await pending;
     return this.enqueue(() => plan.profileForward({
       embeddings: this.embeddingRows(input, plan),
       mask: this.maskOf(input, plan.length),
@@ -514,6 +507,7 @@ export class JuliaEngine {
       gpuBytes: this.backend.kind === 'webgpu' ? this.liveGpuBytes() : null,
       downloadBytes: this.downloadBytes,
       tokenizerBytes: this.tokenizerBytes,
+      words: wordsInfo(this.words, this.wordsMode),
       weightBytes: this.downloadBytes - this.tokenizerBytes,
       loadTiming: this.loadTiming,
     };

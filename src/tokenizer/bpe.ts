@@ -3,14 +3,24 @@
 // split on the replacement char), BPE model with byte_fallback and fuse_unk.
 // encodeIds matches tokenizer(text, add_special_tokens=False); the Julia
 // sequence layout inserts <bos>/<sep>/<mask> ids itself.
+// The merge loop works on vocab ids. Merged ids are resolved on first use (a merge that never
+// fires costs no string), so the constructor builds no string per merge.
+
+import { asDict, asMergePairs, idAt, Vocab } from './bin.ts';
+import { PairTable } from './pairs.ts';
 
 interface AddedToken { id: number; content: string; special: boolean }
 interface TokenizerJson {
-  model: { vocab: Record<string, number>; merges: [string, string][]; unk_token?: string };
+  // compact (parseTokenizerCompact) or the {token: id} object of tokenizer.json
+  model: { vocab: unknown; merges: unknown; unk_token?: string };
   added_tokens: AddedToken[];
 }
 
 const META = '▁';
+// a symbol with no vocab id (a char and its byte tokens are not in the vocab); it never merges
+const NO_ID = -1;
+// merged id not resolved yet
+const UNRESOLVED = -2;
 
 function byteTokens(char: string): string[] {
   const out: string[] = [];
@@ -21,9 +31,12 @@ function byteTokens(char: string): string[] {
 }
 
 export class BpeTokenizer {
-  private vocab: Map<string, number>;
-  private ranks: Map<string, number>;
-  private ids: Map<number, string>;
+  private vocab: Vocab;
+  // pair of ids to the rank of its merge (lower merges first)
+  private ranks: PairTable;
+  private pairs: ArrayLike<number>; // token positions of each merge, by rank
+  // merged vocab id by rank: UNRESOLVED, NO_ID (the merged token is not in the vocab) or the id
+  private mergedIds: Int32Array;
   private added: Map<string, number>;
   private addedList: string[];
   unkId: number;
@@ -34,13 +47,16 @@ export class BpeTokenizer {
   maskToken = '<mask>';
 
   constructor(json: TokenizerJson) {
-    this.vocab = new Map(Object.entries(json.model.vocab));
-    this.ids = new Map([...this.vocab].map(([k, v]) => [v, k]));
-    this.ranks = new Map();
-    json.model.merges.forEach(([a, b], rank) => {
-      this.ranks.set(`${a} ${b}`, rank);
-    });
-    this.unkId = this.vocab.get(json.model.unk_token ?? '<unk>') ?? 3;
+    const dict = asDict(json.model.vocab);
+    this.vocab = new Vocab(dict);
+    this.pairs = asMergePairs(dict, json.model.merges);
+    const count = this.pairs.length / 2;
+    this.ranks = new PairTable(count);
+    this.mergedIds = new Int32Array(count).fill(UNRESOLVED);
+    for (let rank = 0; rank < count; rank += 1) {
+      this.ranks.set(idAt(dict, this.pairs[2 * rank]), idAt(dict, this.pairs[2 * rank + 1]), rank);
+    }
+    this.unkId = this.vocab.id(json.model.unk_token ?? '<unk>') ?? 3;
     this.added = new Map();
     this.addedList = [];
     for (const t of json.added_tokens) {
@@ -58,36 +74,48 @@ export class BpeTokenizer {
   // unknown chars decompose into their UTF-8 <0xNN> byte tokens. Then the
   // classic merge loop: repeatedly merge the lowest-rank adjacent pair
   // (all non-overlapping occurrences, left to right) until no pair merges.
-  private bpe(piece: string): string[] {
-    const symbols: string[] = [];
+  // Returns vocab ids (NO_ID for a symbol without one).
+  // The merged id of a rank, looked up on first use.
+  private mergedOf(rank: number): number {
+    if (this.mergedIds[rank] === UNRESOLVED) {
+      const id = this.vocab.idOfConcat(this.pairs[2 * rank], this.pairs[2 * rank + 1], 0);
+      this.mergedIds[rank] = id === undefined ? NO_ID : id;
+    }
+    return this.mergedIds[rank];
+  }
+
+  private bpe(piece: string): number[] {
+    let symbols: number[] = [];
     for (const ch of piece) {
-      if (this.vocab.has(ch)) symbols.push(ch);
-      else symbols.push(...byteTokens(ch));
+      const id = this.vocab.idOfChar(ch);
+      if (id !== undefined) symbols.push(id);
+      else for (const t of byteTokens(ch)) symbols.push(this.vocab.id(t) ?? NO_ID);
     }
     for (;;) {
-      let bestRank = Infinity;
-      let bestPair = '';
+      let bestRank = -1;
+      let bestA = NO_ID;
+      let bestB = NO_ID;
       for (let i = 0; i + 1 < symbols.length; i += 1) {
-        const rank = this.ranks.get(`${symbols[i]} ${symbols[i + 1]}`) ?? Infinity;
-        if (rank < bestRank) {
+        if (symbols[i] === NO_ID || symbols[i + 1] === NO_ID) continue;
+        const rank = this.ranks.get(symbols[i], symbols[i + 1]);
+        if (rank !== -1 && (bestRank === -1 || rank < bestRank)) {
           bestRank = rank;
-          bestPair = `${symbols[i]} ${symbols[i + 1]}`;
+          bestA = symbols[i];
+          bestB = symbols[i + 1];
         }
       }
-      if (bestRank === Infinity) break;
-      const merged = bestPair.replace(' ', '');
-      const next: string[] = [];
+      if (bestRank === -1) break;
+      const merged = this.mergedOf(bestRank);
+      const next: number[] = [];
       for (let i = 0; i < symbols.length; i += 1) {
-        if (i + 1 < symbols.length
-            && `${symbols[i]} ${symbols[i + 1]}` === bestPair) {
+        if (i + 1 < symbols.length && symbols[i] === bestA && symbols[i + 1] === bestB) {
           next.push(merged);
           i += 1;
         } else {
           next.push(symbols[i]);
         }
       }
-      symbols.length = 0;
-      symbols.push(...next);
+      symbols = next;
     }
     return symbols;
   }
@@ -100,8 +128,8 @@ export class BpeTokenizer {
     if (!norm.startsWith(META)) norm = META + norm;
     const ids: number[] = [];
     for (const m of norm.matchAll(/▁[^▁]*/g)) {
-      for (const sym of this.bpe(m[0])) {
-        ids.push(this.vocab.get(sym) ?? this.unkId);
+      for (const id of this.bpe(m[0])) {
+        ids.push(id === NO_ID ? this.unkId : id);
       }
     }
     // fuse_unk: collapse runs of <unk>.
@@ -138,6 +166,6 @@ export class BpeTokenizer {
   }
 
   idToToken(id: number): string | undefined {
-    return this.ids.get(id);
+    return this.vocab.tokenOfId(id);
   }
 }

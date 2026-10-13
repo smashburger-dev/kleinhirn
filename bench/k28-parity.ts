@@ -12,7 +12,7 @@
 // layers=1: f32 B1 capture run on the 8 layer-state cases, largest deviation
 // after the embedding and after every layer (debugging tool, no gate).
 
-import { EncoderModel } from '../src/index.ts';
+import { EncoderModel as SrcEncoderModel } from '../src/index.ts';
 import { argmaxRows, l2normalize, zeroShot } from '../src/tasks.ts';
 import { compareLogits } from './metrics.ts';
 
@@ -58,6 +58,8 @@ interface Result {
   metrics?: Record<string, unknown>;
   g4?: { rows: number; differingRows: number; groups: number };
   layers?: { maxAbsDiff: number[]; worstLayer: number; cases: number };
+  outputSha256?: { all: string; cases: string[] };
+  loaded?: string[];
   gpuErrors?: string[];
   error?: string;
   done?: boolean;
@@ -159,7 +161,7 @@ interface TextStats {
 }
 
 async function runText(
-  enc: EncoderModel, golden: Golden, bins: GoldenBins, task: string, result: Result,
+  enc: SrcEncoderModel, golden: Golden, bins: GoldenBins, task: string, result: Result,
 ): Promise<void> {
   const corpusDoc = await (await fetch('/tests/corpus/texts1000.json')).json();
   const corpus: string[] = Array.isArray(corpusDoc) ? corpusDoc : corpusDoc.texts;
@@ -333,10 +335,19 @@ async function main(): Promise<void> {
     const golden = (await (await fetch(
       `/tests/golden/k28/${model}/${task}.json`)).json()) as Golden;
     const bins = await GoldenBins.open(`${dir}/golden`, golden);
+    // R6: bundle=1 runs the built dist/kleinhirn.js with its lazy chunks instead of src/;
+    // backend=wasm the WASM executor (f32 manifest).
+    const EncoderModel = params.get('bundle') === '1'
+      ? (await import(/* @vite-ignore */ `${location.origin}/dist/kleinhirn.js`) as typeof import('../src/index.ts')).EncoderModel
+      : SrcEncoderModel;
+    const wasm = params.get('backend') === 'wasm';
+    // R4: words=rows|progressive loads the word rows over Range; info().words reports the mode
+    const words = params.get('words') as 'rows' | 'progressive' | null;
     const enc = await EncoderModel.load({
       manifestUrl: `${dir}/${precision}/manifest.json`, precision: precision as 'f16' | 'f32',
-      buckets: [128, 512], limits: 'minimum',
-    });
+      buckets: [128, 512], limits: 'minimum', ...(wasm ? { backend: 'wasm' as const } : {}),
+      ...(words ? { words } : {}),
+    }) as SrcEncoderModel;
     checkErrors();
     result.info = enc.info();
     // 'auto' followed recommendedPrecision of the f16 manifest (deepvk/USER2-base) and ran f32.
@@ -400,6 +411,13 @@ async function main(): Promise<void> {
       if (i % 50 === 0) { result.stage = `single ${i}/${items.length}`; checkErrors(); }
     }
     checkErrors();
+    // R6 G6: SHA-256 of the raw output bytes per case, so two commits can be compared bit for bit.
+    const caseSha = await Promise.all(outs.map(async (o) => hex(await crypto.subtle.digest(
+      'SHA-256', new Uint8Array(o.data.buffer, o.data.byteOffset, o.data.byteLength).slice()))));
+    result.outputSha256 = {
+      all: hex(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(caseSha.join('')))),
+      cases: caseSha,
+    };
 
     const m: Record<string, unknown> = {};
     if (task === 'sequence-classification' || task === 'nli') {
@@ -517,6 +535,9 @@ async function main(): Promise<void> {
     }
     checkErrors();
     result.g4 = { rows, differingRows: differing, groups };
+    // R6 Festlegung 2: every script and wasm file the page fetched (bundle=1: the engine chunks).
+    result.loaded = performance.getEntriesByType('resource').map((e) => e.name)
+      .filter((n) => /\.(js|wasm|ts)(\?|$)/.test(n));
     result.gpuErrors = [...gpuErrors];
     result.stage = 'done';
     enc.dispose();

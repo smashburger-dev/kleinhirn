@@ -1,0 +1,102 @@
+{
+ "date": "2026-10-12",
+ "run_id": "k28-parity-cross-encoder__mmarco-mMiniLMv2-L12-H384-v1-f32-10cce26-text-1791841923021",
+ "commit": "10cce26",
+ "browser": "chromium-151.0.7922.34",
+ "loadAvgStart": "9.00",
+ "loadAvgEnd": "9.00 5.78 5.00",
+ "stage": "done",
+ "model": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+ "precision": "f32",
+ "task": "reranking",
+ "info": {
+  "precision": "f32",
+  "buildId": "mv5sepgy",
+  "adapter": {
+   "vendor": "apple",
+   "architecture": "metal-3",
+   "device": "",
+   "description": ""
+  },
+  "limitsMode": "minimum",
+  "timestamps": true,
+  "family": "xlm-roberta",
+  "task": "reranking",
+  "buckets": [
+   128,
+   512
+  ],
+  "textMaxLength": 512,
+  "hasTokenizer": true,
+  "words": {
+   "mode": "full",
+   "source": "words.bin",
+   "rows": 250002,
+   "width": 384,
+   "dtype": "f32",
+   "requested": "full"
+  },
+  "batchSizes": [
+   1,
+   4,
+   8,
+   16
+  ],
+  "gpuBytes": 112721468,
+  "downloadBytes": 473568827,
+  "loadTiming": {
+   "fetchMs": 301.7999999523163,
+   "bodyMs": 244.5,
+   "sha256Ms": 50.10000002384186,
+   "uploadMs": 17.600000023841858,
+   "embedJoinMs": 0,
+   "wordsFetchMs": 753.3999999761581,
+   "wordsSha256Ms": 239.70000004768372,
+   "manifestMs": 3.600000023841858,
+   "planMs": 32.200000047683716
+  }
+ },
+ "adapterInfo": {
+  "vendor": "apple",
+  "architecture": "metal-3",
+  "device": "",
+  "description": ""
+ },
+ "cases": 200,
+ "metrics": {
+  "bestPassageAgreement": 1,
+  "queries": 20,
+  "choices": [
+   2,
+   8,
+   2,
+   4,
+   7,
+   5,
+   6,
+   4,
+   8,
+   4,
+   7,
+   4,
+   0,
+   1,
+   2,
+   4,
+   8,
+   1,
+   1,
+   7
+  ],
+  "textStats": {
+   "cases": 20,
+   "calls": 20,
+   "inputMismatch": 0,
+   "rows": 200,
+   "bitDiffRows": 0,
+   "batchRows": 200,
+   "batchVsSingleDiffRows": 0
+  }
+ },
+ "gpuErrors": []
+}

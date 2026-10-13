@@ -10,6 +10,7 @@ import { gatherTensors } from '../src/convert/manifest.ts';
 import { parseSafetensors, readF32 } from '../src/convert/safetensors.ts';
 import { planNames } from '../src/convert/names.ts';
 import { Bpe } from '../src/tokenizer/hf/bpe.ts';
+import { asDict, asMergePairs } from '../src/tokenizer/bin.ts';
 import { oniguruma, parseNormalizer } from '../src/tokenizer/hf/normalizers.ts';
 import { fromText, join } from '../src/tokenizer/hf/normalized.ts';
 import { DISTILUSE_DENSE } from './helpers/pilot.ts';
@@ -87,8 +88,8 @@ test('R30 a conv source of [H, H, k] is gathered, [H, k, H] and a flat source ar
 // ---------- R18 ----------
 
 test('R18 HF BPE pair IDs must not collide above 2^20', () => {
-  const bpe = new Bpe(new Map([['a', 0], ['x', 1], ['xx', 2], ['y', 1048577], ['ay', 3]]),
-    [['a', 'y'], ['x', 'x']], { unkToken: null, continuingSubwordPrefix: null,
+  const bpe = new Bpe(asDict({ a: 0, x: 1, xx: 2, y: 1048577, ay: 3 }),
+    asMergePairs(asDict({ a: 0, x: 1, xx: 2, y: 1048577, ay: 3 }), [['a', 'y'], ['x', 'x']]), { unkToken: null, continuingSubwordPrefix: null,
       endOfWordSuffix: null, fuseUnk: false, byteFallback: false, ignoreMerges: false });
   assert.equal(bpe.tokenize(['a', 'y'])[0].id, 3);
 });
@@ -96,9 +97,9 @@ test('R18 HF BPE pair IDs must not collide above 2^20', () => {
 test('R18 an id too large for an exact pair key is rejected at load', () => {
   const opt = { unkToken: null, continuingSubwordPrefix: null, endOfWordSuffix: null,
     fuseUnk: false, byteFallback: false, ignoreMerges: false };
-  assert.throws(() => new Bpe(new Map([['a', 0], ['b', 2 ** 27]]), [], opt), /too large/);
-  assert.throws(() => new Bpe(new Map([['a', -1]]), [], opt), /non-negative integer/);
-  assert.doesNotThrow(() => new Bpe(new Map([['a', 0], ['b', 2 ** 26]]), [], opt));
+  assert.throws(() => new Bpe(asDict({ a: 0, b: 2 ** 27 }), [], opt), /too large/);
+  assert.throws(() => new Bpe(asDict({ a: -1 }), [], opt), /non-negative integer/);
+  assert.doesNotThrow(() => new Bpe(asDict({ a: 0, b: 2 ** 26 }), [], opt));
 });
 
 // ---------- R25 ----------
@@ -119,14 +120,17 @@ test('R25 bias-free Sentence-Transformers Dense must not require linear.bias', (
 
 // ---------- T01 ----------
 
-test('T01 \\b and \\B outside a character class are rejected at load; inside a class they stay', () => {
-  for (const pattern of ['\\bfoo\\b', 'a\\Bb', 'x(\\b)', '[a]\\b']) {
-    assert.throws(() => parseNormalizer({ type: 'Replace', pattern: { Regex: pattern }, content: 'X' }),
-      /unsupported \\[bB] outside a character class/, pattern);
-  }
+test('T01 \\b and \\B outside a character class follow Oniguruma\'s Unicode \\w (R6)', () => {
+  const replace = (pattern, text) =>
+    join(parseNormalizer({ type: 'Replace', pattern: { Regex: pattern }, content: 'X' })(fromText(text)));
+  // é, the combining mark and _ are word characters in Oniguruma; JavaScript's own \b would split at é
+  assert.equal(replace('\\bfoo\\b', 'foo éfoo fooé foo_ e\u0301foo (foo) foo'), 'X éfoo fooé foo_ e\u0301foo (X) X');
+  assert.equal(replace('a\\Bb', 'ab a b'), 'X a b');
+  assert.equal(replace('\\B', 'ab'), 'aXb');
+  assert.equal(replace('x(\\b)', 'xé x.'), 'xé X.');
   // [\b] is a backspace in both engines; an escaped backslash followed by b is no boundary
-  assert.doesNotThrow(() => oniguruma('[\\b]x'));
-  assert.doesNotThrow(() => oniguruma('\\\\bx'));
+  assert.equal(oniguruma('[\\b]x'), '[\\b]x');
+  assert.equal(oniguruma('\\\\bx'), '\\\\bx');
   const normalize = parseNormalizer({ type: 'Replace', pattern: { Regex: '\\s+' }, content: ' ' });
   assert.equal(join(normalize(fromText('a  \n b'))), 'a b');
 });

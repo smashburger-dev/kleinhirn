@@ -107,6 +107,7 @@ function pageUrl(spec) {
     q.set('threads', String(spec.threads));
   }
   if (spec.split) q.set('split', spec.split);
+  if (spec.words) q.set('words', spec.words);
   return `${ctx.base}/bench/kbench.html?${q}`;
 }
 
@@ -602,6 +603,7 @@ function runSpec(kind, c, engine) {
   const sz = sampleSizes(c.way, c.len, kind, c.browser);
   const fast = kind === 'table' && ffFast(c);
   const base = { stage: kind, browser: c.browser, engine, slug: c.slug, way: c.way, len: c.len, ...sz, acc: kind === 'table' && !fast,
+    ...(c.words && engine === 'kleinhirn' ? { words: c.words } : {}),
     keepOutputs: kind === 'table' && (c.len !== 'real' || (fast && isKh(engine))), mem: kind === 'mem', ...(fast ? { note: 'ff-fast' } : {}) };
   if (engine === 'ort') base.cfg = ortCfgFor(c.browser, c.way, c.slug, c.len);
   return base;
@@ -622,7 +624,7 @@ function cellMissing(c, engine) {
 }
 
 async function stageTable(f) {
-  const cells = cellMatrix(f);
+  const cells = cellMatrix(f).map((c) => ({ ...c, words: f.words ?? undefined }));
   let i = 0;
   for (const c of cells) {
     for (const engine of engineOrder(i).filter((e) => f.engines.includes(e))) {
@@ -649,14 +651,16 @@ async function stageTable(f) {
 }
 
 async function stageMem(f) {
-  for (const c of cellMatrix(f)) {
+  // R4: --words applies here too; cellKey carries the words mode, so the keys stay apart
+  const cells = cellMatrix(f).map((c) => ({ ...c, words: f.words ?? undefined }));
+  for (const c of cells) {
     for (const engine of ENGINES) {
       if (cellMissing(c, engine)) continue;
       if (c.browser !== 'chromium' && c.browser !== 'firefox') continue;
       try {
         // R8: tagged keys (the untagged ones hold R1/R2), --threads for kleinhirn-WASM
         const kh = engine === 'kleinhirn' && c.way === 'wasm' && f.threads ? { threads: f.threads } : {};
-        await recorded(`${TAG.startsWith('r8') ? `${TAG}-` : ''}mem|${cellKey(c)}|${engine}`, { ...runSpec('mem', c, engine), ...kh });
+        await recorded(`${TAG.startsWith('r8') || TAG.startsWith('r4') ? `${TAG}-` : ''}mem|${cellKey(c)}|${engine}`, { ...runSpec('mem', c, engine), ...kh });
       } catch (e) {
         if (e instanceof AutomationError) { console.log(`skip ${cellKey(c)}: ${e.message}`); continue; }
         throw e;
@@ -741,7 +745,7 @@ function stageWasmSummary(f) {
     if (!r) return { status: 'fehlt: nicht gelaufen' };
     if (r.error) return { status: `fehlt: ${r.error.slice(0, 160)}` };
     // R1/R2 memory passes have untagged keys, R8 ones carry the tag
-    const m = state.runs[`${TAG.startsWith('r8') ? `${TAG}-` : ''}mem|${cellKey(c)}|${engine.startsWith('ort') ? 'ort' : engine}`];
+    const m = state.runs[`${TAG.startsWith('r8') || TAG.startsWith('r4') ? `${TAG}-` : ''}mem|${cellKey(c)}|${engine.startsWith('ort') ? 'ort' : engine}`];
     return { status: 'ok', medianMs: r.medianMs, p95Ms: r.p95Ms, n: r.n, parity: r.parity ?? null, config: r.config ?? null,
       peakMemMib: m && !m.error && typeof m.peakMemMib === 'number' ? m.peakMemMib : null, file: r.file ?? null };
   };
@@ -997,12 +1001,15 @@ function officialSummary(f) {
 
 async function main() {
   const args = process.argv.slice(2);
-  const stage = args.find((a) => !a.startsWith('--')) ?? (args.includes('--all') ? 'all' : null);
+  const stage = args.find((a, i) => !a.startsWith('--') && args[i - 1] !== '--words') ?? (args.includes('--all') ? 'all' : null);
   if (!stage) throw new Error('usage: run-kbench.mjs <probe|control|screen|table|mem|summary|--all> [filters]');
   const f = parseFilters(args);
   f.ortThreads = args.includes('--ort-threads') ? Number(args[args.indexOf('--ort-threads') + 1]) : null;
   const threadArg = (k) => { if (!args.includes(k)) return null; const v = args[args.indexOf(k) + 1]; return v === 'auto' ? 'auto' : Number(v); };
   f.threads = threadArg('--threads');
+  // R4: --words rows|progressive loads the kleinhirn engines with that word table (table stage)
+  f.words = args.includes('--words') ? args[args.indexOf('--words') + 1] : null;
+  if (f.words && !['rows', 'progressive'].includes(f.words)) throw new Error('usage: --words rows|progressive');
   f.threadsRef = threadArg('--threads-ref');
   for (let pid = process.pid; pid > 1;) {
     ctx.ownPids.add(pid);

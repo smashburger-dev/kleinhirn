@@ -8,6 +8,8 @@
 import type { HeadSpec, ModelSpec } from '../plan/spec.ts';
 import type { NamePlan, RelProjection } from './names.ts';
 import { elementCount, readF32, type StFile } from './safetensors.ts';
+import { encodeWords } from '../words-encode.ts';
+import type { WordsDesc } from '../words-format.ts';
 
 export const SHARD_LIMIT = 95_000_000;
 export const ALIGN = 256;
@@ -44,9 +46,13 @@ export interface TensorEntry {
   rowEnd?: number;
 }
 
+// format kleinhirn-weights-2, version 3: the word table lives in words.bin (R4).
+export type ConvertManifest = Record<string, unknown> & { version: 3; words: WordsDesc };
+
 export interface BuiltManifest {
-  manifest: Record<string, unknown>;
+  manifest: ConvertManifest;
   shards: { file: string; bytes: Uint8Array }[];
+  words: { file: string; bytes: Uint8Array };
 }
 
 // The sinusoidal position table of DistilBERT (transformers 5.0.0,
@@ -203,78 +209,86 @@ function castBytes(name: string, data: Float32Array, dtype: 'f32' | 'f16'): Uint
   return new Uint8Array(arr.buffer, arr.byteOffset, arr.byteLength);
 }
 
-export async function buildManifest(
-  tensors: NamedTensor[], dtype: 'f32' | 'f16', meta: ManifestMeta,
-): Promise<BuiltManifest> {
-  const entries: TensorEntry[] = [];
-  const shardBytes: Uint8Array[] = [];
-  let parts: Uint8Array[] = [];
-  let length = 0;
+export interface ShardInput {
+  name: string;
+  dtype: 'f32' | 'f16';
+  shape: number[];
+  bytes: Uint8Array;
+}
 
-  const flush = (): void => {
-    if (length === 0) return;
-    const payload = new Uint8Array(length);
-    let off = 0;
-    for (const p of parts) {
-      payload.set(p, off);
-      off += p.length;
-    }
-    shardBytes.push(payload);
-    parts = [];
-    length = 0;
-  };
+// Shard and offset of each tensor, in order, and the length of each shard: tensors at 256-byte
+// offsets, a shard closes before a tensor would pass SHARD_LIMIT.
+export function placeTensors(sizes: number[]): { at: { shard: number; offset: number }[]; lengths: number[] } {
+  const at: { shard: number; offset: number }[] = [];
+  const lengths: number[] = [];
+  let length = 0;
   const pad = (): void => {
     const rest = length % ALIGN;
-    if (rest === 0) return;
-    parts.push(new Uint8Array(ALIGN - rest));
-    length += ALIGN - rest;
+    if (rest !== 0) length += ALIGN - rest;
   };
-  const write = (name: string, shape: number[], data: Float32Array, rows?: [number, number]): void => {
-    const raw = castBytes(name, data, dtype);
+  const flush = (): void => {
+    if (length === 0) return;
+    lengths.push(length);
+    length = 0;
+  };
+  for (const size of sizes) {
     pad();
-    if (length + raw.length > SHARD_LIMIT) {
+    if (length + size > SHARD_LIMIT) {
       flush();
       pad();
     }
-    const entry: TensorEntry = {
-      name, dtype, shape, shard: shardBytes.length, offset: length, byteLength: raw.length,
-    };
-    if (rows) {
-      entry.keepOnCpu = true;
-      entry.rowStart = rows[0];
-      entry.rowEnd = rows[1];
-    }
-    entries.push(entry);
-    parts.push(raw);
-    length += raw.length;
-  };
-
-  for (const t of tensors) {
-    if (t.name !== 'embeddings.word.weight') {
-      write(t.name, t.shape, t.data);
-      continue;
-    }
-    // The table alone can exceed the shard limit: row chunks, joined by rowStart.
-    const [rows, width] = [t.shape[0], t.shape[1]];
-    for (let start = 0; start < rows; start += EMBED_CHUNK_ROWS) {
-      const end = Math.min(start + EMBED_CHUNK_ROWS, rows);
-      write(t.name, [end - start, width], t.data.subarray(start * width, end * width), [start, end]);
-    }
+    at.push({ shard: lengths.length, offset: length });
+    length += size;
   }
   flush();
+  return { at, lengths };
+}
 
-  const shards = await Promise.all(shardBytes.map(async (bytes, i) => ({
-    file: `weights-${i}.bin`, bytes,
-    meta: { file: `weights-${i}.bin`, bytes: bytes.length, sha256: await sha256Hex(bytes) },
+export function packShards(items: ShardInput[]): { entries: TensorEntry[]; shards: Uint8Array[] } {
+  const placed = placeTensors(items.map((it) => it.bytes.length));
+  const shards = placed.lengths.map((n) => new Uint8Array(n));
+  const entries: TensorEntry[] = items.map((it, i) => {
+    const { shard, offset } = placed.at[i];
+    shards[shard].set(it.bytes, offset);
+    return { name: it.name, dtype: it.dtype, shape: it.shape, shard, offset, byteLength: it.bytes.length };
+  });
+  return { entries, shards };
+}
+
+export async function buildManifest(
+  tensors: NamedTensor[], dtype: 'f32' | 'f16', meta: ManifestMeta,
+): Promise<BuiltManifest> {
+  const items: ShardInput[] = [];
+  let table: NamedTensor | undefined;
+  for (const t of tensors) {
+    if (t.name === 'embeddings.word.weight') table = t;
+    else items.push({ name: t.name, dtype, shape: t.shape, bytes: castBytes(t.name, t.data, dtype) });
+  }
+  if (!table) throw new Error('embeddings.word.weight is missing');
+  if (table.shape.length !== 2) throw new Error(`embeddings.word.weight has shape ${table.shape.join('x')}`);
+  const [rows, width] = [table.shape[0], table.shape[1]];
+  const packed = packShards(items);
+  const words = await encodeWords(castBytes(table.name, table.data, dtype), rows, width, dtype);
+
+  const shards = await Promise.all(packed.shards.map(async (bytes, i) => ({
+    file: `shard-${i}.bin`, bytes,
+    meta: { file: `shard-${i}.bin`, bytes: bytes.length, sha256: await sha256Hex(bytes) },
   })));
-  const manifest: Record<string, unknown> = {
-    format: FORMAT, version: 2, source: meta.source,
+  const wordsDesc: WordsDesc = {
+    file: 'words.bin', bytes: words.bytes.length, sha256: await sha256Hex(words.bytes), dtype, rows, width,
+    rowBytes: width * (dtype === 'f16' ? 2 : 4) + 4, salt: words.salt,
+  };
+  const manifest: ConvertManifest = {
+    format: FORMAT, version: 3, source: meta.source,
     encoder: {}, // empty for kleinhirn-weights-2; src/weights.ts only needs the key
     spec: meta.spec, head: meta.head, task: meta.task, labels: meta.labels,
     tokenizer: meta.tokenizer, maxLength: meta.maxLength,
+    tensors: packed.entries, shards: shards.map((s) => s.meta), words: wordsDesc,
+    ...(meta.sentenceTransformers !== undefined ? { sentenceTransformers: meta.sentenceTransformers } : {}),
   };
-  if (meta.sentenceTransformers !== undefined) manifest.sentenceTransformers = meta.sentenceTransformers;
-  manifest.tensors = entries;
-  manifest.shards = shards.map((s) => s.meta);
-  return { manifest, shards: shards.map((s) => ({ file: s.file, bytes: s.bytes })) };
+  return {
+    manifest,
+    shards: shards.map((s) => ({ file: s.file, bytes: s.bytes })),
+    words: { file: wordsDesc.file, bytes: words.bytes },
+  };
 }

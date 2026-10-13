@@ -117,7 +117,14 @@ export function matchRegex(chars: string[], re: RegExp): Span[] {
   for (let m = re.exec(s); m !== null; m = re.exec(s)) {
     const a = map[m.index];
     const b = map[m.index + m[0].length];
-    if (m[0].length === 0) re.lastIndex += 1;
+    // An empty match steps one code point: with the u flag a step of one unit into a surrogate
+    // pair matches again at the pair's start and never ends (T01, \b before an emoji).
+    if (m[0].length === 0) {
+      re.lastIndex = m.index + ((s.codePointAt(m.index) ?? 0) > 0xffff ? 2 : 1);
+      // an empty match between the two halves of a surrogate pair is no position in code points
+      const unit = s.charCodeAt(m.index);
+      if (unit >= 0xdc00 && unit <= 0xdfff && m.index > 0 && (s.codePointAt(m.index - 1) ?? 0) > 0xffff) continue;
+    }
     if (prev !== a) out.push([prev, a, false]);
     out.push([a, b, true]);
     prev = b;

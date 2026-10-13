@@ -3,6 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "exports": {
+    ".": "./dist/kleinhirn.js",
+    "./tokenizer": "./dist/tokenizer.js"
+  },
   "scripts": {
     "dev": "vite",
     "build:wasm": "asc src/wasm/plan.ts -o src/wasm/plan.wasm -O3 --enable simd --runtime stub --noAssert && asc src/wasm/plan.ts -o src/wasm/plan-relaxed.wasm -O3 --enable simd,relaxed-simd --runtime stub --noAssert && asc src/wasm/plan.ts -o src/wasm/plan-mt.wasm -O3 --enable simd,threads --sharedMemory --importMemory --initialMemory 16 --maximumMemory 65536 --runtime stub --noAssert && asc src/wasm/plan.ts -o src/wasm/plan-mt-relaxed.wasm -O3 --enable simd,relaxed-simd,threads --sharedMemory --importMemory --initialMemory 16 --maximumMemory 65536 --runtime stub --noAssert",

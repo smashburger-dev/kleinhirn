@@ -16,6 +16,9 @@ folded in and not exported), head.fc1/head.fc2 of the classification head
 Linear(384->768) -> ReLU -> Linear(768->1).
 
 Usage: .venv/bin/python convert/export_weights.py [model ...]
+
+After an export, run node --import ./tests/helpers/node-hooks.mjs tools/r4_words.ts --migrate <dir>
+(R4: word table in words.bin; the output above is unchanged).
 """
 import hashlib
 import json

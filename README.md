@@ -247,9 +247,8 @@ call.
 
 - Phones: the iPhone with the new kernels, peak memory, how the weights
   are loaded.
-- Smaller downloads: the word-embedding table is 31 to 82 % of a
-  model's weights, but a text needs only a few of its rows; fetch rows
-  on demand, and int8 weights.
+- int8 weights for the layer matrices: they are 98 to 100 % of what a
+  model downloads once the word rows come on demand.
 - Kernel choice per device by the best worst case.
 - A public benchmark for encoders in the browser that compares engines
   with a parity column.
@@ -276,29 +275,90 @@ call.
 
 ## Bundle size
 
-The engine bundle (`npm run build`) is `dist/kleinhirn.js`. The WASM
-path loads on demand: the backend chunk, the executor worker and one
-build of the executor, plus the helper worker with threads. A browser
-loads one of four paths (`node tools/r8_bundle.mjs`):
+`import 'kleinhirn'` loads `dist/kleinhirn.js`, 15.7 KB gzip. Everything a
+model does not need loads on demand: the WebGPU executor with its kernels,
+the WASM executor in a worker, the tokenizer, and the GLiNER and Julia
+engines. Engine bytes a page loads until its first result
+(`node tools/r6_paths.mjs`, gzip -9):
 
-| File or path | Raw | gzip -9 |
-|---|---|---|
-| kleinhirn.js | 180,280 B | 46,572 B |
-| WASM path, plain build | 45,765 B | 16,407 B |
-| WASM path, relaxed-SIMD build (Chromium, Firefox) | 45,621 B | 16,395 B |
-| WASM path with threads, plain | 47,303 B | 17,279 B |
-| WASM path with threads, relaxed SIMD | 47,159 B | 17,264 B |
+| Load path | gzip -9 |
+|---|---|
+| Core alone (`dist/kleinhirn.js`) | 15,652 B |
+| Encoder model on WebGPU, with tokenizer | 39,154 B |
+| Encoder model on WASM, plain build | 45,091 B |
+| Encoder model on WASM, relaxed SIMD with threads | 45,948 B |
+| GLiNER on WebGPU | 35,296 B |
+| Julia on WebGPU | 34,826 B |
+| Word rows on demand (`words: 'rows'`), extra chunk | 3,234 B |
 
-`kleinhirn.js` embeds a build id (`Date.now()` in base 36), so its gzip
-size can differ by a byte between builds. It grew from 20,948 B with the
-general engine (the tokenizers for every family alone: 11.5 KB) and the
-new kernels (5.5 KB).
+Tokenizers ship as `tokenizer.bin`: the `tokenizer.json` with vocabulary,
+scores and merges in binary sections, gzip inside the file, decoded back
+to the identical object. The XLM-R tokenizer drops from 17.1 MB to 1.99 MB,
+DeBERTa-v3 from 8.7 MB to 0.89 MB, BERT WordPiece from 0.47 MB to 0.12 MB
+(`node tools/r6_tokbin.ts --survey`). Folders that still name a
+`tokenizer.json` load unchanged. A tokenizer is ready 4 to 22 times
+faster than in the first `tokenizer.bin` release, because the vocabulary
+lands in one typed hash table instead of a `Map` of 250,000 strings
+(Node on an M1 Pro, `node --expose-gc --import
+./tests/helpers/node-hooks.mjs tools/r4_tokload.ts --survey`): XLM-R
+232 to 40 ms, Julia 695 to 83 ms, all list tokenizers together 5,050 to
+875 ms. Unigram tokenizers also encode twice as fast.
+
+The tokenizers alone are a second entry: `import { JsonTokenizer } from
+'kleinhirn/tokenizer'` (`dist/tokenizer.js`) with the synchronous
+`JsonTokenizer.fromString` and `await JsonTokenizer.fromBytes(bytes)` for
+`tokenizer.bin` or `tokenizer.json`. A loaded model tokenizes itself, so
+model code needs no tokenizer import.
 
 For comparison, onnxruntime-web 1.29.0 loads three runtime files on its
 WebGPU path (`ort.webgpu.bundle.min.mjs`,
 `ort-wasm-simd-threaded.asyncify.mjs` and `.wasm`): 25,917,382 B raw,
 6,338,621 B gzip -9. The model weights are a separate download in both
 cases.
+
+## Word rows on demand
+
+The word-embedding table is 31 to 81 % of a model's download (mMiniLM
+192 of 237 MB), but a text needs only the rows of its own tokens.
+`words.bin` holds the table with a checksum after each row, and the
+load option `words` picks how it arrives:
+
+- `'full'` (default): the whole table at load, as before. Nothing about
+  the text leaves the device.
+- `'rows'`: only the rows a text needs, by HTTP Range, checked row by
+  row and kept in memory and Cache Storage. Every text with new tokens
+  waits one round trip (about 250 ms from our test machine to the
+  Hugging Face CDN).
+- `'progressive'`: like `'rows'` at first, then the whole table in the
+  background; after that it computes like `'full'`.
+
+Row requests show the host which tokens a text contains. Use `'rows'`
+and `'progressive'` for public text or a host you control; keep
+`'full'` for private text. A host that ignores Range gets the full
+download with the same results.
+
+Measured in Chromium on an M1 Pro, WebGPU f16, fresh browser profile
+(`node bench/run-r4-load.mjs`, `bench/results/r4-r4-load-summary.md`).
+Logits are bit-identical in every mode.
+
+| Model | Download, full / rows | First result at 50 Mbit/s, full / rows | Memory peak on WASM, full / rows |
+|---|---|---|---|
+| all-MiniLM-L6-v2 | 45.4 / 22.1 MB | 7.5 / 4.3 s | 212 / 176 MiB |
+| twitter-roberta-base-sentiment | 249.9 / 172.9 MB | 40.3 / 28.5 s | 1,044 / 920 MiB |
+| mmarco-mMiniLMv2 (XLM-R) | 238.3 / 45.5 MB | 38.5 / 8.3 s | 907 / 286 MiB |
+| distilbert-base-uncased-sst-2 | 134.2 / 87.6 MB | 21.8 / 14.8 s | 597 / 510 MiB |
+| deberta-v3-base-prompt-injection | 388.4 / 191.5 MB | 62.5 / 31.4 s | 1,365 / 1,013 MiB |
+| granite-embedding-small-english-r2 | 95.9 / 57.3 MB | 15.6 / 10.1 s | 397 / 307 MiB |
+
+The `'full'` mode got lighter too: the table is read without a copy and
+the WASM worker no longer receives it, so mMiniLM peaks at 907 MiB on
+WASM instead of 1,538 MiB, and models load 12 to 32 % faster from a
+local server.
+
+```js
+const model = await EncoderModel.load({ manifestUrl, words: 'progressive' });
+console.log(model.info().words); // { mode, range, rows, requests, bytes }
+```
 
 ## Runtime path
 

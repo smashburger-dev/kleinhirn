@@ -4,7 +4,8 @@
 // SetJudgePlan; the sigmoid on the returned logits mirrors upstream's
 // score(states, target) -> P(alive).
 import { getDevice } from '../device.ts';
-import { fetchManifest, loadWeights, type LoadedWeights } from '../weights.ts';
+import { loadWeights } from '../webgpu-backend.ts';
+import type { LoadedWeights } from '../weights.ts';
 import { MAX_BATCH, nextBatchSize } from '../cache.ts';
 import { SetJudgePlan, type SetJudgeSpec } from '../graph/setjudge.ts';
 import { encode as judgeEncode, N_FEAT } from './judge.ts';

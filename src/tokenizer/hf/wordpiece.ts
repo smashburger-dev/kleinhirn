@@ -1,5 +1,7 @@
 // WordPiece model: longest match first, continuation pieces with a prefix.
 
+import { asDict, Vocab } from '../bin.ts';
+
 export interface PieceSpan {
   id: number;
   // half-open range of characters inside the word
@@ -10,13 +12,13 @@ export interface PieceSpan {
 }
 
 export class WordPiece {
-  private vocab: Map<string, number>;
+  private vocab: Vocab;
   private unkToken: string;
   private prefix: string;
   private maxInputCharsPerWord: number;
 
   constructor(
-    vocab: Map<string, number>, unkToken: string, prefix: string, maxInputCharsPerWord: number,
+    vocab: Vocab, unkToken: string, prefix: string, maxInputCharsPerWord: number,
   ) {
     this.vocab = vocab;
     this.unkToken = unkToken;
@@ -26,7 +28,7 @@ export class WordPiece {
   }
 
   static fromJson(model: Record<string, unknown>): WordPiece {
-    const vocab = new Map<string, number>(Object.entries(model.vocab as Record<string, number>));
+    const vocab = new Vocab(asDict(model.vocab));
     return new WordPiece(
       vocab,
       (model.unk_token as string | undefined) ?? '[UNK]',
@@ -36,12 +38,12 @@ export class WordPiece {
   }
 
   id(token: string): number | undefined {
-    return this.vocab.get(token);
+    return this.vocab.id(token);
   }
 
   // chars: the code points of one word. Counted in code points, not UTF-16 units.
   tokenize(chars: string[]): PieceSpan[] {
-    const unk: PieceSpan = { id: this.vocab.get(this.unkToken) as number, start: 0, end: chars.length };
+    const unk: PieceSpan = { id: this.vocab.id(this.unkToken) as number, start: 0, end: chars.length };
     if (chars.length > this.maxInputCharsPerWord) return [unk];
     const out: PieceSpan[] = [];
     let start = 0;
@@ -50,7 +52,7 @@ export class WordPiece {
       let found: PieceSpan | null = null;
       while (start < end) {
         const piece = (start > 0 ? this.prefix : '') + chars.slice(start, end).join('');
-        const id = this.vocab.get(piece);
+        const id = this.vocab.id(piece);
         if (id !== undefined) {
           found = { id, start, end };
           break;

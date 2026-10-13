@@ -1,8 +1,8 @@
-// Manifest + shard loading: fetch, sha256 verification, GPU upload.
-// Embedding rows marked keepOnCpu stay in a joined CPU array (f32 or f16
-// bits); every other tensor becomes its own STORAGE buffer.
+// Manifest + shard loading: fetch and sha256 verification. The GPU upload (loadWeights) lives in
+// src/webgpu-backend.ts; the WASM path reads the same fetched bytes on the CPU.
 
-import { MINIMUM_LIMITS } from './device.ts';
+import { fetchWords, legacyTable, type WordsFetch, type WordTable } from './words.ts';
+import type { WordsDesc } from './words-format.ts';
 
 export interface TensorDesc {
   name: string;
@@ -35,12 +35,14 @@ export interface Manifest {
   recommendedPrecision?: 'f32';
   tensors: TensorDesc[];
   shards: { file: string; bytes: number; sha256: string }[];
+  // version 3 (R4): the word table, one row per token id with a checksum, in words.bin
+  words?: WordsDesc;
 }
 
 export interface LoadedWeights {
   manifest: Manifest;
   tensors: Map<string, GPUBuffer>;
-  embeddings: Float32Array | Uint16Array;
+  words: WordTable;
   downloadBytes: number;
   gpuBytes: number;
   timing: {
@@ -49,7 +51,42 @@ export interface LoadedWeights {
     sha256Ms: number;
     uploadMs: number;
     embedJoinMs: number;
+    wordsFetchMs: number;
+    wordsSha256Ms: number;
   };
+}
+
+export interface LoadedWords {
+  table: WordTable;
+  bytes: number; // words.bin bytes, 0 for a legacy manifest; RemoteRows: the bytes received so far
+  timing: { embedJoinMs: number; wordsFetchMs: number; wordsSha256Ms: number };
+}
+
+// The word table of a manifest. Version 3: words.bin, fetched by loadBackend before the shards
+// (started) or here when no fetch was started. Legacy: the keepOnCpu parts of the shards, joined
+// in row order; their shape holds the width.
+export async function loadWords(
+  base: string, mf: Manifest, shardBytes: ArrayBuffer[], started?: Promise<WordsFetch>,
+): Promise<LoadedWords> {
+  if (mf.words) {
+    const f = await (started ?? fetchWords(base + mf.words.file, mf.words));
+    // RemoteRows counts its bytes as they arrive: read them at the end of the load
+    return { table: f.table, bytes: Number(f.table.info().bytes ?? f.bytes),
+      timing: { embedJoinMs: 0, wordsFetchMs: f.fetchMs, wordsSha256Ms: f.sha256Ms } };
+  }
+  const tJoin = performance.now();
+  const parts = mf.tensors.filter((t) => t.keepOnCpu)
+    .sort((a, b) => (a.rowStart ?? 0) - (b.rowStart ?? 0));
+  if (!parts.length) throw new Error('manifest has neither words.bin nor a keepOnCpu word table');
+  if (parts.some((t) => t.name !== 'embeddings.word.weight')) throw new Error('only the word table stays on the CPU');
+  const joined = new Uint8Array(parts.reduce((n, t) => n + t.byteLength, 0));
+  let at = 0;
+  for (const t of parts) {
+    joined.set(new Uint8Array(shardBytes[t.shard], t.offset, t.byteLength), at);
+    at += t.byteLength;
+  }
+  const table = legacyTable(joined.buffer, parts[0].dtype === 'f16' ? 'f16' : 'f32', parts[0].shape[1]);
+  return { table, bytes: 0, timing: { embedJoinMs: performance.now() - tJoin, wordsFetchMs: 0, wordsSha256Ms: 0 } };
 }
 
 function hex(buf: ArrayBuffer): string {
@@ -133,77 +170,4 @@ export async function fetchShardBytes(
   }));
   const fetchMs = performance.now() - tFetch;
   return { manifest: mf, shardBytes, downloadBytes, fetchMs, bodyMs, sha256Ms };
-}
-
-export async function loadWeights(
-  device: GPUDevice,
-  manifestUrl: string,
-  manifest?: Manifest,
-): Promise<LoadedWeights> {
-  const { manifest: mf, shardBytes, downloadBytes, fetchMs, bodyMs, sha256Ms } =
-    await fetchShardBytes(manifestUrl, manifest);
-
-  // Every GPU tensor against maxBufferSize before the first allocation.
-  const maxBuffer = device.limits?.maxBufferSize ?? MINIMUM_LIMITS.maxBufferSize;
-  for (const t of mf.tensors) {
-    const padded = Math.ceil(t.byteLength / 4) * 4;
-    if (!t.keepOnCpu && padded > maxBuffer) {
-      throw new Error(`tensor ${t.name} needs ${padded} B, maxBufferSize is ${maxBuffer}`);
-    }
-  }
-
-  const tensors = new Map<string, GPUBuffer>();
-  const cpuParts = new Map<string, { parts: Uint8Array[]; dtype: string }>();
-  let gpuBytes = 0;
-  const tUp = performance.now();
-  for (const t of mf.tensors) {
-    const bytes = new Uint8Array(shardBytes[t.shard], t.offset, t.byteLength);
-    if (t.keepOnCpu) {
-      let entry = cpuParts.get(t.name);
-      if (!entry) {
-        entry = { parts: [], dtype: t.dtype };
-        cpuParts.set(t.name, entry);
-      }
-      entry.parts.push(bytes.slice(0));
-      continue;
-    }
-    const padded = Math.ceil(t.byteLength / 4) * 4; // writeBuffer needs %4
-    const buf = device.createBuffer({
-      size: padded,
-      usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST
-        | GPUBufferUsage.COPY_SRC,
-    });
-    if (t.byteLength % 4 === 0) {
-      device.queue.writeBuffer(buf, 0, bytes);
-    } else {
-      const pad = new Uint8Array(padded);
-      pad.set(bytes);
-      device.queue.writeBuffer(buf, 0, pad);
-    }
-    gpuBytes += padded;
-    tensors.set(t.name, buf);
-  }
-  const uploadMs = performance.now() - tUp;
-
-  const emb = cpuParts.get('embeddings.word.weight');
-  const tJoin = performance.now();
-  let embeddings: Float32Array | Uint16Array = new Float32Array(0);
-  if (emb) {
-    const total = emb.parts.reduce((n, p) => n + p.byteLength, 0);
-    const joined = new Uint8Array(total);
-    let off = 0;
-    for (const p of emb.parts) {
-      joined.set(p, off);
-      off += p.byteLength;
-    }
-    embeddings = emb.dtype === 'f16'
-      ? new Uint16Array(joined.buffer)
-      : new Float32Array(joined.buffer);
-  }
-  const embedJoinMs = performance.now() - tJoin;
-
-  return {
-    manifest: mf, tensors, embeddings, downloadBytes, gpuBytes,
-    timing: { fetchMs, bodyMs, sha256Ms, uploadMs, embedJoinMs },
-  };
 }

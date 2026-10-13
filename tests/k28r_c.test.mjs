@@ -4,7 +4,7 @@
 // the cache copies of the Julia engine. The recording mock does not run WGSL.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { Kleinhirn } from '../src/index.ts';
+import { Kleinhirn } from '../src/gliner.ts';
 import { JuliaEngine } from '../src/julia.ts';
 import { LruCache, juliaMergeKey, schemaMergeKey } from '../src/cache.ts';
 import { model } from './helpers/review.mjs';

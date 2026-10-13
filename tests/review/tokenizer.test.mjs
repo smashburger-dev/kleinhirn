@@ -5,8 +5,7 @@ import assert from 'node:assert/strict';
 import { parseNormalizer } from '../../src/tokenizer/hf/normalizers.ts';
 import { fromText, join } from '../../src/tokenizer/hf/normalized.ts';
 
-// Deferred: Unicode lookarounds for \b and \B. K28.R group F rejects both outside a character class
-// at load instead (tests/k28r_f.test.mjs, T01); this original stays red.
+// R6 stage 3: \b and \B translate to lookarounds on Oniguruma's Unicode \w (src/tokenizer/hf/normalizers.ts).
 test('T01 Oniguruma word boundary must not replace inside a Unicode word', () => {
   const normalize = parseNormalizer({ type: 'Replace', pattern: { Regex: '\\bfoo\\b' }, content: 'X' });
   // Oniguruma \\w includes é. Consequently neither boundary exists in éfooé.

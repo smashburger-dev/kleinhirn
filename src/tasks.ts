@@ -141,3 +141,27 @@ export function aggregateSimple(
   flush();
   return groups.filter((g) => !ignore.includes(g.group));
 }
+
+// Softmax per marker group over valid markers; invalid markers get 0.
+export function groupSoftmax(
+  logits: Float32Array,
+  groups: Int32Array,
+  mask: Float32Array,
+): Float32Array {
+  const out = new Float32Array(logits.length);
+  const byGroup = new Map<number, number[]>();
+  for (let k = 0; k < logits.length; k += 1) {
+    if (mask[k] <= 0.5) continue;
+    const g = groups[k];
+    if (!byGroup.has(g)) byGroup.set(g, []);
+    (byGroup.get(g) as number[]).push(k);
+  }
+  for (const idxs of byGroup.values()) {
+    let mx = -Infinity;
+    for (const k of idxs) mx = Math.max(mx, logits[k]);
+    let sum = 0;
+    for (const k of idxs) sum += Math.exp(logits[k] - mx);
+    for (const k of idxs) out[k] = Math.exp(logits[k] - mx) / sum;
+  }
+  return out;
+}

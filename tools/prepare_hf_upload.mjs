@@ -45,16 +45,20 @@ Transformers checkpoint.
 | \`small-upstream/f32/\` | full-precision weights, used by the WebGPU f32 path and the WASM path |
 | \`small-upstream/f16/\` | half-precision weights, used by the WebGPU f16 path (needs \`shader-f16\`) |
 
-Each folder has \`manifest.json\` (tensor layout, shard sizes and sha256),
-\`tokenizer.json\` and the \`weights-*.bin\` shards. The engine verifies every
-shard against the sha256 in the manifest.
+Each folder has \`manifest.json\` (tensor layout, file sizes and sha256),
+\`tokenizer.bin\` (the upstream \`tokenizer.json\` in binary sections, decoded
+back to the identical object), the \`shard-*.bin\` files and \`words.bin\`, the
+word-embedding table with a 32-bit checksum after each row. The engine verifies
+every file against the sha256 in the manifest. With \`words: 'rows'\` it fetches
+only the rows of the tokens in a text by HTTP Range and checks each row's
+checksum; such requests show this host which tokens a text contains.
 
 ## Provenance
 
 Converted from \`fastino/gliner2.5-small-v1\` at revision
 \`${REVISION}\` with \`convert/export_weights.py\`
 from the kleinhirn repository. The f16 shards are a cast of the fp32 weights.
-The tokenizer is the unchanged upstream tokenizer.
+The tokenizer content is the unchanged upstream tokenizer.
 
 ## Use
 
@@ -107,10 +111,11 @@ This repository contains weights derived from:
   the MIT License. https://github.com/microsoft/DeBERTa
 
 Modifications: the tensors were re-laid out into flat binary shards described
-by manifest.json (convert/export_weights.py in
-https://github.com/smashburger-dev/kleinhirn). The f16 files are the fp32
-weights cast to half precision. No training or fine-tuning was applied. The
-tokenizer file is unchanged.
+by manifest.json and the word table in words.bin (convert/export_weights.py
+and tools/r4_words.ts in https://github.com/smashburger-dev/kleinhirn). The f16
+files are the fp32 weights cast to half precision. No training or fine-tuning
+was applied. The tokenizer content is unchanged; tokenizer.bin stores it in
+binary sections.
 
 ---
 
@@ -137,11 +142,13 @@ function walk(dir) {
 
 rmSync(OUT, { recursive: true, force: true });
 for (const prec of ['f16', 'f32']) {
-  for (const f of readdirSync(resolve(SRC, prec)).sort()) {
-    if (f === 'manifest.json' || f === 'tokenizer.json' || /^weights-\d+\.bin$/.test(f)) {
-      put(resolve(SRC, prec, f), resolve(OUT, 'small-upstream', prec, f));
-    }
-  }
+  // The files the manifest names. The manifest is copied, not linked: a tool that rewrites the
+  // source manifest in place would otherwise change the upload folder too (happened in R6).
+  const mf = JSON.parse(readFileSync(resolve(SRC, prec, 'manifest.json'), 'utf8'));
+  const files = [mf.tokenizer, ...mf.shards.map((x) => x.file), ...(mf.words ? [mf.words.file] : [])];
+  mkdirSync(resolve(OUT, 'small-upstream', prec), { recursive: true });
+  copyFileSync(resolve(SRC, prec, 'manifest.json'), resolve(OUT, 'small-upstream', prec, 'manifest.json'));
+  for (const f of files) put(resolve(SRC, prec, f), resolve(OUT, 'small-upstream', prec, f));
 }
 writeFileSync(resolve(OUT, 'README.md'), CARD);
 copyFileSync(resolve(ROOT, 'publish/LICENSE'), resolve(OUT, 'LICENSE'));

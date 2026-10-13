@@ -46,10 +46,13 @@ export default defineConfig({
       const out = resolve('site/dist');
       mkdirSync(resolve(out, 'assets'), { recursive: true });
       copyFileSync(engine, resolve(out, 'kleinhirn.js'));
-      // the chunks the engine loads on demand: dist/wasm-backend-*.js and the plan worker in assets/
-      const chunks = readdirSync(resolve('dist')).filter((f) => /^wasm-backend-.*\.js$/.test(f));
-      const workers = readdirSync(assets).filter((f) => /^wasm-plan-worker-.*\.js$/.test(f));
-      if (!chunks.length || !workers.length) throw new Error('no dist/wasm-backend-*.js or dist/assets/wasm-plan-worker-*.js');
+      // every chunk the engine loads on demand (R6: wasm-backend, webgpu-backend, tokenizer chunks
+      // in dist/; the plan worker, its builds and the helper in assets/)
+      const chunks = readdirSync(resolve('dist')).filter((f) => f.endsWith('.js') && f !== 'kleinhirn.js');
+      const workers = readdirSync(assets).filter((f) => f.endsWith('.js'));
+      if (!chunks.some((f) => f.startsWith('webgpu-backend-')) || !workers.some((f) => f.startsWith('wasm-plan-worker-'))) {
+        throw new Error('no dist/webgpu-backend-*.js or dist/assets/wasm-plan-worker-*.js');
+      }
       for (const f of chunks) copyFileSync(resolve('dist', f), resolve(out, f));
       for (const f of workers) copyFileSync(resolve(assets, f), resolve(out, 'assets', f));
     },

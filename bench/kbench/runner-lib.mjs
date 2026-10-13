@@ -99,7 +99,8 @@ export function cellMatrix({ browsers, ways, models, lengths }) {
 // Engine order within a cell alternates with the cell index (Festlegung 4).
 export const engineOrder = (index) => (index % 2 === 0 ? ['kleinhirn', 'ort'] : ['ort', 'kleinhirn']);
 
-export const cellKey = (c) => `${c.browser}|${c.way}|${c.slug}|${c.len}`;
+// R4: a rows or progressive cell has its own key, so it does not overwrite the full cell.
+export const cellKey = (c) => `${c.browser}|${c.way}|${c.slug}|${c.len}${c.words ? `|words-${c.words}` : ''}`;
 
 export function median(xs) {
   const s = [...xs].sort((a, b) => a - b);

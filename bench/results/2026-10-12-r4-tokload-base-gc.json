@@ -1,0 +1,456 @@
+{
+  "rows": [
+    {
+      "name": "Alibaba-NLP__gte-reranker-modernbert-base",
+      "path": "models/k28/Alibaba-NLP__gte-reranker-modernbert-base/f16",
+      "kind": "json",
+      "gunzip": 1.58,
+      "decode": 22.06,
+      "ctor": 49.66,
+      "total": 73.34,
+      "encodeJson": 65.34
+    },
+    {
+      "name": "Amdestya__ce-cat-distilbert",
+      "path": "models/k28/Amdestya__ce-cat-distilbert/f16",
+      "kind": "json",
+      "gunzip": 0.72,
+      "decode": 9.8,
+      "ctor": 8.36,
+      "total": 18.73,
+      "encodeJson": 45.25
+    },
+    {
+      "name": "AnkitAI__FinSense-ModernBERT-Financial-News-Sentiment-Analysis",
+      "path": "models/k28/AnkitAI__FinSense-ModernBERT-Financial-News-Sentiment-Analysis/f16",
+      "kind": "json",
+      "gunzip": 1.62,
+      "decode": 19.81,
+      "ctor": 47.93,
+      "total": 68.52,
+      "encodeJson": 66.99
+    },
+    {
+      "name": "BAAI__bge-small-en-v1.5",
+      "path": "models/k28/BAAI__bge-small-en-v1.5/f16",
+      "kind": "json",
+      "gunzip": 0.69,
+      "decode": 9.96,
+      "ctor": 8.66,
+      "total": 19.29,
+      "encodeJson": 44.56
+    },
+    {
+      "name": "Horizon-Labs__multilingual-zeroshot-small",
+      "path": "models/k28/Horizon-Labs__multilingual-zeroshot-small/f16",
+      "kind": "json",
+      "gunzip": 14.38,
+      "decode": 172.22,
+      "ctor": 653.77,
+      "total": 834.94,
+      "encodeJson": 55.81
+    },
+    {
+      "name": "MoritzLaurer__multilingual-MiniLMv2-L6-mnli-xnli",
+      "path": "models/k28/MoritzLaurer__multilingual-MiniLMv2-L6-mnli-xnli/f16",
+      "kind": "json",
+      "gunzip": 8.48,
+      "decode": 76.73,
+      "ctor": 158.17,
+      "total": 244.75,
+      "encodeJson": 140.86
+    },
+    {
+      "name": "OpenMed__OpenMed-NER-BloodCancerDetect-TinyMed-65M",
+      "path": "models/k28/OpenMed__OpenMed-NER-BloodCancerDetect-TinyMed-65M/f16",
+      "kind": "json",
+      "gunzip": 0.63,
+      "decode": 10.81,
+      "ctor": 9.12,
+      "total": 21.15,
+      "encodeJson": 41.21
+    },
+    {
+      "name": "OpenMed__OpenMed-NER-ChemicalDetect-ModernMed-149M",
+      "path": "models/k28/OpenMed__OpenMed-NER-ChemicalDetect-ModernMed-149M/f16",
+      "kind": "json",
+      "gunzip": 1.56,
+      "decode": 22.23,
+      "ctor": 42.5,
+      "total": 65.58,
+      "encodeJson": 61.62
+    },
+    {
+      "name": "OpenMed__OpenMed-NER-OrganismDetect-TinyMed-82M",
+      "path": "models/k28/OpenMed__OpenMed-NER-OrganismDetect-TinyMed-82M/f16",
+      "kind": "json",
+      "gunzip": 1.57,
+      "decode": 24.32,
+      "ctor": 44.28,
+      "total": 67.33,
+      "encodeJson": 43.94
+    },
+    {
+      "name": "OpenMed__OpenMed-NER-ProteinDetect-SuperClinical-141M",
+      "path": "models/k28/OpenMed__OpenMed-NER-ProteinDetect-SuperClinical-141M/f16",
+      "kind": "json",
+      "gunzip": 4.03,
+      "decode": 26.95,
+      "ctor": 69.96,
+      "total": 98.16,
+      "encodeJson": 134.18
+    },
+    {
+      "name": "OpenMed__OpenMed-PII-SuperClinical-Small-44M-v1",
+      "path": "models/k28/OpenMed__OpenMed-PII-SuperClinical-Small-44M-v1/f16",
+      "kind": "json",
+      "gunzip": 3.92,
+      "decode": 36.01,
+      "ctor": 68.41,
+      "total": 106.45,
+      "encodeJson": 128.76
+    },
+    {
+      "name": "Setur__BRAGD",
+      "path": "models/k28/Setur__BRAGD/f16",
+      "kind": "json",
+      "gunzip": 3.14,
+      "decode": 43.17,
+      "ctor": 139.99,
+      "total": 194.37,
+      "encodeJson": 64.31
+    },
+    {
+      "name": "antoinelouis__crossencoder-camemberta-L6-mmarcoFR",
+      "path": "models/k28/antoinelouis__crossencoder-camemberta-L6-mmarcoFR/f16",
+      "kind": "json",
+      "gunzip": 1.68,
+      "decode": 11.35,
+      "ctor": 25.44,
+      "total": 38.27,
+      "encodeJson": 105.65
+    },
+    {
+      "name": "cardiffnlp__twitter-roberta-base-sentiment-latest",
+      "path": "models/k28/cardiffnlp__twitter-roberta-base-sentiment-latest/f16",
+      "kind": "json",
+      "gunzip": 1.64,
+      "decode": 23.15,
+      "ctor": 45.41,
+      "total": 70.27,
+      "encodeJson": 43.32
+    },
+    {
+      "name": "clips__e5-base-trm-nl",
+      "path": "models/k28/clips__e5-base-trm-nl/f16",
+      "kind": "json",
+      "gunzip": 1.88,
+      "decode": 15.6,
+      "ctor": 28.49,
+      "total": 45.37,
+      "encodeJson": 108.62
+    },
+    {
+      "name": "cointegrated__rubert-base-cased-nli-threeway",
+      "path": "models/k28/cointegrated__rubert-base-cased-nli-threeway/f16",
+      "kind": "json",
+      "gunzip": 3.02,
+      "decode": 54.49,
+      "ctor": 44.51,
+      "total": 105.86,
+      "encodeJson": 56.44
+    },
+    {
+      "name": "cross-encoder__mmarco-mMiniLMv2-L12-H384-v1",
+      "path": "models/k28/cross-encoder__mmarco-mMiniLMv2-L12-H384-v1/f16",
+      "kind": "json",
+      "gunzip": 8.3,
+      "decode": 73.36,
+      "ctor": 153.85,
+      "total": 232.26,
+      "encodeJson": 146.45
+    },
+    {
+      "name": "cross-encoder__nli-MiniLM2-L6-H768",
+      "path": "models/k28/cross-encoder__nli-MiniLM2-L6-H768/f16",
+      "kind": "json",
+      "gunzip": 1.64,
+      "decode": 25.97,
+      "ctor": 69.08,
+      "total": 98.94,
+      "encodeJson": 42.52
+    },
+    {
+      "name": "cross-encoder__nli-deberta-v3-base",
+      "path": "models/k28/cross-encoder__nli-deberta-v3-base/f16",
+      "kind": "json",
+      "gunzip": 3.95,
+      "decode": 27.5,
+      "ctor": 75.91,
+      "total": 109.2,
+      "encodeJson": 130.48
+    },
+    {
+      "name": "cross-encoder__nli-distilroberta-base",
+      "path": "models/k28/cross-encoder__nli-distilroberta-base/f16",
+      "kind": "json",
+      "gunzip": 1.67,
+      "decode": 20.78,
+      "ctor": 49.35,
+      "total": 71.58,
+      "encodeJson": 41.7
+    },
+    {
+      "name": "d0rj__e5-small-en-ru",
+      "path": "models/k28/d0rj__e5-small-en-ru/f16",
+      "kind": "json",
+      "gunzip": 2.1,
+      "decode": 15.45,
+      "ctor": 33.84,
+      "total": 51.33,
+      "encodeJson": 119.11
+    },
+    {
+      "name": "d4data__biomedical-ner-all",
+      "path": "models/k28/d4data__biomedical-ner-all/f16",
+      "kind": "json",
+      "gunzip": 0.68,
+      "decode": 10.86,
+      "ctor": 8.15,
+      "total": 19.88,
+      "encodeJson": 44.38
+    },
+    {
+      "name": "daekeun-ml__koelectra-small-v3-nsmc",
+      "path": "models/k28/daekeun-ml__koelectra-small-v3-nsmc/f16",
+      "kind": "json",
+      "gunzip": 0.74,
+      "decode": 12.51,
+      "ctor": 9.36,
+      "total": 22.44,
+      "encodeJson": 53.89
+    },
+    {
+      "name": "deepvk__USER2-base",
+      "path": "models/k28/deepvk__USER2-base/f16",
+      "kind": "json",
+      "gunzip": 1.97,
+      "decode": 27.06,
+      "ctor": 51.2,
+      "total": 85.62,
+      "encodeJson": 62.49
+    },
+    {
+      "name": "dslim__bert-base-NER",
+      "path": "models/k28/dslim__bert-base-NER/f16",
+      "kind": "json",
+      "gunzip": 0.62,
+      "decode": 10.28,
+      "ctor": 8.7,
+      "total": 18.44,
+      "encodeJson": 40.31
+    },
+    {
+      "name": "emrecan__distilbert-base-turkish-cased-allnli_tr",
+      "path": "models/k28/emrecan__distilbert-base-turkish-cased-allnli_tr/f16",
+      "kind": "json",
+      "gunzip": 0.7,
+      "decode": 11.87,
+      "ctor": 8.12,
+      "total": 20.53,
+      "encodeJson": 45.83
+    },
+    {
+      "name": "hotchpotch__japanese-reranker-xsmall-v2",
+      "path": "models/k28/hotchpotch__japanese-reranker-xsmall-v2/f16",
+      "kind": "json",
+      "gunzip": 2.77,
+      "decode": 18.8,
+      "ctor": 40.08,
+      "total": 62.78,
+      "encodeJson": 493.83
+    },
+    {
+      "name": "ibm-granite__granite-embedding-reranker-english-r2",
+      "path": "models/k28/ibm-granite__granite-embedding-reranker-english-r2/f16",
+      "kind": "json",
+      "gunzip": 1.67,
+      "decode": 23.32,
+      "ctor": 55.69,
+      "total": 81.39,
+      "encodeJson": 61.23
+    },
+    {
+      "name": "ibm-granite__granite-embedding-small-english-r2",
+      "path": "models/k28/ibm-granite__granite-embedding-small-english-r2/f16",
+      "kind": "json",
+      "gunzip": 1.67,
+      "decode": 22.5,
+      "ctor": 42.86,
+      "total": 66.16,
+      "encodeJson": 64.38
+    },
+    {
+      "name": "mixedbread-ai__mxbai-rerank-xsmall-v1",
+      "path": "models/k28/mixedbread-ai__mxbai-rerank-xsmall-v1/f16",
+      "kind": "json",
+      "gunzip": 4.07,
+      "decode": 33.19,
+      "ctor": 72.68,
+      "total": 109.94,
+      "encodeJson": 135.26
+    },
+    {
+      "name": "ml6team__cross-encoder-mmarco-german-distilbert-base",
+      "path": "models/k28/ml6team__cross-encoder-mmarco-german-distilbert-base/f16",
+      "kind": "json",
+      "gunzip": 2.48,
+      "decode": 55.49,
+      "ctor": 50.32,
+      "total": 107.8,
+      "encodeJson": 34.36
+    },
+    {
+      "name": "protectai__deberta-v3-base-prompt-injection-v2",
+      "path": "models/k28/protectai__deberta-v3-base-prompt-injection-v2/f16",
+      "kind": "json",
+      "gunzip": 3.9,
+      "decode": 27.38,
+      "ctor": 67.01,
+      "total": 98.37,
+      "encodeJson": 133.44
+    },
+    {
+      "name": "qilowoq__mmarco-mMiniLMv2-L12-H384-v1-en-ru",
+      "path": "models/k28/qilowoq__mmarco-mMiniLMv2-L12-H384-v1-en-ru/f16",
+      "kind": "json",
+      "gunzip": 2.16,
+      "decode": 21.44,
+      "ctor": 37.8,
+      "total": 67.65,
+      "encodeJson": 108.97
+    },
+    {
+      "name": "sentence-transformers__all-MiniLM-L6-v2",
+      "path": "models/k28/sentence-transformers__all-MiniLM-L6-v2/f16",
+      "kind": "json",
+      "gunzip": 0.67,
+      "decode": 11.15,
+      "ctor": 8.31,
+      "total": 20.61,
+      "encodeJson": 44.37
+    },
+    {
+      "name": "sentence-transformers__all-distilroberta-v1",
+      "path": "models/k28/sentence-transformers__all-distilroberta-v1/f16",
+      "kind": "json",
+      "gunzip": 1.66,
+      "decode": 26.87,
+      "ctor": 64.57,
+      "total": 93.12,
+      "encodeJson": 42.46
+    },
+    {
+      "name": "sentence-transformers__distiluse-base-multilingual-cased-v1",
+      "path": "models/k28/sentence-transformers__distiluse-base-multilingual-cased-v1/f16",
+      "kind": "json",
+      "gunzip": 2.55,
+      "decode": 54.39,
+      "ctor": 45.61,
+      "total": 102.01,
+      "encodeJson": 34.92
+    },
+    {
+      "name": "sheltron-ai__prompt-guard-68m",
+      "path": "models/k28/sheltron-ai__prompt-guard-68m/f16",
+      "kind": "json",
+      "gunzip": 1.67,
+      "decode": 24.72,
+      "ctor": 59.76,
+      "total": 93.1,
+      "encodeJson": 62.17
+    },
+    {
+      "name": "tasksource__ModernBERT-base-nli",
+      "path": "models/k28/tasksource__ModernBERT-base-nli/f16",
+      "kind": "json",
+      "gunzip": 1.56,
+      "decode": 18.86,
+      "ctor": 40.64,
+      "total": 63.22,
+      "encodeJson": 63.36
+    },
+    {
+      "name": "ukr-models__uk-ner",
+      "path": "models/k28/ukr-models__uk-ner/f16",
+      "kind": "json",
+      "gunzip": 1.57,
+      "decode": 11.81,
+      "ctor": 22.65,
+      "total": 35.62,
+      "encodeJson": 109.34
+    },
+    {
+      "name": "w11wo__indonesian-roberta-base-posp-tagger",
+      "path": "models/k28/w11wo__indonesian-roberta-base-posp-tagger/f16",
+      "kind": "json",
+      "gunzip": 1.58,
+      "decode": 23.84,
+      "ctor": 60.45,
+      "total": 89.27,
+      "encodeJson": 45.14
+    },
+    {
+      "name": "xushijie__polyBERT",
+      "path": "models/k28/xushijie__polyBERT/f16",
+      "kind": "json",
+      "gunzip": 0.73,
+      "decode": 5.01,
+      "ctor": 11.49,
+      "total": 17.2,
+      "encodeJson": 73.01
+    },
+    {
+      "name": "small-upstream",
+      "path": "models/small-upstream/f16",
+      "kind": "gliner",
+      "gunzip": 3.14,
+      "decode": 19.37,
+      "ctor": 46.45,
+      "total": 70.6,
+      "engineTotal": 191.49,
+      "encodeEngine": 23.41,
+      "encodeJson": 117.94
+    },
+    {
+      "name": "multi-upstream",
+      "path": "models/multi-upstream/f16",
+      "kind": "gliner",
+      "gunzip": 6.08,
+      "decode": 42.72,
+      "ctor": 118.22,
+      "total": 169.36,
+      "engineTotal": 346.11,
+      "encodeEngine": 30.14,
+      "encodeJson": 129.48
+    },
+    {
+      "name": "julia-1",
+      "path": "models/julia-1/f16",
+      "kind": "julia",
+      "gunzip": 13.95,
+      "decode": 213.85,
+      "ctor": 634.83,
+      "total": 899.01,
+      "engineTotal": 694.9,
+      "encodeEngine": 102.38,
+      "encodeJson": 52.71
+    }
+  ],
+  "sums": {
+    "total": 5049.81,
+    "engineTotal": 1232.5,
+    "encodeJson": 3740.39,
+    "encodeEngine": 155.93
+  }
+}

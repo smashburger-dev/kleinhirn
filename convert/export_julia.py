@@ -27,6 +27,9 @@ Layout (safetensors -> manifest):
   decision logits)
 
 Usage: .venv-julia/bin/python convert/export_julia.py
+
+After an export, run node --import ./tests/helpers/node-hooks.mjs tools/r4_words.ts --migrate <dir>
+(R4: word table in words.bin; the output above is unchanged).
 """
 import hashlib
 import json

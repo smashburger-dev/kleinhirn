@@ -102,6 +102,22 @@ def replace_probe(tk):
     return out
 
 
+BOUNDARY_PATTERNS = [r"\b", r"\B", r"\burl\b", r"l\B", r"\b@", r"\Bh", r"\b\w", r"\w\b", r"(\b)"]
+
+
+def boundary_probe():
+    """R6 T01: Replace with \\b and \\B on the replace-probe strings plus Unicode words, every pattern."""
+    from tokenizers import Regex, normalizers
+    extra = ["\u00e9url\u00e9", "e\u0301url", "url_", "\u65e5\u672c\u8a9e url", "\u0661url\u0662", "x\u203fy"]
+    texts = [l + w + r for w in REPLACE_WORDS + extra for l in BOUNDARY + [""] for r in BOUNDARY + [""]]
+    out = {"texts": texts}
+    for pat in BOUNDARY_PATTERNS:
+        norm = normalizers.Replace(Regex(pat), "|")
+        out[pat] = [norm.normalize_str(t) for t in texts]
+    (OUT / "boundary-probe.json").write_text(json.dumps(out, ensure_ascii=False) + "\n")
+    print("boundary probe", len(texts), "strings,", len(BOUNDARY_PATTERNS), "patterns", flush=True)
+
+
 def compose_probe():
     """NFC and NFKC with alignment: 40000 random strings of chars with a decomposition or a combining class.
 
@@ -159,6 +175,7 @@ def main():
         by_sha.update(json.loads((ROOT / f"bench/results/k28-tokenizers-{kind}.json").read_text())["bySha256"])
     sweep_pretok()
     compose_probe()
+    boundary_probe()
     for sha, models in by_sha.items():
         d = K28_DIR / slug(models[0])
         path = d / "tokenizer.json" if (d / "tokenizer.json").exists() else d / "repo/tokenizer.json"
@@ -189,4 +206,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    if sys.argv[1:] == ["--boundary"]:
+        OUT.mkdir(parents=True, exist_ok=True)
+        boundary_probe()
+    else:
+        main()

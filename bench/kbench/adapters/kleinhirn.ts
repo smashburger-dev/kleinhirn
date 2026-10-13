@@ -41,6 +41,7 @@ export class KleinhirnEngine implements BenchEngine {
       manifestUrl: `/models/k28/${spec.model}/${this.precision}/manifest.json`,
       precision: this.precision as 'f16' | 'f32', buckets: spec.buckets, limits: 'minimum',
       ...(this.wasm ? { backend: 'wasm' as const, threads: this.threads, ...(this.split ? { wasmSplit: this.split } : {}) } : {}),
+      ...(spec.options.words ? { words: spec.options.words as 'rows' | 'progressive' } : {}),
     });
     const loaded = this.enc.info();
     if (loaded.precision !== this.precision) throw new Error(`engine runs ${String(loaded.precision)}`);

@@ -27,6 +27,7 @@ import {
 interface Result {
   stage: string;
   mode?: string; engine?: string; model?: string; way?: string; len?: string; n?: number; warmup?: number;
+  words?: string; // R4: word table mode of the kleinhirn load (rows or progressive; absent = full)
   block?: number; crossOriginIsolated?: boolean; timerStepMs?: number;
   env?: Record<string, unknown>;
   info?: unknown; loadMs?: number;
@@ -108,7 +109,8 @@ async function main(): Promise<void> {
   const slug = p.get('model') ?? '';
   const way = (p.get('way') ?? 'webgpu-f16') as Way;
   const len = p.get('len') ?? '128';
-  const result: Result = { stage: 'boot', mode, engine: p.get('engine') ?? undefined, model: slug, way, len };
+  const words = p.get('words') ?? undefined;
+  const result: Result = { stage: 'boot', mode, engine: p.get('engine') ?? undefined, model: slug, way, len, words };
   window.khKbenchResult = result;
   startPosting(() => window.khKbenchResult);
   let engine: BenchEngine | null = null;
@@ -161,6 +163,7 @@ async function main(): Promise<void> {
         build: p.get('build') ?? 'webgpu', capture: p.get('capture') === '1', graph: p.get('graph') ?? 'std',
         dynamic: p.get('dynamic') === '1', threads: p.get('threads') ?? '1', padId,
         ...(p.get('split') ? { split: p.get('split') } : {}),
+        ...(words ? { words } : {}),
       },
     });
     result.loadMs = loadInfo.loadMs;
@@ -207,7 +210,8 @@ async function main(): Promise<void> {
         async (ids) => Float32Array.from(await eng.run({ ids: Int32Array.from(ids) })));
     }
     const kh = engine.name.startsWith('kleinhirn');
-    const files = resourceBytes(kh ? new RegExp(`/models/k28/${slug}/(f16|f32)/|/dist(-ref)?/kleinhirn\\.js`) : /onnxruntime-web|ort-wasm/);
+    // R6: the engine is the core plus its lazy chunks (webgpu-backend, tokenizer, bin, ...) in dist/
+    const files = resourceBytes(kh ? new RegExp(`/models/k28/${slug}/(f16|f32)/|/dist(-ref)?/[^?]*\\.js`) : /onnxruntime-web|ort-wasm/);
     const ortEngineFiles = kh ? { bytes: 0, files: {} } : files;
     if (!kh) {
       const o = engine as OrtEngine;

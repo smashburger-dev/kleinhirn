@@ -10,7 +10,7 @@ import { readdirSync } from 'node:fs';
 import { buildPlan } from '../src/plan/build.ts';
 import { WORKGROUP_BYTES, assertPlan, checkPlan, fitBatchPlan } from '../src/plan/check.ts';
 import { specFromHfConfig } from '../src/plan/hf.ts';
-import { loadWeights } from '../src/weights.ts';
+import { loadWeights } from '../src/webgpu-backend.ts';
 import { model, planOf, source, MIN } from './helpers/review.mjs';
 import { loadTiny } from './helpers/tiny-model.mjs';
 import { createMockGpu } from './helpers/mock-gpu.ts';

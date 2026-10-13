@@ -8,16 +8,17 @@
 // seam (src/backend.ts).
 
 import { BATCH_SIZES, MAX_BATCH, batchStride, nextBatchSize } from './cache.ts';
-import { f32ManifestUrl, loadBackend, type Backend, type PlanRunner } from './backend.ts';
+import { f32ManifestUrl, loadBackend, webgpuChunk, type Backend, type PlanRunner } from './backend.ts';
 import type { Transport } from './wasm-backend.ts';
 import { getDevice } from './device.ts';
 import { buildPlan } from './plan/build.ts';
 import type { Plan } from './plan/ir.ts';
 import { positionRows, type HeadSpec, type ModelSpec } from './plan/spec.ts';
-import { JsonTokenizer, type TruncationStrategy } from './tokenizer/hf/index.ts';
-import { BucketOverflowError } from './tokenizer/schema.ts';
-import { aggregateSimple, argmaxRows, assertFinite, completeLabels, l2normalize, softmax, tokenRowOffset, type EntitySpan } from './tasks.ts';
+import type { JsonTokenizer, TruncationStrategy } from './tokenizer/hf/index.ts';
+import { BucketOverflowError } from './errors.ts';
+import { aggregateSimple, argmaxRows, assertFinite, completeLabels, l2normalize, softmax, type EntitySpan } from './tasks.ts';
 import { fetchManifest, resolveManifest } from './weights.ts';
+import { ensureRows, wordsInfo, type RowArray, type WordsMode, type WordTable } from './words.ts';
 
 declare const __KH_BUILD_ID__: string;
 
@@ -45,6 +46,9 @@ export interface EncoderLoadOptions {
   wasmSplit?: { rb?: number; cb?: number; qb?: number; minWork?: number };
   // Batch plans on the threaded WASM path (R8 hc9, default false: slower than single rows).
   wasmBatchPlans?: boolean;
+  // Word table (R4 Festlegung 5): 'full' (default) downloads words.bin; 'rows' fetches the rows of
+  // each input over Range; 'progressive' does rows, then downloads words.bin whole in the background.
+  words?: WordsMode;
 }
 
 export interface EncoderInput {
@@ -114,19 +118,24 @@ const DEFAULT_BUCKETS = [128, 512];
 // evicts the oldest plan when exceeded.
 const MAX_BATCH_PLANS = 8;
 
+const tokenizerChunk = () => import('./tokenizer-entry.ts');
+
 // The file is read as bytes so its size counts as download; the parse error
-// (or the failed fetch, with no bytes) travels as text.
+// (or the failed fetch, with no bytes) travels as text. The chunk downloads
+// alongside the file and the weights.
 async function fetchTokenizer(url: string): Promise<{ bytes: number; tokenizer?: JsonTokenizer; error?: string }> {
   let buf: ArrayBuffer;
+  let JsonTokenizerClass: typeof import('./tokenizer-entry.ts').JsonTokenizer;
   try {
-    const res = await fetch(url);
+    const [chunk, res] = await Promise.all([tokenizerChunk(), fetch(url)]);
+    JsonTokenizerClass = chunk.JsonTokenizer;
     if (!res.ok) throw new Error(`fetch ${url}: ${res.status}`);
     buf = await res.arrayBuffer();
   } catch (e) {
     return { bytes: 0, error: String(e instanceof Error ? e.message : e) };
   }
   try {
-    return { bytes: buf.byteLength, tokenizer: JsonTokenizer.fromString(new TextDecoder().decode(buf)) };
+    return { bytes: buf.byteLength, tokenizer: await JsonTokenizerClass.fromBytes(new Uint8Array(buf)) };
   } catch (e) {
     return { bytes: buf.byteLength, error: String(e instanceof Error ? e.message : e) };
   }
@@ -146,13 +155,14 @@ export class EncoderModel {
   // block the id path (runIds, runIdsBatch); the text methods rethrow it.
   private tokenizerError: string | null = null;
   private precisionNote: string | undefined;
+  private wordsMode: WordsMode = 'full';
   private recommendedPrecision: 'f32' | undefined;
   private labels: string[] = [];
   private textMaxLength = 0;
 
   private constructor(
     private backend: Backend,
-    private embeddings: Float32Array | Uint16Array,
+    private words: WordTable,
     readonly spec: ModelSpec,
     readonly head: HeadSpec,
     readonly task: string,
@@ -165,6 +175,8 @@ export class EncoderModel {
   ): Promise<EncoderModel> {
     const wasm = options.backend === 'wasm';
     if (wasm && options.precision === 'f16') throw new Error('the WASM path runs the f32 manifest');
+    // a failed import surfaces at the await in loadBackend, not as an unhandled rejection here
+    if (!wasm) webgpuChunk().catch(() => undefined);
     const preferF16 = options.precision !== 'f32';
     const tMf = performance.now();
     const url = wasm ? f32ManifestUrl(options.manifestUrl) : options.manifestUrl;
@@ -177,9 +189,10 @@ export class EncoderModel {
     if (manifest.format !== 'kleinhirn-weights-2' || !manifest.spec) {
       throw new Error(`EncoderModel needs kleinhirn-weights-2, manifest is ${manifest.format}`);
     }
-    // Every tensor of a kleinhirn-weights-2 manifest has the manifest's dtype. The first
-    // tensor is the word table in all rows (ModernBERT has no layers.0.qkv).
-    const dtype = manifest.tensors[0]?.dtype ?? 'f32';
+    // Every tensor of a kleinhirn-weights-2 manifest has the manifest's dtype. Version 3 names it
+    // in the words table. A legacy manifest has no words entry: its first tensor is the word
+    // table in all rows (ModernBERT has no layers.0.qkv).
+    const dtype = manifest.words?.dtype ?? manifest.tensors[0]?.dtype ?? 'f32';
     if (kh && dtype === 'f16' && !kh.hasF16) {
       throw new Error('f16 manifest but adapter lacks shader-f16; use the f32 manifest');
     }
@@ -190,13 +203,14 @@ export class EncoderModel {
     const base = manifestUrl.slice(0, manifestUrl.lastIndexOf('/') + 1);
     const tokenizerPromise = manifest.tokenizer ? fetchTokenizer(base + manifest.tokenizer) : undefined;
     const loaded = await loadBackend(manifestUrl, manifest, kh, deps.wasmTransport, { build: options.wasmBuild, threads: options.threads, split: options.wasmSplit,
-      batchPlans: options.wasmBatchPlans });
-    const { backend, embeddings } = loaded;
+      batchPlans: options.wasmBatchPlans }, options.words);
+    const { backend, words } = loaded;
     const spec = manifest.spec as ModelSpec;
     const model = new EncoderModel(
-      backend, embeddings, spec, manifest.head as unknown as HeadSpec,
+      backend, words, spec, manifest.head as unknown as HeadSpec,
       manifest.task ?? '', dtype as 'f16' | 'f32');
     model.precisionNote = resolved.note;
+    model.wordsMode = options.words ?? 'full';
     model.recommendedPrecision = manifest.recommendedPrecision;
     const tok = await tokenizerPromise;
     if (tok?.error !== undefined) model.tokenizerError = tok.error;
@@ -256,18 +270,12 @@ export class EncoderModel {
 
   // Word rows of sequence b at row b * length, width embeddingSize; rows
   // past a sequence's end stay zero.
-  private wordRows(
-    inputs: EncoderInput[], length: number,
-  ): Float32Array<ArrayBuffer> | Uint16Array<ArrayBuffer> {
+  private wordRows(inputs: EncoderInput[], length: number): RowArray {
     const width = this.spec.embeddingSize;
-    const emb = this.embeddings;
-    const out = emb instanceof Float32Array
-      ? new Float32Array(length * inputs.length * width)
-      : new Uint16Array(length * inputs.length * width);
+    const out = this.words.alloc(length * inputs.length * width);
     for (const [b, input] of inputs.entries()) {
       for (let i = 0; i < input.inputIds.length; i += 1) {
-        const off = tokenRowOffset(input.inputIds[i], width, emb.length);
-        out.set(emb.subarray(off, off + width), (b * length + i) * width);
+        this.words.copyRow(input.inputIds[i], out, (b * length + i) * width);
       }
     }
     return out;
@@ -348,6 +356,8 @@ export class EncoderModel {
       throw new BucketOverflowError(`seqLen ${seqLen} exceeds bucket ${plan.length}`);
     }
     if (options.capture) plan.assertCapturable();
+    const pending = ensureRows(this.words, [input]);
+    if (pending) await pending;
     return this.enqueue(() => this.backend.call(() => {
       const { mask, typeIds } = this.maskAndTypes([input], plan.length);
       plan.upload({ embeddings: this.wordRows([input], plan.length), mask, typeIds });
@@ -407,6 +417,8 @@ export class EncoderModel {
     // B=1 runs on the bucket plan like runIds and dispatches only the real
     // rows; B>1 packs at the quantized stride.
     const stride = Math.min(plan.length, batchStride(maxSeq));
+    const pending = ensureRows(this.words, inputs);
+    if (pending) await pending;
     return this.enqueue(async () => {
       const out: EncoderOutput[] = [];
       let bPlan: PlanRunner | undefined;
@@ -580,6 +592,7 @@ export class EncoderModel {
       buckets: [...this.plans.keys()].sort((a, b) => a - b),
       textMaxLength: this.textMaxLength,
       hasTokenizer: this.tokenizer !== null,
+      words: wordsInfo(this.words, this.wordsMode),
       batchSizes: [...BATCH_SIZES],
       gpuBytes: this.backend.kind === 'webgpu' ? this.liveGpuBytes() : null,
       downloadBytes: this.downloadBytes,

@@ -119,20 +119,21 @@ test('gather fuses Q, K, V by rows and checks shapes', () => {
   assert.throws(() => gatherTensors(st, planNames(bad.spec, bad.head, names)), /do not fit/);
 });
 
-test('shards: alignment 256, split at the limit, embedding rows chunked', async () => {
+test('shards: alignment 256, split at the limit, word table kept out of the shards', async () => {
   const meta = { source: { repo: 'x', revision: 'y', checkpointSha256: 'z' }, spec, head,
     task: 't', labels: {}, tokenizer: 'tokenizer.json', maxLength: 6 };
-  const big = new Float32Array(SHARD_LIMIT / 2 - 500); // nearly a full shard in f16
+  const big = new Float32Array(SHARD_LIMIT / 2 - 100); // f16: 94.999.800 B, does not fit behind tensor a
   const tensors = [
-    { name: 'embeddings.word.weight', shape: [130_000, 1], data: new Float32Array(130_000) },
+    { name: 'embeddings.word.weight', shape: [130_000, 2], data: new Float32Array(260_000) },
     { name: 'a', shape: [3], data: new Float32Array([1, 2, 3]) },
     { name: 'big', shape: [big.length], data: big },
     { name: 'b', shape: [2], data: new Float32Array([4, 5]) },
   ];
   const { manifest, shards } = await buildManifest(tensors, 'f16', meta);
   const entries = manifest.tensors as { name: string; shard: number; offset: number; rowStart?: number; rowEnd?: number; byteLength: number }[];
-  assert.deepEqual(entries.filter((e) => e.name === 'embeddings.word.weight').map((e) => [e.rowStart, e.rowEnd]),
-    [[0, 60_000], [60_000, 120_000], [120_000, 130_000]]);
+  // R4: the word table is in words.bin, not in the shards
+  assert.ok(entries.every((e) => e.name !== 'embeddings.word.weight'));
+  assert.equal((manifest.words as { rows: number }).rows, 130_000);
   assert.ok(entries.every((e) => e.offset % 256 === 0));
   assert.ok(shards.every((s) => s.bytes.length <= SHARD_LIMIT));
   assert.ok(entries.find((e) => e.name === "big")!.shard > entries.find((e) => e.name === "a")!.shard);

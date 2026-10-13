@@ -9,6 +9,9 @@
 // the sixteen RoBERTa, XLM-R and DistilBERT models, change k28.5-parity; --pilot-k28.6
 // (K28.6) the eleven DeBERTa and ModernBERT models, change k28.6-parity. The four XLM-R
 // models regenerated in K28.6 step 0 also run under k28.6-parity (--k28.6 on a single slug).
+// --r6 (R6 G6) runs the six bench models, change r6-g6-parity, results in ...-r6g6.json with
+// the SHA-256 of every output; tools/r6_g6.mjs compares two commits. --bundle loads dist/kleinhirn.js
+// (results ...-r6g6b.json, with the loaded script URLs), --wasm the WASM executor (...-r6g6bw.json).
 
 import { chromium } from '@playwright/test';
 import { execFileSync, spawnSync } from 'node:child_process';
@@ -60,8 +63,18 @@ const PILOT_K286 = [
   'hotchpotch__japanese-reranker-xsmall-v2',
   'ibm-granite__granite-embedding-reranker-english-r2',
 ];
+// R6 G6: the six bench models of the kbench table (bench/kbench/runner-lib.mjs MODELS).
+const R6 = [
+  'sentence-transformers__all-MiniLM-L6-v2',
+  'cardiffnlp__twitter-roberta-base-sentiment-latest',
+  'cross-encoder__mmarco-mMiniLMv2-L12-H384-v1',
+  'distilbert__distilbert-base-uncased-finetuned-sst-2-english',
+  'protectai__deberta-v3-base-prompt-injection-v2',
+  'ibm-granite__granite-embedding-small-english-r2',
+];
 // The pilot groups: flag, slugs, change prefix.
 const GROUPS = [
+  ['--r6', R6, 'r6-g6'],
   ['--pilot', PILOT, 'k28.4'],
   ['--pilot-k28.5', PILOT_K285, 'k28.5'],
   ['--pilot-k28.6', PILOT_K286, 'k28.6'],
@@ -71,20 +84,30 @@ const PRECISIONS = ['f32', 'f16'];
 const git = (...args) => execFileSync('git', args, { encoding: 'utf8' }).trim();
 const args = process.argv.slice(2);
 const flags = args.filter((a) => a.startsWith('--'));
-const pos = args.filter((a) => !a.startsWith('--'));
+// R4: --words rows|progressive takes its value as the next argument, not as a positional one
+const wordsAt = args.indexOf('--words');
+const wordsVal = wordsAt >= 0 ? args[wordsAt + 1] : undefined;
+const words = wordsVal ?? 'full';
+if (wordsAt >= 0 && !['rows', 'progressive'].includes(wordsVal)) {
+  console.error('usage: --words rows|progressive');
+  process.exit(2);
+}
+const pos = args.filter((a) => !a.startsWith('--') && a !== wordsVal);
 
 const group = GROUPS.find(([flag]) => flags.includes(flag));
 if (group) {
   const [precision, port = '5199'] = pos;
   if (!PRECISIONS.includes(precision)) {
-    console.error('usage: run-k28-parity.mjs --pilot|--pilot-k28.5|--pilot-k28.6 <f32|f16> [port]');
+    console.error('usage: run-k28-parity.mjs --r6|--pilot|--pilot-k28.5|--pilot-k28.6 <f32|f16> [port]');
     process.exit(2);
   }
   let failed = 0;
   for (const slug of group[1]) {
     const r = spawnSync('node', [
       'bench/run-k28-parity.mjs', slug, precision, port,
-      ...flags.filter((f) => !GROUPS.some(([flag]) => flag === f))], { stdio: 'inherit' });
+      ...flags.filter((f) => f !== '--words' && !GROUPS.some(([flag]) => flag === f)),
+      ...(wordsVal ? ['--words', wordsVal] : []),
+      ...(group[0] === '--r6' ? ['--r6-g6'] : [])], { stdio: 'inherit' });
     if (r.status !== 0) failed += 1;
   }
   process.exit(failed ? 1 : 0);
@@ -93,9 +116,13 @@ if (group) {
 const [slug, precision, port = '5199'] = pos;
 const layers = flags.includes('--layers');
 const text = flags.includes('--text');
+// R6: --bundle runs dist/kleinhirn.js (build first), --wasm the WASM executor (f32 only)
+const bundle = flags.includes('--bundle');
+const wasmBackend = flags.includes('--wasm');
 const PILOTS = [...PILOT, ...PILOT_K285, ...PILOT_K286];
 // change prefix of the run: the K28.6 models and, with --k28.6, the XLM-R models of step 0
-const generation = PILOT_K286.includes(slug) || flags.includes('--k28.6') ? 'k28.6'
+// (R6: --r6-g6 marks the G6 bit runs, change r6-g6-parity)
+const generation = flags.includes('--r6-g6') ? 'r6-g6' : PILOT_K286.includes(slug) || flags.includes('--k28.6') ? 'k28.6'
   : PILOT_K285.includes(slug) ? 'k28.5' : PILOTS.includes(slug) ? 'k28.4' : 'k28.s';
 // K28.S: every model of the list is allowed; its change prefix is k28.s
 const LIST = JSON.parse(readFileSync('data/k28/models.json', 'utf8')).models.map((e) => e.id.replace('/', '__'));
@@ -123,7 +150,8 @@ function appendRun(runId) {
   const cells = COLS.map(() => '');
   Object.assign(cells, {
     0: new Date().toISOString().slice(0, 10), 1: runId,
-    2: text && !['k28.6', 'k28.s'].includes(generation) ? 'k28.3-text' : `${generation}-parity${layers ? '-layers' : ''}`, 3: commit,
+    2: (text && !['k28.6', 'k28.s', 'r6-g6'].includes(generation) ? 'k28.3-text' : `${generation}-parity${layers ? '-layers' : ''}`)
+      + (wordsVal ? `-words-${words}` : ''), 3: commit,
     4: 'kleinhirn', 5: slug, 6: '128+512', 7: precision, 21: 'pending',
   });
   appendFileSync(RUNS, cells.join('\t') + '\n');
@@ -146,7 +174,10 @@ function agreementOf(m) {
 }
 
 async function main() {
-  const suffix = layers ? '-layers' : text ? '-text' : '';
+  // R4: r6g6 + b (bundle) + w (wasm) + r (rows) or p (progressive)
+  const wordsSuffix = words === 'rows' ? 'r' : words === 'progressive' ? 'p' : '';
+  const suffix = layers ? '-layers' : text ? '-text' : generation === 'r6-g6' ? `-r6g6${bundle ? 'b' : ''}${wasmBackend ? 'w' : ''}${wordsSuffix}`
+    : wordsVal ? `-words-${words}` : '';
   const runId = `k28-parity-${slug}-${precision}-${commit}${suffix}-${Date.now()}`;
   appendRun(runId);
   mkdirSync(OUT, { recursive: true });
@@ -157,7 +188,7 @@ async function main() {
     page.on('console', (m) => {
       if (m.type() === 'error') console.log('[page]', m.text());
     });
-    await page.goto(`${BASE}/bench/k28-parity.html?model=${slug}&precision=${precision}${layers ? '&layers=1' : ''}${text ? '&text=1' : ''}`);
+    await page.goto(`${BASE}/bench/k28-parity.html?model=${slug}&precision=${precision}${layers ? '&layers=1' : ''}${text ? '&text=1' : ''}${bundle ? '&bundle=1' : ''}${wasmBackend ? '&backend=wasm' : ''}${wordsVal ? `&words=${words}` : ''}`);
     const t0 = Date.now();
     while (Date.now() - t0 < 1800000) {
       const done = await page.evaluate(() => window.khK28ParityResult?.done ?? false);
@@ -169,6 +200,15 @@ async function main() {
     if (result.error) {
       finishRun(runId, { kept: 'error', note: result.error });
       throw new Error('page: ' + result.error);
+    }
+    // --bundle: the dev server can serve a stale transform of dist/ (vite.config.ts), so the page's
+    // build id must be the one of the file on disk
+    if (bundle) {
+      const disk = readFileSync('dist/kleinhirn.js', 'utf8').match(/buildId\s*:\s*["']([a-z0-9]+)["']/)?.[1];
+      if (!disk || result.info?.buildId !== disk) {
+        finishRun(runId, { kept: 'error', note: `stale bundle: page ${result.info?.buildId}, disk ${disk}` });
+        throw new Error(`stale bundle: the page ran build ${result.info?.buildId}, dist/kleinhirn.js is ${disk}; restart the dev server`);
+      }
     }
     const out = {
       date: new Date().toISOString().slice(0, 10), run_id: runId, commit,

@@ -2,42 +2,63 @@
 // encode_optimized and tokenize, Apache-2.0): Viterbi over the piece scores, unknown
 // chars as unk with the lowest score minus 10, fused unk runs, byte_fallback.
 
+import { asUnigram, type CompactUnigram } from '../bin.ts';
+import { FNV_BASIS, fnv, StringIndex, type Tokens } from '../strtab.ts';
 import type { PieceSpan } from './wordpiece.ts';
 
 const K_UNK_PENALTY = 10.0;
 
+// Code points in the UTF-16 range [a, b) of s, counted without spreading.
+function codePointCount(s: string, a: number, b: number): number {
+  let n = 0;
+  for (let i = a; i < b; i += 1) {
+    const c = s.charCodeAt(i);
+    if (c >= 0xd800 && c < 0xdc00 && i + 1 < b) {
+      const d = s.charCodeAt(i + 1);
+      if (d >= 0xdc00 && d < 0xe000) i += 1;
+    }
+    n += 1;
+  }
+  return n;
+}
+
 export class Unigram {
-  private scores = new Map<string, number>();
-  private ids = new Map<string, number>();
+  // piece to id (the position; a repeated piece keeps its last position)
+  private index: StringIndex;
   private minScore = Infinity;
   private maxChars = 0;
   private unkId: number | null;
   private byteFallback: boolean;
+  // scores by id
+  private byId: Float64Array;
 
-  constructor(vocab: Array<[string, number]>, unkId: number | null, byteFallback: boolean) {
+  constructor(vocab: CompactUnigram, unkId: number | null, byteFallback: boolean) {
     this.unkId = unkId;
     this.byteFallback = byteFallback;
-    if (unkId !== null && (vocab.length === 0 || unkId >= vocab.length)) {
+    const n = vocab.pieces.length;
+    if (unkId !== null && (n === 0 || unkId >= n)) {
       throw new Error('Unigram: unk_id is not in the vocab');
     }
-    vocab.forEach(([token, score], id) => {
-      // a repeated piece keeps its last id, the score of the lookup by id is that entry's own
-      this.ids.set(token, id);
-      this.scores.set(token, score);
+    this.byId = Float64Array.from(vocab.scores);
+    const { blob, offs } = vocab.pieces;
+    for (let id = 0; id < n; id += 1) {
+      const score = this.byId[id];
       if (score < this.minScore) this.minScore = score;
-      this.maxChars = Math.max(this.maxChars, [...token].length);
-    });
-    // scores by id for repeated pieces
-    this.byId = vocab.map((v) => v[1]);
+      this.maxChars = Math.max(this.maxChars, codePointCount(blob, offs[id], offs[id + 1]));
+    }
+    this.index = new StringIndex(vocab.pieces);
   }
-
-  private byId: number[];
 
   static fromJson(model: Record<string, unknown>): Unigram {
     return new Unigram(
-      model.vocab as Array<[string, number]>,
+      asUnigram(model.vocab),
       (model.unk_id as number | null | undefined) ?? null,
       model.byte_fallback === true);
+  }
+
+  private idOf(s: string): number | undefined {
+    const i = this.index.indexOf(s);
+    return i < 0 ? undefined : i;
   }
 
   // chars: the code points of one word.
@@ -51,12 +72,13 @@ export class Unigram {
     for (let start = 0; start < n; start += 1) {
       const here = bestScore[start];
       let hasSingle = false;
-      let piece = '';
+      // the hash of chars[start .. end) grows by one char per length; no string is built
+      let h = FNV_BASIS;
       for (let len = 1; len <= this.maxChars && start + len <= n; len += 1) {
-        piece += chars[start + len - 1];
-        const id = this.ids.get(piece);
-        if (id === undefined) continue;
         const end = start + len;
+        h = fnv(h, chars[end - 1]);
+        const id = this.index.indexOfChars(chars, start, end, h);
+        if (id < 0) continue;
         const candidate = this.byId[id] + here;
         if (startsAt[end] < 0 || candidate > bestScore[end]) {
           bestScore[end] = candidate;
@@ -99,7 +121,7 @@ export class Unigram {
     const out: PieceSpan[] = [];
     for (const [s, e] of pieces) {
       const text = chars.slice(s, e).join('');
-      const id = this.ids.get(text);
+      const id = this.idOf(text);
       if (id !== undefined) {
         out.push({ id, start: s, end: e });
         continue;
@@ -109,7 +131,7 @@ export class Unigram {
         const tokens: number[] = [];
         let all = true;
         for (const b of bytes) {
-          const t = this.ids.get(`<0x${b.toString(16).toUpperCase().padStart(2, '0')}>`);
+          const t = this.idOf(`<0x${b.toString(16).toUpperCase().padStart(2, '0')}>`);
           if (t === undefined) {
             all = false;
             break;

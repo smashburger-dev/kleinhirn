@@ -5,6 +5,7 @@
 // reference is HF tokenizers 0.22.2; encode returns what AutoTokenizer returns with
 // offsets in UTF-16 units.
 
+import { parseTokenizerCompact } from '../bin.ts';
 import { Bpe } from './bpe.ts';
 import { cpIndex, fromText, join, slice, type Normalized } from './normalized.ts';
 import { isWhitespace, parseNormalizer, type NormalizerFn } from './normalizers.ts';
@@ -190,6 +191,11 @@ export class JsonTokenizer {
 
   static fromString(text: string): JsonTokenizer {
     return JsonTokenizer.fromJson(JSON.parse(text));
+  }
+
+  // tokenizer.json or tokenizer.bin (R6): the first byte tells the gzip file from the text.
+  static async fromBytes(bytes: Uint8Array): Promise<JsonTokenizer> {
+    return JsonTokenizer.fromJson(await parseTokenizerCompact(bytes));
   }
 
   // Text pieces and added tokens of one text in order (AddedVocabulary::extract_and_normalize):

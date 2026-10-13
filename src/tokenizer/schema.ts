@@ -9,12 +9,9 @@
 
 import type { HfTokenizer } from './tokenizer.ts';
 
-export class BucketOverflowError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = 'BucketOverflowError';
-  }
-}
+import { BucketOverflowError } from '../errors.ts';
+
+export { BucketOverflowError };
 
 const SEP_STRUCT = '[SEP_STRUCT]';
 const SEP_TEXT = '[SEP_TEXT]';

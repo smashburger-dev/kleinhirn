@@ -1,5 +1,5 @@
 // K28 converter CLI: models/k28/<slug>/repo (safetensors) -> f32/ and f16/
-// (manifest.json, weights-N.bin, tokenizer.json). The core lives in
+// (manifest.json, shard-N.bin, words.bin, tokenizer.bin; R4 and R6). The core lives in
 // src/convert/ and reads no files; this CLI does the file work.
 //
 // Usage: node tools/k28_convert.ts <model-id>... | --pilot | --pilot-k28.5 | --pilot-k28.6
@@ -11,13 +11,14 @@
 
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { manifestMaxLength, specFromHfConfig, templateOfTokenizer, type HfExtras, type Task } from '../src/plan/hf.ts';
 import { F16RangeError, buildManifest, gatherTensors } from '../src/convert/manifest.ts';
 import { planNames, type ExtraNames } from '../src/convert/names.ts';
 import { parseSafetensors, type StFile } from '../src/convert/safetensors.ts';
+import { tokenizerBin } from './r6_tokbin.ts';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const PILOT = [
@@ -140,7 +141,7 @@ async function convert(entry: Entry, outRoot: string): Promise<{ hashes: Record<
   const meta = {
     source: { repo: entry.id, revision: entry.revision, checkpointSha256: sha256(wbytes) },
     spec, head, task, labels: config.id2label as Record<string, string>,
-    tokenizer: 'tokenizer.json', maxLength, sentenceTransformers: st,
+    tokenizer: 'tokenizer.bin', maxLength, sentenceTransformers: st,
   };
   const hashes: Record<string, FileHashes> = {};
   let f16Skipped: string | undefined;
@@ -159,12 +160,16 @@ async function convert(entry: Entry, outRoot: string): Promise<{ hashes: Record<
     mkdirSync(dir, { recursive: true });
     const text = `${JSON.stringify(built.manifest, null, 1)}\n`;
     writeFileSync(join(dir, 'manifest.json'), text);
-    copyFileSync(tokenizer, join(dir, 'tokenizer.json'));
-    const h: FileHashes = { 'manifest.json': sha256(text), 'tokenizer.json': sha256(readFileSync(tokenizer)) };
+    // R6: the tokenizer ships as tokenizer.bin only (tools/r6_tokbin.ts checks it by decoding)
+    const tokBin = tokenizerBin(readFileSync(tokenizer, 'utf8'));
+    writeFileSync(join(dir, 'tokenizer.bin'), tokBin);
+    const h: FileHashes = { 'manifest.json': sha256(text), 'tokenizer.bin': sha256(tokBin) };
     for (const shard of built.shards) {
       writeFileSync(join(dir, shard.file), shard.bytes);
       h[shard.file] = sha256(shard.bytes);
     }
+    writeFileSync(join(dir, built.words.file), built.words.bytes);
+    h[built.words.file] = sha256(built.words.bytes);
     hashes[dtype] = h;
   }
   return {

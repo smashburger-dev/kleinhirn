@@ -3,11 +3,13 @@
 // matching, Metaspace pretokenizer, Unigram Viterbi. No [CLS]/[SEP] are
 // added by tokenize; the GLiNER2 schema input inserts its own markers.
 
+import { asUnigram } from './bin.ts';
 import { buildUnigram, unigramEncode, type UnigramVocab } from './unigram.ts';
 
 interface AddedToken { id: number; content: string; special: boolean }
 interface TokenizerJson {
-  model: { vocab: [string, number][]; unk_id?: number };
+  // compact (parseTokenizerCompact) or the [piece, score] rows of tokenizer.json
+  model: { vocab: unknown; unk_id?: number };
   added_tokens: AddedToken[];
 }
 
@@ -21,7 +23,7 @@ export class HfTokenizer {
   padTokenId = 0;
 
   constructor(json: TokenizerJson) {
-    this.unigram = buildUnigram(json.model.vocab, json.model.unk_id ?? 3);
+    this.unigram = buildUnigram(asUnigram(json.model.vocab), json.model.unk_id ?? 3);
     this.added = new Map();
     this.addedList = [];
     for (const t of json.added_tokens) {

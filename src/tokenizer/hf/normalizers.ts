@@ -232,9 +232,13 @@ function stripNormalize(n: Normalized, left: boolean, right: boolean): Normalize
   };
 }
 
-// Oniguruma \w is Letter, Mark, Decimal_Number, Connector_Punctuation; \s is White_Space.
-const ONIG_WORD = '\\p{L}\\p{M}\\p{Nd}\\p{Pc}';
+// Oniguruma \w is Letter, Mark, Number (all of N, ² too), Connector_Punctuation; \s is White_Space.
+const ONIG_WORD = '\\p{L}\\p{M}\\p{N}\\p{Pc}';
 const ONIG_SPACE = '\\p{White_Space}';
+// T01: word boundary and its negation with that \w (a word character on exactly one side, or on
+// both or neither side)
+const ONIG_BOUNDARY = `(?:(?<=[${ONIG_WORD}])(?![${ONIG_WORD}])|(?<![${ONIG_WORD}])(?=[${ONIG_WORD}]))`;
+const ONIG_NON_BOUNDARY = `(?:(?<=[${ONIG_WORD}])(?=[${ONIG_WORD}])|(?<![${ONIG_WORD}])(?![${ONIG_WORD}]))`;
 
 // Translates the escapes whose meaning differs between Oniguruma and JavaScript with the u flag.
 export function oniguruma(pattern: string): string {
@@ -254,8 +258,8 @@ export function oniguruma(pattern: string): string {
       } else if (e === 'd' || e === 'D') {
         throw new Error(`Replace: unsupported \\${e} in ${pattern}`);
       } else if ((e === 'b' || e === 'B') && !inClass) {
-        // JavaScript's \b is ASCII, Oniguruma's is Unicode; no safe translation without lookarounds
-        throw new Error(`Replace: unsupported \\${e} outside a character class in ${pattern}`);
+        // JavaScript's \b is ASCII, Oniguruma's follows its Unicode \w: lookarounds on ONIG_WORD
+        out += e === 'b' ? ONIG_BOUNDARY : ONIG_NON_BOUNDARY;
       } else out += c + e;
     } else {
       if (c === '[') inClass = true;
@@ -277,8 +281,10 @@ class Precompiled {
   private encoder = new TextEncoder();
   private decoder = new TextDecoder();
 
-  constructor(base64: string) {
-    const raw = Uint8Array.from(atob(base64), (c) => c.charCodeAt(0));
+  // charsmap: the raw bytes (tokenizer.bin) or the base64 string of tokenizer.json
+  constructor(charsmap: Uint8Array | string) {
+    const raw = typeof charsmap === 'string'
+      ? Uint8Array.from(atob(charsmap), (c) => c.charCodeAt(0)) : charsmap;
     const view = new DataView(raw.buffer, raw.byteOffset, raw.byteLength);
     const trieBytes = view.getUint32(0, true);
     this.trie = new Uint32Array(trieBytes / 4);
@@ -394,7 +400,7 @@ export function parseNormalizer(json: Record<string, unknown> | null): Normalize
       return (n) => replaceMatches(n, matchRegex(n.chars, re), content);
     }
     case 'Precompiled': {
-      const pre = new Precompiled(json.precompiled_charsmap as string);
+      const pre = new Precompiled(json.precompiled_charsmap as string | Uint8Array);
       const segmenter = new Intl.Segmenter('en', { granularity: 'grapheme' });
       return (n) => pre.normalize(n, segmenter);
     }

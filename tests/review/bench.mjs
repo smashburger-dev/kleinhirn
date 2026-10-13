@@ -5,13 +5,14 @@ import { loadavg, cpus, platform } from 'node:os';
 import { summarizeLatency } from '../../bench/metrics.ts';
 import { JsonTokenizer } from '../../src/tokenizer/hf/index.ts';
 import { Bpe } from '../../src/tokenizer/hf/bpe.ts';
+import { asDict, asMergePairs, asUnigram } from '../../src/tokenizer/bin.ts';
 import { Unigram } from '../../src/tokenizer/hf/unigram.ts';
 import { BpeTokenizer } from '../../src/tokenizer/bpe.ts';
 import { buildUnigram, unigramEncode } from '../../src/tokenizer/unigram.ts';
 import { fromText } from '../../src/tokenizer/hf/normalized.ts';
 import { parseNormalizer } from '../../src/tokenizer/hf/normalizers.ts';
 import { halfBitsToFloat32 } from '../../src/half.ts';
-import { Kleinhirn } from '../../src/index.ts';
+import { Kleinhirn } from '../../src/gliner.ts';
 import { JuliaEngine } from '../../src/julia.ts';
 import { model, fixture } from '../helpers/review.mjs';
 
@@ -32,7 +33,8 @@ const started = { date: new Date().toISOString(), node: process.version, platfor
   cpu: cpus()[0].model, load: loadavg(), kind: 'CPU-only, synthetic data, not engine latency' };
 const bpeOpt = { unkToken: null, continuingSubwordPrefix: null, endOfWordSuffix: null,
   fuseUnk: false, byteFallback: false, ignoreMerges: false };
-const bp = new Bpe(new Map([['a', 0], ['aa', 1]]), [['a', 'a']], bpeOpt);
+const bpDict = asDict({ a: 0, aa: 1 });
+const bp = new Bpe(bpDict, asMergePairs(bpDict, [['a', 'a']]), bpeOpt);
 const legacyBpe = new BpeTokenizer({ model: { vocab: { a: 0, aa: 1, '▁': 2 }, merges: [['a', 'a']] }, added_tokens: [] });
 for (const n of [512, 2048, 8192]) {
   const chars = Array(n).fill('a'), text = chars.join('');
@@ -41,7 +43,7 @@ for (const n of [512, 2048, 8192]) {
 }
 for (const max of [32, 256]) {
   const vocab = [['<unk>', -10], ['a', -1], ['z'.repeat(max), -2]];
-  const uni = new Unigram(vocab, 0, false), old = buildUnigram(vocab, 0);
+  const uni = new Unigram(asUnigram(vocab), 0, false), old = buildUnigram(asUnigram(vocab), 0);
   for (const n of [512, 2048]) {
     const chars = Array(n).fill('a'), text = chars.join('');
     await measure(`HF Unigram n=${n} maxPiece=${max}`, () => uni.tokenize(chars), 1, 5);

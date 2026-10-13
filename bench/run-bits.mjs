@@ -68,7 +68,15 @@ if (args[0] === '--compare') {
 }
 
 const flags = args.filter((a) => a.startsWith('--'));
-const pos = args.filter((a) => !a.startsWith('--'));
+// R4: --words rows|progressive takes its value as the next argument; file suffix -wr / -wp
+const wordsAt = args.indexOf('--words');
+const wordsVal = wordsAt >= 0 ? args[wordsAt + 1] : undefined;
+if (wordsAt >= 0 && !['rows', 'progressive'].includes(wordsVal)) {
+  console.error('usage: --words rows|progressive');
+  process.exit(2);
+}
+const wordsSuffix = wordsVal === 'rows' ? '-wr' : wordsVal === 'progressive' ? '-wp' : '';
+const pos = args.filter((a) => !a.startsWith('--') && a !== wordsVal);
 const model = pos[0];
 const precision = pos[1];
 const port = pos[2] ?? '5199';
@@ -112,7 +120,7 @@ function finishRun(runId, fields) {
 }
 
 async function main() {
-  const suffix = rerun ? '-rerun' : '';
+  const suffix = (rerun ? '-rerun' : '') + wordsSuffix;
   const runId = `k28-bits-${model}-${precision}-${commit}${suffix}-${Date.now()}`;
   appendRun(runId);
   mkdirSync(OUT, { recursive: true });
@@ -123,7 +131,7 @@ async function main() {
     page.on('console', (m) => {
       if (m.type() === 'error') console.log('[page]', m.text());
     });
-    await page.goto(`${BASE}/bench/bits.html?model=${model}&precision=${precision}`);
+    await page.goto(`${BASE}/bench/bits.html?model=${model}&precision=${precision}${wordsVal ? `&words=${wordsVal}` : ''}`);
     const t0 = Date.now();
     let last = '';
     while (Date.now() - t0 < 3600000) {

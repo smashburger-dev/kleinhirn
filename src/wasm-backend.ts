@@ -1,6 +1,6 @@
 // WASM backend of EncoderModel (R2): the plan executor of src/wasm/plan.ts in a worker, one
 // thread. Loaded on demand (dynamic import), so the core bundle carries none of it. The main
-// thread fetches and verifies the f32 shards, keeps the word table (keepOnCpu, Festlegung 3)
+// thread fetches and verifies the f32 shards and words.bin (Festlegung 3), keeps the word table
 // and hands every other tensor to the worker; a call posts the word rows, mask and type ids
 // and gets the output back.
 
@@ -9,7 +9,7 @@ import type { RunInput } from './plan/executor.ts';
 import type { Plan } from './plan/ir.ts';
 import type { ThreadSplit, WasmBuild } from './plan/wasm.ts';
 import type { HostReply, HostRequest } from './wasm-plan-host.ts';
-import type { FetchedShards, Manifest } from './weights.ts';
+import type { FetchedShards, LoadedWords, Manifest } from './weights.ts';
 
 export interface Transport {
   request(msg: HostRequest, transfer?: Transferable[]): Promise<HostReply>;
@@ -173,20 +173,11 @@ class WasmBackend implements Backend {
 }
 
 // fetched: the verified shards (EncoderModel fetches them, so weights.ts stays in the core bundle).
+// words: the word table (loadWords), read before the call so a legacy join sees the shard bytes.
 export async function loadWasm(
   fetched: FetchedShards, manifest: Manifest, transport: Transport, options: WasmOptions = {},
+  words: LoadedWords,
 ): Promise<LoadedBackend> {
-  const tJoin = performance.now();
-  const parts = manifest.tensors.filter((t) => t.keepOnCpu)
-    .sort((a, b) => (a.rowStart ?? 0) - (b.rowStart ?? 0));
-  if (parts.some((t) => t.name !== 'embeddings.word.weight')) throw new Error('only the word table stays on the CPU');
-  const embeddings = new Float32Array(parts.reduce((n, t) => n + t.byteLength, 0) / 4);
-  let at = 0;
-  for (const t of parts) {
-    embeddings.set(new Float32Array(fetched.shardBytes[t.shard].slice(t.offset, t.offset + t.byteLength)), at);
-    at += t.byteLength / 4;
-  }
-  const embedJoinMs = performance.now() - tJoin;
   const tUp = performance.now();
   const backend = new WasmBackend(transport);
   const init = await backend.request(
@@ -198,8 +189,8 @@ export async function loadWasm(
   backend.threadNote = init.threadNote;
   backend.batchPlans = options.batchPlans === true;
   return {
-    backend, embeddings, downloadBytes: fetched.downloadBytes,
+    backend, words: words.table, downloadBytes: fetched.downloadBytes + words.bytes,
     timing: { fetchMs: fetched.fetchMs, bodyMs: fetched.bodyMs, sha256Ms: fetched.sha256Ms,
-      uploadMs: performance.now() - tUp, embedJoinMs },
+      uploadMs: performance.now() - tUp, ...words.timing },
   };
 }

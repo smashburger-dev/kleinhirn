@@ -1,0 +1,380 @@
+[
+ {
+  "model": "DeBERTa-v3-base",
+  "mode": "full",
+  "profile": "local",
+  "reps": 3,
+  "ttfrMs": 683.6000000238419,
+  "loadMs": 668.3999999761581,
+  "firstCallMs": 15.800000071525574,
+  "callMedianMs": 8.099999904632568,
+  "callMaxMs": 10.600000023841858,
+  "warmMedianMs": 7.899999976158142,
+  "mbModels": 388.365088,
+  "mbEngine": 0.858572,
+  "tokenizerMs": null,
+  "words": {
+   "mode": "full",
+   "rows": 128100,
+   "requests": "-",
+   "bytes": "-"
+  }
+ },
+ {
+  "model": "DeBERTa-v3-base",
+  "mode": "progressive",
+  "profile": "local",
+  "reps": 3,
+  "ttfrMs": 427.2999999523163,
+  "loadMs": 400.7999999523163,
+  "firstCallMs": 29.600000023841858,
+  "callMedianMs": 15.649999976158142,
+  "callMaxMs": 153.09999990463257,
+  "warmMedianMs": 7.899999976158142,
+  "mbModels": 211.913468,
+  "mbEngine": 0.907552,
+  "tokenizerMs": null,
+  "words": {
+   "mode": "progressive",
+   "rows": 128100,
+   "requests": 150,
+   "bytes": 254100
+  }
+ },
+ {
+  "model": "DeBERTa-v3-base",
+  "mode": "rows",
+  "profile": "local",
+  "reps": 3,
+  "ttfrMs": 429,
+  "loadMs": 399,
+  "firstCallMs": 30,
+  "callMedianMs": 15.550000011920929,
+  "callMaxMs": 26.899999976158142,
+  "warmMedianMs": 7.899999976158142,
+  "mbModels": 191.457668,
+  "mbEngine": 0.907552,
+  "tokenizerMs": null,
+  "words": {
+   "mode": "rows",
+   "rows": 288,
+   "requests": 268,
+   "bytes": 443520
+  }
+ },
+ {
+  "model": "DistilBERT",
+  "mode": "full",
+  "profile": "local",
+  "reps": 3,
+  "ttfrMs": 272.7000000476837,
+  "loadMs": 259.3000000715256,
+  "firstCallMs": 15.599999904632568,
+  "callMedianMs": 4,
+  "callMaxMs": 10.5,
+  "warmMedianMs": 4,
+  "mbModels": 134.170165,
+  "mbEngine": 0.858572,
+  "tokenizerMs": null,
+  "words": {
+   "mode": "full",
+   "rows": 30522,
+   "requests": "-",
+   "bytes": "-"
+  }
+ },
+ {
+  "model": "DistilBERT",
+  "mode": "progressive",
+  "profile": "local",
+  "reps": 3,
+  "ttfrMs": 246.89999997615814,
+  "loadMs": 221,
+  "firstCallMs": 27.100000023841858,
+  "callMedianMs": 4.25,
+  "callMaxMs": 52.39999997615814,
+  "warmMedianMs": 4,
+  "mbModels": 88.847445,
+  "mbEngine": 0.907552,
+  "tokenizerMs": null,
+  "words": {
+   "mode": "progressive",
+   "rows": 30522,
+   "requests": 66,
+   "bytes": 144760
+  }
+ },
+ {
+  "model": "DistilBERT",
+  "mode": "rows",
+  "profile": "local",
+  "reps": 3,
+  "ttfrMs": 247.59999990463257,
+  "loadMs": 218.89999997615814,
+  "firstCallMs": 27.199999928474426,
+  "callMedianMs": 11.500000059604645,
+  "callMaxMs": 23.699999928474426,
+  "warmMedianMs": 4,
+  "mbModels": 87.558105,
+  "mbEngine": 0.907552,
+  "tokenizerMs": null,
+  "words": {
+   "mode": "rows",
+   "rows": 279,
+   "requests": 245,
+   "bytes": 429660
+  }
+ },
+ {
+  "model": "granite",
+  "mode": "full",
+  "profile": "local",
+  "reps": 3,
+  "ttfrMs": 230.10000002384186,
+  "loadMs": 217.20000004768372,
+  "firstCallMs": 14.100000023841858,
+  "callMedianMs": 4.400000035762787,
+  "callMaxMs": 10,
+  "warmMedianMs": 4.399999976158142,
+  "mbModels": 95.927344,
+  "mbEngine": 0.858572,
+  "tokenizerMs": null,
+  "words": {
+   "mode": "full",
+   "rows": 50368,
+   "requests": "-",
+   "bytes": "-"
+  }
+ },
+ {
+  "model": "granite",
+  "mode": "progressive",
+  "profile": "local",
+  "reps": 3,
+  "ttfrMs": 214.5,
+  "loadMs": 188.39999997615814,
+  "firstCallMs": 27.899999976158142,
+  "callMedianMs": 4.5,
+  "callMaxMs": 57.799999952316284,
+  "warmMedianMs": 4.399999976158142,
+  "mbModels": 57.193816,
+  "mbEngine": 0.907552,
+  "tokenizerMs": null,
+  "words": {
+   "mode": "progressive",
+   "rows": 50368,
+   "requests": 68,
+   "bytes": 64848
+  }
+ },
+ {
+  "model": "granite",
+  "mode": "rows",
+  "profile": "local",
+  "reps": 3,
+  "ttfrMs": 212.79999995231628,
+  "loadMs": 185.29999995231628,
+  "firstCallMs": 28,
+  "callMedianMs": 14.050000011920929,
+  "callMaxMs": 25.600000023841858,
+  "warmMedianMs": 4.399999976158142,
+  "mbModels": 57.261468,
+  "mbEngine": 0.907552,
+  "tokenizerMs": null,
+  "words": {
+   "mode": "rows",
+   "rows": 344,
+   "requests": 317,
+   "bytes": 265568
+  }
+ },
+ {
+  "model": "MiniLM",
+  "mode": "full",
+  "profile": "local",
+  "reps": 3,
+  "ttfrMs": 126.70000004768372,
+  "loadMs": 120,
+  "firstCallMs": 6.600000023841858,
+  "callMedianMs": 2.100000023841858,
+  "callMaxMs": 8,
+  "warmMedianMs": 2.200000047683716,
+  "mbModels": 45.390541,
+  "mbEngine": 0.858572,
+  "tokenizerMs": null,
+  "words": {
+   "mode": "full",
+   "rows": 30522,
+   "requests": "-",
+   "bytes": "-"
+  }
+ },
+ {
+  "model": "MiniLM",
+  "mode": "progressive",
+  "profile": "local",
+  "reps": 3,
+  "ttfrMs": 111.30000007152557,
+  "loadMs": 93.30000007152557,
+  "firstCallMs": 18.59999990463257,
+  "callMedianMs": 3.0999999046325684,
+  "callMaxMs": 48.299999952316284,
+  "warmMedianMs": 2.299999952316284,
+  "mbModels": 22.660105,
+  "mbEngine": 0.907552,
+  "tokenizerMs": null,
+  "words": {
+   "mode": "progressive",
+   "rows": 30522,
+   "requests": 52,
+   "bytes": 57900
+  }
+ },
+ {
+  "model": "MiniLM",
+  "mode": "rows",
+  "profile": "local",
+  "reps": 3,
+  "ttfrMs": 115.69999992847443,
+  "loadMs": 95.09999990463257,
+  "firstCallMs": 19.699999928474426,
+  "callMedianMs": 11.199999988079071,
+  "callMaxMs": 24.100000023841858,
+  "warmMedianMs": 2.200000047683716,
+  "mbModels": 22.051953,
+  "mbEngine": 0.907552,
+  "tokenizerMs": null,
+  "words": {
+   "mode": "rows",
+   "rows": 279,
+   "requests": 245,
+   "bytes": 215388
+  }
+ },
+ {
+  "model": "mMiniLM",
+  "mode": "full",
+  "profile": "local",
+  "reps": 3,
+  "ttfrMs": 502.2000000476837,
+  "loadMs": 488.5,
+  "firstCallMs": 14.100000023841858,
+  "callMedianMs": 4.25,
+  "callMaxMs": 7.200000047683716,
+  "warmMedianMs": 4.099999904632568,
+  "mbModels": 238.295547,
+  "mbEngine": 0.858572,
+  "tokenizerMs": null,
+  "words": {
+   "mode": "full",
+   "rows": 250002,
+   "requests": "-",
+   "bytes": "-"
+  }
+ },
+ {
+  "model": "mMiniLM",
+  "mode": "progressive",
+  "profile": "local",
+  "reps": 3,
+  "ttfrMs": 219.79999995231628,
+  "loadMs": 189.60000002384186,
+  "firstCallMs": 31.799999952316284,
+  "callMedianMs": 15.699999988079071,
+  "callMaxMs": 187.79999995231628,
+  "warmMedianMs": 4.100000023841858,
+  "mbModels": 45.504503,
+  "mbEngine": 0.907552,
+  "tokenizerMs": null,
+  "words": {
+   "mode": "progressive",
+   "rows": 250002,
+   "requests": 218,
+   "bytes": 176788
+  }
+ },
+ {
+  "model": "mMiniLM",
+  "mode": "rows",
+  "profile": "local",
+  "reps": 3,
+  "ttfrMs": 223.89999997615814,
+  "loadMs": 190.60000002384186,
+  "firstCallMs": 33.5,
+  "callMedianMs": 11.800000011920929,
+  "callMaxMs": 40.800000071525574,
+  "warmMedianMs": 4.100000023841858,
+  "mbModels": 45.504503,
+  "mbEngine": 0.907552,
+  "tokenizerMs": null,
+  "words": {
+   "mode": "rows",
+   "rows": 332,
+   "requests": 319,
+   "bytes": 256304
+  }
+ },
+ {
+  "model": "RoBERTa-base",
+  "mode": "full",
+  "profile": "local",
+  "reps": 3,
+  "ttfrMs": 427.60000002384186,
+  "loadMs": 409.5,
+  "firstCallMs": 19.899999976158142,
+  "callMedianMs": 7.399999976158142,
+  "callMaxMs": 9.200000047683716,
+  "warmMedianMs": 7.300000071525574,
+  "mbModels": 249.923275,
+  "mbEngine": 0.858572,
+  "tokenizerMs": null,
+  "words": {
+   "mode": "full",
+   "rows": 50265,
+   "requests": "-",
+   "bytes": "-"
+  }
+ },
+ {
+  "model": "RoBERTa-base",
+  "mode": "progressive",
+  "profile": "local",
+  "reps": 3,
+  "ttfrMs": 382.10000002384186,
+  "loadMs": 350.89999997615814,
+  "firstCallMs": 31.899999976158142,
+  "callMedianMs": 7.599999964237213,
+  "callMaxMs": 79.5,
+  "warmMedianMs": 7.399999976158142,
+  "mbModels": 205.734995,
+  "mbEngine": 0.907552,
+  "tokenizerMs": null,
+  "words": {
+   "mode": "progressive",
+   "rows": 50265,
+   "requests": 95,
+   "bytes": 160160
+  }
+ },
+ {
+  "model": "RoBERTa-base",
+  "mode": "rows",
+  "profile": "local",
+  "reps": 3,
+  "ttfrMs": 369.2000000476837,
+  "loadMs": 337.2000000476837,
+  "firstCallMs": 31,
+  "callMedianMs": 16.450000047683716,
+  "callMaxMs": 28.200000047683716,
+  "warmMedianMs": 7.399999976158142,
+  "mbModels": 172.874355,
+  "mbEngine": 0.907552,
+  "tokenizerMs": null,
+  "words": {
+   "mode": "rows",
+   "rows": 329,
+   "requests": 319,
+   "bytes": 506660
+  }
+ }
+]

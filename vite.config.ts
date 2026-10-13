@@ -1,4 +1,18 @@
 import { defineConfig } from 'vite';
+import { wgslCompact } from './tools/wgsl_compact.ts';
+
+// R4 G3 test switch: KH_NO_RANGE=1 drops the Range header of every /models/ request, so the
+// server answers 200 with the whole file and RemoteRows must fall back to the full download.
+const noRange = {
+  name: 'kh-no-range',
+  configureServer(server: { middlewares: { use: (fn: (req: { url?: string; headers: Record<string, unknown> }, res: unknown, next: () => void) => void) => void } }) {
+    if (process.env.KH_NO_RANGE !== '1') return;
+    server.middlewares.use((req, _res, next) => {
+      if (req.url?.startsWith('/models/')) delete req.headers.range;
+      next();
+    });
+  },
+};
 
 export default defineConfig({
   // Relative asset URLs: the lib bundle emits the wasm worker as
@@ -6,6 +20,9 @@ export default defineConfig({
   // absolute base would point at the origin root and 404 whenever the
   // bundle is not served from /.
   base: './',
+  // R6 stage 1: kernels load without comments and spare whitespace, in build and dev alike, so the
+  // parity pages run the shaders the bundle ships.
+  plugins: [wgslCompact(), noRange],
   server: {
     port: 5199,
     strictPort: true,
@@ -28,9 +45,13 @@ export default defineConfig({
   worker: { format: 'es' },
   build: {
     lib: {
-      entry: 'src/index.ts',
+      entry: { kleinhirn: 'src/index.ts', tokenizer: 'src/tokenizer-entry.ts' },
       formats: ['es'],
-      fileName: () => 'kleinhirn.js',
+      fileName: (_format, name) => `${name}.js`,
     },
+    // R6: modules shared by the core and a lazy chunk (cache.ts, device.ts, half.ts, ...) stay in
+    // kleinhirn.js, which then exports them to the chunk. With the library default 'strict' they
+    // became an extra static chunk that every load fetched before the core could run.
+    rolldownOptions: { preserveEntrySignatures: 'allow-extension' },
   },
 });

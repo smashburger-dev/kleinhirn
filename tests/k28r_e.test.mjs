@@ -8,10 +8,11 @@ import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { buildPlan } from '../src/plan/build.ts';
-import { Kleinhirn } from '../src/index.ts';
+import { Kleinhirn } from '../src/gliner.ts';
 import { JuliaEngine } from '../src/julia.ts';
 import { JsonTokenizer } from '../src/tokenizer/hf/index.ts';
 import { argmaxRows, completeLabels, tokenRowOffset } from '../src/tasks.ts';
+import { legacyTable } from '../src/words.ts';
 import { model } from './helpers/review.mjs';
 import { loadTiny } from './helpers/tiny-model.mjs';
 
@@ -120,9 +121,9 @@ test('R14 token ids: NaN, negative, fractional and beyond the vocabulary throw; 
 test('R14 the prepared id paths of GLiNER and Julia check ids, valid ids give the same rows', () => {
   const hidden = 4;
   const table = Float32Array.from({ length: 3 * hidden }, (_, i) => i + 1); // vocabulary of 3 rows
-  const weights = { embeddings: table };
-  const gliner = Reflect.construct(Kleinhirn, [{}, weights, null, { hiddenSize: hidden }, 1, 'f32']);
-  const julia = Reflect.construct(JuliaEngine, [{}, weights, null, { hiddenSize: hidden }, 'f32']);
+  const words = legacyTable(table.buffer, 'f32', hidden);
+  const gliner = Reflect.construct(Kleinhirn, [{}, words, null, { hiddenSize: hidden }, 1, 'f32']);
+  const julia = Reflect.construct(JuliaEngine, [{}, words, null, { hiddenSize: hidden }, 'f32']);
   const plan = { length: 4, batch: 2 };
   for (const engine of [gliner, julia]) {
     const ok = { inputIds: Int32Array.of(2, 0), seqLen: 2 };
@@ -136,7 +137,7 @@ test('R14 the prepared id paths of GLiNER and Julia check ids, valid ids give th
       assert.throws(() => engine.batchEmbeddingRows([bad], plan), /token id/, `batchEmbeddingRows ${id}`);
     }
     // f16 tables take the same check
-    engine.weights = { embeddings: new Uint16Array(table.length) };
+    engine.words = legacyTable(new Uint16Array(table.length).buffer, 'f16', hidden);
     assert.throws(() => engine.embeddingRows({ inputIds: Int32Array.of(3), seqLen: 1 }, plan), /token id/);
   }
   assert.equal(tokenRowOffset(2, hidden, table.length), 8);

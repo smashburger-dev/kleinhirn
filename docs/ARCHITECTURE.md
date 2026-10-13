@@ -60,7 +60,7 @@ tools/              corpus builder, pinned model and dataset downloaders
                "attSpan": 256, "relEmbeddingRows": 512,
                "posAttType": ["p2c", "c2p"], "shareAttKey": true, "layerNormEps": 1e-7 },
   "head": { "type": "gliner2-classification", "temperature": 1.0 },
-  "tokenizer": "tokenizer.json",
+  "tokenizer": "tokenizer.bin",
   "tensors": [ { "name": "layers.0.qkv.weight", "dtype": "f16", "shape": [1152, 384], "shard": 0, "offset": 0, "byteLength": 884736 } ],
   "shards": [ { "file": "weights-0.bin", "bytes": 94371840, "sha256": "..." } ]
 }

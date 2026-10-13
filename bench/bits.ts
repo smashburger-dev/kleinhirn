@@ -13,6 +13,8 @@ import type { SchemaInput } from '../src/tokenizer/schema.ts';
 import type { JuliaPreparedInput } from '../src/julia.ts';
 import { compareLogits } from './metrics.ts';
 
+type WordsOption = 'rows' | 'progressive' | null;
+
 interface GoldenItem {
   seq_len: number;
   input_ids: number[];
@@ -165,7 +167,7 @@ function fileBucket(name: string): { length: number; markers: number } {
 }
 
 async function glinerBits(
-  model: string, precision: string, result: Result,
+  model: string, precision: string, result: Result, words: WordsOption,
 ): Promise<void> {
   const names = GLINER_FILES[model];
   if (!names) throw new Error(`unknown model ${model}`);
@@ -178,7 +180,7 @@ async function glinerBits(
   const kh = await Kleinhirn.load({
     manifestUrl: `/models/${model}/${precision}/manifest.json`,
     buckets: [...byLength].map(([length, markers]) => ({ length, markers })),
-    precision: 'auto', limits: 'minimum', cacheSize: 0,
+    precision: 'auto', limits: 'minimum', cacheSize: 0, ...(words ? { words } : {}),
   });
   checkErrors();
   result.info = kh.info();
@@ -228,10 +230,10 @@ function toJuliaInput(item: JuliaItem): JuliaPreparedInput {
   };
 }
 
-async function juliaBits(precision: string, result: Result): Promise<void> {
+async function juliaBits(precision: string, result: Result, words: WordsOption): Promise<void> {
   const kh = await JuliaEngine.load({
     manifestUrl: `/models/julia-1/${precision}/manifest.json`,
-    buckets: [512, 1024], precision: 'auto', limits: 'minimum', cacheSize: 0,
+    buckets: [512, 1024], precision: 'auto', limits: 'minimum', cacheSize: 0, ...(words ? { words } : {}),
   });
   checkErrors();
   result.info = kh.info();
@@ -271,11 +273,13 @@ async function main(): Promise<void> {
   const params = new URLSearchParams(location.search);
   const model = params.get('model') ?? 'small-upstream';
   const precision = params.get('precision') ?? 'f32';
+  // R4: words=rows|progressive loads the word rows over Range (default: full)
+  const words = params.get('words') as WordsOption;
   const result: Result = { stage: 'boot', model, precision };
   window.khBitsResult = result;
   try {
-    if (model === 'julia-1') await juliaBits(precision, result);
-    else await glinerBits(model, precision, result);
+    if (model === 'julia-1') await juliaBits(precision, result, words);
+    else await glinerBits(model, precision, result, words);
     checkErrors();
     result.gpuErrors = [...gpuErrors];
     result.stage = 'done';
