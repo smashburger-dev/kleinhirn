@@ -1,5 +1,7 @@
 # kleinhirn
 
+By [Noa Katana](https://noakatana.com/work/kleinhirn/), creative technologist in Munich.
+
 Encoder models in the browser, on the GPU, with no server.
 
 kleinhirn runs text encoders in the user's browser: classification,
