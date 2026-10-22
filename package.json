@@ -21,6 +21,6 @@
     "assemblyscript": "0.28.20",
     "onnxruntime-web": "1.29.0",
     "typescript": "5.9.3",
-    "vite": "8.2.2"
+    "vite": "8.3.5"
   }
 }
